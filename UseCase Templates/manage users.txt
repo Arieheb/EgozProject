@@ -1,0 +1,18 @@
+Name: 
+
+players: 
+
+preconditions:
+
+Basic flow:
+	1)
+	2)
+	3)
+	4)
+
+alternate flow:
+
+exception flow:
+
+
+post conditions:
