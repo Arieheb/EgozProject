@@ -1,21 +1,35 @@
 Name: manage users
 
-
+description: the admin would be able to add a user, delete a user or change a users information 
 
 players: admin, database
 
-preconditions: loged in as admin, 
+preconditions: loged in as admin. 
 
 Basic flow:
 	1) click on menu
 	2) menu pops up
 	3) click on manage users
-	4)  manage users setting show up
-  5)
+	4) manage users setting show up
+	5) search for a user
+	6) click the user
+	7) user information shows up
+	8) change the information
+	9) save the changes into the database
 
 alternate flow:
+	alternate 1)
+		8) delete / block a user
+		9) update database
+	alternate 2)
+		5) click on add a user
+		6) user information shows up 
+		7) fill in user information
+		8) click add to save the user to the database
 
 exception flow:
+	1)if user already exists when trying to add a user alert the admin that the user is already in use
+	2)if user does not exist when deleting a user alert the admin that the user does not exist
 
 
 post conditions: changed a users status
