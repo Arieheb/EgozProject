@@ -1,0 +1,20 @@
+Name: Open forum
+
+Brief description: Each user will be able to open a forum for a specific purpose of his choice, whether it is a forum for talking about politics, the unit, jobs and so on...
+
+players: user, admin, DB
+
+preconditions:Log in successfully 
+
+Basic flow:
+	1)Click on menu
+	2)Click on forums
+	3)Click on open forum 
+	4)Write a title and description for the forum and click on Post
+
+alternate flow:----
+
+exception flow:If the forum is not given a name and description, the app will mark the missing information in red and require the user to complete it
+
+
+post conditions:The forum is given a name and description
