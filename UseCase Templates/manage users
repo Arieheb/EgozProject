@@ -1,0 +1,21 @@
+Name: manage users
+
+
+
+players: admin, database
+
+preconditions: loged in as admin, 
+
+Basic flow:
+	1) click on menu
+	2) menu pops up
+	3) click on manage users
+	4)  manage users setting show up
+  5)
+
+alternate flow:
+
+exception flow:
+
+
+post conditions: changed a users status
