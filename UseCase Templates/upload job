@@ -1,0 +1,29 @@
+Name: 
+
+description:
+  The user will be able to upload a job page.
+  The user will be able to upload a file or write down details such as workplace and job scope.
+  Or conditions for a job candidate
+  
+players: 
+  app user
+  
+preconditions:
+ log in
+ 
+Basic flow:
+	1) Select menu
+  2) The possible actions appear
+  3) Selecting the jobs page
+  4) Select "upload Job"
+  5) select type of job
+  5) upload job
+  
+alternate flow:
+  -
+  
+exception flow:
+  -
+
+post conditions:
+The job appears on the jobs page
