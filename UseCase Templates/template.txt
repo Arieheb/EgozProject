@@ -1,5 +1,7 @@
 Name: 
 
+description:
+
 players: 
 
 preconditions:
