@@ -8,9 +8,12 @@ preconditions:Log in successfully
 
 Basic flow:
 	1)Click on menu
-	2)Click on forums
-	3)Click on open forum 
-	4)Write a title and description for the forum and click on Post
+	2)Menu pops up
+	3)Click on forums
+	4)Forum page shows up
+	5)Click on open forum 
+	6)Form of a forum appears
+	7)Write a title and description for the forum and click on 'create'
 
 alternate flow:----
 
