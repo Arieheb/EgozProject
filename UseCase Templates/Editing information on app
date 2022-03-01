@@ -1,10 +1,10 @@
 Name: Editing information on app
 
-description: The admins will be able to edit the application contents as they wish
+Description: The admins will be able to edit the application contents as they wish
 
-players: Admin, Database
+Players: Admin, Database
 
-preconditions: Logged in as admin
+Preconditions: Logged in as admin
 
 Basic flow:
 	1) Click on menu
@@ -14,8 +14,8 @@ Basic flow:
   5) Edit the content
   6) Click on 'Modify'
 
-alternate flow: ----------
+Alternate flow: ----------
 
-exception flow: The admin edited the content but didn't click on 'Modify' ---> An exeption message wil pop up alarting that the chaneges wern't saved
+Exception flow: The admin edited the content but didn't click on 'Modify' ---> An exeption message wil pop up alarting that the chaneges wern't saved
 
-post conditions: The page's content was modified and saved
+Post conditions: The page's content was modified and saved
