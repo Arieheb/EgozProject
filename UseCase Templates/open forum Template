@@ -20,4 +20,4 @@ alternate flow:----
 exception flow:If the forum is not given a name and description, the app will mark the missing information in red and require the user to complete it
 
 
-post conditions:The forum is given a name and description
+post conditions: a forum is created and given a name and description
