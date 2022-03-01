@@ -1,1 +1,44 @@
-cs
+Name: Make Purchase In Store
+
+description: The user will be able to make a purchase in the on-line store
+
+players: User, Admin, Data base, Out-Source payment
+
+preconditions: user logged in succesfully
+
+Basic flow:
+
+	1) Click On Menu
+	2) Click on Store
+	3) Choose wanted item for purchase
+	4) Click on add to cart button
+  5) Click on view cart
+  6) Click on make purchase button
+  7) Redirect to out source payment site
+  8) Inserting payment method
+  9)  Notification of payment received
+  10) Redirect back to app
+  11) Pop up message that item has been ordered
+
+alternate flow 1:
+
+  5) Click on return to store
+  6) Choosing additional item
+  7) Click on add to cart
+  8) Click on view cart
+  9) Click on make purchase button
+  10) Redirect to out source payment site
+  11) Inserting payment method
+  12)  Notification of payment received
+  13) Redirect back to app
+  14) Pop up message that item has been ordered
+  
+exception flow:
+
+  1) if item is not in stock there will be an indication message
+  2) if purchase was cancelled or declined, there will be an indication message
+
+
+post conditions:
+
+user will have an order of an item from the store
