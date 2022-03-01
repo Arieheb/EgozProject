@@ -1,25 +1,31 @@
 Name: sign up or login.
 
 description:
-The user will have the ability to enter the app by signning up with user name and password.
+The user will have the ability to enter the app by signing up with user name and password.
 
-players: user.
+players: user, admin, data base
 
 preconditions:
--to login: if the user already signed up.
--the user Will have to meet the registration conditions to signup.
+to login: if the user already signed up.
+to sign up: the user Will have to meet the registration conditions to signup.
 
 Basic flow:
 	1) open the app.
-	2) insert username+password.
-	3) press login.
-	4)
+	2) insert username and password.
+	3) optional: check box of keep me signed in
+	4) press login.
 
 alternate flow:
-If the user was not registered, in the login page will be signup option.
+	1) open the app
+	2) press sign up
+	3) sign up screen shows up
+	4) fill in all information required
+	5) press sign up
 
 exception flow:
-if the user insert a wrong password/username, the app will inform the user and won't let him enter.
+1) if the user insert a wrong password/username, the app will inform the user and won't let him enter.
+2) if user hasen't inserted all required information in sign up window, red will show what needs to be fixed/filled and a message will pop up
+
 
 post conditions:
 the user will get into the app.
