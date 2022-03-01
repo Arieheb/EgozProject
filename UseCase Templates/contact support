@@ -1,24 +1,23 @@
 Name: contact support
 
-description: the user will be able to send inquiry to the admin.
+description: the user will be able to send inquirys to the admin.
 
 players: user
 
-preconditions:
-- the user have to be already registered and login.
+preconditions: the user have to be already registered and login.
 
 Basic flow:
 	1) login
 	2) scroll down the screen
 	3) press "contact us"
-	4) fill your name and your email in the place desined for it.
-  5) fill your messegein the place desined for it.
-  6) press send.
+	4) fill your name and your email in the designated boxes.
+  	5) fill your messege in the place desined for it.
+  	6) press send.
 
 alternate flow:
 ------
 exception flow:
-------
+If information was put incorrectly or empty inputs, red notice and message will pop up
 
 post conditions:
 the messege will be sent to the admin.
