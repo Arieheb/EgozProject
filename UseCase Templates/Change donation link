@@ -7,10 +7,10 @@ players: admin
 preconditions: logged in as admin
 
 Basic flow:
-	1) click on menu
-	2) menu shows up 
+  1) click on menu
+  2) menu shows up 
   3) click on admin setting
-	4) admin settings show up
+  4) admin settings show up
   5) enter link into change link input
   6) click save
   7) confirm window shows up
