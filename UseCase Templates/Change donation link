@@ -2,7 +2,7 @@ Name: change donation link
 
 description: the admin would be able to change to link to the payment site
 
-players: admin
+players: admin, data base
 
 preconditions: logged in as admin
 
