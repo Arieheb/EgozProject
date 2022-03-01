@@ -33,6 +33,17 @@ alternate flow 1:
   13) Redirect back to app
   14) Pop up message that item has been ordered
   
+ alternate flow 2:
+  5) Click on view cart
+  6) Click on remove item from cart
+  7) item has been removed
+  8) Click on make purchase button
+  9) Redirect to out source payment site
+  10) Inserting payment method
+  11) Notification of payment received
+  12) Redirect back to app
+  13) Pop up message that item has been ordered
+  
 exception flow:
 
   1) if item is not in stock there will be an indication message
@@ -41,4 +52,4 @@ exception flow:
 
 post conditions:
 
-user will have an order of an item from the store
+user will have an ordered an item from the store
