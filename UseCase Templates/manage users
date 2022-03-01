@@ -4,7 +4,7 @@ description: the admin would be able to add a user, delete a user or change a us
 
 players: admin, database
 
-preconditions: loged in as admin. 
+preconditions: logged in as admin. 
 
 Basic flow:
 	1) click on menu
@@ -28,8 +28,8 @@ alternate flow:
 		8) click add to save the user to the database
 
 exception flow:
-	1)if user already exists when trying to add a user alert the admin that the user is already in use
-	2)if user does not exist when deleting a user alert the admin that the user does not exist
+	1) if user already exists when trying to add a user alert the admin that the user is already in use
+	2) if user does not exist when deleting a user alert the admin that the user does not exist
 
 
-post conditions: changed a users status
+post conditions: changed a users information and status
