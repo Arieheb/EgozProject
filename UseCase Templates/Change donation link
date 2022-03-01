@@ -1,10 +1,10 @@
 Name: change donation link
 
-description: the admin would be able to change to link to the payment site
+Description: the admin would be able to change to link to the payment site
 
-players: admin, data base
+Players: admin, data base
 
-preconditions: logged in as admin
+Preconditions: logged in as admin
 
 Basic flow:
   1) click on menu
@@ -16,11 +16,11 @@ Basic flow:
   7) confirm window shows up
   8) click confirm 
 
-alternate flow:
+Alternate flow:
   8) click on cancle 
   9) original link is shown in the link input
 
-exception flow:
+Exception flow:
   if the link that was put is invalid the link input turns red and a message appears
 
-post conditions: the link to the payment site was changed
+Post conditions: the link to the payment site was changed
