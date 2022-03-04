@@ -1,27 +1,27 @@
 Name: Upload Job
 
-description:
+Description:
   The user will be able to upload a job description to the app
   
-players: user, admin, database
+Players: user, admin, database
   
-preconditions: logged in succesfully 
+Preconditions: Logged in succesfully 
 
 Basic flow:
   1) Select menu
   2) The menu opens up
   3) Selecting the jobs page
-  4) job window opens up
+  4) Job window opens up
   5) Select "upload Job"
-  6) upload job window opens up
-  7) insert job descriptions
-  8) click on upload job
+  6) Upload job window opens up
+  7) Insert job descriptions
+  8) Click on upload job
   
-alternate flow:
+Alternate flow:
   -
   
-exception flow:
-  if job description wasent filled in properly, there will be a message that pops up and a red sign around relevent boxes
+Exception flow:
+  If job description wasent filled in properly, there will be a message that pops up and a red sign around relevent boxes
 
-post conditions:
+Post conditions:
 The job appears on the jobs page
