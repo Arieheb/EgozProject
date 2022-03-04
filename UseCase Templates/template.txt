@@ -1,10 +1,10 @@
 Name: 
 
-description:
+Description:
 
-players: 
+Players: 
 
-preconditions:
+Preconditions:
 
 Basic flow:
 	1)
@@ -12,9 +12,9 @@ Basic flow:
 	3)
 	4)
 
-alternate flow:
+Alternate flow:
 
-exception flow:
+Exception flow:
 
 
-post conditions:
+Post conditions:
