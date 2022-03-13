@@ -1,0 +1,23 @@
+Name: Contact support
+
+Description: The user will be able to send inquirys to the admin
+
+Players: User
+
+Preconditions: The user have to be already registered and login
+
+Basic flow:
+	1) Login
+	2) Scroll down the screen
+	3) Press "contact us"
+	4) Fill your name and your email in the designated boxes
+  	5) Fill your messege in the place desined for it
+  	6) Press send
+
+Alternate flow: ----------
+
+Exception flow:
+If information was put incorrectly or empty inputs, red notice and message will pop up
+
+Post conditions:
+The messege will be sent to the admin

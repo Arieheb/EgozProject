@@ -1,0 +1,34 @@
+Name: Make payment or donatinon
+
+Brief Description: The user will have the possibility to make a payment that is linked to the organization. This payment will be registered as a donation or as a membership payment. 
+
+Players: Admin, User, Database, Payment method
+
+Preconditions: Logged in successfully
+
+Basic flow:
+1) Click on Donation button 
+2) Donation screen pops up
+3) Press "Donation" button 
+4) Redirecting to donation platform/website
+5) Inserting payment method
+6) Receiving donation payment
+7) Redirecting back to app
+8) Pop up message the donation recieved
+9) Save changes into Database
+
+Alternate flow:
+1) Press "renew membership"
+2) Redirecting to donation platform/website
+3) Inserting payment method
+4) Receiving donation payment
+5) Redirecting back to app
+6) Pop up message the donation recieved
+7) Save changes into Database
+
+Exception flow: 
+1) Payment declined
+2) User cancelles payment
+
+Post-condition:
+User has paid a certain amount of money for donation ot memberships renewal

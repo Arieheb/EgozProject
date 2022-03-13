@@ -1,0 +1,25 @@
+Name: Write in forum
+
+Description: The user can write into a certian forum
+
+Players: user, Admin, DB
+
+Preconditions: logged in, forum you want to write into exist
+
+Basic flow:
+	 1) Click on menu
+	 2) Menu pops up
+	 3) Click on forums
+	 4) Forum page shows up
+	 5) Choose a certain forum
+	 6) Forum shows up
+	 7) Write a message in text box
+	 8) Click post
+
+alternate flow:-------------
+
+Exception flow: If the user click post without writing anything, the app will mark the missing information in red and require the user to complete it
+
+
+
+Post conditions:A new message was written in the forum

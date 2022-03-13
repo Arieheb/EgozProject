@@ -1,0 +1,20 @@
+Name: View info on website
+
+Description:The user can view details and information about the 'EGOZ' unit and the 'SAYERET HATZPHONIT' organization
+
+Players: User, admin, database
+
+Preconditions: Logged in succesfully
+
+Basic flow:
+	1) Click on menu
+	2) Menu shows up
+	3) Click on 'about'
+	4) About window shows up shows up
+
+Alternate flow:--------
+
+Exception flow:--------
+
+
+Post conditions:The user see the information
