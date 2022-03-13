@@ -3,9 +3,9 @@ import "./Login.css"
 export function Login(){
     return (
         <div id="login">
-            <input type = "text"></input>
-            <input type = "password"></input>
-            <button></button>
+            <input type = "text" plaeceholder="userNames"></input>
+            <input type = "password" plaeceholder="passowrd"></input>
+            <button id= "login-button">login</button>
         </div>
     );
 }

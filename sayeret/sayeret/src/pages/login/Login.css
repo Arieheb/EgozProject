@@ -6,8 +6,9 @@
     margin: 30px auto 0 auto;
 }
 
-button{
-    height: 20px;
-    width:20px;
-    margin: 0 auto 0 auto;
+#login-button{
+    border-radius: 50%;
+    width:50px;
+    box-shadow: 3px 4px blue;
+    background-color: chocolate;
 }
