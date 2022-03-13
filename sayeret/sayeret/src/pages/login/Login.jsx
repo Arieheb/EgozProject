@@ -5,7 +5,7 @@ export function Login(){
         <div id="login">
             <input type = "text" plaeceholder="userNames"></input>
             <input type = "password" plaeceholder="passowrd"></input>
-            <button id= "login-button">login</button>
+            <button id= "login-button">התחבר</button>
         </div>
     );
 }
