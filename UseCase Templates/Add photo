@@ -1,0 +1,24 @@
+Name: add photo
+
+Description: The user will be able to add a profile picture
+
+Players: user, admin, DB
+
+Preconditions: The user have to be already registered and login, and a picture on the phone that he would like to put as a profile picture
+
+Basic flow:
+	1) login
+	2) Menu shows up
+	3) click on add photo
+	4) adding photo page shows up
+  5) click on choose from gallery
+  6) the photo gallery from the user's phone shows up
+  7) click on photo
+  8) click on choose
+
+Alternate flow:---------------
+
+Exception flow: If the user has no pictures on the phone, his gallery will be empty and he will not be able to select a profile picture
+
+
+Post conditions: the user have a profile picture
