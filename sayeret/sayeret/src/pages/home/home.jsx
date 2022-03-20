@@ -4,7 +4,7 @@ import "./Home.css"
 export function Home(){
     return(
         <div>
-            home
+            Home
         </div>
     )
 }
