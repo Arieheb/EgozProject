@@ -1,5 +1,5 @@
 import "./sign-up.css"
-export function Login(){
+export function signUp(){
     return(
     <div id="sign-up">
         <input type = "text" plaeceholder="userNames">שם פרטי ומשפחה</input>
