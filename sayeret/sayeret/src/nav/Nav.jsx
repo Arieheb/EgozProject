@@ -1,32 +1,22 @@
-import "./Nav.css";
-import {About} from "../pages/about/About";
-import {Home} from "../pages/home/Home";
-import React from "react";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-
+import { Outlet, Link } from "react-router-dom";
 
 export function Nav(){
-    return (
-   
-      <div>
+  return (
+    <div id="nav-bar">
+      <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="About">About</Link>
+            <Link to="/About">About</Link>
+          </li>
+          <li>
+            <Link to="/Jobs">Jobs</Link>
           </li>
         </ul>
-        
-     <Router>
-      <Route>
-        <Route path="/" element={<Home />}>
-          <Route index element={<Home />} />
-          <Route path="About" element={<About />} />
-        </Route>
-      </Route>
-      
-    </Router>
+      </nav>
+      <Outlet />
     </div>
-    );
-}
+  )
+};
