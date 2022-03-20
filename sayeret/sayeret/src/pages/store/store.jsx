@@ -1,1 +1,2 @@
-import "./store.css"
+import "./Store.css"
+export function Store(){}
