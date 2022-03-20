@@ -1,1 +1,1 @@
-import "./home.css"
+import "./Home.css"

@@ -1,4 +1,4 @@
-import "./sign-up.css"
+import "./Sign-up.css"
 import React, {Component} from 'react';
 import MonthYearPocker from 'react-month-year-picker';
 export function signUp(){

@@ -1,1 +1,1 @@
-import "./jobs.css"
+import "./Jobs.css"

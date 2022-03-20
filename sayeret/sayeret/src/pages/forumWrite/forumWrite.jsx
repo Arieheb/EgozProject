@@ -1,1 +1,1 @@
-import "./forumWrite.css"
+import "./ForumWrite.css"
