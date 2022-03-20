@@ -1,1 +1,2 @@
-import "./home.css"
+import "./Home.css"
+export function Home(){}
