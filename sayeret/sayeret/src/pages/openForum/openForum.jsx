@@ -1,2 +1,8 @@
 import "./OpenForum.css"
-export function OpenForum(){}
+export function OpenForum(){
+    return(
+        <div>
+            OpenForum
+        </div>
+    )
+}
