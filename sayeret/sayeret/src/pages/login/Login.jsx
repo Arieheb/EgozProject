@@ -7,6 +7,7 @@ export function Login(){
             <input type = "password" plaeceholder="passowrd"></input>
             <button id= "login-button">התחבר</button>
             <button id= "signup-button">הרשמה</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
     );
 }
