@@ -1,1 +1,2 @@
-import "./openForum.css"
+import "./OpenForum.css"
+export function OpenForum(){}
