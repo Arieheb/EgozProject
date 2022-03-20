@@ -1,1 +1,1 @@
-import "./store.css"
+import "./Store.css"
