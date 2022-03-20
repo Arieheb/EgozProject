@@ -1,4 +1,10 @@
 
 import "./Home.css"
-export function Home(){}
 
+export function Home(){
+    return(
+        <div>
+            home
+        </div>
+    )
+}

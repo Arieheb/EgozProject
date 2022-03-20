@@ -1,9 +1,6 @@
-<<<<<<< HEAD
+
 import "./Sign-up.css"
 
-=======
-import "./Sign-up.css"
->>>>>>> 509290237316f97d8fb51cbcc4e8fddd8d52ca8e
 export function signUp(){
     return(
     <div id="sign-up">
