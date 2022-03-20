@@ -1,5 +1,6 @@
-import {About} from "./pages/about/About";
-import {Home} from "./pages/home/Home";
+import "./Nav.css";
+import {About} from "../pages/about/About";
+import {Home} from "../pages/home/Home";
 import React from "react";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
