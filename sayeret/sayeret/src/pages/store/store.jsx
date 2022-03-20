@@ -1,2 +1,8 @@
 import "./Store.css"
-export function Store(){}
+export function Store(){
+    return(
+        <div>
+            Store
+        </div>
+    )
+}
