@@ -1,17 +1,12 @@
 import {About} from "./pages/about/About";
 import {Home} from "./pages/home/Home";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 
 export function Nav(){
     return (
-    <Router>
+   
       <div>
         <ul>
           <li>
@@ -21,17 +16,16 @@ export function Nav(){
             <Link to="About">About</Link>
           </li>
         </ul>
-
-        <Switch>
-          <Route path="/">
-            <Home/>
-          </Route>
-          <Route path="about">
-            <About/>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+        
+     <Router>
+      <Route>
+        <Route path="/" element={<Home />}>
+          <Route index element={<Home />} />
+          <Route path="About" element={<About />} />
+        </Route>
+      </Route>
       
+    </Router>
+    </div>
     );
 }
