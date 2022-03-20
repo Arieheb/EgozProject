@@ -1,4 +1,4 @@
-import "./sign-up.css"
+import "./Sign-up.css"
 export function signUp(){
     return(
     <div id="sign-up">
