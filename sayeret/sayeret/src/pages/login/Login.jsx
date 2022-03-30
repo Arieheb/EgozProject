@@ -3,7 +3,7 @@ import "./Login.css"
 export function Login(){
     return (
         <div id="Login">
-            <input type = "Text" plaeceholder="UserNames"></input>
+            <input type = "Text" plaeceholder="Email"></input>
             <input type = "Password" plaeceholder="Passowrd"></input>
             <button id= "Login-button">התחבר</button>
             <button id= "Signup-button">הרשמה</button>
