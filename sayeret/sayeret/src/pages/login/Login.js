@@ -1,17 +1,24 @@
-import react from 'react'
-import {View,StyleSheet,Image} from 'react-native'
-import Logo from '../images/logo.png'
+import React from 'react';
+import {View,StyleSheet,Image,TextInput} from 'react-native';
+import Logo from '../images/logo.png';
 
 const LoginScreen = () => {
     return (
         <View style={styles.container}>
             <View>
-                <Image source={Logo} styles={styles.logo} resizeMode="contain"/>
+                <Image source={Logo} 
+                styles={[styles.logo,{height:height*0.3}]} 
+                resizeMode="contain"
+                />
+            </View>
+            <View>
+                <TextInput placeholder='Email:'/>
+                <TextInput placeholder='Password:'/>
             </View>
         </View>
     );
 };
-
+ 
 const styles = StyleSheet.create({
     container:{
         alignItems:'center',
@@ -19,6 +26,5 @@ const styles = StyleSheet.create({
     },
     logo:{
         width:'70%',
-        height: 100,
     },
 })
