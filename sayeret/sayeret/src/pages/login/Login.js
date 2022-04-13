@@ -18,7 +18,7 @@ const LoginScreen = () => {
         </View>
     );
 };
- 
+
 const styles = StyleSheet.create({
     container:{
         alignItems:'center',
