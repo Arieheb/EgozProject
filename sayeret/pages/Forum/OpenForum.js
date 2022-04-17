@@ -1,12 +1,12 @@
 import React from 'react';
 import { View,Text } from 'react-native';
 
-const Home = props=>{
+const OpenForum = props=>{
     return(
         <View>
-            <Text>home</Text>
+            <Text>OpenForum</Text>
         </View>
     );
 }
 
-export default Home;
+export default OpenForum;
