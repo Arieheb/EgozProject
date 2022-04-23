@@ -1,17 +1,23 @@
-import React from 'react';
-import { View,Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+import WriteToForum from './forumWrite'; 
+import OpenForum from './OpenForum'; 
+import ForumMain from './ForumMain';
 
-const OpenForum = props=>{
+const Stack = createStackNavigator();
+
+const Forum = props=>{
+    
     return(
         <NavigationContainer>
-        <View>
-            <Text>OpenForum</Text>
-            <Button title='open a forum'></Button>
-        </View>
+            <Stack.Navigator>
+                <Stack.Screen name="A" component={ForumMain}/>
+                <Stack.Screen name="B" component={OpenForum}/>
+                <Stack.Screen name="C" component={WriteToForum}/>
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }
 
-export default OpenForum;
+export default Forum;

@@ -1,12 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import { StyleSheet, Text, View } from 'react-native';
+
+import Home from './pages/home/Home'
+import Forum from './pages/Forum/Forum' 
+
+// const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    // <NavigationContainer>
+    //   <Drawer.Navigator initialRouteName='Home'>
+    //     <Drawer.Screen name='Home' component={Home}/>
+    //     <Drawer.Screen name='OpenForum' component={OpenForum}/>
+    //   </Drawer.Navigator>
+    // </NavigationContainer>
+      <Forum></Forum>
+    // <View style={styles.container}><Text>work on somthing else</Text></View>
   );
 }
 
