@@ -5,7 +5,7 @@ const ForumMain = props=>{
     const [forumList, updateForumList] = useState([])
 
     function goToOpenAForum (){
-        props.navigation.navigate('B');
+        props.navigation.navigate('C');
     }
 
     return(

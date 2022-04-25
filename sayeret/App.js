@@ -1,21 +1,14 @@
 import 'react-native-gesture-handler';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Home from './pages/home/Home'
 import Forum from './pages/Forum/Forum' 
+import WriteToForum from './pages/Forum/forumWrite';
 
 // const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Drawer.Navigator initialRouteName='Home'>
-    //     <Drawer.Screen name='Home' component={Home}/>
-    //     <Drawer.Screen name='OpenForum' component={OpenForum}/>
-    //   </Drawer.Navigator>
-    // </NavigationContainer>
       <Forum></Forum>
-    // <View style={styles.container}><Text>work on somthing else</Text></View>
   );
 }
 
