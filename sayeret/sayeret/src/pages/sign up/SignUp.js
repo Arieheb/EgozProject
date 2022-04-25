@@ -1,15 +1,26 @@
+import React from 'react';
+import {View,StyleSheet,Image,TextInput} from 'react-native';
 
-import "./Sign-up.css"
+const SignUpScreen = () => {
+    return (
+    <View style={styles.container}>
+        <View>
+         <Text>הירשם</Text>
+        </View>
+        <View>
+         <TextInput placeholder='Email:'/>
+         <TextInput placeholder='Password:'/>
+         <TextInput placeholder='confirm Password:'/>
+        </View>
+    </View>
 
-export function signUp(){
-    return(
-    <div id="sign-up">
-        <input type="email" pattern=".+@+\." size="30" required></input>
-        <input type = "text" plaeceholder="userNames">שם פרטי ומשפחה</input>
-        <input type = "password" plaeceholder="passowrd">סיסמא</input>
-        <input type="password" plaeceholder="passowrd">חזור על הסיסמא</input>
-        <button id= "continue-button">המשך</button>
-        <input type="text" />
-    </div>
     );
-}
+};
+
+const styles = StyleSheet.create({
+    container:{
+        alignItems:'center',
+        padding:35,
+    }
+
+})

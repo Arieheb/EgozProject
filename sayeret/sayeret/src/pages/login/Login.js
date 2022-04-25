@@ -12,8 +12,8 @@ const LoginScreen = () => {
                 />
             </View>
             <View>
-                <TextInput placeholder='Email:'/>
-                <TextInput placeholder='Password:'/>
+                <TextInput placeholder='Email:' style={styles.input}/>
+                <TextInput placeholder='Password:' style={styles.input}/>
             </View>
         </View>
     );
@@ -27,4 +27,8 @@ const styles = StyleSheet.create({
     logo:{
         width:'70%',
     },
+    input: {
+        margin: 10,
+        paddingHorizontal: 25,
+    }
 })
