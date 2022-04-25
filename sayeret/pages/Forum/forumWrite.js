@@ -23,8 +23,7 @@ const WriteToForum = props => {
         ])
     }, []);
     const onSend = useCallback((messages=[]) => {
-        console.log(messages)
-        setMessages(previousMessages => {console.log(previousMessages);GiftedChat.append(previousMessages, messages)})
+        setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
         setDoc(doc(collection(db,"chats"),messages[0]._id),{text:messages[0].text, createdAt:messages[0].createdAt})
     }, []);
     return (
