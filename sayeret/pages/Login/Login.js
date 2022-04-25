@@ -1,8 +1,11 @@
-import React from 'react';
+import {React,useState,} from 'react';
 import {View,StyleSheet,Image,TextInput,Button} from 'react-native';
 import Logo from '../../assets/Images/logo.png';
 
+
 const LoginScreen = () => {
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
     return (
         <View style={styles.container}>
             <View>
@@ -12,8 +15,16 @@ const LoginScreen = () => {
                 />
             </View>
             <View>
-                <TextInput placeholder='Email:' style={styles.input}/>
-                <TextInput placeholder='Password:' style={styles.input}/>
+                <TextInput placeholder='אימייל:'
+                style={styles.input}
+                value={email}
+                onChangeText={text=>setEmail(text)}
+                />
+                <TextInput placeholder='סיסמא:' 
+                style={styles.input}
+                value={password}
+                onChangeText={text=>setPassword(text)}
+                />
             </View>
             <View>
                 <Button title='היכנס' style={styles.button}></Button>
