@@ -49,20 +49,17 @@ const LoginScreen = () => {
 
 const styles = StyleSheet.create({
     container:{
-       padding:40, 
+       flex:1,
        justifyContent:'center',
+       alignItems:'center',
     },
     logo:{
         
-        alignItems:'center',
+        
     },
     input: {
-        padding:10,
-        backgroundColor:'grey',
-        width:'100%',
-        margin:5,
-        borderRadius:5,
-        marginTop:20,
+        
+        
     },
     button:{
         padding:20,
