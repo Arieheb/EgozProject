@@ -3,12 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import LoginScreen from './pages/Login/Login' 
 import Forum from './pages/Forum/Forum';
+import SignUpScreen from './pages/Login/SignUp' 
 
 // const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-     <LoginScreen/>
+     <SignUpScreen/>
   );
 }
 
