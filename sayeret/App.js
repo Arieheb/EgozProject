@@ -2,13 +2,13 @@ import 'react-native-gesture-handler';
 import { StyleSheet, Text, View } from 'react-native';
 
 import LoginScreen from './pages/Login/Login' 
-import WriteToForum from './pages/Forum/forumWrite';
+import Forum from './pages/Forum/Forum';
 
 // const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-     <LoginScreen/>
+     <Forum/>
   );
 }
 
