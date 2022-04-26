@@ -42,10 +42,10 @@ const LoginScreen = () => {
                     secureTextEntry
                     />
                     <TouchableOpacity style = {styles.buttons}>
-                    <Text>היכנס</Text>
+                    <Text style = {styles.buttonText}>היכנס</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style = {styles.buttons}>
-                    <Text>הירשם</Text>
+                    <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -109,9 +109,11 @@ const styles = StyleSheet.create({
        display:'flex',
        alignItems:'center',
        justifyContent:'center',
-
-        
-    }
+    },
+    buttonText:{
+        fontWeight:'bold',
+        fontSize:19,
+    },
     
 })
 export default LoginScreen

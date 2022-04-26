@@ -8,7 +8,7 @@ import Forum from './pages/Forum/Forum';
 
 export default function App() {
   return (
-     <Forum/>
+     <LoginScreen/>
   );
 }
 
