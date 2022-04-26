@@ -12,7 +12,7 @@ const ForumMain = props=>{
         
          <View>
                 <Text>OpenForum</Text>
-                <Button title='open a forum' onPress={goToOpenAForum}></Button>
+                <Button title='go to a forum' onPress={goToOpenAForum}></Button>
             </View> 
     );
 }
