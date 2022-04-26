@@ -41,11 +41,14 @@ const LoginScreen = () => {
                     onChangeText={text=>setPassword(text)}
                     secureTextEntry
                     />
-                    <TouchableOpacity style = {styles.buttons}>
-                    <Text style = {styles.buttonText}>היכנס</Text>
+                    <TouchableOpacity 
+                    style = {styles.buttons}
+                    onPress={validate(email)? alert("valid"):alert("invalid")}
+                    >
+                        <Text style = {styles.buttonText}>היכנס</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style = {styles.buttons}>
-                    <Text style = {styles.buttonText}>הירשם</Text>
+                        <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
                 </View>
             </View>
