@@ -17,7 +17,7 @@ const SignUpScreen = () => {
     const [confirmPassword,setConfirmPassword] = useState("");
 
     return (
-    < KeyboardAwareScrollView style={styles.container}>
+    < View style={styles.container}>
         <View style = {styles.top}>
             <Text style= {styles.heading}>הירשם</Text>
         </View>
@@ -48,7 +48,7 @@ const SignUpScreen = () => {
                 </TouchableOpacity>
             </View>
         </View>
-    </KeyboardAwareScrollView>
+    </View>
 
 
     );
