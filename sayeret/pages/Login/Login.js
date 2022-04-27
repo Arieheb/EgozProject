@@ -4,7 +4,6 @@ import Logo from '../../assets/Images/logo.png';
 import {validate} from 'react-email-validator';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
-import SignUpScreen from './SignUp';
 
 const LoginScreen = props => {
     const [email,setEmail] = useState("");
@@ -47,7 +46,7 @@ const LoginScreen = props => {
                     >
                         <Text style = {styles.buttonText}>היכנס</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style = {styles.buttons} onPress={props.navigation.navigate('SignUp')}>
+                    <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('SignUp')}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
                 </View>

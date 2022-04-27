@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -27,11 +27,11 @@ export default function App() {
   //   return subscriber; // unsubscribe on unmount
   // }, []);
 
-  if(!user){
+  if(user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name='login' component={LoginScreen}/>
+          <Stack.Screen options={{headerShown: false}} name='login' component={LoginScreen}/>
           <Stack.Screen name='SignUp' component={SignUpScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
