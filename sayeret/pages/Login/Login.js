@@ -61,8 +61,6 @@ const styles = StyleSheet.create({
        flex:1,
        marginTop:40,
        flexDirection:'column',
-       justifyContent:'center',
-       alignItems:'center',
     },
     top:{
        width:'100%',
@@ -71,6 +69,7 @@ const styles = StyleSheet.create({
        alignItems:'center',
     },
     bottom:{
+        
         width:'100%',
         height:'60%',
         backgroundColor:'#31386C',  
@@ -110,7 +109,6 @@ const styles = StyleSheet.create({
        marginTop:10,
        borderRadius:8,
        display:'flex',
-       alignItems:'center',
        justifyContent:'center',
     },
     buttonText:{
