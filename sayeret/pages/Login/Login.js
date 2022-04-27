@@ -19,8 +19,9 @@ const LoginScreen = props => {
         })
         .catch(error => alert(error.message))
     }
+    
     return (
-        <KeyboardAwareScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style = {styles.top}>
                 <Image style = {styles.logo} source={Logo} 
                 styles={styles.logo} 
@@ -52,7 +53,7 @@ const LoginScreen = props => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </KeyboardAwareScrollView>
+        </View>
     );
 };
 
