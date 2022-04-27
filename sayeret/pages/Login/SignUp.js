@@ -1,6 +1,15 @@
 import {React,useState} from 'react';
-import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity} from 'react-native';
-import {validate} from 'react-email-validator';
+import {
+    View,
+    StyleSheet,
+    Image,
+    TextInput,
+    Button,
+    Text,
+    TouchableOpacity,
+    }    from 'react-native';
+    import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+    import {validate} from 'react-email-validator';
 
 const SignUpScreen = () => {
     const [email,setEmail] = useState("");
@@ -8,7 +17,7 @@ const SignUpScreen = () => {
     const [confirmPassword,setConfirmPassword] = useState("");
 
     return (
-        <View style={styles.container}>
+    < KeyboardAwareScrollView style={styles.container}>
         <View style = {styles.top}>
             <Text style= {styles.heading}>הירשם</Text>
         </View>
@@ -39,7 +48,7 @@ const SignUpScreen = () => {
                 </TouchableOpacity>
             </View>
         </View>
-    </View>
+    </KeyboardAwareScrollView>
 
 
     );
