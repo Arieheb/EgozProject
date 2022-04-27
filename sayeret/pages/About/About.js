@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
  container:{
    flex:1,
    
-   
  },
  title:{
     width:'100%',
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize:20,
     paddingRight:10,
     paddingLeft:10,
-  }
+  },
 
 })
 export default About
