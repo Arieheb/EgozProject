@@ -3,13 +3,12 @@ import {Text, AppRegistry, View, StyleSheet, Image, TextInput, Button} from 'rea
 //import Logo from '../../assets/Images/logo.png';
 // import {validate} from 'react-email-validator';
 import { Header } from "react-native-elements";
-
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 
 
 
-const MoreOptions = () => {
+const Profile = () => {
     return (
         <View>
             <Text> teest</Text>
@@ -17,5 +16,5 @@ const MoreOptions = () => {
     );
 };
 
-export default MoreOptions
+export default Profile
 
