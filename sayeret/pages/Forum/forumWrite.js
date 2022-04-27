@@ -13,7 +13,7 @@ const WriteToForum = ({ navigation }) => {
     setMessages([
       {
         _id: 1,
-        text: 'Hello developer',
+        text: 'Hello Aviv',
         createdAt: new Date(),
         user: {
           _id: 2,
@@ -25,10 +25,11 @@ const WriteToForum = ({ navigation }) => {
   }, [])
 
   const onSend = useCallback((messages = []) => {
+
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     const { _id, createdAt, text, user,} = messages[0]
-
     addDoc(collection(db, 'chats'), { _id, createdAt,  text});
+  
   }, [])
 
   return (
