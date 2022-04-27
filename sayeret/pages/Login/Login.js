@@ -19,6 +19,7 @@ const LoginScreen = props => {
         })
         .catch(error => alert(error.message))
     }
+    
     return (
         <View style={styles.container}>
             <View style = {styles.top}>

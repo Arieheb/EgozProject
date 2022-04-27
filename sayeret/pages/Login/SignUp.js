@@ -50,7 +50,6 @@ const SignUpScreen = () => {
         </View>
     </View>
 
-
     );
 };
 
