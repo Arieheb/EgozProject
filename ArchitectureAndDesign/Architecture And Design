@@ -1,0 +1,26 @@
+## **UI Tier**
+
+|Level    |  Operation                                  |
+|-----    |  ----------                                 |
+|  1      |  Sign up                                    |
+|  1      |  Log in                                     |
+|  2      |  Contact support                            |
+|  2      |  Open forum section                         |
+|  2      |  Open store                                 |
+|  3      |  Purchase in store                          |
+|  2      |  View info on website                       |
+|  2*     |  Manage users                               |
+|  3      |  Write in forum                             |
+|  3      |  Upload job                                 |
+|  3      |  Make a payment for membership or donation  |
+|  2*     |  Editing information on app                 |
+|  2*     |  Change donation link                       |
+
+\* Admin only
+
+
+
+## **Android Tier**
+
+Device
+Android transport layer
