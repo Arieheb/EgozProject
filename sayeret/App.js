@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import { auth } from './firebase';
 
 import LoginScreen from './pages/Login/Login' 
 import Forum from './pages/Forum/Forum';
@@ -19,14 +20,14 @@ const Stack = createStackNavigator();
 export default function App() {
   const [user, setUser] = useState();
 
-  // // Handle user state changes
-  // function onAuthStateChanged(user) {
-  //   setUser(user);
-  // }
-  // useEffect(() => {
-  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-  //   return subscriber; // unsubscribe on unmount
-  // }, []);
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+  }
+  useEffect(() => {
+    const subscriber = auth.onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
 
   if(!user){
     return(

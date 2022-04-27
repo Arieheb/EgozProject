@@ -4,6 +4,7 @@ import Logo from '../../assets/Images/logo.png';
 import {validate} from 'react-email-validator';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const LoginScreen = props => {
     const [email,setEmail] = useState("");
@@ -19,7 +20,7 @@ const LoginScreen = props => {
         .catch(error => alert(error.message))
     }
     return (
-        <View style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container}>
             <View style = {styles.top}>
                 <Image style = {styles.logo} source={Logo} 
                 styles={styles.logo} 
@@ -51,7 +52,7 @@ const LoginScreen = props => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </KeyboardAwareScrollView>
     );
 };
 
