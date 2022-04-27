@@ -58,8 +58,7 @@ const styles = StyleSheet.create({
        flex:1,
        marginTop:40,
        flexDirection:'column',
-       justifyContent:'center',
-       alignItems:'center',
+
     },
     top:{
        width:'100%',
