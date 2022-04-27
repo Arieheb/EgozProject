@@ -1,11 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react'
+import JobsMain from './JobsMain';
+import AddJob from './AddJob';
+
+const Stack = createStackNavigator();
+
+
 
 const Jobs = () => {
+
   return (
-    <View>
-      <Text>Jobs</Text>
-    </View>
+   
+    
+      <Stack.Navigator screenOptions={{headerShown:true}}>
+          <Stack.Screen name="A" component={JobsMain}/>
+          <Stack.Screen name="B" component={AddJob}/>
+      </Stack.Navigator>
+   
   )
 }
 
