@@ -6,8 +6,11 @@ import { Header } from "react-native-elements";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-const{width,height:wHeight} = Dimensions.get("window");
+import { block } from "react-native-reanimated";
+import { waitForPendingWrites } from "firebase/firestore";
 
+const wWidth = Dimensions.get('window').width;
+const wHeight = Dimensions.get('window').height;
 
 
 
@@ -20,14 +23,14 @@ const Profile = (props) => {
         
         <View style = {styles.container}>            
             {/* profile picture view */}
-            <View style = {styles.listItem}>
+            <View style = {styles.headName}>
                 <Image style ={styles.imageStyle}
                 source = {require ('../../assets/Images/logo.png')}/>
                 <Text style = {{fontSize: 30, color: 'black',}}>Full Name</Text>
             </View>
             
             {/* first name view */}
-           <View style = {{flexDirection: 'row'}}>
+           <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>First name: </Text>
                 <TextInput placeholder='First Name'
                     style={styles.input}
@@ -50,7 +53,7 @@ const Profile = (props) => {
             </View>
 
             {/* date of birth view */}
-            <View style = {{flexDirection: 'row'}}>
+            <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>Date of Birth </Text>
                 <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
@@ -61,7 +64,7 @@ const Profile = (props) => {
             </View>
 
             {/* user name view */}
-            <View style = {{flexDirection: 'row'}}>
+            <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>User Name: </Text>
                 <TextInput placeholder='User Name'
                     style={styles.input}
@@ -72,7 +75,7 @@ const Profile = (props) => {
             </View>
 
             {/* Address view */}
-            <View style = {{flexDirection: 'row'}}>
+            <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>Address </Text>
                 <TextInput placeholder='Address'
                     style={styles.input}
@@ -83,7 +86,7 @@ const Profile = (props) => {
             </View>
 
             {/* phone number view */}
-            <View style = {{flexDirection: 'row'}}>
+            <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>Phone Number: </Text>
                 <TextInput placeholder='Phone Number'
                     style={styles.input}
@@ -94,7 +97,7 @@ const Profile = (props) => {
             </View>
 
             {/* membership expiration date view */}
-            <View style = {{flexDirection: 'row'}}>
+            <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>Membership Expiration date: </Text>
                 <TextInput placeholder='dd/mm/yyyy:'
                     style={styles.input}
@@ -105,7 +108,7 @@ const Profile = (props) => {
             </View>
 
             {/* Password info view */}
-            <View style= {{flexDirection:'row'}}>
+            <View style= {styles.itemLayout}>
                 <Text style = {styles.textStyle}>Password </Text>
                 <TextInput placeholder='Password' 
                     style={styles.input}
@@ -123,7 +126,7 @@ const Profile = (props) => {
             </TouchableOpacity>
 
             {/* log out button */}
-            <TouchableOpacity style = {styles.buttons}>
+            <TouchableOpacity style = {styles.buttons} >
                 <Text style= {styles.buttonText}>Log Out</Text>
             </TouchableOpacity>
 
@@ -136,9 +139,12 @@ export default Profile
 const styles = StyleSheet.create ({
     container: {
         backgroundColor: 'grey', 
-        height: '100%'
+        height: wHeight,
+        width: wWidth,
+        display: 'flex',
+        // alignItems: 'center'        
     },
-    listItem: { 
+    headName: { 
         alignItems: 'center', 
         marginTop: 20, 
     },
@@ -148,22 +154,29 @@ const styles = StyleSheet.create ({
         backgroundColor:'white', 
         borderRadius:100,
     },
+
+    itemLayout: {
+        flexDirection: 'row',
+    }, 
+
     textStyle: {
         fontSize: 17,
         paddingTop: 10,
         margin: 5
     },
     input: {
-        width:'70%',
+        width:'30%',
         borderWidth:1,
         borderColor:'#fff',
         height:40,
         borderRadius:8,
         paddingRight:15,
         margin:5,
+        paddingLeft: 7
+
      },
      buttons:{
-        
+        alignSelf:'center',
         alignItems:'center',
         width:'90%',
         color:'blue',

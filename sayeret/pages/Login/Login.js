@@ -67,11 +67,11 @@ const LoginScreen = props => {
 };
 
 const styles = StyleSheet.create({
-    // container:{
-    //    height:{wHeight},
-    //    marginTop:40,
-    //    flexDirection:'column',
-    // },
+    container:{
+       height:wHeight,
+       marginTop:40,
+       flexDirection:'column',
+    },
     top:{
        width:'100%',
        height:'40%',
