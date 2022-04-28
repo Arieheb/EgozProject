@@ -14,6 +14,7 @@ import About from './pages/About/About';
 import SignUpScreen from './pages/Login/SignUp'
 import Profile from './pages/myInfo/myInfo';
 
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -41,15 +42,22 @@ export default function App() {
   }
 
   return (
+    // <><View style={styles.container}>
+    //   <UploadImage />
+    //   <Text style={{ marginVertical: 20, fontSize: 16 }}>Welcome, FuzzySid</Text>
+    // </View>
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name='Home' component={Home}/>
-        <Drawer.Screen name='jobs' component={Jobs}/>
-        <Drawer.Screen name='about' component={About}/>
-        <Drawer.Screen name='forum' component={Forum}/>
-        <Drawer.Screen name='Profile' component={Profile}/>
-      </Drawer.Navigator>
-    </NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name='Home' component={Home} />
+          <Drawer.Screen name='jobs' component={Jobs} />
+          <Drawer.Screen name='about' component={About} />
+          <Drawer.Screen name='forum' component={Forum} />
+          <Drawer.Screen name='Profile' component={Profile} />
+          </Drawer.Navigator>
+      </NavigationContainer>
+
+
+
   );
 }
 

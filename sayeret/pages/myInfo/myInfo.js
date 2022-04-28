@@ -1,5 +1,5 @@
 import {React, useState,Component} from "react";
-import {AppRegistry, Image, TextInput, Button, Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView, TouchableHighlight } from 'react-native';
+import {AppRegistry, Image, TextInput, Button, Dimensions, StyleSheet, Platform, Text, View, TouchableOpacity, ScrollView, TouchableHighlight, KeyboardAvoidingView } from 'react-native';
 //import Logo from '../../assets/Images/logo.png';
 // import {validate} from 'react-email-validator';
 import { Header } from "react-native-elements";
@@ -8,25 +8,23 @@ import { auth } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { block } from "react-native-reanimated";
 import { waitForPendingWrites } from "firebase/firestore";
+import UploadImage from "./uploadPhoto";
 
 const wWidth = Dimensions.get('window').width;
 const wHeight = Dimensions.get('window').height;
 
-
-
 const Profile = (props) => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    
-    
-    return (
-        
-        <View style = {styles.container}>            
+    // const proPic = new UploadImage();
+    return ( 
+        <ScrollView>
+
+        <View style = {styles.container}>   
             {/* profile picture view */}
-            <View style = {styles.headName}>
-                <Image style ={styles.imageStyle}
-                source = {require ('../../assets/Images/logo.png')}/>
-                <Text style = {{fontSize: 30, color: 'black',}}>Full Name</Text>
+            <View style = {styles.headName}>               
+                <UploadImage/>
+                <Text style = {{fontSize: 30, color: 'black',}}>Arieh Berlin</Text>
             </View>
             
             {/* first name view */}
@@ -54,7 +52,7 @@ const Profile = (props) => {
 
             {/* date of birth view */}
             <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Date of Birth </Text>
+                <Text style = {styles.textStyle}>Date of Birth: </Text>
                 <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
@@ -76,7 +74,7 @@ const Profile = (props) => {
 
             {/* Address view */}
             <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Address </Text>
+                <Text style = {styles.textStyle}>Address: </Text>
                 <TextInput placeholder='Address'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
@@ -99,7 +97,7 @@ const Profile = (props) => {
             {/* membership expiration date view */}
             <View style = {styles.itemLayout}>
                 <Text style = {styles.textStyle}>Membership Expiration date: </Text>
-                <TextInput placeholder='dd/mm/yyyy:'
+                <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
@@ -109,7 +107,7 @@ const Profile = (props) => {
 
             {/* Password info view */}
             <View style= {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Password </Text>
+                <Text style = {styles.textStyle}>Password: </Text>
                 <TextInput placeholder='Password' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
@@ -126,11 +124,12 @@ const Profile = (props) => {
             </TouchableOpacity>
 
             {/* log out button */}
-            <TouchableOpacity style = {styles.buttons} >
+            <TouchableOpacity style = {styles.buttons}>
                 <Text style= {styles.buttonText}>Log Out</Text>
             </TouchableOpacity>
 
         </View>
+        </ScrollView>
     );
 };
 
@@ -144,6 +143,7 @@ const styles = StyleSheet.create ({
         display: 'flex',
         // alignItems: 'center'        
     },
+
     headName: { 
         alignItems: 'center', 
         marginTop: 20, 
@@ -165,11 +165,10 @@ const styles = StyleSheet.create ({
         margin: 5
     },
     input: {
-        width:'30%',
-        borderWidth:1,
-        borderColor:'#fff',
+        width:'45%',
+        textDecorationLine: "underline",
         height:40,
-        borderRadius:8,
+        borderRadius: 12,
         paddingRight:15,
         margin:5,
         paddingLeft: 7
@@ -191,5 +190,29 @@ const styles = StyleSheet.create ({
          fontWeight:'bold',
          fontSize:19,
      },
+     imageContainer: {
+        elevation:2,
+        height:200,
+        width:200,
+        backgroundColor:'#efefef',
+        position:'relative',
+        borderRadius:999,
+        overflow:'hidden',
+    },
+    uploadBtnContainer:{
+        opacity:0.7,
+        position:'absolute',
+        right:0,
+        bottom:0,
+        backgroundColor:'lightgrey',
+        width:'100%',
+        height:'25%',
+    },
+    uploadBtn:{
+        display:'flex',
+        alignItems:"center",
+        justifyContent:'center'
+    }
+
 
 });
