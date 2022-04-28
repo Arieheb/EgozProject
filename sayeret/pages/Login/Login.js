@@ -52,7 +52,7 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('SignUp')}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
-                    <View style= {styles.gf,{ flexDirection:"row" }}>
+                    <View style= {styles.gf = { flexDirection:"row" }}>
                         <TouchableOpacity style={styles.gfButtons}>
                             <Text style = {styles.gfText}>google</Text>
                         </TouchableOpacity>
@@ -67,11 +67,11 @@ const LoginScreen = props => {
 };
 
 const styles = StyleSheet.create({
-    container:{
-       height:{wHeight},
-       marginTop:40,
-       flexDirection:'column',
-    },
+    // container:{
+    //    height:{wHeight},
+    //    marginTop:40,
+    //    flexDirection:'column',
+    // },
     top:{
        width:'100%',
        height:'40%',
