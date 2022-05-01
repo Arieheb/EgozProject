@@ -87,13 +87,6 @@ const styles = StyleSheet.create({
  container:{
    flex:1,
    
-<<<<<<< HEAD
- },
- image:{
-   flex:1,
-
-=======
->>>>>>> be817982b96f5e81d097247a2a25901590435ab4
  },
  title:{
     //width:'100%',
