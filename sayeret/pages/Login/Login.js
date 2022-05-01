@@ -1,5 +1,5 @@
 import {React,useState,} from 'react';
-import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity,Dimensions} from 'react-native';
+import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView} from 'react-native';
 import Logo from '../../assets/Images/logo.png';
 import {validate} from 'react-email-validator';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -22,7 +22,7 @@ const LoginScreen = props => {
     }
     
     return (
-        <KeyboardAwareScrollView style={styles.container} scrollEnabled={false}>
+        <KeyboardAvoidingView style={styles.container} scrollEnabled={false} behavior="padding">
             <View style = {styles.top}>
                 <Image style = {styles.logo} source={Logo} 
                 styles={styles.logo} 
@@ -62,7 +62,7 @@ const LoginScreen = props => {
                     </View>
                 </View>
             </View>
-        </KeyboardAwareScrollView>
+        </KeyboardAvoidingView>
     );
 };
 
