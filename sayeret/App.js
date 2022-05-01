@@ -40,7 +40,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     );
-  }
+  };
 
   return (
     <NavigationContainer>
@@ -54,7 +54,6 @@ export default function App() {
 
           </Drawer.Navigator>
       </NavigationContainer>
-
   );
 };
 
@@ -65,4 +64,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
