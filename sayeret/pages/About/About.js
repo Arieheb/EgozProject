@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View,ScrollView } from 'react-native'
+import { StyleSheet, Text, View,ScrollView, Image,ImageBackground} from 'react-native'
 import React from 'react'
+import Unit from '../../assets/Images/egoz_pic.png';
 
 const About = () => {
   return (
     <ScrollView style = {styles.container}>
-        <View>
-          <Text style = {styles.title}> על היחידה </Text>
+        <View >
+          <ImageBackground style={styles.image} source= {Unit} resizeMode='cover'>
+            <Text style = {styles.title}> על היחידה </Text>
+          </ImageBackground>
+        
         </View>
 
         <View>
@@ -22,7 +26,10 @@ const About = () => {
         </View>
 
         <View>
-          <Text style = {styles.title}>על העמותה</Text>
+          <ImageBackground style={styles.image} source={require('../../assets/Images/amuta_egoz.png')} resizeMode='cover' >
+            <Text style = {styles.title}>על העמותה</Text>
+          </ImageBackground>
+
         </View>
 
         <View>
@@ -38,13 +45,13 @@ const About = () => {
         </View>
 
         <View>
-          <Text style = {styles.title}>2015 - הצטרפות לחטיבת הקומנדו</Text>
+          <Text style = {styles.title}>1956 - הקמת סיירת אגוז</Text>
         </View>
 
         <View>
-          <Text style = {styles.content}>חטיבת עֹוז (חטיבה 89), הידועה יותר בכינוי חטיבת הקומנדו
-            , היא חטיבת חיל רגלים למבצעים מיוחדים של זרוע היבשה בצה”ל
-            . החטיבה מאגדת תחתיה שלוש יחידות קומנדו – אגוז, מגלן ודובדבן.</Text>
+          <Text style = {styles.content}>סיירת אגוז הוקמה לראשונה בשנת 
+            1956, כסיירת הפיקודית של פיקוד הצפון בהוראת יצחק רבין ז”ל
+            , היחידה נסגרה ב1957 והוקמה מחדש 1963 עד לסגירתה לאחר מלחמת יום הכיפורים.</Text>
         </View>
 
         <View>
@@ -58,16 +65,17 @@ const About = () => {
             . “ארדוף אויבי ואשיגם ולא אשוב עד כלותם…”</Text>
         </View>
 
+
         <View>
-          <Text style = {styles.title}>1956 - הקמת סיירת אגוז</Text>
+          <Text style = {styles.title}>2015 - הצטרפות לחטיבת הקומנדו</Text>
         </View>
 
         <View>
-          <Text style = {styles.content}>סיירת אגוז הוקמה לראשונה בשנת 
-            1956, כסיירת הפיקודית של פיקוד הצפון בהוראת יצחק רבין ז”ל
-            , היחידה נסגרה ב1957 והוקמה מחדש 1963 עד לסגירתה לאחר מלחמת יום הכיפורים.</Text>
+          <Text style = {styles.content}>חטיבת עֹוז (חטיבה 89), הידועה יותר בכינוי חטיבת הקומנדו
+            , היא חטיבת חיל רגלים למבצעים מיוחדים של זרוע היבשה בצה”ל
+            . החטיבה מאגדת תחתיה שלוש יחידות קומנדו – אגוז, מגלן ודובדבן.</Text>
         </View>
-
+ 
     </ScrollView>
   );
 };
@@ -77,16 +85,20 @@ const styles = StyleSheet.create({
  container:{
    flex:1,
    
-   
+ },
+ image:{
+   flex:1,
+
  },
  title:{
-    width:'100%',
-    alignItems:'center',
-    justifyContent:'center',
+    //width:'100%',
+    textAlign:'left',
+   // justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
-    margin:10,
+    margin:60,
     paddingRight:30,
+
   },
   content:{
     fontSize:20,
