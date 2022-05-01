@@ -6,12 +6,12 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth } from './firebase';
 
-import LoginScreen from './pages/Login/Login' 
+import LoginScreen from './pages/Login/Login'; 
 import Forum from './pages/Forum/Forum';
 import Home from './pages/home/Home';
 import Jobs from './pages/jobs/Jobs';
 import About from './pages/About/About';
-import SignUpScreen from './pages/Login/SignUp'
+import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
 
 
@@ -30,7 +30,7 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(user){
+  if(!user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
@@ -56,10 +56,8 @@ export default function App() {
           </Drawer.Navigator>
       </NavigationContainer>
 
-
-
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

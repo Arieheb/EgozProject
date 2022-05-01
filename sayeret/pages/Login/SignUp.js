@@ -16,6 +16,15 @@ const SignUpScreen = () => {
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
 
+    const handleSignUp = () =>
+    {   auth
+        .createUserWithEmailAndPassword(email,password)
+        .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log(user.email);
+        })
+        .catch(error => alert(error.message))
+    }
     return (
     < View style={styles.container}>
         <View style = {styles.top}>
@@ -44,7 +53,7 @@ const SignUpScreen = () => {
                 secureTextEntry
                 />
                 <TouchableOpacity style = {styles.buttons}>
-                    <Text style = {styles.buttonText}>הירשם</Text>
+                    <Text style = {styles.buttonText} onPress = {handleSignUp}>הירשם</Text>
                 </TouchableOpacity>
             </View>
         </View>
