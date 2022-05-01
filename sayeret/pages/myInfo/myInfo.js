@@ -201,8 +201,7 @@ const styles = StyleSheet.create ({
         justifyContent:'center',
      },
      buttonText:{
-         fontWeight:'bold',
-         fontSize:19,
+        
      },
      
 });
