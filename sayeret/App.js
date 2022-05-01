@@ -13,6 +13,7 @@ import Jobs from './pages/jobs/Jobs';
 import About from './pages/About/About';
 import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
+import EventCal from './pages/events/events';
 
 
 const Drawer = createDrawerNavigator();
@@ -43,13 +44,15 @@ export default function App() {
 
   return (
     <NavigationContainer>
-          <Drawer.Navigator>
-            <Stack.Screen name='Home' component={Home} />
-            <Drawer.Screen name='jobs' component={Jobs} />
-            <Drawer.Screen name='about' component={About} />
-            <Drawer.Screen name='forum' component={Forum} />
-            <Drawer.Screen name='Profile' component={Profile} />
-          </Drawer.Navigator>
+        <Drawer.Navigator>
+          <Drawer.Screen name='Home' component={Home} />
+          <Drawer.Screen name='Jobs' component={Jobs} />
+          <Drawer.Screen name='About' component={About} />
+          <Drawer.Screen name='Forum' component={Forum} />
+          <Drawer.Screen name='Profile' component={Profile} />
+          <Drawer.Screen name='Events' component={EventCal} />
+
+        </Drawer.Navigator>
           
       </NavigationContainer>
   );
