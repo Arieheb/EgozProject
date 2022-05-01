@@ -8,6 +8,7 @@ import {
     Text,
     TouchableOpacity,
     }    from 'react-native';
+    import { auth } from '../../firebase';
     import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
     import {validate} from 'react-email-validator';
 
