@@ -39,7 +39,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     );
-  }
+  };
 
   return (
     // <><View style={styles.container}>
@@ -55,7 +55,6 @@ export default function App() {
           <Drawer.Screen name='Profile' component={Profile} />
           </Drawer.Navigator>
       </NavigationContainer>
-
   );
 };
 
@@ -66,4 +65,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})
