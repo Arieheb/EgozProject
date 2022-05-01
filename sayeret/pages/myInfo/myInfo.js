@@ -16,7 +16,6 @@ const wHeight = Dimensions.get('window').height;
 const Profile = (props) => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    // const proPic = new UploadImage();
     return ( 
         <ScrollView>
 
@@ -29,84 +28,87 @@ const Profile = (props) => {
             
             {/* first name view */}
             <View style = {styles.itemLayout}>
+            <Text style = {styles.textStyle}>שם פרטי: </Text>
                 <TextInput placeholder='שם פרטי'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     // onChangeText={text=>setEmail(text)}
                     />
-                    <Text style = {styles.textStyle}>שם פרטי: </Text>
+                
             </View>
             
             {/* last name view */}            
            <View style= {styles.itemLayout}>
+           <Text style = {styles.textStyle}>שם משפחה: </Text>
                 <TextInput placeholder='שם משפחה' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={password}
                     // onChangeText={text=>setPassword(text)}
                 />
-                <Text style = {styles.textStyle}>שם משפחה: </Text>
+                
             </View>
 
             {/* date of birth view */}
             <View style = {styles.itemLayout}>               
+            <Text style = {styles.textStyle}>תאריך לידה: </Text>
                 <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     // onChangeText={text=>setEmail(text)}
                     />
-                    <Text style = {styles.textStyle}>תאריך לידה: </Text>
             </View>
 
             {/* user name view */}
             <View style = {styles.itemLayout}>
+            <Text style = {styles.textStyle}>שם משתמש: </Text>
                 <TextInput placeholder='User Name'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     // onChangeText={text=>setEmail(text)}
                     />
-                    <Text style = {styles.textStyle}>שם משתמש: </Text>
             </View>
 
             {/* Address view */}
             <View style = {styles.itemLayout}>
+            <Text style = {styles.textStyle}>כתובת: </Text>
                 <TextInput placeholder='Address'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     // onChangeText={text=>setEmail(text)}
                     />
-                <Text style = {styles.textStyle}>כתובת: </Text>
             </View>
 
             {/* phone number view */}
             <View style = {styles.itemLayout}>
+            <Text style = {styles.textStyle}>מספר פלאפון: </Text>
                 <TextInput placeholder='Phone Number'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     onChangeText={text=>setEmail(text)}
                     />                                    
-                    <Text style = {styles.textStyle}>מספר פלאפון: </Text>
             </View>
 
             {/* membership expiration date view */}
             <View style = {styles.itemLayout}>
+            <Text style = {styles.textStyle}>תוקף חברות: </Text>
                 <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     // onChangeText={text=>setEmail(text)}
                     />
-                <Text style = {styles.textStyle}>תוקף חברות: </Text>
 
             </View>
 
             {/* Password info view */}
             <View style= {styles.itemLayout}>
+            <Text style = {styles.textStyle}>סיסמא:  </Text>
                 <TextInput placeholder='Password' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
@@ -114,7 +116,6 @@ const Profile = (props) => {
                     onChangeText={text=>setPassword(text)}
                     secureTextEntry
                     />
-                    <Text style = {styles.textStyle}>סיסמא:  </Text>
 
 
             </View>
@@ -139,16 +140,18 @@ export default Profile
 const styles = StyleSheet.create ({
     container: {
         backgroundColor: 'grey', 
-        height: wHeight,
+        height: '200%',
+        paddingBottom: 70, 
         width: wWidth,
         display: 'flex',
-        // alignItems: 'center'        
+        
     },
 
     headName: { 
         alignItems: 'center', 
         marginTop: 20, 
     },
+
     imageStyle: {
         height:120, 
         width:120, 
@@ -157,30 +160,38 @@ const styles = StyleSheet.create ({
     },
 
     itemLayout: {
-        flexDirection: 'row',
-        alignSelf: 'flex-end'
+        flexDirection: 'column',
+        alignSelf: 'flex-end',
+        width: '100%',
+        alignContent: 'center',
+        
     }, 
 
     textStyle: {
         fontSize: 17,
-        paddingTop: 10,
-        margin: 5
+        paddingTop: 3,
+        margin: 5,
+        textAlign: 'right',
+        
         
     },
     input: {
-        width:'40%',
+        // width:'400%',
         // textDecorationLine: "underline",
         height:40,
         borderRadius: 12,
-        paddingRight:15,
+        paddingRight:10,
         margin:5,
-        paddingLeft: 7
+        paddingLeft: 7,
+        borderWidth:1,
+        textAlign: 'right',
+        
 
      },
      buttons:{
         alignSelf:'center',
         alignItems:'center',
-        width:'90%',
+        width:'85%',
         color:'blue',
         height:40,
         backgroundColor:'#fff',

@@ -30,7 +30,7 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(!user){
+  if(user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
@@ -42,10 +42,6 @@ export default function App() {
   }
 
   return (
-    // <><View style={styles.container}>
-    //   <UploadImage />
-    //   <Text style={{ marginVertical: 20, fontSize: 16 }}>Welcome, FuzzySid</Text>
-    // </View>
     <NavigationContainer>
         <Drawer.Navigator>
           <Drawer.Screen name='Home' component={Home} />
