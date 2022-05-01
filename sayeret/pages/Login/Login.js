@@ -11,15 +11,6 @@ const LoginScreen = props => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const handleSignUp = () =>
-    {   auth
-        .createUserWithEmailAndPassword(email,password)
-        .then(userCredentials => {
-            const user = userCredentials.user;
-            console.log(user.email);
-        })
-        .catch(error => alert(error.message))
-    }
     
     return (
         <KeyboardAvoidingView style={styles.container} scrollEnabled={false} behavior="padding">
@@ -62,7 +53,7 @@ const LoginScreen = props => {
                     </View>
                 </View>
             </View>
-        </KeyboardAvoidingView>
+        </KeyboardAvoidingView >
     );
 };
 
