@@ -16,8 +16,7 @@ const checkCameraPermission = async() => {
 
  const UploadImage = () => {  
  const [image, setImage] = useState(null);
- useEffect (()=> {
-     checkCameraPermission()}, []);
+ useEffect (()=> {checkCameraPermission()}, []);
  const addImage = async () => {
      let _image = await ImagePicker.launchImageLibraryAsync({
          mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -37,7 +36,7 @@ const checkCameraPermission = async() => {
 
         <View style={imageUploaderStyles.uploadBtnContainer}>
             <TouchableOpacity onPress={addImage} style={imageUploaderStyles.uploadBtn} >
-                <Text>{image ? 'Edit' : 'Upload'} Image</Text>
+                <Text>{image ? 'עריכת תמונה' : 'העלאת תמונה'} </Text>
                 <AntDesign name="camera" size={20} color="black" />
             </TouchableOpacity>
         </View>
