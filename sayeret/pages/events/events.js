@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 import AddEvent from './AddEvent';
 import { Navigation } from 'react-calendar';
+import PButton from '../../assets/Images/plusButton.png';
 
 
 const EventCal = props => {
@@ -37,13 +38,16 @@ const styles = StyleSheet.create ({
         alignSelf:'stretch',
         height: 50,
         width: 50,
-        position: 'relative'
+        alignItems: 'center',
+        alignSelf: 'flex-end'
+        // position: 'relative'
 },
 buttonText: {
     textAlign: 'center',
     alignContent: 'flex-end',
     fontSize: 30,
     paddingTop: 2, 
+    
 },
    
 

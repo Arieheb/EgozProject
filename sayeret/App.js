@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth } from './firebase';
 
+
 import LoginScreen from './pages/Login/Login'; 
 import Forum from './pages/Forum/Forum';
 import Home from './pages/home/Home';
@@ -14,6 +15,7 @@ import About from './pages/About/About';
 import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
 import EventCal from './pages/events/events';
+import AddEvent from './pages/events/AddEvent';
 
 
 const Drawer = createDrawerNavigator();
@@ -31,7 +33,7 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(!user){
+  if(user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
@@ -51,9 +53,8 @@ export default function App() {
           <Drawer.Screen name='Forum' component={Forum} />
           <Drawer.Screen name='Profile' component={Profile} />
           <Drawer.Screen name='Events' component={EventCal} />
-
+          <Drawer.Screen name='AddEvent' component={AddEvent} />
         </Drawer.Navigator>
-          
       </NavigationContainer>
   );
 };

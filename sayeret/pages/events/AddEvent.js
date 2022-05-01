@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Image,TextInput, View, Platform,ScrollView, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
+import { Image,TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 
 
 const AddEvent = () => {
+    const [selectedValue, setSelectedValue] = useState("java");
     return (
         <ScrollView>
         <View style= {styles.container}>
-        <Text style = {{textAlign: 'center', fontSize: 35, color: 'white'}}>Adding new event</Text>
-        
-        
+        <Text style = {{textAlign: 'center', fontSize: 35, color: 'white'}}>הוספת אירוע חדש</Text>
             <View >
-            <Text style = {styles.textStyle}>שם האירוע:</Text>
+                <Text style = {styles.textStyle}>שם האירוע:</Text>
                 <TextInput placeholder='שם האירוע'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
@@ -53,8 +52,23 @@ const AddEvent = () => {
 
            
         <TouchableOpacity style = {styles.buttons}>
-                <Text style= {styles.buttonText}>שמירה</Text>
+                <Text style= {styles.buttonText}>הוספת אירוע</Text>
             </TouchableOpacity>
+{/* <Picker
+        selectedValue={selectedValue}
+        style={{ height: 50, width: 150}}
+        onValueChange={(itemValue, ) => setSelectedValue(itemValue)}
+      >
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker> */}
+
             </View>
             </ScrollView>
     );
