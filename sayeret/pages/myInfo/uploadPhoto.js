@@ -36,7 +36,7 @@ const checkCameraPermission = async() => {
  
 return (
     <View style={imageUploaderStyles.container}>
-        {Profile && <Image source={{ uri: image }} style={{ width: 200, height: 200 }}/>}
+        { <Image source={image?{uri: image}:Profile} style={{ width: 200, height: 200 }}/>}
         
         <View style={imageUploaderStyles.uploadBtnContainer}>
             <TouchableOpacity onPress={addImage} style={imageUploaderStyles.uploadBtn} >
