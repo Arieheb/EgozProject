@@ -24,90 +24,89 @@ const Profile = (props) => {
             {/* profile picture view */}
             <View style = {styles.headName}>               
                 <UploadImage/>
-                <Text style = {{fontSize: 30, color: 'black',}}>Arieh Berlin</Text>
+                <Text style = {{fontSize: 30, color: 'black',}}>אריה ברלין</Text>
             </View>
             
             {/* first name view */}
-           <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>First name: </Text>
-                <TextInput placeholder='First Name'
+            <View style = {styles.itemLayout}>
+                <TextInput placeholder='שם פרטי'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
-                    onChangeText={text=>setEmail(text)}
+                    // onChangeText={text=>setEmail(text)}
                     />
+                    <Text style = {styles.textStyle}>שם פרטי: </Text>
             </View>
             
             {/* last name view */}            
-           <View style= {{flexDirection:'row'}}>
-                <Text style = {styles.textStyle}>Last Name: </Text>
-                <TextInput placeholder='Last Name' 
+           <View style= {styles.itemLayout}>
+                <TextInput placeholder='שם משפחה' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={password}
-                    onChangeText={text=>setPassword(text)}
-
-                    />
+                    // onChangeText={text=>setPassword(text)}
+                />
+                <Text style = {styles.textStyle}>שם משפחה: </Text>
             </View>
 
             {/* date of birth view */}
-            <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Date of Birth: </Text>
+            <View style = {styles.itemLayout}>               
                 <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
-                    onChangeText={text=>setEmail(text)}
+                    // onChangeText={text=>setEmail(text)}
                     />
+                    <Text style = {styles.textStyle}>תאריך לידה: </Text>
             </View>
 
             {/* user name view */}
             <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>User Name: </Text>
                 <TextInput placeholder='User Name'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
-                    onChangeText={text=>setEmail(text)}
+                    // onChangeText={text=>setEmail(text)}
                     />
+                    <Text style = {styles.textStyle}>שם משתמש: </Text>
             </View>
 
             {/* Address view */}
             <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Address: </Text>
                 <TextInput placeholder='Address'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
-                    onChangeText={text=>setEmail(text)}
+                    // onChangeText={text=>setEmail(text)}
                     />
+                <Text style = {styles.textStyle}>כתובת: </Text>
             </View>
 
             {/* phone number view */}
             <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Phone Number: </Text>
                 <TextInput placeholder='Phone Number'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
                     onChangeText={text=>setEmail(text)}
-                    />
+                    />                                    
+                    <Text style = {styles.textStyle}>מספר פלאפון: </Text>
             </View>
 
             {/* membership expiration date view */}
             <View style = {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Membership Expiration date: </Text>
                 <TextInput placeholder='dd/mm/yyyy'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
-                    onChangeText={text=>setEmail(text)}
+                    // onChangeText={text=>setEmail(text)}
                     />
+                <Text style = {styles.textStyle}>תוקף חברות: </Text>
+
             </View>
 
             {/* Password info view */}
             <View style= {styles.itemLayout}>
-                <Text style = {styles.textStyle}>Password: </Text>
                 <TextInput placeholder='Password' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
@@ -115,17 +114,19 @@ const Profile = (props) => {
                     onChangeText={text=>setPassword(text)}
                     secureTextEntry
                     />
+                    <Text style = {styles.textStyle}>סיסמא:  </Text>
+
 
             </View>
             
             {/* save changes button */}
             <TouchableOpacity style = {styles.buttons}>
-                <Text style= {styles.buttonText}>Save Changes</Text>
+                <Text style= {styles.buttonText}>שמירת שינויים</Text>
             </TouchableOpacity>
 
             {/* log out button */}
             <TouchableOpacity style = {styles.buttons}>
-                <Text style= {styles.buttonText}>Log Out</Text>
+                <Text style= {styles.buttonText}>התנתק</Text>
             </TouchableOpacity>
 
         </View>
@@ -157,16 +158,18 @@ const styles = StyleSheet.create ({
 
     itemLayout: {
         flexDirection: 'row',
+        alignSelf: 'flex-end'
     }, 
 
     textStyle: {
         fontSize: 17,
         paddingTop: 10,
         margin: 5
+        
     },
     input: {
-        width:'45%',
-        textDecorationLine: "underline",
+        width:'40%',
+        // textDecorationLine: "underline",
         height:40,
         borderRadius: 12,
         paddingRight:15,
@@ -190,29 +193,5 @@ const styles = StyleSheet.create ({
          fontWeight:'bold',
          fontSize:19,
      },
-     imageContainer: {
-        elevation:2,
-        height:200,
-        width:200,
-        backgroundColor:'#efefef',
-        position:'relative',
-        borderRadius:999,
-        overflow:'hidden',
-    },
-    uploadBtnContainer:{
-        opacity:0.7,
-        position:'absolute',
-        right:0,
-        bottom:0,
-        backgroundColor:'lightgrey',
-        width:'100%',
-        height:'25%',
-    },
-    uploadBtn:{
-        display:'flex',
-        alignItems:"center",
-        justifyContent:'center'
-    }
-
-
+     
 });
