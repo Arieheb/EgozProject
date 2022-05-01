@@ -8,6 +8,7 @@ import {
     Text,
     TouchableOpacity,
     }    from 'react-native';
+    import { auth } from '../../firebase';
     import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
     import {validate} from 'react-email-validator';
 
@@ -52,8 +53,9 @@ const SignUpScreen = () => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
                 />
-                <TouchableOpacity style = {styles.buttons}>
-                    <Text style = {styles.buttonText} onPress = {handleSignUp} >הירשם</Text>
+                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}
+                >
+                    <Text style = {styles.buttonText}  >הירשם</Text>
                 </TouchableOpacity>
             </View>
         </View>

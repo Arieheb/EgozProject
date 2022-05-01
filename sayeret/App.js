@@ -14,12 +14,11 @@ import About from './pages/About/About';
 import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
 import EventCal from './pages/events/events';
-import AddEvent from './pages/events/AddEvent';
 
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
+console.log(Drawer)
 export default function App() {
   const [user, setUser] = useState();
 
@@ -32,31 +31,28 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(user){
+  if(!user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen options={{headerShown: false}} name='login' component={LoginScreen}/>
-          <Stack.Screen name='SignUp' component={SignUpScreen}/>        
+          <Stack.Screen name='SignUp' component={SignUpScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
   };
 
   return (
-    
     <NavigationContainer>
-     
-
         <Drawer.Navigator>
           <Drawer.Screen name='Home' component={Home} />
+          <Drawer.Screen name='Jobs' component={Jobs} />
           <Drawer.Screen name='About' component={About} />
           <Drawer.Screen name='Forum' component={Forum} />
-          <Drawer.Screen name='Jobs' component={Jobs} />
-          <Drawer.Screen name='Events' component={EventCal} />          
           <Drawer.Screen name='Profile' component={Profile} />
-          <Drawer.Screen name='AddEvent' options={{drawerItemStyle:{display:"none"}}} component={AddEvent} />
-          </Drawer.Navigator>
+          <Drawer.Screen name='Events' component={EventCal} />
+
+        </Drawer.Navigator>
           
       </NavigationContainer>
   );
