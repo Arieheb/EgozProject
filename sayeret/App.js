@@ -6,13 +6,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth } from './firebase';
 
-import LoginScreen from './pages/Login/Login' 
+import LoginScreen from './pages/Login/Login'; 
 import Forum from './pages/Forum/Forum';
 import Home from './pages/home/Home';
 import Jobs from './pages/jobs/Jobs';
 import About from './pages/About/About';
-import SignUpScreen from './pages/Login/SignUp'
+import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -38,20 +39,20 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     );
-  }
+  };
 
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name='Home' component={Home}/>
-        <Drawer.Screen name='jobs' component={Jobs}/>
-        <Drawer.Screen name='about' component={About}/>
-        <Drawer.Screen name='forum' component={Forum}/>
-        <Drawer.Screen name='Profile' component={Profile}/>
-      </Drawer.Navigator>
-    </NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name='Home' component={Home} />
+          <Drawer.Screen name='jobs' component={Jobs} />
+          <Drawer.Screen name='about' component={About} />
+          <Drawer.Screen name='forum' component={Forum} />
+          <Drawer.Screen name='Profile' component={Profile} />
+          </Drawer.Navigator>
+      </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -60,4 +61,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+})

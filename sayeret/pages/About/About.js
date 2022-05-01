@@ -67,7 +67,9 @@ const About = () => {
 
 
         <View>
-          <Text style = {styles.title}>2015 - הצטרפות לחטיבת הקומנדו</Text>
+        <ImageBackground style={styles.image} source={require('../../assets/Images/commando_egoz.png')} resizeMode='cover' >
+            <Text style = {styles.title}>2015 - הצטרפות לחטיבת הקומנדו</Text>
+          </ImageBackground>
         </View>
 
         <View>
@@ -85,10 +87,13 @@ const styles = StyleSheet.create({
  container:{
    flex:1,
    
+<<<<<<< HEAD
  },
  image:{
    flex:1,
 
+=======
+>>>>>>> be817982b96f5e81d097247a2a25901590435ab4
  },
  title:{
     //width:'100%',
@@ -104,7 +109,7 @@ const styles = StyleSheet.create({
     fontSize:20,
     paddingRight:10,
     paddingLeft:10,
-  }
+  },
 
 })
 export default About

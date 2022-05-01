@@ -15,6 +15,6 @@ const Forum = props=>{
                 <Stack.Screen name="C" component={WriteToForum}/>
             </Stack.Navigator>
     );
-}
+};
 
 export default Forum;

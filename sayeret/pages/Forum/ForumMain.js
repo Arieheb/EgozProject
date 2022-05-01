@@ -15,7 +15,7 @@ const ForumMain = props=>{
                 <Button title='go to a forum' onPress={goToOpenAForum}></Button>
             </View> 
     );
-}
+};
 
 const styles = StyleSheet.create({
 

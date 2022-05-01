@@ -7,6 +7,6 @@ const OpenForum = props=>{
             <Text>OpenForum</Text>
         </View>
     );
-}
+};
 
 export default OpenForum;
