@@ -52,8 +52,9 @@ const SignUpScreen = () => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
                 />
-                <TouchableOpacity style = {styles.buttons}>
-                    <Text style = {styles.buttonText} onPress = {handleSignUp} >הירשם</Text>
+                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}
+                >
+                    <Text style = {styles.buttonText}  >הירשם</Text>
                 </TouchableOpacity>
             </View>
         </View>
