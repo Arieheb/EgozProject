@@ -16,6 +16,7 @@ import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
 import EventCal from './pages/events/events';
 import AddEvent from './pages/events/AddEvent';
+import { Button } from 'react-native-elements';
 
 
 const Drawer = createDrawerNavigator();
@@ -33,7 +34,14 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(user){
+  const SignOut = ()=>{
+    return(
+    auth()
+    .signOut()
+    .then(()=> console.log('user signed out!'))
+    );};
+
+  if(!user){
     return(
       <NavigationContainer>
         <Stack.Navigator>

@@ -4,6 +4,7 @@ import Logo from '../../assets/Images/logo.png';
 import {validate} from 'react-email-validator';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from "firebase/auth"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 const{width,height:wHeight} = Dimensions.get("window");
 
@@ -11,7 +12,18 @@ const LoginScreen = props => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    
+    const handleSignIn = () =>
+    {   
+        auth
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+        }
     return (
         <KeyboardAvoidingView style={styles.container} scrollEnabled={false} behavior="padding">
             <View style = {styles.top}>
@@ -37,8 +49,9 @@ const LoginScreen = props => {
                     />
                     <TouchableOpacity 
                     style = {styles.buttons}
+                    onPress={handleSignIn}
                     >
-                        <Text style = {styles.buttonText}>היכנס</Text>
+                        <Text style = {styles.buttonText} >היכנס</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('SignUp')}>
                         <Text style = {styles.buttonText}>הירשם</Text>

@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     }    from 'react-native';
     import { auth } from '../../firebase';
+    import { createUserWithEmailAndPassword } from "firebase/auth";
     import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
     import {validate} from 'react-email-validator';
 
@@ -18,13 +19,23 @@ const SignUpScreen = () => {
     const [confirmPassword,setConfirmPassword] = useState("");
 
     const handleSignUp = () =>
-    {   auth
-        .createUserWithEmailAndPassword(email,password)
-        .then(userCredentials => {
-            const user = userCredentials.user;
-            console.log(user.email);
+    {   
+        auth
+        createUserWithEmailAndPassword(auth,email, password)
+        .then(() => {
+          console.log('User account created & signed in!');
         })
-        .catch(error => alert(error.message))
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('That email address is already in use!');
+          }
+      
+          if (error.code === 'auth/invalid-email') {
+            console.log('That email address is invalid!');
+          }
+      
+          console.error(error);
+        });
     }
     return (
     < View style={styles.container}>
@@ -53,9 +64,8 @@ const SignUpScreen = () => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
                 />
-                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}
-                >
-                    <Text style = {styles.buttonText}  >הירשם</Text>
+                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+                    <Text style = {styles.buttonText} >הירשם</Text>
                 </TouchableOpacity>
             </View>
         </View>
