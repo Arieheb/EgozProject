@@ -2,9 +2,7 @@ import {React,useState} from 'react';
 import {
     View,
     StyleSheet,
-    Image,
     TextInput,
-    Button,
     Text,
     TouchableOpacity,
     }    from 'react-native';

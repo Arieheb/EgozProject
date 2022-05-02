@@ -6,6 +6,11 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+    GoogleSignin,
+    GoogleSigninButton,
+    statusCodes,
+  } from '@react-native-community/google-signin';
 const{width,height:wHeight} = Dimensions.get("window");
 
 const LoginScreen = props => {
@@ -56,6 +61,9 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('SignUp')}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity>
+                    <Text style = {styles.forgot}>שכחת סיסמא?</Text>
+                    </TouchableOpacity>
                     <View style= {styles.gf = { flexDirection:"row" }}>
                         <TouchableOpacity style={styles.gfButtons}>
                             <Text style = {styles.gfText}>google</Text>
@@ -78,14 +86,14 @@ const styles = StyleSheet.create({
     },
     top:{
        width:'100%',
-       height:'40%',
+       height:'35%',
        display:'flex',
        alignItems:'center',
        padding:10,
     },
     bottom:{
         width:'100%',
-        height:'60%',
+        height:'65%',
         backgroundColor:'#373737fe',  
         borderTopLeftRadius:25,
         borderTopRightRadius:25,
@@ -129,15 +137,20 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:19,
     },
+    forgot:{
+        margin:10,
+        paddingTop:5,
+        color:'white',
+    },
     gf:{
         alignItems:'center',
         justifyContent:'center',
     
     },
     gfButtons:{
-        paddingTop:20,
+        paddingTop:5,
         padding:30,
-        margin:20,
+        margin:10,
     },
     gfText:{
         fontWeight:'bold',

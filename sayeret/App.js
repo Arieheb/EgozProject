@@ -41,7 +41,7 @@ export default function App() {
     .then(()=> console.log('user signed out!'))
     );};
 
-  if(!user){
+  if(user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
