@@ -35,13 +35,6 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  const SignOut = ()=>{
-    return(
-    auth()
-    .signOut()
-    .then(()=> console.log('user signed out!'))
-    );};
-
   if(!user){
     return(
       <NavigationContainer>
@@ -64,6 +57,7 @@ export default function App() {
           <Drawer.Screen name='calendar' component={EventCal} />
           <Drawer.Screen options={{headerShown: false}} name='login' component={LoginScreen} />
         </Drawer.Navigator>
+
       </NavigationContainer>
   );
 };
