@@ -6,11 +6,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import {
-    GoogleSignin,
-    GoogleSigninButton,
-    statusCodes,
-  } from '@react-native-community/google-signin';
 const{width,height:wHeight} = Dimensions.get("window");
 
 const LoginScreen = props => {

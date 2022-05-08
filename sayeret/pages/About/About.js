@@ -85,13 +85,12 @@ const About = () => {
 
 const styles = StyleSheet.create({
  container:{
-   flex:1,
-   
- },
- title:{
-    //width:'100%',
+   flex:1, 
+  },
+  title:{
+    width:'100%',
     textAlign:'left',
-   // justifyContent:'center',
+    justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
     margin:60,
@@ -102,6 +101,9 @@ const styles = StyleSheet.create({
     fontSize:20,
     paddingRight:10,
     paddingLeft:10,
+  },
+  image:{
+    
   },
 
 })

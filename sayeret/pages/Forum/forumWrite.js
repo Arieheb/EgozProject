@@ -37,7 +37,8 @@ const WriteToForum = ({ navigation }) => {
       messages={messages}
       onSend={messages => onSend(messages)}
       user={{
-        _id: 1,
+        _id: auth?.currentUser?.email,
+        name: auth?.currentUser?.displayName,
       }}
     />
   )
