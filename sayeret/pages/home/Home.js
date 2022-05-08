@@ -1,19 +1,17 @@
 import React from 'react';
-import { View,Text, TouchableOpacity, StyleSheet} from 'react-native';
-// import VideoPlayer from 'react-native-video-player';
+import { View,Text, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 const Home = props=>{
     return(
-        <View>
+        <ScrollView>
             <View>
                 <Text style={styles.title}>הסיירת הצפונית</Text>
                 <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
-                {/* <VideoPlayer
-                    video={{ uri: "https://youtu.be/MMTuF941VzA" }}
-                    videoWidth={1600}
-                    videoHeight={900}
-                    thumbnail={{ uri: 'https://i.picsum.photos/id/866/1600/900.jpg' }}
-                /> */}
+                <YoutubePlayer 
+                    height={300}
+                    videoId ={  "MMTuF941VzA" }
+                /> 
             </View>
             <View>
                 <Text style = {styles.title}>יחידת אגוז</Text>
@@ -23,7 +21,10 @@ const Home = props=>{
                     <Text>קרא עוד</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+            <View>
+                
+            </View>
+        </ScrollView>
     );
 }
 
