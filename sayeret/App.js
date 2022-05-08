@@ -54,14 +54,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen name='Home' component={Home} />
-          <Drawer.Screen name='Jobs' component={Jobs} />
-          <Drawer.Screen name='About' component={About} />
-          <Drawer.Screen name='Forum' component={Forum} />
-          <Drawer.Screen name='Profile' component={Profile} />
-          <Drawer.Screen name='Events' component={EventCal} />
-          <Drawer.Screen name='AddEvent' component={AddEvent} />
+        <Drawer.Navigator screenOptions={{drawerPosition:'right'}}>
+          <Drawer.Screen name='בית' component={Home}  />
+          <Drawer.Screen name='פורטל משרות' component={Jobs} />
+          <Drawer.Screen name='אודות' component={About} />
+          <Drawer.Screen name='פורומים' component={Forum} />
+          <Drawer.Screen name='עריכת פרופיל' component={Profile} />
+          <Drawer.Screen name='לוח אירועים' component={EventCal} />
+          <Drawer.Screen name='הוספת אירוע' component={AddEvent} />
         </Drawer.Navigator>
       </NavigationContainer>
   );
@@ -74,4 +74,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  screenOpt: {
+    alignContent: 'flex-end'
+  }
+
 })
