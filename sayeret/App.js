@@ -74,8 +74,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  screenOpt: {
-    alignContent: 'flex-end'
-  }
-
 })

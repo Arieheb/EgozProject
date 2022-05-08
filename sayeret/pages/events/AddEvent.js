@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image,TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
+import { Image,TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 
@@ -32,12 +32,15 @@ const AddEvent = () => {
 
             <View style= {{}}>
            <Text style = {styles.textStyle}>תיאור האירוע:</Text>
-                <TextInput placeholder= 'תיאור האירוע'
-                    style={styles.input}
+                <ScrollView>
+                <TextInput placeholder= 'תיאור האירוע' 
+                    multiline = 'true'
+                    style={styles.infoText}
                     placeholderTextColor={"#fff"}
                     // value={password}
                     // onChangeText={text=>setPassword(text)}
                 />
+                </ScrollView>
             </View>
 
             <View style= {{}}>
@@ -117,8 +120,6 @@ const styles = StyleSheet.create ({
         
     },
     input: {
-        // width:'400%',
-        // textDecorationLine: "underline",
         height:40,
         borderRadius: 12,
         paddingRight:10,
@@ -144,51 +145,15 @@ const styles = StyleSheet.create ({
      buttonText:{
         
      },
-     
-    // container: {
-    //     backgroundColor: 'maroon', 
-    //     height: '200%',
-    //     paddingBottom: 70, 
-    //     width: '100%',
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     alignSelf: 'flex-end',
-    //     alignContent: 'center',
-    // },
 
-    // textInput: {
-    //     fontSize: 17,
-    //     paddingTop: 3,
-    //     margin: 5,
-    //     textAlign: 'right',
-    // },
-
-    // input: {
-    //     height:40,
-    //     borderRadius: 12,
-    //     paddingRight:10,
-    //     margin:5,
-    //     paddingLeft: 7,
-    //     borderWidth:4,
-    //     textAlign: 'right',
-    // },
-
-    // button: {
-    //     alignSelf:'center',
-    //     alignItems:'center',
-    //     width:'85%',
-    //     color:'blue',
-    //     height:40,
-    //     backgroundColor:'#fff',
-    //     marginTop:10,
-    //     borderRadius:8,
-    //     display:'flex',
-    //     justifyContent:'center',
-    // },
-
-    // buttonText: {
-    //     fontWeight:'bold',
-    //     fontSize:19,
-    // }
-
+     infoText: {
+        height:100,
+        borderRadius: 12,
+        paddingRight:10,
+        margin:5,
+        paddingLeft: 7,
+        borderWidth: 1,
+        textAlign: 'right',
+        
+     },
 });
