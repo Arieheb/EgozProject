@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth } from './firebase';
 
+import DrawerContent from './DrawerContent';
 
 import LoginScreen from './pages/Login/Login'; 
 import Forum from './pages/Forum/Forum';
@@ -41,7 +42,7 @@ export default function App() {
     .then(()=> console.log('user signed out!'))
     );};
 
-  if(user){
+  if(!user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
@@ -54,14 +55,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-        <Drawer.Navigator screenOptions={{drawerPosition:'right'}}>
-          <Drawer.Screen name='בית' component={Home}  />
-          <Drawer.Screen name='פורטל משרות' component={Jobs} />
-          <Drawer.Screen name='אודות' component={About} />
-          <Drawer.Screen name='פורומים' component={Forum} />
-          <Drawer.Screen name='עריכת פרופיל' component={Profile} />
-          <Drawer.Screen name='לוח אירועים' component={EventCal} />
-          <Drawer.Screen name='הוספת אירוע' component={AddEvent} />
+        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right'}}>
+          <Drawer.Screen name='home' component={Home}  />
+          <Drawer.Screen name='jobs' component={Jobs} />
+          <Drawer.Screen name='about' component={About} />
+          <Drawer.Screen name='forums' component={Forum} />
+          <Drawer.Screen name='profile' component={Profile} />
+          <Drawer.Screen name='calendar' component={EventCal} />
+          <Drawer.Screen options={{headerShown: false}} name='login' component={LoginScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
   );

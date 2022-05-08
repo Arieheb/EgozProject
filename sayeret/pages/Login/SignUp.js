@@ -10,31 +10,18 @@ import {
     import { createUserWithEmailAndPassword } from "firebase/auth";
     import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
     import {validate} from 'react-email-validator';
-    import profile from "../../assets/Images/profile.png"
 
 const SignUpScreen = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
-    const [name, setName] = useState("");
 
     const handleSignUp = () =>
     {   
         auth
         createUserWithEmailAndPassword(auth,email, password)
-        .then((userCredential) => {
-            // Registered
-            const user = userCredential.user;
-            updateProfile(user, {
-                displayName: name,
-                photoURL:profile,
-            })
-            .then(() => {
-              alert('Registered, please login.');
-            })
-            .catch((error) => {
-                alert(error.message);
-            })
+        .then(() => {
+          console.log('User account created & signed in!');
         })
         .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
