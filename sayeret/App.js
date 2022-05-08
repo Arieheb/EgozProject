@@ -15,8 +15,7 @@ import Jobs from './pages/jobs/Jobs';
 import About from './pages/About/About';
 import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
-import EventCal from './pages/events/events';
-import AddEvent from './pages/events/AddEvent';
+import EventsNavigator from './pages/events/EventsNavigator';
 import { Button } from 'react-native-elements';
 
 
@@ -54,7 +53,7 @@ export default function App() {
           <Drawer.Screen name='about' component={About} />
           <Drawer.Screen name='forums' component={Forum} />
           <Drawer.Screen name='profile' component={Profile} />
-          <Drawer.Screen name='calendar' component={EventCal} />
+          <Drawer.Screen name='calendar' component={EventsNavigator} />
           <Drawer.Screen options={{headerShown: false}} name='login' component={LoginScreen} />
         </Drawer.Navigator>
 

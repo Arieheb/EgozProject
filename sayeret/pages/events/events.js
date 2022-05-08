@@ -81,7 +81,7 @@ const EventCal = props => {
                     </View> 
                 </View>
                 
-                    <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('הוספת אירוע')}>
+                    <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
                         <Text style= {styles.buttonText} >הוספת אירוע חדש</Text>
                     </TouchableOpacity>
             </View>
