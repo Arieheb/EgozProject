@@ -5,6 +5,7 @@ const AddJob = props => {
   return (
     <View> 
       <Text>Add a New Job</Text>
+      
       <Button title="Submit">
       </Button>
     </View>

@@ -101,7 +101,7 @@ const DrawerContent = props => {
                         label="צור קשר"
                         icon={(color,size)=>
                                 <Icon 
-                                name="wrench"
+                                name="email-outline"
                                 color = {color}
                                 size={size}/>}
                         onPress={()=>{props.navigation.navigate("Contact")}}
