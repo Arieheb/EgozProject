@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
-        marginTop:25, 
+        marginTop:25,
+         
     },
     input: {
        width:'90%',
@@ -116,6 +117,8 @@ const styles = StyleSheet.create({
        borderRadius:8,
        paddingRight:15,
        margin:5,
+       color: "white",
+       padding:10,
     },
     buttons:{
        alignItems:'center',
