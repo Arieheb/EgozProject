@@ -44,15 +44,6 @@ const DrawerContent = props => {
                         onPress={()=>{props.navigation.navigate("home")}}
                     />
                     <DrawerItem
-                        label="פורטל משרות"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="briefcase"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("jobs")}}
-                    />
-                    <DrawerItem
                         label="אודות"
                         icon={(color,size)=>
                                 <Icon 
@@ -71,6 +62,15 @@ const DrawerContent = props => {
                         onPress={()=>{props.navigation.navigate("forums")}}
                     />
                     <DrawerItem
+                        label="פורטל משרות"
+                        icon={(color,size)=>
+                                <Icon 
+                                name="briefcase"
+                                color = {color}
+                                size={size}/>}
+                        onPress={()=>{props.navigation.navigate("jobs")}}
+                    />                   
+                    <DrawerItem
                         label="לוח אירועים"
                         icon={(color,size)=>
                                 <Icon 
@@ -78,6 +78,33 @@ const DrawerContent = props => {
                                 color = {color}
                                 size={size}/>}
                         onPress={()=>{props.navigation.navigate("calendar")}}
+                    />
+                    <DrawerItem
+                        label="זיכרון והנצחה"
+                        icon={(color,size)=>
+                                <Icon 
+                                name="candle"
+                                color = {color}
+                                size={size}/>}
+                        onPress={()=>{props.navigation.navigate("Memorial")}}
+                    />
+                    <DrawerItem
+                        label="הטבות"
+                        icon={(color,size)=>
+                                <Icon 
+                                name="gift"
+                                color = {color}
+                                size={size}/>}
+                        onPress={()=>{props.navigation.navigate("Benefits")}}
+                    />
+                    <DrawerItem
+                        label="צור קשר"
+                        icon={(color,size)=>
+                                <Icon 
+                                name="wrench"
+                                color = {color}
+                                size={size}/>}
+                        onPress={()=>{props.navigation.navigate("Contact")}}
                     />
     
                 </Drawer.Section>
@@ -139,6 +166,7 @@ const styles = StyleSheet.create({
         marginBottom:15,
         borderTopColor:"#f4f4f4",
         borderTopWidth:1,
+        
     },
     preference:{
         flexDirection:'row',

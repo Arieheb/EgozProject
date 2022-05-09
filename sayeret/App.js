@@ -16,7 +16,11 @@ import About from './pages/About/About';
 import SignUpScreen from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
 import EventsNavigator from './pages/events/EventsNavigator';
+import Contact from './pages/contact/Contact';
+import Memorial from './pages/memorial/memorial';
+import Benefits from './pages/benefits/benefits';
 import { Button } from 'react-native-elements';
+
 
 
 const Drawer = createDrawerNavigator();
@@ -54,6 +58,13 @@ export default function App() {
           <Drawer.Screen name='forums' component={Forum} />
           <Drawer.Screen name='profile' component={Profile} />
           <Drawer.Screen name='calendar' component={EventsNavigator} />
+          <Drawer.Screen name='Benefits' component={Benefits} />
+          <Drawer.Screen name='Contact' component={Contact} />
+          <Drawer.Screen name='Memorial' component={Memorial} />
+
+
+
+
           <Drawer.Screen options={{headerShown: false}} name='login' component={LoginScreen} />
         </Drawer.Navigator>
 
