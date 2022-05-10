@@ -20,7 +20,6 @@ import Contact from './pages/contact/Contact';
 import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import { Button } from 'react-native-elements';
-import SignUpAuth from './pages/Login/SignUpAuth';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -37,9 +36,14 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(user){
+  if(!user){
     return(
-     <SignUpAuth></SignUpAuth>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen options={{headerShown: false}} name='login' component={LoginScreen}/>
+          <Stack.Screen name='SignUp' component={SignUpScreen}/>
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   };
 
