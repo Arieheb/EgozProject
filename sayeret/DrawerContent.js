@@ -8,6 +8,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from './firebase'
 
 
+
 const signOutNow = () => {
     signOut(auth).then(() => {
         navigation.replace('login');
@@ -32,6 +33,8 @@ const DrawerContent = props => {
                             <Caption style={styles.caption}>More Info</Caption>
                         </View>
                     </View>
+                
+                
                 </TouchableRipple>
                 <Drawer.Section style={styles.bottomDrawerSection}>
                     <DrawerItem

@@ -27,6 +27,7 @@ const GoalCard = props=>{
 const Home = props=>{
     return(
         <ScrollView>
+            <View style = {styles.container}>
             <View>
                 <Text style={styles.title}>הסיירת הצפונית</Text>
                 <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
@@ -68,23 +69,34 @@ const Home = props=>{
             <View>
                 <Text style = {styles.title}>יזכור</Text>
             </View>
-
+            </View>
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+        height: '98%',
+        padding: 5,
+    },
+    
+    
     title: {
         fontWeight: "bold",
-        fontSize: 26
+        fontSize: 26, 
+        textAlign: 'center',
+        
 
     },
     miniTitle: {
         fontWeight: "bold",
-        fontSize: 24
+        fontSize: 24,
+        textAlign: 'center'
     },
     content: {
-        fontSize: 20
+        fontSize: 20,
+        textAlign: 'right'
     },
     stat: {
         flexDirection: "row",
