@@ -1,20 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Icon from "react-native-vector-icons/Ionicons"
 
-const JobCard = (props) => {
+const JobCard = ({title,location,description}) => {
   return (
-    <View>
-      <Text>JobCard</Text>
-      <View style={styles.image}>
-          
+    <View style={styles.cardContainer}>
+      <View>
+        <Text style={styles.title}>{title}</Text>
       </View>
-      <View style={styles.details}>
-          <View style={styles.title}>
-
-          </View>
-          <View style={styles.location}>
-
-          </View>
+      <View style={{flexDirection:"row",width:"100%",justifyContent:"flex-end"}}>
+        <Text style={styles.location}>
+        {location}
+        </Text>
+        <Icon style={styles.icon}
+        name="ios-location-outline"
+        size={18}/>
+      </View>
+      <View style={styles.description}>
+        <Text style={{textAlign:"center"}}>{description}</Text>
       </View>
     </View>
   )
@@ -23,19 +26,39 @@ const JobCard = (props) => {
 export default JobCard
 
 const styles = StyleSheet.create({
-    image:{
-        width: "30%"
-    },
+  cardContainer:{
+    width:"98%",
+    height:200,
+    padding:5,
+    marginVertical:10,
+    borderWidth:1,
+    borderRadius:4,
+    backgroundColor:"white",
+    borderColor:"gray"
+  },
 
-    details:{
-        width: "70%"
-    },
+  title:{
+    alignSelf:"flex-end",
+    fontSize:18,
+    fontWeight:"bold",
+    marginVertical:3
+  },
 
-    title:{
-        height: "50%"
-    },
+  location:{
+    alignSelf:"flex-end",
+    fontSize:16,
+    marginVertical:3,
+    marginHorizontal:6
+  },
 
-    location:{
-        height: "50%"
-    }
+  icon:{
+  },
+
+  description:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    textAlign:"center"
+  }
+
 })

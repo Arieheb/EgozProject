@@ -21,8 +21,6 @@ import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import { Button } from 'react-native-elements';
 
-
-
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 console.log(Drawer)
