@@ -4,10 +4,10 @@ import JobCard from './JobCard';
 
 const JobsMain = props=>{
     const [jobsList, updateJobsList] = useState([
-        {id:0,title:"חוטב עצים",location:"ירוחם",description:"jhdgfshj hsdf dshjfvsda ksdbskj kjdfbskjb kfjbdfkj sdjf kjsd lgl ldsk lksslkds fjbjfds ldsfnl sdlk"},
-        {id:1,title:"סרסור",location:"אופקים",description:"jhdgfshj hsdf dshjfvsda ksdbskj kjdfbskjb kfjbdfkj sdjf kjsd lgl ldsk lksslkds fjbjfds ldsfnl sdlk"},
-        {id:2,title:"צ׳קה צ׳קה",location:"נתיבות",description:"jhdgfshj hsdf dshjfvsda ksdbskj kjdfbskjb kfjbdfkj sdjf kjsd lgl ldsk lksslkds fjbjfds ldsfnl sdlk"},
-        {id:3,title:"מנהל אורחן",location:"בית שאן",description:"jhdgfshj hsdf dshjfvsda ksdbskj kjdfbskjb kfjbdfkj sdjf kjsd lgl ldsk lksslkds fjbjfds ldsfnl sdlk"}
+        {id:0,title:"מתכנת/ת dot.net",location:"פתח תקווה",description:"דרוש/ה מתכנת/ת לחברה תעשייתית בתחום האלקטרוניקה בפתח תקווה, כפיפות ישירה למנהל IT, משרה מלאה ללא ימי שישי, תנאים מעולים למתאימים/ות."},
+        {id:1,title:"מתכנת/ת ++C",location:"נתניה",description:"לצוות פיתוח איכותי המפתח פתרונות עבור חברת אנרגיה קמעונאית באזור השרון דרוש /ה מתכנת /ת בעל /ת ניסיון."},
+        {id:2,title:"מתכנת/ת Fullstack",location:"ירושלים",description:"לנעה מערכות בעמ דרושים /ות מתכנתים /ות Fullstack ו- Backend. דרוש /ה CTO שייכנס / תכנס כ- Founder ודרושים מתכנתים /ות Fullstack ו- Backend."},
+        {id:3,title:"מנהל אורחן",location:"קרית מוצקין",description:"לאורחן משיח דרוש מנהל, זמר ופרזנטור ששיאו מאחוריו, ויעשה הכל כדי להיות בטופ. דרישות תפקיד: שחצן, וולגרי ובעל ביטחון עצמי מופרז."}
     ]);
 
     function goToAddJob (){
