@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Image,TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import {Image,TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
+import {AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 
 
@@ -15,8 +15,6 @@ const AddEvent = () => {
                 <TextInput placeholder='שם האירוע'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={password}
-                    // onChangeText={text=>setPassword(text)}
                 />
             </View>
 
@@ -25,8 +23,6 @@ const AddEvent = () => {
                 <TextInput placeholder='מיקום' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={password}
-                    // onChangeText={text=>setPassword(text)}
                 />
             </View>
 
@@ -34,11 +30,9 @@ const AddEvent = () => {
            <Text style = {styles.textStyle}>תיאור האירוע:</Text>
                 <ScrollView>
                 <TextInput placeholder= 'תיאור האירוע' 
-                    // multiline = "true"
+                    multiline = 'true'
                     style={styles.infoText}
                     placeholderTextColor={"#fff"}
-                    // value={password}
-                    // onChangeText={text=>setPassword(text)}
                 />
                 </ScrollView>
             </View>
@@ -48,8 +42,6 @@ const AddEvent = () => {
                 <TextInput placeholder='איש קשר' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={password}
-                    // onChangeText={text=>setPassword(text)}
                 />
             </View>
 
@@ -83,7 +75,7 @@ export default AddEvent
 const styles = StyleSheet.create ({ 
     container: {
         backgroundColor: 'grey',  
-        height: '200%',
+        height: '100%',
         paddingBottom: 70, 
         width: '100%',
         display: 'flex',
