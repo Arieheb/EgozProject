@@ -7,15 +7,12 @@ import Profile from "./assets/Images/profile.png"
 import { signOut } from 'firebase/auth'
 import { auth } from './firebase'
 
-
-
 const signOutNow = () => {
     signOut(auth).then(() => {
         navigation.replace('login');
     }).catch((error) => {
     });
 }
-
 
 const DrawerContent = props => {
   return (
