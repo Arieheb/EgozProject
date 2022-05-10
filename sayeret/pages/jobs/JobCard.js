@@ -1,17 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Icon from "react-native-vector-icons/Ionicons"
 
 const JobCard = ({title,location,description}) => {
   return (
     <View style={styles.cardContainer}>
-      <View >
-        <Text style={styles.text}>{title}</Text>
-        <Text style={styles.text}>{location}</Text>
+      <View>
+        <Text style={styles.title}>{title}</Text>
       </View>
-      <View style={{flex:1, justifyContent:"center",alignItems:"center"}}>
-        <Text style={{textAlign:"center"}}>
-          {description}
+      <View style={{flexDirection:"row",width:"100%",justifyContent:"flex-end"}}>
+        <Text style={styles.location}>
+        {location}
         </Text>
+        <Icon style={styles.icon}
+        name="ios-location-outline"
+        size={18}/>
+      </View>
+      <View style={styles.description}>
+        <Text style={{textAlign:"center"}}>{description}</Text>
       </View>
     </View>
   )
@@ -28,11 +34,31 @@ const styles = StyleSheet.create({
     borderWidth:1,
     borderRadius:4,
     backgroundColor:"white",
-    borderColor:"gray",
+    borderColor:"gray"
   },
-  text:{
+
+  title:{
     alignSelf:"flex-end",
     fontSize:18,
+    fontWeight:"bold",
     marginVertical:3
+  },
+
+  location:{
+    alignSelf:"flex-end",
+    fontSize:16,
+    marginVertical:3,
+    marginHorizontal:6
+  },
+
+  icon:{
+  },
+
+  description:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center",
+    textAlign:"center"
   }
+
 })
