@@ -14,6 +14,23 @@ const signOutNow = () => {
     });
 }
 
+
+
+
+const Card = props=>{
+   return <DrawerItem
+                label= {props.title}
+                icon={(color,size)=>
+                        <Icon 
+                        name={props.iconName}
+                        color = {color}
+                        size={size}/>}
+                onPress={()=>{props.navigation.navigate(props.nav)}}
+             />
+}
+
+
+
 const DrawerContent = props => {
   return (
     <View style={{flex:1}}>
@@ -34,79 +51,15 @@ const DrawerContent = props => {
                 
                 </TouchableRipple>
                 <Drawer.Section style={styles.bottomDrawerSection}>
-                    <DrawerItem
-                        label="בית"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="home-outline"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("home")}}
-                    />
-                    <DrawerItem
-                        label="אודות"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="book-open-page-variant"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("about")}}
-                    />
-                    <DrawerItem
-                        label="פורומים"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="android-messages"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("forums")}}
-                    />
-                    <DrawerItem
-                        label="פורטל משרות"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="briefcase"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("jobs")}}
-                    />                   
-                    <DrawerItem
-                        label="לוח אירועים"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="calendar-month"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("calendar")}}
-                    />
-                    <DrawerItem
-                        label="זיכרון והנצחה"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="candle"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("Memorial")}}
-                    />
-                    <DrawerItem
-                        label="הטבות"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="gift"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("Benefits")}}
-                    />
-                    <DrawerItem
-                        label="צור קשר"
-                        icon={(color,size)=>
-                                <Icon 
-                                name="email-outline"
-                                color = {color}
-                                size={size}/>}
-                        onPress={()=>{props.navigation.navigate("Contact")}}
-                    />
-    
+                    <Card title="בית" iconName="home-outline" nav="home" navigation={props.navigation}/>
+                    <Card title="אודות" iconName="book-open-page-variant" nav="about" navigation={props.navigation}/>
+                    <Card title="פורומים" iconName="android-messages" nav="forums" navigation={props.navigation}/>
+                    <Card title="פורטל משרות" iconName="briefcase" nav="jobs" navigation={props.navigation}/>
+                    <Card title="לוח אירועים" iconName="calendar-month" nav="calendar" navigation={props.navigation}/>
+                    <Card title="זיכרון והנצחה" iconName="candle" nav="Memorial" navigation={props.navigation}/>
+                    <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation}/>
+                    <Card title="הטבות" iconName="gift" nav="Benefits" navigation={props.navigation}/>
+                    <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation}/>
                 </Drawer.Section>
             </View>
         </DrawerContentScrollView>

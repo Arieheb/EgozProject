@@ -19,6 +19,7 @@ import EventsNavigator from './pages/events/EventsNavigator';
 import Contact from './pages/contact/Contact';
 import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
+import Store from './pages/store/Store';
 import { Button } from 'react-native-elements';
 
 const Drawer = createDrawerNavigator();
@@ -59,6 +60,7 @@ export default function App() {
           <Drawer.Screen name='Benefits' component={Benefits} />
           <Drawer.Screen name='Contact' component={Contact} />
           <Drawer.Screen name='Memorial' component={Memorial} />
+          <Drawer.Screen name='store' component={Store} />
 
 
 
