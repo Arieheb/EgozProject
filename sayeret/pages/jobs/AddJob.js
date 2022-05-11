@@ -32,7 +32,6 @@ const handleSubmit = ()=>{
   }
 
     const newJob = new Job(titleInput, locationInput, descriptionInput, nameInput, phoneInput, emailInput);
-
     Alert.alert(JSON.stringify(newJob))
     // TODO - fix JSON output
     // TODO - update databse
@@ -67,7 +66,7 @@ const handleSubmit = ()=>{
         multiline     
         onChangeText={text=>setDescriptionInput(text)}
         />
-                <TextInput
+        <TextInput
           style={styles.textInput}
           placeholder='שם איש הקשר'     
           value={nameInput}
