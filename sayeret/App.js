@@ -24,7 +24,7 @@ import { Button } from 'react-native-elements';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-console.log(Drawer)
+
 export default function App() {
   const [user, setUser] = useState();
 
