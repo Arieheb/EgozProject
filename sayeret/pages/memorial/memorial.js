@@ -7,12 +7,20 @@ import Blurp from './ModalTemp';
 
 
 const Memorial = (props) => {
-    return (
+  const names = [{
+    name: 'Avner Saadon',
+    info: 'fsdahjksdalfh',
+    image: 'firebaseLink',
+    link: 'url'
+  }]  
+     return (
+       
         <View>
+          
             <View name = 'Avner Saadon'>
-                <Blurp/>
+                <Blurp name = {names[0].name}/>
             </View>
-            
+{/*             
             <View name = 'Avraham hameiri'>
                 <Blurp/>
             </View>
@@ -39,7 +47,7 @@ const Memorial = (props) => {
 
             <View name = 'Amnon bar ner'>
                 <Blurp/>
-            </View>
+            </View> */}
         </View>
     );
   };
