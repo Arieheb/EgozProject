@@ -45,7 +45,6 @@ const handleSubmit = ()=>{
           style={styles.textInput}
           placeholder='שם המשרה'        
           value={titleInput}
-          fontSize="18"
           onChangeText={text=>setTitleInput(text)}
           placeholderTextColor="#7f8c8d"
         />
@@ -53,7 +52,6 @@ const handleSubmit = ()=>{
           style={styles.textInput}
           placeholder='מיקום'     
           value={locationInput}
-          fontSize="18"
           onChangeText={text=>setLocationInput(text)}
           placeholderTextColor="#7f8c8d"
         />
@@ -61,7 +59,6 @@ const handleSubmit = ()=>{
         style={{...styles.textInput,height:120}}
         placeholder='תיאור המשרה'
         value={descriptionInput}
-        fontSize="18"
         placeholderTextColor="#7f8c8d"
         multiline     
         onChangeText={text=>setDescriptionInput(text)}
@@ -70,7 +67,6 @@ const handleSubmit = ()=>{
           style={styles.textInput}
           placeholder='שם איש הקשר'     
           value={nameInput}
-          fontSize="18"
           onChangeText={text=>setNameInput(text)}
           placeholderTextColor="#7f8c8d"
         />
@@ -78,7 +74,6 @@ const handleSubmit = ()=>{
           style={styles.textInput}
           placeholder='טלפון'     
           value={phoneInput}
-          fontSize="18"
           onChangeText={text=>setPhoneInput(text)}
           placeholderTextColor="#7f8c8d"
         />
@@ -86,7 +81,6 @@ const handleSubmit = ()=>{
           style={styles.textInput}
           placeholder='אימייל'     
           value={emailInput}
-          fontSize="18"
           onChangeText={text=>setEmailInput(text)}
           placeholderTextColor="#7f8c8d"
         />
@@ -130,6 +124,7 @@ const styles = StyleSheet.create({
     borderColor:"gray",
     borderWidth:1,
     alignSelf:"flex-end",
-    padding:5
+    padding:5,
+    fontSize:18,
   }
   })
