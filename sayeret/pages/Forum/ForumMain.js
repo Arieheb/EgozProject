@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView} from 'react-native';
+import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView} from 'react-native';
 import { TouchableRipple,Avatar, shadow } from 'react-native-paper';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
@@ -15,6 +15,7 @@ const data = [
         image:Profile,
     },
 ]
+
 
 
 const ForumItem = props=>{
@@ -109,6 +110,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 5,
         elevation: 5,
+        paddingTop: Platform.OS === 'ios'? 30:15,
+        
     }
 
 })
