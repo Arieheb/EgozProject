@@ -3,14 +3,18 @@ import {  Modal, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,P
 import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 import Blurp from './ModalTemp';
+import ProfilePic from '../../assets/Images/profile.png';
+import logoGrey from '../../assets/Images/logo_grey.png';
+
 
 
 
 const Memorial = (props) => {
+  
   const names = [{
-    name: 'Avner Saadon',
-    info: 'fsdahjksdalfh',
-    image: 'firebaseLink',
+    name: 'אבנר סעדון',
+    info: " ניכר בעקשנותו ובדבקותו במטרה. הוא לא השלים עם המוסכמות של החברה ועם השגרה, או עם נטישת עיקרון למען נוחות. הוא השלים עם מציאות החיים והאמין שבכדי להצליח לשנות דברים יש צורך לרכוש עמדות כוח מהן יוכל להשפיע. הוא היה מסור לחייליו וחלק מזמנו עשה בביקורי בית אצל חייליו, בניסיון לפתור בעיות אישיות וכלכליות. כמפקד חיפש אבנר דרכים לחדש, לשכלל, לשפר ולייעל. במסעות היה נוהג לנווט בעצמו, כדי למנוע נפילת קורבנות בגלל טעות בניווט." ,
+    proPicSource: 'ProfilePic',
     link: 'url'
   }]  
      return (
@@ -18,7 +22,7 @@ const Memorial = (props) => {
         <View>
           
             <View name = 'Avner Saadon'>
-                <Blurp name = {names[0].name}/>
+                <Blurp name = {names[0].name}  info = {names[0].info} image = {names[0].image} link = {names[0].link} />
             </View>
 {/*             
             <View name = 'Avraham hameiri'>
@@ -54,47 +58,5 @@ const Memorial = (props) => {
   
   export default Memorial 
 
-  const styles = StyleSheet.create({
-    centeredView: {
-    //   flex: 1,
-    //   justifyContent: "center",
-    //   alignItems: "center",
-      marginTop: 22
-    },
-    modalView: {
-      margin: 80,
-    //   backgroundColor: "white",
-      borderRadius: 20,
-    //   padding: 35,
-    //   alignItems: "center",
-    //   shadowColor: "#000",
-    //   shadowOffset: {
-    //     width: 0,
-    //     height: 2
-    //   },
-    //   shadowOpacity: 0.25,
-    //   shadowRadius: 4,
-    //   elevation: 5
-    },
-    button: {
-      borderRadius: 100,
-      padding: 10,
-      elevation: 2
-    },
-    buttonOpen: {
-      backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-      backgroundColor: "#2196F3",
-    },
-    textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center"
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "center"
-    }
-  });
+  const styles = StyleSheet.create({});
   
