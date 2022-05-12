@@ -16,7 +16,7 @@ const Blurp = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Image source={Profile} style = {{width: 100, height: 130}} />
+        <Image source={Profile} style = {{width: 100, height: 130, borderRadius: 50}} />
         <Text style={styles.textStyle}>{props.name}</Text>
       </Pressable>
      
@@ -39,10 +39,10 @@ const Blurp = (props) => {
                 <View name = 'buried'>
                   <Text style={styles.nameEdit}>{props.name} ז"ל</Text>
                   <Text style= {{fontWeight: 'bold', textAlign: 'right', fontSize: 17}}>מקום קבורה </Text>
-                  <Text style = {styles.textDesign}>בית קברות: קרית גת</Text>
-                  <Text style = {styles.textDesign}>חלקה: 1</Text>
-                  <Text style = {styles.textDesign}>שורה: 2</Text>
-                  <Text style = {styles.textDesign}>קבר: 1</Text>
+                  <Text style = {styles.textDesign}>בית קברות: {props.semitary} </Text>
+                  <Text style = {styles.textDesign}>חלקה: {props.part} </Text>
+                  <Text style = {styles.textDesign}>שורה: {props.row} </Text>
+                  <Text style = {styles.textDesign}>קבר: {props.graveNumber} </Text>
                 </View>
             </View>
 
@@ -104,7 +104,8 @@ const Blurp = (props) => {
     centeredView: {
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 220,
+      marginTop: 20,
+      
       
     },
     modalView: {
@@ -134,7 +135,9 @@ const Blurp = (props) => {
       elevation: 2
     },
     buttonOpen: {
-      // backgroundColor: "#F194FF",
+      backgroundColor: "#F194FF",
+      borderRadius: 50,
+      
     },
     buttonClose: {
       backgroundColor: "#2196F3",
