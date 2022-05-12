@@ -6,21 +6,34 @@ const AddJob = props => {
 const [titleInput, setTitleInput] = useState("")
 const [locationInput, setLocationInput] = useState("")
 const [descriptionInput, setDescriptionInput] = useState("")
+const [nameInput, setNameInput] = useState("")
+const [phoneInput, setPhoneInput] = useState("")
+const [emailInput, setEmailInput] = useState("")
+
 
 const handleSubmit = ()=>{
   if(!titleInput.length){
-    return Alert.alert("חרדת כותרת")
+    return Alert.alert("יש להזין את שם המשרה")
   }
   if(!locationInput.length){
-    return Alert.alert("חרדת מיקום")
+    return Alert.alert("יש להזין את מיקום המשרה")
   }
   if(!descriptionInput.length){
-    return Alert.alert("חרדת תיאור")
+    return Alert.alert("יש להזין את תיאור המשרה")
+  }
+  if(!nameInput.length){
+    return Alert.alert("יש להזין את שם איש הקשר")
+  }
+  if(!phoneInput.length){
+    return Alert.alert("יש להזין מספר טלפון")
+  }
+  if(!emailInput.length){
+    return Alert.alert("יש להזין כתובת אימייל")
   }
 
-    const newJob = new Job(titleInput,locationInput,descriptionInput);
-
+    const newJob = new Job(titleInput, locationInput, descriptionInput, nameInput, phoneInput, emailInput);
     Alert.alert(JSON.stringify(newJob))
+    // TODO - fix JSON output
     // TODO - update databse
     return
 }
@@ -29,7 +42,7 @@ const handleSubmit = ()=>{
     <View style={styles.container}> 
       <View style={{width:"100%", alignItems:"center"}}>
         <TextInput
-style={styles.textInput}
+          style={styles.textInput}
           placeholder='שם המשרה'        
           value={titleInput}
           fontSize="18"
@@ -37,7 +50,7 @@ style={styles.textInput}
           placeholderTextColor="#7f8c8d"
         />
         <TextInput
-style={styles.textInput}
+          style={styles.textInput}
           placeholder='מיקום'     
           value={locationInput}
           fontSize="18"
@@ -51,9 +64,32 @@ style={styles.textInput}
         fontSize="18"
         placeholderTextColor="#7f8c8d"
         multiline     
-onChangeText={text=>setDescriptionInput(text)}
-
-/>
+        onChangeText={text=>setDescriptionInput(text)}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder='שם איש הקשר'     
+          value={nameInput}
+          fontSize="18"
+          onChangeText={text=>setNameInput(text)}
+          placeholderTextColor="#7f8c8d"
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder='טלפון'     
+          value={phoneInput}
+          fontSize="18"
+          onChangeText={text=>setPhoneInput(text)}
+          placeholderTextColor="#7f8c8d"
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder='אימייל'     
+          value={emailInput}
+          fontSize="18"
+          onChangeText={text=>setEmailInput(text)}
+          placeholderTextColor="#7f8c8d"
+        />
 
 <Pressable 
 style={({pressed})=>[styles.button,pressed && {backgroundColor:"#00cec9"}]}

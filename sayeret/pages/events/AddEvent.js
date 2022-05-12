@@ -30,7 +30,7 @@ const AddEvent = () => {
            <Text style = {styles.textStyle}>תיאור האירוע:</Text>
                 <ScrollView>
                 <TextInput placeholder= 'תיאור האירוע' 
-                    multiline = 'true'
+                    multiline = "true"
                     style={styles.infoText}
                     placeholderTextColor={"#fff"}
                 />
