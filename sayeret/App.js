@@ -61,8 +61,6 @@ export default function App() {
           <Drawer.Screen name='Contact' component={Contact} />
           <Drawer.Screen name='Memorial' component={Memorial} />
           <Drawer.Screen name='store' component={Store} />
-          {/* <Drawer.Screen name='donation' component={Donation} /> */}
-
 
 
 
