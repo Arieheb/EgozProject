@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text,Button, View, StyleSheet, FlatList,Modal} from 'react-native';
+import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView} from 'react-native';
 import { TouchableRipple,Avatar, shadow } from 'react-native-paper';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
@@ -15,6 +15,7 @@ const data = [
         image:Profile,
     },
 ]
+
 
 
 const ForumItem = props=>{
@@ -35,7 +36,7 @@ const ForumItem = props=>{
             
             {/* the chat room */}
             <Modal visible={visible} style={{height:"80",opacity:1}}>
-                <View style={styles.header}>   
+                <SafeAreaView style={styles.header}>   
                     <TouchableRipple onPress={()=>{setVisible(false)}}>
                         <Icon
                             name='keyboard-backspace'
@@ -48,7 +49,7 @@ const ForumItem = props=>{
                         style={{marginLeft:20,marginRight:10}}
                     />
                     <Text style={styles.name}>{props.name}</Text>
-                </View>
+                </SafeAreaView>
                 <WriteToForum/>
             </Modal>
         </View>    
@@ -104,7 +105,13 @@ const styles = StyleSheet.create({
         alignItems:"center",
         paddingVertical:15,
         backgroundColor:"#00aadd",
-        elevation:5
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
+        paddingTop: Platform.OS === 'ios'? 30:15,
+        
     }
 
 })
