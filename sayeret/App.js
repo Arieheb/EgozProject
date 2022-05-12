@@ -37,7 +37,7 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  if(user){
+  if(!user){
     return(
       <NavigationContainer>
         <Stack.Navigator>
