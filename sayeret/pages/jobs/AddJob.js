@@ -35,7 +35,6 @@ const handleSubmit = ()=>{
     Alert.alert(JSON.stringify(newJob))
     // TODO - fix JSON output
     // TODO - update databse
-    return
 }
 
   return (
