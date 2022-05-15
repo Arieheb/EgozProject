@@ -18,6 +18,8 @@ const Blurp = (props) => {
       >
         <Image source={Profile} style = {{width: 100, height: 130, borderRadius: 50}} />
         <Text style={styles.textStyle}>{props.name}</Text>
+        <Text style={styles.textStyle}>קרא עוד</Text>
+
       </Pressable>
      
 
@@ -59,7 +61,7 @@ const Blurp = (props) => {
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyle}>minimize</Text>
+              <Text style={styles.textStyle}>הסתר</Text>
             </Pressable>
           </View>
         </View>
