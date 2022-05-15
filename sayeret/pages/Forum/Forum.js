@@ -9,10 +9,10 @@ const Stack = createStackNavigator();
 const Forum = props=>{
     
     return(
-            <Stack.Navigator screenOptions={{headerShown:false}}>
-                <Stack.Screen name="A" component={ForumMain}/>
-                <Stack.Screen name="B" component={OpenForum}/>
-                <Stack.Screen name="C" component={WriteToForum}/>
+            <Stack.Navigator >
+                <Stack.Screen options={{headerShown:false}} name="A" component={ForumMain}/>
+                <Stack.Screen name="B" component={WriteToForum}/>
+                <Stack.Screen name="C" component={OpenForum}/>
             </Stack.Navigator>
     );
 };

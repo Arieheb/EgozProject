@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import {StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Icon from "react-native-vector-icons/Ionicons"
 
-const JobCard = ({title,location,description}) => {
+const JobCard = ({title, location, contactName, contactPhone, contactEmail, description}) => {
   return (
     <View style={styles.cardContainer}>
       <View>
@@ -12,12 +12,14 @@ const JobCard = ({title,location,description}) => {
         <Text style={styles.location}>
         {location}
         </Text>
-        <Icon style={styles.icon}
-        name="ios-location-outline"
-        size={18}/>
+        <Icon style={styles.icon} name="ios-location-outline"/>
       </View>
       <View style={styles.description}>
         <Text style={{textAlign:"center"}}>{description}</Text>
+      </View>
+      <View style={styles.contactInfo}>
+        <Text>{contactName} - {contactPhone}</Text>
+        <Text>{contactEmail}</Text>
       </View>
     </View>
   )
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
   },
 
   icon:{
+    fontSize:18
   },
 
   description:{
@@ -59,6 +62,10 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center",
     textAlign:"center"
-  }
+  },
 
+  contactInfo:{
+    height:"20%",
+    alignContent:"flex-start"
+  }
 })
