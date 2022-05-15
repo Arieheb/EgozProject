@@ -4,26 +4,30 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 
 const data = [
     {
-      title: 'Title 1',
+      title: 'הירשם',
       text: 'Description.\nSay something cool',
       //image: require('../../assets/1.jpg'),
       bg: '#59b2ab',
+      key:1,
     },
     {
-      title: 'Title 2',
+      title: 'שאלון הרשמה',
       text: 'Other cool stuff',
       //image: require('../../assets/2.jpg'),
       bg: '#febe29',
+      key:2,
     },
     
   ];
 
 const SignUpAuth = () => {
     const renderItem = ({item}) => {
-  return (
+      if(item.key ==1)
+      return (
+    
         < View style={styles.container}>
             <View style = {styles.top}>
-                <Text style= {styles.heading}>הירשם</Text>
+                <Text style= {styles.heading}>{item.title}</Text>
             </View>
             <View style = {styles.bottom}>
                 <View style = {styles.inputView}>
@@ -51,8 +55,27 @@ const SignUpAuth = () => {
         </View> 
         
         );
+      else
+      return (
+        < View style={styles.container}>
+            <View style = {styles.top}>
+                <Text style= {styles.heading}></Text>
+            </View>
+            <View style = {styles.bottom}>
+                <View style = {styles.inputView}>
+                    <TextInput placeholder='Email:'
+                    style={styles.input}
+                    placeholderTextColor={"#fff"}
+                    
+                    />
+                  
+                </View>
+            </View>
+        </View> 
+        
+        );
     };
-  
+    
    const keyExtractor = (item) => item.title;
 
    return (
@@ -61,6 +84,7 @@ const SignUpAuth = () => {
       <AppIntroSlider
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        nextRender={nextRender}
         data={data}
       />
     </View>
