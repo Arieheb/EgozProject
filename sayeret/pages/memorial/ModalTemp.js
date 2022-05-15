@@ -104,7 +104,8 @@ const Blurp = (props) => {
     centeredView: {
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 20,
+      marginTop: 5,
+      padding: 5
       
       
     },

@@ -1,19 +1,12 @@
 
-import {  Modal, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
+import {Modal, FlatList, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
 import Blurp from './ModalTemp';
 import ProfilePic from '../../assets/Images/profile.png';
 import logoGrey from '../../assets/Images/logo_grey.png';
-import { FlatList } from 'react-native-gesture-handler';
-
-
-
 
 const Memorial = (props) => { 
-    
 
-  const names = [
+  const data = [
     {
         name: 'אבנר סעדון', 
         info: " ניכר בעקשנותו ובדבקותו במטרה. הוא לא השלים עם המוסכמות של החברה ועם השגרה, או עם נטישת עיקרון למען נוחות. הוא השלים עם מציאות החיים והאמין שבכדי להצליח לשנות דברים יש צורך לרכוש עמדות כוח מהן יוכל להשפיע. הוא היה מסור לחייליו וחלק מזמנו עשה בביקורי בית אצל חייליו, בניסיון לפתור בעיות אישיות וכלכליות. כמפקד חיפש אבנר דרכים לחדש, לשכלל, לשפר ולייעל. במסעות היה נוהג לנווט בעצמו, כדי למנוע נפילת קורבנות בגלל טעות בניווט." ,
@@ -45,62 +38,20 @@ const Memorial = (props) => {
         graveNumber: '9'
 
     },
+    
 
     ]
     
-    const Item = ({item}) => {
-        return 
-        <View style = {styles.item}>{item.icon}</View>
-    }
-    
      return (
-       
-        <View style = {styles.container}>
-            
-                    <ScrollView>
-                        <View name = 'Avner Saadon'>
-                            <Blurp name = {names[0].name}  info = {names[0].info} image = {names[0].image} link = {names[0].link} semitary = {names[0].semitary} part = {names[0].part} row = {names[0].row} graveNumber = {names[0].graveNumber} />
-                        </View>
-                        <View name = 'Avner Saadon'>
-                            <Blurp name = {names[1].name}  info = {names[1].info} image = {names[1].image} link = {names[1].link} semitary = {names[1].semitary} part = {names[1].part} row = {names[1].row} graveNumber = {names[1].graveNumber}/>
-                        </View>
-                        <View name = 'Avner Saadon'>
-                            <Blurp name = {names[2].name}  info = {names[2].info} image = {names[2].image} link = {names[2].link} semitary = {names[2].semitary} part = {names[2].part} row = {names[2].row} graveNumber = {names[2].graveNumber}/>
-                        </View>
-                        <View name = 'Avner Saadon'>
-                            <Blurp name = {names[0].name}  info = {names[0].info} image = {names[0].image} link = {names[0].link} semitary = {names[0].semitary} part = {names[0].part} row = {names[0].row} graveNumber = {names[0].graveNumber}/>
-                        </View>
-                    </ScrollView>
-                
-{/*             
-            <View name = 'Avraham hameiri'>
-                <Blurp/>
-            </View>
+       <View>
+        <FlatList data = {data}
+            keyExtractor = {item => item.name}
+            renderItem = {(data) => <Blurp name = {data.item.name}  info = {data.item.info} image = {data.item.image} link = {data.item.link} semitary = {data.item.semitary} part = {data.item.part} row = {data.item.row} graveNumber = {data.item.graveNumber}  ></Blurp>}
+            numColumns = {3}
 
-            <View name = 'Eduard '>
-                <Blurp/>
-            </View>
-            
-            <View name = 'Offir planter'>
-                <Blurp/>
-            </View>
-
-            <View name = 'ofek klugman'>
-                <Blurp/>
-            </View>
-
-            <View name = 'Eliyahu mitlman'>
-                <Blurp/>
-            </View>
-
-            <View name = 'Alexsander shwartsman'>
-                <Blurp/>
-            </View>
-
-            <View name = 'Amnon bar ner'>
-                <Blurp/>
-            </View> */}
-        </View>
+>
+         </FlatList>
+         </View>
     );
   };
   
@@ -110,12 +61,14 @@ const Memorial = (props) => {
     container: {
         flex: 4, // the number of columns you want to devide the screen into
         marginHorizontal: "auto",
-        flexDirection: 'row'
+        
+        
       },
     item: {
         flex: 1,
-        maxWidth: "50%", // 100% devided by the number of rows you want
+        maxWidth: "30%", // 100% devided by the number of rows you want
         alignItems: "center", 
+        
         // my visual styles; not important for the grid
         padding: 10,
         backgroundColor: "rgba(249, 180, 45, 0.25)",
