@@ -1,10 +1,12 @@
-import { View, Text ,TextInput, Picker , StyleSheet,TouchableOpacity,StatusBar} from 'react-native'
+import { View, Text ,TextInput, Picker , StyleSheet,TouchableOpacity,StatusBar,Image} from 'react-native'
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
 import SelectDropdown from 'react-native-select-dropdown';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import AuthLogo2 from '../../assets/Images/auth_logo2.png';
+
 
 const data = [
     {
@@ -18,7 +20,7 @@ const data = [
       title: 'שאלון הרשמה',
       text: 'Other cool stuff',
       //image: require('../../assets/2.jpg'),
-      bg: '#febe29',
+      bg: '#373737fe',
       key:2,
       
     },
@@ -80,12 +82,9 @@ const SignUpAuth = () => {
       );
       else
       return (
-        < View style={styles.container}>
-            <View style = {styles.top}>
-                <Text style= {styles.heading}></Text>
-            </View>
-            <ScrollView style = {styles.bottom}>
-              
+        < View >
+            <ScrollView style={styles.scrollview}>
+            <Image style = {styles.logo} source={AuthLogo2} />
             </ScrollView>
         </View> 
         
@@ -112,7 +111,14 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'column',
-      },
+        backgroundColor:'#fff',
+     },
+     scrollview:{
+       // backgroundColor:'#373737fe',
+     },
+     logo:{
+      
+     },
      top:{
         width:'100%',
         height:'30%',
