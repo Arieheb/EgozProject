@@ -1,6 +1,8 @@
-import { View, Text ,TextInput, Animated , StyleSheet,TouchableOpacity,StatusBar} from 'react-native'
+import { View, Text ,TextInput, Picker , StyleSheet,TouchableOpacity,StatusBar} from 'react-native'
 import React from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
+import { ScrollView } from 'react-native-gesture-handler';
+import SelectDropdown from 'react-native-select-dropdown';
 
 const data = [
     {
@@ -16,11 +18,13 @@ const data = [
       //image: require('../../assets/2.jpg'),
       bg: '#febe29',
       key:2,
+      
     },
     
   ];
-
+ 
 const SignUpAuth = () => {
+  const countries = ["Egypt", "Canada", "Australia", "Ireland"]
     const renderItem = ({item}) => {
       if(item.key ==1)
       return (
@@ -61,16 +65,22 @@ const SignUpAuth = () => {
             <View style = {styles.top}>
                 <Text style= {styles.heading}></Text>
             </View>
-            <View style = {styles.bottom}>
+            <ScrollView style = {styles.bottom}>
                 <View style = {styles.inputView}>
-                    <TextInput placeholder='Email:'
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    
-                    />
-                  
+                <SelectDropdown
+                  data={countries}
+                  onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index)
+                  }}
+                  buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem
+                  }}
+                  rowTextForSelection={(item, index) => {
+                    return item
+                  }}
+                />
                 </View>
-            </View>
+            </ScrollView>
         </View> 
         
         );
@@ -84,7 +94,7 @@ const SignUpAuth = () => {
       <AppIntroSlider
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        nextRender={nextRender}
+        //nextRender={nextRender}
         data={data}
       />
     </View>
@@ -157,6 +167,9 @@ const styles = StyleSheet.create({
          fontWeight:'bold',
          fontSize:19,
      },
+     picker:{
+       
+     }
   });
 
 export default SignUpAuth

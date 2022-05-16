@@ -25,8 +25,7 @@ const LoginScreen = props => {
     return (
         <KeyboardAvoidingView style={styles.container} scrollEnabled={false} behavior="padding">
             <View style = {styles.top}>
-                <Image style = {{resizeMode:'contain'}} source={Logo} 
-                styles={styles.logo} 
+                <Image style = {styles.logo} source={Logo} 
                 />
             </View>
             <View style = {styles.bottom}>
@@ -83,6 +82,12 @@ const styles = StyleSheet.create({
        display:'flex',
        alignItems:'center',
 //padding:10,
+    },
+    logo:{
+        aspectRatio:1.35,
+        flex:1,
+        resizeMode:"stretch",
+
     },
   
     bottom:{
