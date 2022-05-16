@@ -21,6 +21,7 @@ import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
 import { Button } from 'react-native-elements';
+import SignUpAuth from './pages/Login/SignUpAuth';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -42,7 +43,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen options={{headerShown: false}} name='login' component={LoginScreen}/>
-          <Stack.Screen name='SignUp' component={SignUpScreen}/>
+          <Stack.Screen name='SignUp' component={SignUpAuth}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

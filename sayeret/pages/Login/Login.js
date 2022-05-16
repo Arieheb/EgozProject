@@ -1,6 +1,6 @@
 import {React,useState,} from 'react';
 import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground} from 'react-native';
-import Logo from '../../assets/Images/logo_grey.png';
+import Logo from '../../assets/Images/login_logo.png';
 import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
@@ -81,12 +81,16 @@ const styles = StyleSheet.create({
        height:'35%',
        display:'flex',
        alignItems:'center',
+       backgroundColor:'#fff',
+
 //padding:10,
     },
     logo:{
-        aspectRatio:1.35,
+        
         flex:1,
-        resizeMode:"stretch",
+        resizeMode:'contain',
+        width:'70%',
+
 
     },
   

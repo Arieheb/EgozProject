@@ -1,8 +1,10 @@
 import { View, Text ,TextInput, Picker , StyleSheet,TouchableOpacity,StatusBar} from 'react-native'
-import React from 'react'
+import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
 import SelectDropdown from 'react-native-select-dropdown';
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const data = [
     {
@@ -24,41 +26,58 @@ const data = [
   ];
  
 const SignUpAuth = () => {
-  const countries = ["Egypt", "Canada", "Australia", "Ireland"]
-    const renderItem = ({item}) => {
-      if(item.key ==1)
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
+  const renderItem = ({item}) => {
+    const handleSignUp = () =>
+      {   
+        auth
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+        }
+    if(item.key ==1)
       return (
-    
-        < View style={styles.container}>
-            <View style = {styles.top}>
-                <Text style= {styles.heading}>{item.title}</Text>
-            </View>
-            <View style = {styles.bottom}>
-                <View style = {styles.inputView}>
-                    <TextInput placeholder='Email:'
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    
-                    />
-                    <TextInput placeholder='Password:' 
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    secureTextEntry
-                    />
-                    <TextInput placeholder='Confirm Password:' 
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                   
-                    secureTextEntry
-                    />
-                    <TouchableOpacity style = {styles.buttons} >
-                        <Text style = {styles.buttonText} >הירשם</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </View> 
+      <View style={styles.container}>
+        <View style = {styles.top}>
+          <Text style= {styles.heading}>הירשם</Text>
+        </View>
+        <View style = {styles.bottom}>
+          <View style = {styles.inputView}>
+              <TextInput placeholder='Email:'
+                style={styles.input}
+                placeholderTextColor={"#fff"}
+                value={email}
+                onChangeText={text=>setEmail(text)}
+              />
+              <TextInput placeholder='Password:' 
+                style={styles.input}
+                placeholderTextColor={"#fff"}
+                value={password}
+                onChangeText={text=>setPassword(text)}
+                secureTextEntry
+              />
+              <TextInput placeholder='Confirm Password:' 
+                style={styles.input}
+                placeholderTextColor={"#fff"}
+                value={confirmPassword}
+                onChangeText={text=>setConfirmPassword(text)}
+                secureTextEntry
+              />
+              <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+                <Text style = {styles.buttonText} >הירשם</Text>
+              </TouchableOpacity>
+          </View>
+        </View>
+     </View>
         
-        );
+      );
       else
       return (
         < View style={styles.container}>
@@ -66,20 +85,7 @@ const SignUpAuth = () => {
                 <Text style= {styles.heading}></Text>
             </View>
             <ScrollView style = {styles.bottom}>
-                <View style = {styles.inputView}>
-                <SelectDropdown
-                  data={countries}
-                  onSelect={(selectedItem, index) => {
-                    console.log(selectedItem, index)
-                  }}
-                  buttonTextAfterSelection={(selectedItem, index) => {
-                    return selectedItem
-                  }}
-                  rowTextForSelection={(item, index) => {
-                    return item
-                  }}
-                />
-                </View>
+              
             </ScrollView>
         </View> 
         
@@ -94,7 +100,6 @@ const SignUpAuth = () => {
       <AppIntroSlider
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        //nextRender={nextRender}
         data={data}
       />
     </View>
@@ -106,10 +111,8 @@ const SignUpAuth = () => {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginTop:40,
         flexDirection:'column',
- 
-     },
+      },
      top:{
         width:'100%',
         height:'30%',
@@ -118,14 +121,14 @@ const styles = StyleSheet.create({
         justifyContent:'flex-end',
         paddingBottom:30,
         paddingLeft:30,
+        backgroundColor:'#fff'
      },
      bottom:{
          width:'100%',
          height:'70%',
-         backgroundColor:'#31386C',  
+         backgroundColor:'#373737fe',   
          borderTopLeftRadius:25,
          borderTopRightRadius:25,
-         
      },
      heading:{
          color:'black',
@@ -167,9 +170,7 @@ const styles = StyleSheet.create({
          fontWeight:'bold',
          fontSize:19,
      },
-     picker:{
-       
-     }
+     
   });
 
 export default SignUpAuth
