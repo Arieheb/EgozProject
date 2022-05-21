@@ -8,18 +8,23 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 const data = [
     {   id:"id1",
-        name: "num 1",
+        name: "משתמש 1 ",
         image:Profile,
+        lastMessage: "הודעה אחרונה",
+        lastSent:"אתמול"
     },
     {   id:"id2",
         name:"num 2",
         image:Profile,
+        lastMessage:"last message",
+        lastSent:"yesterday"
     },
 ]
 
 
 
 const ForumItem = props=>{
+   const user = props.user
     const [visible,setVisible] = useState(false);
     return(
         <View>
@@ -28,10 +33,10 @@ const ForumItem = props=>{
                 <View style={styles.container}>
                     <Avatar.Image source={Profile}/>
                     <View style={styles.mid}>
-                        <Text style={styles.name}>{props.name}</Text>
-                        <Text style={styles.message} numberOfLines={1}>last message</Text>
+                        <Text style={styles.name}>{user.name}</Text>
+                        <Text style={styles.message} numberOfLines={1}>{user.lastMessage}</Text>
                     </View>
-                    <Text style={styles.last}>last sent</Text>
+                    <Text style={styles.last}>{user.lastSent}</Text>
                 </View>
             </TouchableRipple>
             
@@ -45,11 +50,11 @@ const ForumItem = props=>{
                         />
                     </TouchableRipple>
                     <Avatar.Image 
-                        source={props.image}
+                        source={user.image}
                         size={40}
                         style={{marginLeft:20,marginRight:10}}
                     />
-                    <Text style={styles.name}>{props.name}</Text>
+                    <Text style={styles.name}>{user.name}</Text>
                 </SafeAreaView>
                 <WriteToForum/>
             </Modal>
@@ -74,7 +79,7 @@ const ForumMain = props=>{
             <Button title='add forum' onPress={goToOpenAForum}></Button>
             <FlatList data={data}
                 keyExtractor = {item=>item.id}
-                renderItem={(data)=><ForumItem  image={data.item.image} name={data.item.name} navigation={props.navigation}/>}
+                renderItem={(data)=><ForumItem  user={data.item} navigation={props.navigation}/>}
             />
             
         </View> 
@@ -85,16 +90,17 @@ const styles = StyleSheet.create({
     name:{
         fontWeight:'bold',
         fontSize:20,
+        alignSelf: "flex-start",
     },
     message:{
-        
+        alignSelf: "flex-start",
     },
     last:{
         alignItems:'flex-start',
     },
     mid:{
-        marginRight:20,
-        width:"60%"
+        width:"50%",
+        marginLeft:20,
     },
     container:{
         flexDirection:'row',
