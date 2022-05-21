@@ -24,6 +24,7 @@ const WriteToForum = ({ navigation }) => {
     ])
   }, [])
 
+
   const onSend = useCallback((messages = []) => {
 
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))

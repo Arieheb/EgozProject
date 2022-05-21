@@ -7,11 +7,12 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
 const data = [
-    {
+    {   id:"id1",
         name: "num 1",
         image:Profile,
     },
-    {   name:"num 2",
+    {   id:"id2",
+        name:"num 2",
         image:Profile,
     },
 ]
@@ -39,7 +40,7 @@ const ForumItem = props=>{
                 <SafeAreaView style={styles.header}>   
                     <TouchableRipple onPress={()=>{setVisible(false)}}>
                         <Icon
-                            name='keyboard-backspace'
+                            name='arrow-right-thick'
                             size={30} 
                         />
                     </TouchableRipple>
@@ -72,6 +73,7 @@ const ForumMain = props=>{
             <Text>OpenForum</Text>
             <Button title='add forum' onPress={goToOpenAForum}></Button>
             <FlatList data={data}
+                keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  image={data.item.image} name={data.item.name} navigation={props.navigation}/>}
             />
             
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
         alignItems:'flex-start',
     },
     mid:{
-        marginLeft:20,
+        marginRight:20,
         width:"60%"
     },
     container:{

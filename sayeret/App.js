@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {I18nManager, StyleSheet, Text, View } from 'react-native';
+import CodePush from 'react-native-code-push';
 import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -27,6 +28,13 @@ const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  //forcing the app to be right to left
+  if(!I18nManager.isRTL){
+      I18nManager.forceRTL(true);
+      CodePush.restartApp();
+  }
+
   const [user, setUser] = useState();
 
   // Handle user state changes

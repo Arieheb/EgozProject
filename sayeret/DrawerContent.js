@@ -71,7 +71,7 @@ const DrawerContent = props => {
                         name="exit-to-app"
                         color = {color}
                         size={size}/>}
-                label="Sign Out"
+                label="התנתק"
                 onPress={signOutNow}
             />
         </Drawer.Section>
