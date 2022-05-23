@@ -43,8 +43,8 @@ const DrawerContent = props => {
                         size={50}/>
 
                         <View style={{marginLeft:15}}>
-                            <Title style={styles.title}>User Name</Title>
-                            <Caption style={styles.caption}>More Info</Caption>
+                            <Title style={styles.title}>שם משתמש</Title>
+                            <Caption style={styles.caption}>פרטים נוספים</Caption>
                         </View>
                     </View>
                 
