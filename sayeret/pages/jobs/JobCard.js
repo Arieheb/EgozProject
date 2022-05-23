@@ -8,11 +8,9 @@ const JobCard = ({title, location, contactName, contactPhone, contactEmail, desc
       <View>
         <Text style={styles.title}>{title}</Text>
       </View>
-      <View style={{flexDirection:"row",width:"100%",justifyContent:"flex-end"}}>
-        <Text style={styles.location}>
-        {location}
-        </Text>
+      <View style={{flexDirection:"row", width:"100%", justifyContent:"flex-start"}}>
         <Icon style={styles.icon} name="ios-location-outline"/>
+        <Text style={styles.location}>{location}</Text>
       </View>
       <View style={styles.description}>
         <Text style={{textAlign:"center"}}>{description}</Text>
@@ -30,6 +28,7 @@ export default JobCard
 const styles = StyleSheet.create({
   cardContainer:{
     width:"98%",
+    minWidth:"98%",
     height:200,
     padding:5,
     marginVertical:10,
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
   },
 
   title:{
-    alignSelf:"flex-end",
+    alignSelf:"flex-start",
     fontSize:18,
     fontWeight:"bold",
     marginVertical:3
