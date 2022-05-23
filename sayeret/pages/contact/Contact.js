@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Image,TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
+import React from 'react'
+import { StyleSheet} from 'react-native'
+import {WebView} from 'react-native-webview';
 
 
 const Contact = (props) => {
     return (
-        <Text>hello</Text>
-    );
+        <WebView 
+            source={{uri:"https://shop117095.istores.co.il/contact/"}}
+        />
+      )
 }
 export default Contact 
