@@ -8,28 +8,29 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 const WriteToForum = ({ navigation }) => {
     const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello Aviv',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-    ])
-  }, [])
-
-
+    useEffect(() => {
+      const collectionRef = collection(db, 'chats');
+      const q = query(collectionRef, orderBy('createdAt', 'desc'));
+  
+      const unsubscribe = onSnapshot(q, querySnapshot => {
+        setMessages(
+          querySnapshot.docs.map(doc => ({
+            _id: doc.data()._id,
+            createdAt: doc.data().createdAt.toDate(),
+            text: doc.data().text,
+            user: doc.data().user
+          }))
+        );
+      });
+  
+      return () => unsubscribe();
+    }, []);
+  
   const onSend = useCallback((messages = []) => {
 
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     const { _id, createdAt, text, user,} = messages[0]
-    addDoc(collection(db, 'chats'), { _id, createdAt,  text});
+    addDoc(collection(db, 'chats'), { _id, createdAt,  text, user});
   
   }, [])
 

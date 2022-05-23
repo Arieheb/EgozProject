@@ -41,7 +41,7 @@ const ForumItem = props=>{
             </TouchableRipple>
             
             {/* the chat room */}
-            <Modal visible={visible} style={{height:"80",opacity:1}}>
+            <Modal visible={visible}>
                 <SafeAreaView style={styles.header}>   
                     <TouchableRipple onPress={()=>{setVisible(false)}}>
                         <Icon
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize:20,
         alignSelf: "flex-start",
+        marginTop:5,
     },
     message:{
         alignSelf: "flex-start",
@@ -119,6 +120,7 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         elevation: 5,
         paddingTop: Platform.OS === 'ios'? 30:15,
+        paddingLeft:5,
         
     }
 

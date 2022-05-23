@@ -50,7 +50,7 @@ export default function App() {
     return(
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen options={{headerShown: false}} name='login' component={LoginScreen}/>
+          <Stack.Screen options={{headerMode:'none'}} name='login' component={LoginScreen}/>
           <Stack.Screen name='SignUp' component={SignUpAuth}/>
         </Stack.Navigator>
       </NavigationContainer>
@@ -74,7 +74,7 @@ export default function App() {
 
 
 
-          <Drawer.Screen options={{headerShown: false}} name='login' component={LoginScreen} />
+          <Drawer.Screen options={{headerMode:'none'}} name='login' component={LoginScreen} />
         </Drawer.Navigator>
 
       </NavigationContainer>
