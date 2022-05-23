@@ -1,7 +1,8 @@
 import React from 'react';
 import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
-import Icon from "react-native-vector-icons/FontAwesome5"
+import Icon from "react-native-vector-icons/FontAwesome"
+import Icons from "react-native-vector-icons/FontAwesome5"
 
 const NumberCard = props=>{
     return(
@@ -16,7 +17,9 @@ const GoalCard = props=>{
     return(
         <View style={{alignItems: "center"}}>
             <View style = {styles.icon}>
-
+                {props.icon === 'hand-holding-heart'?
+                <Icons name ={props.icon} color="white" size={45}/>:
+                <Icon name ={props.icon} color="white" size={45}/>}
             </View>
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.content}>{props.description}</Text>
@@ -58,10 +61,10 @@ const Home = props=>{
             </View>
             <View style = {styles.view}>
                 <Text style = {styles.title}>המטרות שלנו</Text>
-                <GoalCard title = "הנצחת חיילי היחידה" description = "תחזוק אתר ההנצחה בקלעת נמרוד, קיום יום משפחות שנתי עם היחידה, ספר מורשת ותמיכת המשפחות השכולות."/>
-                <GoalCard title = "שימור הקשר בין בוגרי היחידה" description = "בעזרת מפגשי הבוגרים ורשת הנטוורקינג של בוגרי היחידה תסייע לך במציאת עבודה, שותפויות עסקיות ויזמות חברתית."/>
-                <GoalCard title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
-                <GoalCard title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
+                <GoalCard icon="id-card" title = "הנצחת חיילי היחידה" description = "תחזוק אתר ההנצחה בקלעת נמרוד, קיום יום משפחות שנתי עם היחידה, ספר מורשת ותמיכת המשפחות השכולות."/>
+                <GoalCard icon="comments" title = "שימור הקשר בין בוגרי היחידה" description = "בעזרת מפגשי הבוגרים ורשת הנטוורקינג של בוגרי היחידה תסייע לך במציאת עבודה, שותפויות עסקיות ויזמות חברתית."/>
+                <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
+                <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
             </View>
             <View style = {styles.view}>
                 <Text style = {styles.title} >אירועים</Text>
@@ -117,6 +120,8 @@ const styles = StyleSheet.create({
         backgroundColor: "blue",
         width: 100,
         height: 100,
+        alignItems:"center",
+        justifyContent:"center",
     },
     button: {
         borderRadius: 7,
