@@ -171,13 +171,11 @@ const styles = StyleSheet.create ({
         fontSize: 17,
         paddingTop: 3,
         margin: 5,
-        textAlign: 'right',
+        textAlign: 'left',
         
         
     },
     input: {
-        // width:'400%',
-        // textDecorationLine: "underline",
         height:40,
         borderRadius: 12,
         paddingRight:10,
