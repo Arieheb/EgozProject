@@ -5,6 +5,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
 import map from "../../assets/Images/dark-topography.jpg";
 import masa from "../../assets/Images/unit-hero.jpg";
+import event from "../../assets/Images/eventsImage.jpeg";
+import memorial from "../../assets/Images/izkor.jpg";
 
 
 const NumberCard = props=>{
@@ -43,12 +45,14 @@ const Home = props=>{
                 /> 
             </ImageBackground>
             <ImageBackground source={masa} style = {styles.view}>
+                <View style={styles.tint}>
                 <Text style = {styles.title}>יחידת אגוז</Text>
                 <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
                 <Text style={styles.content}>כבר מעל 60 שנה להקמת הסיירת הצפונית- סיירת אגוז. הסיירת עברה גלגולים רבים במהלך השנים, פורקה והוקמה… ושוב פורקה. בשנת 1995 הוקמה יחידת אגוז פעם נוספת… היחידה מתפקדת כחוד החנית של צה”ל עד היום. עברו הרבה שנים,הרבה היתקלויות, והרבה אנשים – אך הרוח נשארה אותה רוח</Text>
                 <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
                     <Text style = {styles.button}>קרא עוד</Text>
                 </TouchableOpacity>
+                </View>
             </ImageBackground>
             <View style={styles.stat}>
                 <View>
@@ -69,21 +73,25 @@ const Home = props=>{
                 <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
                 <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
             </View>
-            <View style = {styles.view}>
+            <ImageBackground source={event} style = {styles.view}>
+                <View style={styles.tint}>
                 <Text style = {styles.title} >אירועים</Text>
                 <Text style={styles.content}>ליחידת אגוז מורשת מפוארת וחלק חשוב בהובלת הלחימה של צה”ל מאז הוקמה. כל השנים היינו עסוקים בלהילחם ולנצח- היום אנו עוסקים גם בתיעוד המורשת שלנו. במסגרת זה אנו מקימים את האתר אינטרנט, כותבים ספר מורשת, מחדשים את אתר ההנצחה בקלעת נמרוד וחדר ההנצחה בנווה אטי”ב ומחדשים את ארכיון היחידה.  </Text>
                 <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
                     <Text style = {styles.button}>קרא עוד</Text>
                 </TouchableOpacity>
-            </View>
-            <View style = {styles.view}>
+                </View>
+            </ImageBackground>
+            <ImageBackground source={memorial} style = {styles.view}>
+                <View style={styles.tint}>
                 <Text style = {styles.title}>יזכור</Text>
                 <Text style = {styles.miniTitle}>הנצחת נופלי היחידה</Text>
                 <Text style={styles.content}>עמותת הסיירת הצפונית פועלת ותמשיך לפעול למען הנצחת נופלי היחידה. זוהי אחת ממטרות הדגל של העמותה. העמותה תפעל לחיזוק הקשר בין המשפחות השכולות, הבוגרים והיחידה הסדירה.</Text>
                 <TouchableOpacity onPress={()=>props.navigation.navigate("Memorial")}>
                     <Text style = {styles.button}>נופלים</Text>
                 </TouchableOpacity>
-            </View>
+                </View>
+            </ImageBackground>
             </View>
         </ScrollView>
     );
@@ -138,15 +146,21 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0, 0, 0, 0)",
         width: 75,
         height: 25,
-        borderColor: "blue",
+        borderColor: "white",
         borderWidth: 2, 
         marginHorizontal: 150,
         textAlign: "center",
         justifyContent: "center",
+        color:"white"
     },
     view: {
         alignItems: "center",
         justifyContent: "center",
+        
+    },
+    tint:{
+        backgroundColor:"rgba(0,0,0,0.4)",
+        paddingBottom:50,
     }
 });
 
