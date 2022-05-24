@@ -44,10 +44,10 @@ const Home = props=>{
              <TouchableOpacity  onPress={()=>props.navigation.navigate("benefits")}>
                      <UpCard icon="id-card" Text = "הטבות" />
                 </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
+             <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
                       <UpCard icon="comments" Text="משרות"/>
                 </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
+             <TouchableOpacity onPress={()=>props.navigation.navigate("eventsNavigator")}>
                      <UpCard icon="hand-holding-heart" Text = "אירועים" />
                 </TouchableOpacity>
             </View>
