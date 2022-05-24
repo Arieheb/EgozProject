@@ -75,7 +75,7 @@ const SignUp = () => {
                 secureTextEntry
               />
               <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
-                <Text style = {styles.buttonText} >הירשם</Text>
+                <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
           </View>
         </View>
