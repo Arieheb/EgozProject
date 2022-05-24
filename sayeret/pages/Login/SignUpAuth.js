@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection:'column',
     backgroundColor:'#fff',
-    textAlign:'right',
+    
  },
  scrollview:{
    // backgroundColor:'#373737fe',
