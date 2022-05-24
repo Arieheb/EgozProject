@@ -2,7 +2,6 @@ import { View, Text ,TextInput, Picker , StyleSheet,TouchableOpacity,StatusBar,I
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
-import SelectDropdown from 'react-native-select-dropdown';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
