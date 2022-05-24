@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import {  Modal, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
+import {  Modal, Alert, Image, Pressable,  TextInput, View, link, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 import Profile from '../../assets/Images/profile.png';
-import {Avatar,Title,Caption, Drawer, TouchableRipple} from 'react-native-paper'
+import {auth, db} from '../../firebase';
 
 
 
 const Blurp = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    
+   
     <View style={styles.centeredView} >
       <Pressable
         style={[styles.button, styles.buttonOpen]}
@@ -21,9 +21,6 @@ const Blurp = (props) => {
         <Text style={styles.moreTextStyle}>קרא עוד</Text>
 
       </Pressable>
-     
-
-
       <Modal
         animationType= "fade"
         transparent={true}
@@ -51,8 +48,7 @@ const Blurp = (props) => {
           
             <View name= 'information' style = {styles.infoSection}>
             <ScrollView>
-              <Text style={styles.textDesign}>{props.info}</Text>
-              <Text style={styles.textDesign}>{props.link}</Text>
+              <Text style={styles.textDesign}>{props.info}</Text>             
               </ScrollView>
             </View>
           
@@ -67,12 +63,6 @@ const Blurp = (props) => {
         </View>
         
       </Modal>
-
-
-      
-
-
-      
     </View>
   );
   };
@@ -143,6 +133,7 @@ const Blurp = (props) => {
       margin: 5, 
       padding: 5,
     }, 
+  
     button: {
       borderRadius: 20,
       padding: 10,
