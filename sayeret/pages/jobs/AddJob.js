@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-// import RNPickerSelect from "react-native-picker-select";
 import Job from '../../models/job'
 
 const AddJob = props => {
@@ -18,8 +17,8 @@ const [items, setItems] = useState([
   {label: 'מרכז', value: 'מרכז'},
   {label: 'תל אביב', value: 'תל אביב', parent: 'מרכז'},
   {label: 'רמת גן', value: 'רמת גן', parent: 'מרכז'},
-  {label: 'ירושלים והסביבה', value: 'ירושלים'},
-  {label: 'ירושלים', value: 'ירושלים', parent: 'ירושלים'},
+  {label: 'ירושלים והסביבה', value: 'ירושלים והסביבה'},
+  {label: 'ירושלים', value: 'ירושלים', parent: 'ירושלים והסביבה'},
   {label: 'צפון', value: 'צפון'},
   {label: 'דרום', value: 'דרום'}
 ]);
@@ -67,29 +66,21 @@ const handleSubmit = ()=>{
           onChangeText={text=>setLocationInput(text)}
           placeholderTextColor="#7f8c8d"
         />
-        {/* <View style={{
-          backgroundColor: '#171717',
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius:5,
-        }}> */}
-      <DropDownPicker
-        style={{... styles.textInput, ... styles.selectInput}}
-        placeholder='מיקום'
-        open={open}
-        value={value}
-        items={items}
-        setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
-        onChangeText={text=>setLocationInput(text)}
+        <DropDownPicker
+          style={{... styles.textInput, ... styles.selectInput}}
+          placeholder='מיקום'
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          onChangeText={text=>setLocationInput(text)}
 
-        multiple={true}
-        mode="BADGE"
-        badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-      />
-    {/* </View> */}
+          multiple={true}
+          mode="BADGE"
+          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+        />
         <TextInput
         style={{...styles.textInput,height:120}}
         placeholder='תיאור המשרה'
@@ -168,6 +159,8 @@ const styles = StyleSheet.create({
     flexDirection:"row-reverse",
     alignSelf:"flex-start",
     justifyContent:"flex-start",
-    
+    justifyContent: 'center',
+    borderRadius:5,
+    // textAlign:"left",
   }
 })
