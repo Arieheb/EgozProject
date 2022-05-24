@@ -6,10 +6,10 @@ import { auth, db } from '../../firebase';
 import { collection, addDoc, getDocs, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-const WriteToForum = ({ navigation }) => {
+const WriteToForum = (props) => {
     const [messages, setMessages] = useState([]);
     useEffect(() => {
-      const collectionRef = collection(db, 'chats');
+      const collectionRef = collection(db, 'chats', props.name);
       const q = query(collectionRef, orderBy('createdAt', 'desc'));
   
       const unsubscribe = onSnapshot(q, querySnapshot => {
