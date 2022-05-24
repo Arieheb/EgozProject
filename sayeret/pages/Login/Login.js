@@ -1,9 +1,10 @@
 import {React,useState,} from 'react';
-import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground} from 'react-native';
+import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground, Keyboard} from 'react-native';
 import Logo from '../../assets/Images/login_logo.png';
 import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { ScrollView } from 'react-native-gesture-handler';
 const{width,height:wHeight} = Dimensions.get("window");
 
 const LoginScreen = props => {
@@ -23,7 +24,9 @@ const LoginScreen = props => {
           });
         }
     return (
-        <KeyboardAvoidingView style={styles.container} scrollEnabled={false} behavior="padding">
+        <ScrollView>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+          <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
             <View style = {styles.top}>
                 <Image style = {styles.logo} source={Logo} 
                 />
@@ -66,15 +69,18 @@ const LoginScreen = props => {
                     </View>
                 </View>
             </View>
+            </TouchableOpacity>
         </KeyboardAvoidingView >
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container:{
        height:wHeight,
-       marginTop:40,
+       paddingTop:40,
        flexDirection:'column',
+       backgroundColor:'white',
     },
     top:{
        width:'100%',

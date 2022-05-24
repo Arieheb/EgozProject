@@ -18,7 +18,7 @@ const Blurp = (props) => {
       >
         <Image source={Profile} style = {{width: 100, height: 130, borderRadius: 50}} />
         <Text style={styles.textStyle}>{props.name}</Text>
-        <Text style={styles.textStyle}>קרא עוד</Text>
+        <Text style={styles.moreTextStyle}>קרא עוד</Text>
 
       </Pressable>
      
@@ -40,7 +40,7 @@ const Blurp = (props) => {
                 </View>
                 <View name = 'buried'>
                   <Text style={styles.nameEdit}>{props.name} ז"ל</Text>
-                  <Text style= {{fontWeight: 'bold', textAlign: 'right', fontSize: 17}}>מקום קבורה </Text>
+                  <Text style= {{fontWeight: 'bold', textAlign: 'left', fontSize: 17}}>מקום קבורה </Text>
                   <Text style = {styles.textDesign}>בית קברות: {props.semitary} </Text>
                   <Text style = {styles.textDesign}>חלקה: {props.part} </Text>
                   <Text style = {styles.textDesign}>שורה: {props.row} </Text>
@@ -85,16 +85,18 @@ const Blurp = (props) => {
       textAlign: 'center',
       fontSize: 22,
       fontWeight: 'bold',
+      
     },
 
     textDesign: {
-      textAlign: 'right',
+      textAlign: 'left',
 
     },
 
     topArea: {
-      flexDirection: 'row-reverse',
+      flexDirection: 'row',
       margin: 5,  
+      
 
     },
     proPic: {
@@ -107,8 +109,17 @@ const Blurp = (props) => {
       justifyContent: "center",
       alignItems: "center",
       marginTop: 5,
-      padding: 5
+      padding: 5,
       
+      borderRadius: 20,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 2,
+        height: 2
+      },
+      shadowOpacity: 0.8,
+      shadowRadius: 4,
+      elevation: 5,
       
     },
     modalView: {
@@ -138,7 +149,7 @@ const Blurp = (props) => {
       elevation: 2
     },
     buttonOpen: {
-      backgroundColor: "#F194FF",
+      backgroundColor: 'white',
       borderRadius: 50,
       
     },
@@ -146,9 +157,12 @@ const Blurp = (props) => {
       backgroundColor: "#2196F3",
     },
     textStyle: {
-      // color: 'white',
       fontWeight: 'bold',
       textAlign: 'center'
+    },
+    moreTextStyle: {
+      textAlign: 'center',
+      textDecorationLine: 'underline'
     },
     modalText: {
       marginBottom: 15,

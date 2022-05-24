@@ -46,7 +46,7 @@ const Memorial = (props) => {
        <View>
         <FlatList data = {data}
             keyExtractor = {item => item.name}
-            renderItem = {(data) => <Blurp name = {data.item.name}  info = {data.item.info} image = {data.item.image} link = {data.item.link} semitary = {data.item.semitary} part = {data.item.part} row = {data.item.row} graveNumber = {data.item.graveNumber}  ></Blurp>}
+            renderItem = {(data) => <Blurp name = {data.item.name}  info = {data.item.info}  link = {data.item.link} semitary = {data.item.semitary} part = {data.item.part} row = {data.item.row} graveNumber = {data.item.graveNumber}  ></Blurp>}
             numColumns = {3}
 
 >

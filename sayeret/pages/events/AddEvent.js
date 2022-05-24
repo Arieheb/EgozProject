@@ -107,7 +107,7 @@ const styles = StyleSheet.create ({
         fontSize: 17,
         paddingTop: 3,
         margin: 5,
-        textAlign: 'right',
+        textAlign: 'left',
         
         
     },

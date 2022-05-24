@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, Pressable,TextInput ,Alert} from 'react-native';
+import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
 import Job from '../../models/job'
 
 const AddJob = props => {
