@@ -1,30 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView} from 'react-native';
 import { TouchableRipple,Avatar, shadow } from 'react-native-paper';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { db } from '../../firebase';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
-const data = [
-    {   id:"id1",
-        name: "משתמש 1 ",
-        image:Profile,
-        lastMessage: "הודעה אחרונה",
-        lastSent:"אתמול"
-    },
-    {   id:"id2",
-        name:"num 2",
-        image:Profile,
-        lastMessage:"last message",
-        lastSent:"yesterday"
-    },
-]
+//formatting the date to the currect format
+function dateFormat(timeStamp){
+    let time = new Date(timeStamp.toMillis());
+    let today = new Date();
+
+    let tday =today.getDate();
+    let tmonth = parseInt(today.getMonth()+1);
+    let tyear =today.getFullYear();
+
+    let day = time.getDate();
+    let month = parseInt(time.getMonth()+1);
+    let year  = time.getFullYear();
 
 
+    let min = time.getMinutes();
+    if(min<10){
+        min = '0' + min;
+    }
+    let date;
+
+    if(year-tyear==0 && month-tmonth==0){
+        if(tday-day == 1)
+            date = "אתמול"
+        else if(tday-day == 0)
+            date = time.getHours()+":"+min;
+    }
+    else
+        date = day + "/"+ month+"/"+year;
+
+    return date;
+}
 
 const ForumItem = props=>{
-   const user = props.user
+    const user = props.user
     const [visible,setVisible] = useState(false);
     return(
         <View>
@@ -34,9 +51,9 @@ const ForumItem = props=>{
                     <Avatar.Image source={Profile}/>
                     <View style={styles.mid}>
                         <Text style={styles.name}>{user.name}</Text>
-                        <Text style={styles.message} numberOfLines={1}>{user.lastMessage}</Text>
+                        <Text style={styles.message} numberOfLines={1}>{user.last_message}</Text>
                     </View>
-                    <Text style={styles.last}>{user.lastSent}</Text>
+                    <Text style={styles.last}>{dateFormat(user.last_time)}</Text>
                 </View>
             </TouchableRipple>
             
@@ -56,7 +73,7 @@ const ForumItem = props=>{
                     />
                     <Text style={styles.name}>{user.name}</Text>
                 </SafeAreaView>
-                <WriteToForum/>
+                <WriteToForum id={user.id}/>
             </Modal>
         </View>    
     );
@@ -68,16 +85,35 @@ const ForumItem = props=>{
 const ForumMain = props=>{
     const [forumList, updateForumList] = useState([])
 
+    useEffect(() => {
+        const collectionRef = collection(db, 'chats');
+        const q = query(collectionRef, orderBy('last_time', 'desc'));
+    
+        const unsubscribe = onSnapshot(q, querySnapshot => {
+          updateForumList(
+            querySnapshot.docs.map(doc => ({
+              id:doc.id,
+              name: doc.data().name,
+              last_time: doc.data().last_time,
+              last_message: doc.data().last_message,
+            }))
+          );
+        });
+        return () => unsubscribe();
+      }, []);
+
+
     function goToOpenAForum (){
         props.navigation.navigate('C');
     }
+
 
     return(
         
         <View>
             <Text>OpenForum</Text>
             <Button title='add forum' onPress={goToOpenAForum}></Button>
-            <FlatList data={data}
+            <FlatList data={forumList}
                 keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  user={data.item} navigation={props.navigation}/>}
             />

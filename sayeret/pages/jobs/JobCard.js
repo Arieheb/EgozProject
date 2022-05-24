@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
 
   contactInfo:{
     height:"20%",
-    alignContent:"flex-start"
+    alignContent:"flex-end",
+    alignSelf:"flex-end",
   }
 })

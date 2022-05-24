@@ -88,16 +88,11 @@ const styles = StyleSheet.create({
        display:'flex',
        alignItems:'center',
        backgroundColor:'#fff',
-
-//padding:10,
     },
     logo:{
-        
         flex:1,
         resizeMode:'contain',
         width:'70%',
-
-
     },
   
     bottom:{
