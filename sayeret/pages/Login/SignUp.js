@@ -1,141 +1,177 @@
-import {React,useState} from 'react';
-import {
-    View,
-    StyleSheet,
-    TextInput,
-    Text,
-    TouchableOpacity,
-    }    from 'react-native';
-    import { auth } from '../../firebase';
-    import { createUserWithEmailAndPassword } from "firebase/auth";
-    import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-    import {validate} from 'react-email-validator';
-
-const SignUpScreen = () => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
-
+import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions} from 'react-native'
+import {React,useState} from 'react'
+import AppIntroSlider from 'react-native-app-intro-slider';
+import { ScrollView } from 'react-native-gesture-handler';
+import SelectDropdown from 'react-native-select-dropdown';
+import { auth } from '../../firebase';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import SignUpAuth from './SignUpAuth';
+const{width,height:wHeight} = Dimensions.get("window");
+import Logo from '../../assets/Images/signUpLogo.png';
+const data = [
+    {
+      title: 'הירשם',
+      text: 'Description.\nSay something cool',
+      //image: require('../../assets/1.jpg'),
+      bg: '#59b2ab',
+      key:1,
+    },
+    {
+      title: 'שאלון הרשמה',
+      text: 'Other cool stuff',
+      //image: ,
+      bg: '#373737fe',
+      key:2,
+      
+    },
+    
+  ];
+ 
+const SignUp = () => {
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const [confirmPassword,setConfirmPassword] = useState("");
+  const renderItem = ({item}) => {
     const handleSignUp = () =>
-    {   
+      {   
         auth
-        createUserWithEmailAndPassword(auth,email, password)
-        .then(() => {
-          console.log('User account created & signed in!');
-        })
-        .catch(error => {
-          if (error.code === 'auth/email-already-in-use') {
-            console.log('That email address is already in use!');
-          }
-      
-          if (error.code === 'auth/invalid-email') {
-            console.log('That email address is invalid!');
-          }
-      
-          console.error(error);
-        });
-    }
-    return (
-    < View style={styles.container}>
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+        }
+    if(item.key == 1)
+      return (
+      <View style={styles.container}>  
         <View style = {styles.top}>
-            <Text style= {styles.heading}>הירשם</Text>
+          <Image style = {styles.logo} source={Logo} 
+          styles={styles.logo}
+          />
         </View>
         <View style = {styles.bottom}>
-            <View style = {styles.inputView}>
-                <TextInput placeholder='Email:'
+          <View style = {styles.inputView}>
+              <TextInput placeholder='Email:'
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={email}
                 onChangeText={text=>setEmail(text)}
-                />
-                <TextInput placeholder='Password:' 
+              />
+              <TextInput placeholder='Password:' 
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={password}
                 onChangeText={text=>setPassword(text)}
                 secureTextEntry
-                />
-                <TextInput placeholder='Confirm Password:' 
+              />
+              <TextInput placeholder='Confirm Password:' 
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={confirmPassword}
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
-                />
-                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
-                    <Text style = {styles.buttonText} >הירשם</Text>
-                </TouchableOpacity>
-            </View>
+              />
+              <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+                <Text style = {styles.buttonText} >הירשם</Text>
+              </TouchableOpacity>
+          </View>
         </View>
-    </View>
+     </View>
+        
+      );
+      else
+      return (
+        <SignUpAuth></SignUpAuth>
+        );
+    };
+    
+   const keyExtractor = (item) => item.title;
 
-    );
+   return (
+    <View style={{flex: 1}}>
+      <StatusBar translucent backgroundColor="transparent" />
+      <AppIntroSlider
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+        data={data}
+      />
+    </View>
+  );
 };
+
+
 
 const styles = StyleSheet.create({
     container:{
-       flex:1,
-       marginTop:40,
-       flexDirection:'column',
-
-    },
-    top:{
-       width:'100%',
-       height:'30%',
-       display:'flex',
-       alignItems:'flex-start',
-       justifyContent:'flex-end',
-       paddingBottom:30,
-       paddingLeft:30,
-    },
-    bottom:{
-        width:'100%',
-        height:'70%',
-        backgroundColor:'#373737fe',  
-        borderTopLeftRadius:25,
-        borderTopRightRadius:25,
-        
-    },
-    heading:{
-        color:'black',
-        fontSize:40,
-        fontWeight:'bold',
-        marginLeft:20,
-        marginTop:20,
-    },
-    inputView:{
-        width:'100%',
-        display:'flex',
+        height:wHeight,
+        paddingTop:40,
         flexDirection:'column',
+        backgroundColor:'white',
+     },
+     top:{
+        width:'100%',
+        height:'25%',
+        display:'flex',
         alignItems:'center',
-        marginTop:35,
-    },
-    input: {
-       width:'90%',
-       borderWidth:1,
-       borderColor:'#fff',
-       height:52,
-       borderRadius:8,
-       paddingRight:15,
-       margin:10,
-       padding:10,
-       color:"white",
-    },
-    buttons:{  
-       alignItems:'center',
-       width:'90%',
-       color:'blue',
-       height:55,
-       backgroundColor:'#fff',
-       marginTop:10,
-       borderRadius:20,
-       display:'flex',
-       justifyContent:'center',
-    },
-    buttonText:{
-        fontWeight:'bold',
-        fontSize:19,
-    },
-    
-})
-export default SignUpScreen
+        backgroundColor:'#fff',
+     },
+     logo:{
+         flex:1,
+         resizeMode:'contain',
+         width:'70%',
+     },
+   
+     bottom:{
+         width:'100%',
+         height:'75%',
+         backgroundColor:'#373737fe',  
+         borderTopLeftRadius:25,
+         borderTopRightRadius:25,
+     },
+     heading:{
+         color:'black',
+         fontSize:40,
+         fontWeight:'bold',
+         marginLeft:20,
+         marginTop:20,
+     },
+     inputView:{
+         width:'100%',
+         display:'flex',
+         flexDirection:'column',
+         alignItems:'center',
+         marginTop:35,
+     },
+     input: {
+        width:'90%',
+        borderWidth:1,
+        borderColor:'#fff',
+        height:52,
+        borderRadius:8,
+        paddingRight:15,
+        margin:10,
+        padding:10,
+        color:"white",
+     },
+     buttons:{  
+        alignItems:'center',
+        width:'90%',
+        color:'blue',
+        height:55,
+        backgroundColor:'#fff',
+        marginTop:10,
+        borderRadius:20,
+        display:'flex',
+        justifyContent:'center',
+     },
+     buttonText:{
+         fontWeight:'bold',
+         fontSize:19,
+     },
+     
+  });
+
+export default SignUp
