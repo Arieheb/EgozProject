@@ -42,17 +42,11 @@ const SignUpAuth = () => {
               <TextInput  
                 style={styles.input}
                 placeholderTextColor={"#fff"}
-                value={password}
-                onChangeText={text=>setPassword(text)}
-                secureTextEntry
               />
               <Text style={styles.text}>האם שירתת ביחידה?</Text>
               <TextInput  
                 style={styles.input}
                 placeholderTextColor={"#fff"}
-                value={confirmPassword}
-                onChangeText={text=>setConfirmPassword(text)}
-                secureTextEntry
               />
               <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
                 <Text style = {styles.buttonText} >סיום</Text>
@@ -98,8 +92,8 @@ const styles = StyleSheet.create({
      color:'black',
      fontSize:40,
      fontWeight:'bold',
-     marginLeft:20,
-     marginTop:20,
+    //  marginLeft:20,
+    //  marginTop:20,
      
  },
  inputView:{
