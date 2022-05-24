@@ -162,6 +162,7 @@ const styles = StyleSheet.create({
     alignSelf:"flex-end",
     padding:5,
     fontSize:18,
+    backgroundColor:"white"
   },
   selectInput:{
     flexDirection:"row-reverse",
