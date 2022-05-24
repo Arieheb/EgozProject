@@ -9,7 +9,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 const WriteToForum = (props) => {
     const [messages, setMessages] = useState([]);
     useEffect(() => {
-      const collectionRef = collection(db, 'chats', props.name);
+      const collectionRef = collection(db, 'chats', props.id, 'chat');
       const q = query(collectionRef, orderBy('createdAt', 'desc'));
   
       const unsubscribe = onSnapshot(q, querySnapshot => {
@@ -30,7 +30,7 @@ const WriteToForum = (props) => {
 
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     const { _id, createdAt, text, user,} = messages[0]
-    addDoc(collection(db, 'chats'), { _id, createdAt,  text, user});
+    addDoc(collection(db, 'chats',props.id,'chat'), { _id, createdAt,  text, user});
   
   }, [])
 

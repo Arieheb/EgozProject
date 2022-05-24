@@ -56,7 +56,7 @@ const ForumItem = props=>{
                     />
                     <Text style={styles.name}>{user.name}</Text>
                 </SafeAreaView>
-                <WriteToForum/>
+                <WriteToForum id={user.id}/>
             </Modal>
         </View>    
     );
