@@ -2,7 +2,7 @@ import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dime
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
-import SelectDropdown from 'react-native-select-dropdown';
+// import SelectDropdown from 'react-native-select-dropdown';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import SignUpAuth from './SignUpAuth';
@@ -75,7 +75,7 @@ const SignUp = () => {
                 secureTextEntry
               />
               <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
-                <Text style = {styles.buttonText} >הירשם</Text>
+                <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
           </View>
         </View>
