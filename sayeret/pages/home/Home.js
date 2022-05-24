@@ -97,7 +97,7 @@ const Home = props=>{
                 </TouchableOpacity>
                 </View>
             </ImageBackground>
-            <ImageBackground source={memorial} style = {styles.view}>
+            {/* <ImageBackground source={memorial} style = {styles.view}>
                 <View style={styles.tint}>
                 <Text style = {styles.title}>יזכור</Text>
                 <Text style = {styles.miniTitle}>הנצחת נופלי היחידה</Text>
@@ -106,7 +106,7 @@ const Home = props=>{
                     <Text style = {styles.button}>נופלים</Text>
                 </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </ImageBackground> */}
             </View>
         </ScrollView>
     );
