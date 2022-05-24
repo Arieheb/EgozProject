@@ -37,7 +37,6 @@ function dateFormat(timeStamp){
     else
         date = day + "/"+ month+"/"+year;
 
-    console.log(date);
     return date;
 }
 
