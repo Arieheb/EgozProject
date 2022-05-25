@@ -36,11 +36,9 @@ const Memorial = () => {
     
      return (
       <ImageBackground source={memorial} style = {styles.view}>
-       <View>
-         {/* {console.log (memoryInfo)} */}
+       <View style = {styles.container}>
         <FlatList data = {memoryInfo}
-
-            keyExtractor = {item => item.name}
+            keyExtractor = {item => item.Name}
             renderItem = {(data) => <Blurp name = {data.item.Name} image={data.item.profilePic} info = {data.item.information} semitary = {data.item.semitary} part = {data.item.section} row = {data.item.row} graveNumber = {data.item.graveNumber}  ></Blurp>}
             numColumns = {3}
 
@@ -56,7 +54,7 @@ const Memorial = () => {
 
   const styles = StyleSheet.create({
     container: {
-        flex: 4, // the number of columns you want to devide the screen into
+        // flex: 3, // the number of columns you want to devide the screen into
         marginHorizontal: "auto",
         
         

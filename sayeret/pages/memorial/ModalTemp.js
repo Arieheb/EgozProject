@@ -37,7 +37,7 @@ const Blurp = (props) => {
                 </View>
                 <View name = 'buried'>
                   <Text style={styles.nameEdit}>{props.name} ז"ל</Text>
-                  <Text style= {{fontWeight: 'bold', textAlign: 'left', fontSize: 17}}>מקום קבורה </Text>
+                  <Text style= {{fontWeight: 'bold', textAlign: 'left', fontSize: 17, textDecorationLine: 'underline'}}>מקום קבורה </Text>
                   <Text style = {styles.textDesign}>בית קברות: {props.semitary} </Text>
                   <Text style = {styles.textDesign}>חלקה: {props.part} </Text>
                   <Text style = {styles.textDesign}>שורה: {props.row} </Text>
@@ -140,8 +140,9 @@ const Blurp = (props) => {
       elevation: 2
     },
     buttonOpen: {
-      backgroundColor: 'white',
+      backgroundColor: 'black',
       borderRadius: 50,
+      
       
     },
     buttonClose: {
@@ -149,11 +150,15 @@ const Blurp = (props) => {
     },
     textStyle: {
       fontWeight: 'bold',
-      textAlign: 'center'
+      textAlign: 'center',
+      color: 'white',
+      
     },
     moreTextStyle: {
       textAlign: 'center',
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+            color: 'white'
+
     },
     modalText: {
       marginBottom: 15,
