@@ -4,6 +4,7 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Dropdown } from 'react-native-material-dropdown-v2';
 
  
 const SignUpAuth = () => {
@@ -31,12 +32,17 @@ const SignUpAuth = () => {
         <View style = {styles.bottom}>
           <View style = {styles.inputView}>
               <Text style={styles.text}>האם שירתת ביחידה?</Text>
-              <TextInput 
+              <Dropdown
+               label='Favorite Fruit'
+               value='yes'
+              />
+              
+              {/* <TextInput 
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={email}
                 onChangeText={text=>setEmail(text)}
-              />
+              /> */}
               <Text style={styles.text}>האם שירתת ביחידה?</Text>
               <TextInput  
                 style={styles.input}
@@ -91,8 +97,7 @@ const styles = StyleSheet.create({
      color:'black',
      fontSize:40,
      fontWeight:'bold',
-    //  marginLeft:20,
-    //  marginTop:20,
+   
      
  },
  inputView:{

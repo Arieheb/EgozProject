@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         marginLeft:40,
         marginTop:30,
+        textAlign: Platform.OS === 'ios' ? 'left' : 'right',
     },
     inputView:{
         width:'100%',
