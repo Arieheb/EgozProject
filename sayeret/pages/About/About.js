@@ -58,7 +58,7 @@ const About = () => {
 
         <View>
           <TouchableOpacity onPress={()=>{if(show3)setShow3(false);else setShow3(true)}}>
-          <ImageBackground style={style.image} source={require('../../assets/Images/egoz_sign.png')} resizeMode='cover'>
+          <ImageBackground style={styles.image} source={require('../../assets/Images/egoz_sign.png')} resizeMode='cover'>
             <Text style = {styles.title}>1956 - הקמת סיירת אגוז</Text>
           </ImageBackground>
          
@@ -76,7 +76,7 @@ const About = () => {
 
         <View>
           <TouchableOpacity onPress={()=>{if(show4)setShow4(false);else setShow4(true)}}>
-          <ImageBackground style={styles.image} source={require('../..assets/image/walking_egoz.png')} resizeMode='cover'>
+          <ImageBackground style={styles.image} source={require('../../assets/Images/walking_egoz.png')} resizeMode='cover'>
           <Text style = {styles.title}>1995 - הקמת יחידת אגוז</Text>
           </ImageBackground>
           
