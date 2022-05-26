@@ -32,6 +32,7 @@ const OpenForum = props=>{
                 once++;
             }
         });
+        setName("");
         setVision(false)
     }
    

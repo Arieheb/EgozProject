@@ -49,7 +49,7 @@ const ForumItem = props=>{
             {/* the item */}
             <TouchableRipple onPress={()=>{setVisible(true)}}>
                 <View style={styles.container}>
-                    <Avatar.Image source={Profile}/>
+                    <Avatar.Image source={!user.image?Profile:user.image}/>
                     <View style={styles.mid}>
                         <Text style={styles.name}>{user.name}</Text>
                         <Text style={styles.message} numberOfLines={1}>{user.last_message}</Text>
@@ -68,7 +68,7 @@ const ForumItem = props=>{
                         />
                     </TouchableRipple>
                     <Avatar.Image 
-                        source={user.image}
+                        source={!user.image?Profile:user.image}
                         size={40}
                         style={{marginLeft:20,marginRight:10}}
                     />
