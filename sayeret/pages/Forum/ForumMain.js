@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView} from 'react-native';
-import { TouchableRipple,Avatar, shadow } from 'react-native-paper';
+import { TouchableRipple,Avatar} from 'react-native-paper';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
 import Profile from "../../assets/Images/profile.png"
@@ -28,7 +28,7 @@ function dateFormat(timeStamp){
     }
     let date;
 
-    if(year-tyear==0 && month-tmonth==0){
+    if(year-tyear==0 && month-tmonth==0 && tday-day<2){
         if(tday-day == 1)
             date = "אתמול"
         else if(tday-day == 0)
@@ -111,12 +111,12 @@ const ForumMain = props=>{
     return(
         
         <View>
-            <Text>OpenForum</Text>
-            <Button title='add forum' onPress={goToOpenAForum}></Button>
             <FlatList data={forumList}
+                style={{height:"95%"}}
                 keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  user={data.item} navigation={props.navigation}/>}
             />
+            <Button title='add forum' onPress={goToOpenAForum}></Button>
             
         </View> 
     );

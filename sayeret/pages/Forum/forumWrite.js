@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import { auth, db } from '../../firebase';
 // import { signOut } from 'firebase/auth';
-import { collection, addDoc, updateDoc,doc, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, updateDoc,doc, query, orderBy, onSnapshot, limit } from 'firebase/firestore';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 const WriteToForum = (props) => {
     const [messages, setMessages] = useState([]);
     useEffect(() => {
       const collectionRef = collection(db, 'chats', props.id, 'chat');
-      const q = query(collectionRef, orderBy('createdAt', 'desc'));
+      const q = query(collectionRef, orderBy('createdAt', 'desc'), limit(20));
   
       const unsubscribe = onSnapshot(q, querySnapshot => {
         setMessages(

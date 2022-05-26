@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import { LogBox } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {I18nManager, StyleSheet, Text, View } from 'react-native';
 import CodePush from 'react-native-code-push';
@@ -34,6 +35,7 @@ export default function App() {
       I18nManager.forceRTL(true);
       CodePush.restartApp();
   }
+  LogBox.ignoreLogs(['Setting a timer']);
 
   const [user, setUser] = useState();
 
