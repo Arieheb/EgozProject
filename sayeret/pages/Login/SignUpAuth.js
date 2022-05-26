@@ -62,7 +62,7 @@ const SignUpAuth = () => {
           <View style = {styles.inputView}>
             <View styles={styles.pickerView}>
               <Text style={styles.text}>האם שירתת ביחידה?</Text>
-              <DropDownPicker
+              {/* <DropDownPicker
                 placeholder='בחר'
                 open={open}
                 value={value}
@@ -71,7 +71,7 @@ const SignUpAuth = () => {
                 setValue={setValue}
                 setItems={setItems}
                 //onChangeText={text=>setChoice(text)}
-              />
+              /> */}
             
             </View> 
               <Text style={styles.text}>באיזה שנה?</Text>
