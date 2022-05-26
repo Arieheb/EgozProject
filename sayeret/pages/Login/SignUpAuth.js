@@ -5,96 +5,69 @@ import { auth } from '../../firebase';
 import DropDownPicker from 'react-native-dropdown-picker';
 
  
-const SignUpAuth = () => {
-  // const [show1,setShow1] = useState(false);
-  // const [show2,setShow2] = useState(false);
+const SignUpAuth = props => {
+  const [show1,setShow1] = useState(false);
+  const [show2,setShow2] = useState(false);
 
- // const [choice, setChoice] = useState("")
-  const [nameInput, setNameInput] = useState("")
-  const [year, setYear] = useState("")
-  const [month, setMonth] = useState("")
-  const [descriptionInput, setDescriptionInput] = useState("")
-  const [phoneInput, setPhoneInput] = useState("")
   
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(['לא','כן']);
-  const [items, setItems] = useState([
-    {label: 'כן', value: 'כן'},
-    {label: 'לא', value: 'לא'},
+  //const [nameInput, setNameInput] = useState("")
+  // const [year, setYear] = useState("")
+  // const [month, setMonth] = useState("")
+  // const [descriptionInput, setDescriptionInput] = useState("")
+  // const [phoneInput, setPhoneInput] = useState("")
   
-]);
-  const handleSignUp = () =>
-    {   
-      auth
-      // if(!choice.length){
-      //   return Alert.alert("יש להזין בחירה ")
-      // }
-  
-      if(!nameInput.length){
-        return Alert.alert("יש להזין שם ")
-      }
-      if(!year.length){
-        return Alert.alert("יש להזין את שנת הגיוס")
-      }
-      if(!month.length){
-        return Alert.alert("יש להזין את חודש הגיוס")
-      }
-      if(!descriptionInput.length){
-        return Alert.alert("יש להזין סיבת הצטרפות")
-      }
-      if(!phoneInput.length){
-        return Alert.alert("יש להזין מספר טלפון")
-      }
-    
-      // const userDetails = new user(nameInput, year, month, descriptionInput, phoneInput);
-      // Alert.alert(JSON.stringify(userDetails))
-      
-    }
-   
-    return (
-     <View style={styles.container}>
+  return (
+    <View style={styles.container}>
 
-        <View style = {styles.top}>
-          <Text style= {styles.heading}> שאלון אימות</Text>
-        </View>
+      <View style = {styles.top}>
+        <Text style= {styles.heading}> שאלון אימות</Text>
+      </View>
 
-        <View style = {styles.bottom}>
-          <View style = {styles.inputView}>
-            <View styles={styles.pickerView}>
-              <Text style={styles.text}>האם שירתת ביחידה?</Text>
-              {/* <DropDownPicker
-                placeholder='בחר'
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                //onChangeText={text=>setChoice(text)}
-              /> */}
+      <View style = {styles.bottom}>
+        <View style = {styles.inputView}>
             
-            </View> 
-              <Text style={styles.text}>באיזה שנה?</Text>
-              <TextInput  
-                style={styles.input}
-                placeholder='...'
-                placeholderTextColor={"#fff"}
-              />
-              <Text style={styles.text}>באיזה מחזור?</Text>
-              <TextInput  
-                style={styles.input}
-                placeholder='...'
-                placeholderTextColor={"#fff"}
-              />
-              <Text style={styles.text}>באיזה צוות?</Text>
-              <TextInput  
-                style={styles.input}
-                placeholder='...'
-                placeholderTextColor={"#fff"}
-              />
-              <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
-                <Text style = {styles.buttonText} >סיום</Text>
-              </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{if(show1)setShow1(false);else setShow1(true)}}>
+            <Text style={styles.text}>כן</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{if(show2)setShow2(false);else setShow2(true)}}>
+            <Text style={styles.text}>לא</Text>
+          </TouchableOpacity>  
+            
+            {show1?
+              <View>
+                <Text style={styles.text}>באיזה שנה?</Text>
+                <TextInput  
+                  style={styles.input}
+                  placeholder='...'
+                  placeholderTextColor={"#fff"}
+                />
+                <Text style={styles.text}>באיזה מחזור?</Text>
+                <TextInput  
+                  style={styles.input}
+                  placeholder='...'
+                  placeholderTextColor={"#fff"}
+                />
+                <Text style={styles.text}>באיזה צוות?</Text>
+                <TextInput  
+                  style={styles.input}
+                  placeholder='...'
+                  placeholderTextColor={"#fff"}
+                />  
+            </View>:null}
+            {show2?
+              <View>
+                <Text style={styles.text}>מדוע אתה מעוניין להצטרף?</Text>
+                <TextInput  
+                  style={styles.input}
+                  placeholder='...'
+                  placeholderTextColor={"#fff"}
+                />
+                
+            </View>:null}
+            
+            <TouchableOpacity style = {styles.buttons}>
+              <Text style = {styles.buttonText} >סיום</Text>
+            </TouchableOpacity>
           </View>
         </View>
      </View>
