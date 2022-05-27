@@ -100,13 +100,13 @@ const Home = props=>{
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
             <View style = {styles.bottamBar}>
             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottamButton}>צור קשר</Text>
+                    <Text style = {styles.bottomButton}>צור קשר</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottamButton}> פייסבוק</Text>
+                    <Text style = {styles.bottomButton}> פייסבוק</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottamButton}> אינסטגרם</Text>
+                    <Text style = {styles.bottomButton}> אינסטגרם</Text>
             </TouchableOpacity>
             </View>
             </ImageBackground>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '98%',
-       // padding: 5,
+
     },
     bottamBar: {
         flexDirection: "row",
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 8,
     },
-    bottamButton: {
+    bottomButton: {
         borderRadius: 100,
         width: 80,
         height: 80,
