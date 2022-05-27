@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import { Modal, Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 //import AddEvent from './AddEvent';
@@ -8,54 +8,61 @@ import PButton from '../../assets/Images/plusButton.png';
 import masa from "../../assets/Images/unit-hero.jpg";
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
+import Gift from './Modalbenefits';
 
 
 
 
 
-const EventCal = props => {
-    // const [value, onChange] = useState(new Date());
-    // <Text>hello</Text>
+const Benefits = () => {
+         const [value, onChange] = useState(new Date());
+         useEffect (()=>{
+            //const MemoryCollection = collection (db, 'Benefits')
+         })
     return (
-        <ScrollView style = {styles.scrollView}>
-            <View style = {styles.benefitsView}>
+        <ScrollView >
+            <View>
                 <Text style = {styles.title}>הטבות</Text>
 
-                <View name='main' style = {styles.benefitFrame} >
+                <View name='main' style = {styles.benefit} >
                     <View name = 'date' style = {styles.picFrame}>
-                    <Image source={event} style = {styles.benefitsPic}>
-                        </Image>
-                        
-
+                    <Image source={event}style = {styles.benefitsPic}></Image>
                     </View> 
                     <View name= 'information' style = {styles.infoFrame}>
                         <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
                     </View>
-                    
                 </View>
-                <View name='main1' style = {styles.benefitFrame} >
+                <View name='main1' style = {styles.benefit} >
                     <View name = 'date and time' style = {styles.picFrame}>
-                    <Image source={masa} style = {styles.benefitsPic}>
-                        </Image>
-                        
-
+                    {/* <Image source={memorial} style = {styles.benefitsPic}> </Image> */}
                     </View> 
                     <View name= 'information' style = {styles.infoFrame}>
                         <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
                     </View>
-                    
                 </View>
-                <View name='main1' style = {styles.benefitFrame} >
+                <View name='main1' style = {styles.benefit} >
                     <View name = 'date and time' style = {styles.picFrame}>
-                    <Image source={memorial} style = {styles.benefitsPic}>
-                        </Image>
-                        
-
+                    {/* <Image source={memorial} style = {styles.benefitsPic}> </Image> */}
                     </View> 
                     <View name= 'information' style = {styles.infoFrame}>
                         <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
                     </View>
-                    
+                </View>
+                <View name='main1' style = {styles.benefit} >
+                    <View name = 'date and time' style = {styles.picFrame}>
+                    {/* <Image source={memorial} style = {styles.benefitsPic}> </Image> */}
+                    </View> 
+                    <View name= 'information' style = {styles.infoFrame}>
+                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
+                    </View>
+                </View>
+                <View name='main1' style = {styles.benefit} >
+                    <View name = 'date and time' style = {styles.picFrame}>
+                    {/* <Image source={memorial} style = {styles.benefitsPic}> </Image> */}
+                    </View> 
+                    <View name= 'information' style = {styles.infoFrame}>
+                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
+                    </View>
                 </View>
                 
 
@@ -69,74 +76,36 @@ const EventCal = props => {
     );
 }
 
-export default EventCal
+export default Benefits
 
 
 const styles = StyleSheet.create ({ 
-    scrollView: {
-        height: '100%',
-    },
-    benefitsPic: {
-        width: '100%',
-        height:'100%',
-        borderRadius: 50,
-        marginBottom: 30
-    },
-    benefitsView: {
-        height: '100%',
-        width: '100%',
-    },
     title: {
         fontWeight: "bold",
-        fontSize: 40, 
-        textAlign: 'center',
-        marginVertical: 10,
-        color:"black",
-
+        color: "black",
+        textAlign: "center",
+        fontSize: 30,
     },
-    benefitFrame: {
-        borderRadius:4,
-        flexDirection: 'row', 
-        margin: 5, 
-        padding: 5,
+    benefit: {
         backgroundColor: "white",
-        borderRadius: 20,
-        shadowOffset: {
-          width: 2,
-          height: 2
-        },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,        
-    }, 
+        borderRadius: 25,
+        margin: 5,
+        padding: 5,
+        height: 200,
+        flexDirection: "row",
+    },
     picFrame: {
-        flexDirection: 'column' ,
-        width: '60%',
-        height:'50%',
+        width: '50%',
+        alignItems: "center",
+        padding: 5,
     },
     infoFrame: {
-        flex: 1,
-        flexDirection: 'column',
-        width: '72%',
-        height: '100%'
+        width: '50%',
     },
-     infoText: {
-        textAlign: 'left',
-        fontSize: 30,
-        margin: 2,
-        fontWeight: "bold",
-     },
-     buttons: {
-        borderRadius: 100,
-        // margin:30,
-        borderWidth:1,
-        height: 100,
-        width: 100,
-    },
+    benefitsPic: {
+        width: 180,
+        height: 180,
+        borderRadius: 20
 
-    buttonText: {
-        textAlign: 'center',
-        // paddingTop: '40%',
-        fontSize: 15
-        
-    },
+    }
 });
