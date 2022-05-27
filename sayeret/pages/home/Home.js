@@ -47,7 +47,7 @@ const Home = props=>{
              <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
                       <UpCard icon="comments" Text="משרות"/>
                 </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("eventsNavigator")}>
+             <TouchableOpacity onPress={()=>props.navigation.navigate("events")}>
                      <UpCard icon="hand-holding-heart" Text = "אירועים" />
                 </TouchableOpacity>
             </View>
