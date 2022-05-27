@@ -97,6 +97,19 @@ const Home = props=>{
                 </TouchableOpacity>
                 </View>
             </ImageBackground>
+            <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
+            <View style = {styles.bottamBar}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+                    <Text style = {styles.bottamButton}>צור קשר</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+                    <Text style = {styles.bottamButton}> פייסבוק</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+                    <Text style = {styles.bottamButton}> אינסטגרם</Text>
+            </TouchableOpacity>
+            </View>
+            </ImageBackground>
             {/* <ImageBackground source={memorial} style = {styles.view}>
                 <View style={styles.tint}>
                 <Text style = {styles.title}>יזכור</Text>
@@ -118,10 +131,14 @@ const styles = StyleSheet.create({
         height: '98%',
        // padding: 5,
     },
+    bottamBar: {
+        flexDirection: "row",
+        height: 100,
+        margin: 0,
+        padding: 0,
+    },
     map: {
         width: '100%',
-        
-        
     },
     title: {
         fontWeight: "bold",
@@ -183,14 +200,26 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 8,
     },
+    bottamButton: {
+        borderRadius: 100,
+        width: 80,
+        height: 80,
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        marginHorizontal: 20,
+        marginTop: 8,
+        color:"white",
+
+    },
     topButtonView: {
         flexDirection: "row",
         justifyContent: "center",
         fontSize: 20,  
         //backgroundColor: "#454554",
         margin: 0,
-        
-      
     },
     view: {
         alignItems: "center",
