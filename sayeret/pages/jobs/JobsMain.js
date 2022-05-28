@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text,Button, View, StyleSheet,FlatList} from 'react-native';
+import { Linking } from 'react-native';
 import JobCard from './JobCard';
 
 const JobsMain = props=>{
@@ -16,6 +17,13 @@ const JobsMain = props=>{
 
     return(
         <View style={styles.container}>
+            <View style={styles.jobGroups}>
+                <Text style={styles.jobGroupsTitle}>קבוצות ה-WhatsApp שלנו</Text>
+                <View style={styles.jobGroupsLinks}>
+                <Button style={styles.jobGroupsLink} title='הייטק' onPress={() => Linking.openURL("https://chat.whatsapp.com/Jyd1Rw8XaHcIaJ2I8j5OCL")}></Button>
+                <Button style={styles.jobGroupsLink} title='כללי' onPress={() => Linking.openURL("https://chat.whatsapp.com/I6oOrQn0BfT3mGFaUig2Oc")}></Button>
+                </View>
+            </View>
                 <FlatList   
                     style={{width:"100%"}}
                     contentContainerStyle={{alignItems:"center"}}
@@ -32,13 +40,40 @@ const JobsMain = props=>{
 }
 
 const styles = StyleSheet.create({
-container:{
+jobGroups:{
+    width:"98%",
+    minWidth:"98%",
+    height:100,
+    padding:5,
+    marginVertical:10,
+    borderWidth:1,
+    borderRadius:4,
+    backgroundColor:"#35DB4E",
+    borderColor:"gray",
+    alignContent:"center"
+},
+jobGroupsTitle:{
+    textAlign:"center",
+    fontWeight:"bold",
+    fontSize:18,
+    paddingBottom:3
+},
+jobGroupsLinks:{
+    // backgroundColor:"brown"
+    // TODO  *** Continue fron here ***
+},
+jobGroupsLink:{
+    color:"#35DB4E",
+    fontWeight:"bold",
+    fontSize:14,
+
+},
+    container:{
     flex:1,
     alignItems:"center"
 },
 titleText:{
     fontSize:22,
-
 }
 })
 
