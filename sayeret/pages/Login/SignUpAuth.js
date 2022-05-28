@@ -25,37 +25,38 @@ const SignUpAuth = props => {
 
       <View style = {styles.bottom}>
         <View style = {styles.inputView}>
-          <View style ={styles.choice}>   
+          <Text style={styles.text}>האם שירתת ביחידה?</Text>
+          <View style ={styles.choiceView}>   
             <TouchableOpacity 
-            onPress={()=>{if(show1)setShow1(false);else setShow1(true)}}
+            onPress={()=>{if(show1)setShow1(false);else setShow1(true)&&show2==false}}
             style={styles.choiceButton}
             >
-              <Text style={styles.text}>כן</Text>
+              <Text style={styles.choiceText}>כן</Text>
             </TouchableOpacity>
             <TouchableOpacity 
-            onPress={()=>{if(show2)setShow2(false);else setShow2(true)}}
+            onPress={()=>{if(show2)setShow2(false);else setShow2(true)&& show1==false}}
             style={styles.choiceButton}
             >
-              <Text style={styles.text}>לא</Text>
+              <Text style={styles.choiceText}>לא</Text>
             </TouchableOpacity>  
           </View>  
             {show1?
-              <View>
+              <View styel= {styles.show}>
                 <Text style={styles.text}>באיזה שנה?</Text>
                 <TextInput  
-                  style={styles.input}
+                  style={styles.showInput}
                   placeholder='...'
                   placeholderTextColor={"#fff"}
                 />
                 <Text style={styles.text}>באיזה מחזור?</Text>
                 <TextInput  
-                  style={styles.input}
+                  style={styles.showInput}
                   placeholder='...'
                   placeholderTextColor={"#fff"}
                 />
                 <Text style={styles.text}>באיזה צוות?</Text>
                 <TextInput  
-                  style={styles.input}
+                  style={styles.showInput}
                   placeholder='...'
                   placeholderTextColor={"#fff"}
                 />  
@@ -64,7 +65,7 @@ const SignUpAuth = props => {
               <View>
                 <Text style={styles.text}>מדוע אתה מעוניין להצטרף?</Text>
                 <TextInput  
-                  style={styles.input}
+                  style={styles.showInput}
                   placeholder='...'
                   placeholderTextColor={"#fff"}
                 />
@@ -85,12 +86,13 @@ const SignUpAuth = props => {
 
 const styles = StyleSheet.create({
   container:{
+    width:'100%',
     flex:1,
     flexDirection:'column',
     backgroundColor:'#fff',
-    
+    alignItems:'center',
+    justifyContent:'center',
  },
-
  top:{
     width:'100%',
     height:'15%',
@@ -101,6 +103,11 @@ const styles = StyleSheet.create({
     alignItems:'center',
     backgroundColor:'#fff'
  },
+ heading:{
+  color:'black',
+  fontSize:40,
+  fontWeight:'bold',
+},
  bottom:{
      width:'100%',
      height:'85%',
@@ -108,16 +115,17 @@ const styles = StyleSheet.create({
      borderTopLeftRadius:25,
      borderTopRightRadius:25,
  },
- heading:{
-     color:'black',
-     fontSize:40,
-     fontWeight:'bold',
- },
- choice:{
+ choiceView:{
     flexDirection:'row',
+    
  },
  choiceButton:{
-    margin:20,
+    margin:30,
+ },
+ choiceText:{
+    color:'#fff',
+    fontSize:20,
+    fontWeight:'800',
  },
  inputView:{
      width:'100%',
@@ -127,10 +135,28 @@ const styles = StyleSheet.create({
      marginTop:35,
  },
  text:{
-    textAlign:'right', 
+    textAlign:'left', 
     color:'#fff',
     fontWeight:'bold',
     fontSize:15,
+ },
+ show:{
+    width:700,
+    justifyContent:'center',
+    alignItems:'center',
+    
+  
+ },
+ showInput:{
+    display:'flex',
+    borderWidth:1,
+    borderColor:'#fff',
+    height:48,
+    borderRadius:8,
+    width:350,
+    padding:10,
+    margin:10,
+    textAlign:'right',
  },
  input: {
     width:'90%',
