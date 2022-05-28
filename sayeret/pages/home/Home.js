@@ -53,9 +53,6 @@ const Home = props=>{
             </View>
                 <Text style={styles.title}>הסיירת הצפונית</Text>
                 <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
-                    <Text style = {styles.button}>קרא עוד</Text>
-                </TouchableOpacity>
                 <YoutubePlayer 
                     height={300}
                     videoId ={  "MMTuF941VzA" }
@@ -66,7 +63,9 @@ const Home = props=>{
                 <Text style = {styles.title}>יחידת אגוז</Text>
                 <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
                 <Text style={styles.content}>כבר מעל 60 שנה להקמת הסיירת הצפונית- סיירת אגוז. הסיירת עברה גלגולים רבים במהלך השנים, פורקה והוקמה… ושוב פורקה. בשנת 1995 הוקמה יחידת אגוז פעם נוספת… היחידה מתפקדת כחוד החנית של צה”ל עד היום. עברו הרבה שנים,הרבה היתקלויות, והרבה אנשים – אך הרוח נשארה אותה רוח</Text>
-               
+                <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
+                    <Text style = {styles.button}>קרא עוד</Text>
+                </TouchableOpacity>
                 </View>
             </ImageBackground>
             <View style={styles.stat}>
