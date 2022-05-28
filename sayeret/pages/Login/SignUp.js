@@ -18,11 +18,19 @@ const data = [
       key:1,
     },
     {
-      title: 'שאלון הרשמה',
+      title: 'פרטים אישיים',
       text: 'Other cool stuff',
       //image: ,
       bg: '#373737fe',
       key:2,
+      
+    },
+    {
+      title: 'שאלון הרשמה',
+      text: 'Other cool stuff',
+      //image: ,
+      bg: '#373737fe',
+      key:3,
       
     },
     
@@ -32,6 +40,11 @@ const SignUp = () => {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
+  const [firstName, setFirstName] =useState("")
+  const [LastName, setLastName] =useState("")
+  const [address, setAddress] =useState("")
+  const [city, setCity] =useState("") 
+  const [phone, setPhone] =useState(0) 
   const renderItem = ({item}) => {
     const handleSignUp = () =>
       {   
@@ -40,17 +53,17 @@ const SignUp = () => {
         .then((userCredential) => {
             const user = userCredential.user;
             addDoc(collection(db,"users"),{
-              Address:"address",
-              city:"city",
-              FirstName:"fname",
-              LastName:"lname",
+              Address:address,
+              city:city,
+              FirstName:firstName,
+              LastName:LastName,
               email:user.email,
-              isAdmin:true,
+              isAdmin:false,
               isMember:false,
               guest:true,
               user_id:user.uid,
               pic:"",
-              phoneNumber: "050999999",
+              phoneNumber: phone,
               password:password
             })
             
@@ -61,6 +74,7 @@ const SignUp = () => {
             alert(errorMessage);
           });
         }
+    //----------------------------------------first page ----------------------------
     if(item.key == 1)
       return (
       <View style={styles.container}>  
@@ -91,14 +105,59 @@ const SignUp = () => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
               />
-              <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
-                <Text style = {styles.buttonText} >המשך</Text>
-              </TouchableOpacity>
           </View>
         </View>
-     </View>
-        
+     </View> 
       );
+      //-------------------------------- second page ----------------------------------------------------------------
+      else if(item.key == 2)
+      return ( 
+        <View>
+           <View style = {styles.top}>
+        <Text style= {styles.heading}>פרטים אישיים</Text>
+      </View>
+
+          <View style = {styles.bottom}>
+            <View style = {styles.inputView}>
+                <TextInput placeholder='שם פרטי:'
+                  style={styles.input}
+                  placeholderTextColor={"#fff"}
+                  value={firstName}
+                  onChangeText={text=>setFirstName(text)}
+                />
+                <TextInput placeholder='שם משפחה:' 
+                  style={styles.input}
+                  placeholderTextColor={"#fff"}
+                  value={LastName}
+                  onChangeText={text=>setLastName(text)}
+                />
+                <TextInput placeholder='כתובת:' 
+                  style={styles.input}
+                  placeholderTextColor={"#fff"}
+                  value={address}
+                  onChangeText={text=>setAddress(text)}
+                />
+                  <TextInput placeholder='עיר:' 
+                  style={styles.input}
+                  placeholderTextColor={"#fff"}
+                  value={city}
+                  onChangeText={text=>setCity(text)}
+                />
+                <TextInput placeholder='מספר טלפון:' 
+                  style={styles.input}
+                  placeholderTextColor={"#fff"}
+                  value={phone}
+                  keyboardType='phone-pad'
+                  onChangeText={text=>setPhone(text)}
+                />
+                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+                <Text style = {styles.buttonText} >המשך</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+        );
+        //----------------------------------------------third page ----------------------------------
       else
       return (
         <SignUpAuth></SignUpAuth>
