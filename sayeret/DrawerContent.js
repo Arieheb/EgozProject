@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View} from 'react-native'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import {Avatar,Title,Caption, Drawer, TouchableRipple} from 'react-native-paper'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Profile from "./assets/Images/profile.png"
 import { signOut } from 'firebase/auth'
-import { auth } from './firebase'
+import { auth, db } from './firebase'
+import { query, collection, where, getDocs } from 'firebase/firestore'
 
 const signOutNow = () => {
     signOut(auth).then(() => {
@@ -25,18 +26,42 @@ const Card = props=>{
                         name={props.iconName}
                         color = {color}
                         size={size}/>}
-                onPress={()=>{props.navigation.navigate(props.nav)}}
+                onPress={()=>{props.navigation.navigate(props.nav,{user:props.user})}}
              />
 }
 
 
 
 const DrawerContent = props => {
+    const [user,setUser] = useState({});
+    useEffect(async ()=>{
+        const id = auth.currentUser.uid;
+        const q = query(collection(db,"users"),where("user_id","==",id));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(doc=>{
+            const userFields = doc._document.data.value.mapValue.fields 
+            setUser({
+                Address: userFields.Address.stringValue,
+                FirstName: userFields.FirstName.stringValue,
+                LastName: userFields.LastName.stringValue,
+                city: userFields.city.stringValue,
+                email: userFields.email.stringValue,
+                user_id: userFields.user_id.stringValue,
+                pic: userFields.pic.stringValue,
+                phoneNumber: userFields.phoneNumber.stringValue,
+                password: userFields.password.stringValue,
+                guest: userFields.guest.booleanValue,
+                isAdmin: userFields.isAdmin.booleanValue,
+                isMember: userFields.isMember.booleanValue,
+                
+            })
+        })
+    },[])
   return (
     <View style={{flex:1}}>
         <DrawerContentScrollView {...props}>
             <View style={styles.drawerContent}>
-                <TouchableRipple style={styles.userInoSection}  onPress={()=>{props.navigation.navigate("profile")}}>
+                <TouchableRipple style={styles.userInoSection}  onPress={()=>{props.navigation.navigate("profile",{user:user})}}>
                     <View style={{flexDirection:'row',marginTop:15 }}>
                         <Avatar.Image
                         source={Profile}
@@ -51,15 +76,15 @@ const DrawerContent = props => {
                 
                 </TouchableRipple>
                 <Drawer.Section style={styles.bottomDrawerSection}>
-                    <Card title="בית" iconName="home-outline" nav="home" navigation={props.navigation}/>
-                    <Card title="אודות" iconName="book-open-page-variant" nav="about" navigation={props.navigation}/>
-                    <Card title="פורומים" iconName="android-messages" nav="forums" navigation={props.navigation}/>
-                    <Card title="פורטל משרות" iconName="briefcase" nav="jobs" navigation={props.navigation}/>
-                    <Card title="לוח אירועים" iconName="calendar-month" nav="calendar" navigation={props.navigation}/>
-                    <Card title="זיכרון והנצחה" iconName="candle" nav="Memorial" navigation={props.navigation}/>
-                    <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation}/>
-                    <Card title="הטבות" iconName="gift" nav="Benefits" navigation={props.navigation}/>
-                    <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation}/>
+                    <Card title="בית" iconName="home-outline" nav="home" navigation={props.navigation} user={user}/>
+                    <Card title="אודות" iconName="book-open-page-variant" nav="about" navigation={props.navigation} user={user}/>
+                    <Card title="פורומים" iconName="android-messages" nav="forums" navigation={props.navigation} user={user}/>
+                    <Card title="פורטל משרות" iconName="briefcase" nav="jobs" navigation={props.navigation} user={user}/>
+                    <Card title="לוח אירועים" iconName="calendar-month" nav="calendar" navigation={props.navigation} user={user}/>
+                    <Card title="זיכרון והנצחה" iconName="candle" nav="Memorial" navigation={props.navigation} user={user}/>
+                    <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation} user={user}/>
+                    <Card title="הטבות" iconName="gift" nav="Benefits" navigation={props.navigation} user={user}/>
+                    <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
                 </Drawer.Section>
             </View>
         </DrawerContentScrollView>

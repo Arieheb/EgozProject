@@ -3,10 +3,11 @@ import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
 // import SelectDropdown from 'react-native-select-dropdown';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import SignUpAuth from './SignUpAuth';
 const{width,height:wHeight} = Dimensions.get("window");
+import { addDoc, collection } from 'firebase/firestore'; 
 import Logo from '../../assets/Images/signUpLogo.png';
 const data = [
     {
@@ -38,10 +39,26 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+            addDoc(collection(db,"users"),{
+              Address:"address",
+              city:"city",
+              FirstName:"fname",
+              LastName:"lname",
+              email:user.email,
+              isAdmin:true,
+              isMember:false,
+              guest:true,
+              user_id:user.uid,
+              pic:"",
+              phoneNumber: "050999999",
+              password:password
+            })
+            
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert(errorMessage);
           });
         }
     if(item.key == 1)

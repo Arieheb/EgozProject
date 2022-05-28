@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView} from 'react-native';
+import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert} from 'react-native';
 import { TouchableRipple,Avatar} from 'react-native-paper';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
@@ -41,13 +41,34 @@ function dateFormat(timeStamp){
     return date;
 }
 
+//deletes a chat from the app
+const Delete =(id)=>{
+    Alert.alert(
+        "למחוק?",
+        "האם אתה בטוח שאתה רוצה למחוק את הפורום הזה",
+        [
+          {
+            text: "בטל",
+            onPress: () => {return},
+          },
+          {
+            text: "מחק",
+            onPress: async () => {
+                await deleteDoc(doc(db, "chats", id));
+            },
+        },
+    ],
+    );
+   
+}
+
 const ForumItem = props=>{
     const user = props.user
     const [visible,setVisible] = useState(false);
     return(
         <View>
             {/* the item */}
-            <TouchableRipple onPress={()=>{setVisible(true)}}>
+            <TouchableRipple onLongPress={()=>Delete(user.id)} onPress={()=>{setVisible(true)}}>
                 <View style={styles.container}>
                     <Avatar.Image source={!user.image?Profile:user.image}/>
                     <View style={styles.mid}>
@@ -74,14 +95,14 @@ const ForumItem = props=>{
                     />
                     <Text style={styles.name}>{user.name}</Text>
                 </SafeAreaView>
-                <WriteToForum id={user.id}/>
+                <WriteToForum id={user.id} params={props.params}/>
             </Modal>
         </View>    
     );
 }
 
 const Forum = props=>{
-    const [forumList, updateForumList] = useState([])
+    const [forumList, updateForumList] = useState([]);
 
     useEffect(() => {
         const collectionRef = collection(db, 'chats');
@@ -106,7 +127,7 @@ const Forum = props=>{
             <FlatList data={forumList}
                 style={{height:"95%"}}
                 keyExtractor = {item=>item.id}
-                renderItem={(data)=><ForumItem  user={data.item} navigation={props.navigation}/>}
+                renderItem={(data)=><ForumItem  user={data.item} params={props.route.params}/>}
             />
             <OpenForum/>        
         </View> 
