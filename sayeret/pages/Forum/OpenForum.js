@@ -1,15 +1,22 @@
 import React, {useState} from 'react';
-import { View,Text,StyleSheet } from 'react-native';
+import { View,Text,StyleSheet,Modal,Button, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import DropDownPicker from 'react-native-dropdown-picker';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {db} from "../../firebase";
 import {collection,query,addDoc,getDocs, where, orderBy} from 'firebase/firestore';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import { TouchableRipple,Avatar} from 'react-native-paper';
 
 const OpenForum = props=>{
     const [name, setName] = useState("");
+    [vision, setVision] = useState(false);
 
     const submit =async function(){
+        if(name === ""){
+            alert("חייב לשים שם לפורום")
+            return
+        }
+
         //adding a new document
         const ref = collection(db,'chats');
         addDoc(ref,{"name":name,"last_time":new Date(), "last_message":""})
@@ -25,53 +32,36 @@ const OpenForum = props=>{
                 once++;
             }
         });
-
-        props.navigation.navigate('A');
+        setName("");
+        setVision(false)
     }
    
-    // const [value, setValue] = useState(['מרכז', 'ירושלים והסביבה', 'צפון', 'דרום']);
-    // const [open, setOpen] = useState(false);
-    // const [items, setItems] = useState([
-    //     {label: 'מרכז', value: 'מרכז'},
-    //     {label: 'תל אביב', value: 'תל אביב', parent: 'מרכז'},
-    //     {label: 'רמת גן', value: 'רמת גן', parent: 'מרכז'},
-    //     {label: 'ירושלים והסביבה', value: 'ירושלים'},
-    //     {label: 'ירושלים', value: 'ירושלים', parent: 'ירושלים'},
-    //     {label: 'צפון', value: 'צפון'},
-    //     {label: 'דרום', value: 'דרום'}
-    //   ]);
-
     return(
         <View>
-            <TextInput
-                value={name}
-                placeholder="שם הפורום"
-                onChangeText={(text)=>{setName(text)}}
-            />
-            <Text>catagories</Text>
-            {/* <DropDownPicker
-                placeholder='קטגוריות'
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                onChangeText={text=>setLocationInput(text)}
-
-                multiple={true}
-                mode="BADGE"
-                badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
-            /> */}
-
-            <Text>forum / chat</Text>
-            <Text>members</Text>
-            <Text>name</Text>
-            <TouchableOpacity onPress={submit}>
-                <View style={styles.plus}>
-                    <Text style={styles.up}>+</Text>
-                </View>
-            </TouchableOpacity>
+            <Modal visible={vision}>
+                <SafeAreaView style={styles.header}>   
+                    <TouchableRipple onPress={()=>{setVision(false)}}>
+                        <Icon
+                            name='arrow-right-thick'
+                            size={30} 
+                        />
+                    </TouchableRipple>
+                </SafeAreaView>
+                <TextInput
+                    value={name}
+                    placeholder="שם הפורום"
+                    onChangeText={(text)=>{setName(text)}}
+                />
+                <Text>catagories</Text>
+                <Text>forum / chat</Text>
+                <Text>members</Text>
+                <TouchableRipple onPress={()=>submit()}>
+                    <View style={styles.plus}>
+                        <Text style={styles.up}>+</Text>
+                    </View>
+                </TouchableRipple>
+            </Modal>
+            <Button title='add forum' onPress={()=>{setVision(true);}}></Button>
         </View>
     );
 };
@@ -88,6 +78,20 @@ const styles = StyleSheet.create({
     up:{
         color:"white",
         fontSize:24
+    },
+    header:{
+        flexDirection:"row",
+        alignItems:"center",
+        paddingVertical:15,
+        backgroundColor:"#00aadd",
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        elevation: 5,
+        paddingTop: Platform.OS === 'ios'? 30:15,
+        paddingLeft:5,
+        
     }
 })
 

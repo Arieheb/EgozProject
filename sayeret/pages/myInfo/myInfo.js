@@ -13,9 +13,12 @@ import UploadImage from "./uploadPhoto";
 const wWidth = Dimensions.get('window').width;
 const wHeight = Dimensions.get('window').height;
 
+
+
 const Profile = (props) => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const user = props.route.params.user
     return ( 
         <ScrollView>
 
@@ -23,13 +26,13 @@ const Profile = (props) => {
             {/* profile picture view */}
             <View style = {styles.headName}>               
                 <UploadImage/>
-                <Text style = {{fontSize: 30, color: 'black',}}>אריה ברלין</Text>
+                <Text style = {{fontSize: 30, color: 'black',}}>{user.FirstName} {user.LastName}</Text>
             </View>
             
             {/* first name view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>שם פרטי: </Text>
-                <TextInput placeholder='שם פרטי'
+                <TextInput placeholder={user.FirstName}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
@@ -41,7 +44,7 @@ const Profile = (props) => {
             {/* last name view */}            
            <View style= {styles.itemLayout}>
            <Text style = {styles.textStyle}>שם משפחה: </Text>
-                <TextInput placeholder='שם משפחה' 
+                <TextInput placeholder={user.LastName} 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={password}
@@ -75,7 +78,7 @@ const Profile = (props) => {
             {/* Address view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>כתובת: </Text>
-                <TextInput placeholder='Address'
+                <TextInput placeholder={user.Address}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
@@ -86,7 +89,7 @@ const Profile = (props) => {
             {/* phone number view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>מספר פלאפון: </Text>
-                <TextInput placeholder='Phone Number'
+                <TextInput placeholder={user.phoneNumber}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
@@ -109,7 +112,7 @@ const Profile = (props) => {
             {/* Password info view */}
             <View style= {styles.itemLayout}>
             <Text style = {styles.textStyle}>סיסמא:  </Text>
-                <TextInput placeholder='Password' 
+                <TextInput placeholder={user.password} 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={password}

@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
-    margin:60,
-    paddingRight:30,
+    paddingVertical:60,
+    marginHorizontal:50,
     textShadowRadius:10,
     textShadowOffset: {width:0, height:0},
     textShadowColor:"black",
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     fontSize:20,
     paddingRight:10,
     paddingLeft:10,
+    direction: "rtl",
   },
   image:{
     
