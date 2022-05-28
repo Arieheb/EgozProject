@@ -25,14 +25,20 @@ const SignUpAuth = props => {
 
       <View style = {styles.bottom}>
         <View style = {styles.inputView}>
-            
-          <TouchableOpacity onPress={()=>{if(show1)setShow1(false);else setShow1(true)}}>
-            <Text style={styles.text}>כן</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={()=>{if(show2)setShow2(false);else setShow2(true)}}>
-            <Text style={styles.text}>לא</Text>
-          </TouchableOpacity>  
-            
+          <View style ={styles.choice}>   
+            <TouchableOpacity 
+            onPress={()=>{if(show1)setShow1(false);else setShow1(true)}}
+            style={styles.choiceButton}
+            >
+              <Text style={styles.text}>כן</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+            onPress={()=>{if(show2)setShow2(false);else setShow2(true)}}
+            style={styles.choiceButton}
+            >
+              <Text style={styles.text}>לא</Text>
+            </TouchableOpacity>  
+          </View>  
             {show1?
               <View>
                 <Text style={styles.text}>באיזה שנה?</Text>
@@ -107,8 +113,11 @@ const styles = StyleSheet.create({
      fontSize:40,
      fontWeight:'bold',
  },
- pickerView:{
+ choice:{
     flexDirection:'row',
+ },
+ choiceButton:{
+    margin:20,
  },
  inputView:{
      width:'100%',
