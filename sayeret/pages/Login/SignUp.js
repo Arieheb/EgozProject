@@ -58,7 +58,7 @@ const SignUp = () => {
               FirstName:firstName,
               LastName:LastName,
               email:user.email,
-              isAdmin:true,
+              isAdmin:false,
               isMember:false,
               guest:true,
               user_id:user.uid,
