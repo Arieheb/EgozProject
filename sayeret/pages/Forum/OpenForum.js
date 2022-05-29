@@ -55,17 +55,17 @@ const OpenForum = props=>{
                 <Text>forum / chat</Text>
                 <Text>members</Text>
                 <TouchableRipple onPress={()=>submit()}>
-                    <View style={styles.plus}>
-                        <Text style={styles.up}>+</Text>
+                    <View style={styles.button}>
+                        <Text style={styles.up}>הוסף</Text>
                     </View>
                 </TouchableRipple>
             </Modal>
 
-            <TouchableOpacity onPress={()=>setVision(true)}>
-               <View style ={styles.plus}>
-                   <Text style={styles.up}>+</Text>
-               </View>
-           </TouchableOpacity>
+            <View style ={styles.plus} >
+                <TouchableOpacity  onPress={()=>setVision(true)}>
+                    <Text style={styles.up}>+</Text>
+            </TouchableOpacity>
+           </View>
 
         </View>
     );
@@ -73,8 +73,12 @@ const OpenForum = props=>{
 
 const styles = StyleSheet.create({
     button:{
-        width:100,
-        height:100
+      width:100,
+      height:50,
+      backgroundColor:"blue",
+      borderRadius:20,
+      alignItems:'center',
+      justifyContent:'center',
     },
     plus:{
         height : 75,
@@ -85,7 +89,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
         position:'absolute',
         top:530,
-        right:30
+        right:30,
+        zIndex:1
     },
     up:{
         color:"white",

@@ -6,7 +6,9 @@ import { Navigation } from 'react-calendar';
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
 import pizza from "../../assets/Images/pizza.jpg";
-
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase';
+import AddBenefits from './addBenefit';
 
 const App = () => {
     const [alert, setAlert] = React.useState({
@@ -31,81 +33,64 @@ const App = () => {
       })
     }
 }
+const Benefit = props => {
+    const bene = props.user
+    const [visible, setVisible] = useState(false);
+    return(
+        <View>
+
+            <View name='benefit' style = {styles.benefit} >
+            <View name = 'picPlace' style = {styles.picFrame}>
+            <Image source={pizza}style = {styles.benefitsPic}></Image>
+            </View> 
+            <View name= 'information' style = {styles.infoFrame}>
+                <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
+                <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
+                <Text style= {styles.buttonText} >קרא עוד</Text>
+                </TouchableOpacity>
+            </View>
+    </View>
+
+    <Modal visible={visible}>
+        <View>
+            <Text>  cnvsflgfgmsf;bg;gk;gg;kbjg;kf;kgפרטי הטבה</Text>
+            <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
+                <Text style= {styles.buttonText} >חזור</Text>
+                </TouchableOpacity>
+        </View>
+    </Modal>
+
+     </View>
+    );
+}
 const Benefits = props => {
          const [value, onChange] = useState(new Date());
+         const[benefitInfo, setBenefitInfo] =useState([]);
+         const[addBenefit, setAddBenefit] = useState([]);
          useEffect (()=>{
-            //const MemoryCollection = collection (db, 'Benefits')
-         })
-    return (
-        <ScrollView >
+            const collectionBenefits = collection(db, 'Benefits');
+            const que = query (collectionBenefits);
+            
+            const unsubscribe = onSnapshot (que, QuerySnapshot => {
+                setBenefitInfo(
+                    QuerySnapshot.docs.map (doc => ({
+                        Name: doc.data().Name,
+                        photo: doc.data().photo,
+                        info: doc.data().info
+                    }))
+                );
+            });
+            return () => unsubscribe();
+         },[]);
+         return (
+            <ScrollView >
             <View style = {styles.page}>
                 <Text style = {styles.title}>הטבות</Text>
 
-                <View name='benefit' style = {styles.benefit} >
-                    <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={pizza}style = {styles.benefitsPic}></Image>
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
-                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>Alert.alert("מבצע על שתי פיצות משפחתיות בפיצה האט","בא לכם פיצה?שתי משפחתיות מפנקות של פיצה האט ב-₪85 – כולל משלוח לכל הארץ!קקופון: 714500בתין ")}>
-                        <Text style= {styles.buttonText} >קרא עוד</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <Benefit></Benefit>
+                <AddBenefits/>
 
-                <View name='benefit' style = {styles.benefit} >
-                    <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={event}style = {styles.benefitsPic}></Image>
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
-                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>Alert.alert("sdfsdf")}>
-                        <Text style= {styles.buttonText} >קרא עוד</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View name='benefit' style = {styles.benefit} >
-                    <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={memorial} style = {styles.benefitsPic}></Image>
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
-                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>Alert.alert("sdfsdf")}>
-                        <Text style= {styles.buttonText} >קרא עוד</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View name='benefit' style = {styles.benefit} >
-                    <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={memorial} style = {styles.benefitsPic}></Image>
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
-                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>Alert.alert("sdfsdf")}>
-                        <Text style= {styles.buttonText} >קרא עוד</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View name='benefit' style = {styles.benefit} >
-                    <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={memorial} style = {styles.benefitsPic}></Image>
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
-                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>Alert.alert("sdfsdf")}>
-                        <Text style= {styles.buttonText} >קרא עוד</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                
-                <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("home")}>
-                        <Text style= {styles.buttonText} >הטבה חדשה</Text>
-                    </TouchableOpacity>
-
-                </View>
+            </View>
         </ScrollView>
 
     );
