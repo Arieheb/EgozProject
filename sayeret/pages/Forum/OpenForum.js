@@ -52,9 +52,9 @@ const OpenForum = props=>{
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
                 />
-                <Text>catagories</Text>
+                {/* <Text>catagories</Text>
                 <Text>forum / chat</Text>
-                <Text>members</Text>
+                <Text>members</Text> */}
                 <TouchableRipple onPress={()=>submit()}>
                     <View style={styles.plus}>
                         <Text style={styles.up}>+</Text>
