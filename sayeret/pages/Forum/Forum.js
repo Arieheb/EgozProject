@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Platform,Text,Button, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert} from 'react-native';
+import {Platform,Text, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert} from 'react-native';
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
@@ -124,12 +124,13 @@ const Forum = props=>{
     return(
         
         <View>
+           
+            <OpenForum/> 
             <FlatList data={forumList}
                 style={{height:"95%"}}
                 keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  user={data.item} params={props.route.params}/>}
-            />
-            <OpenForum/>        
+            />   
         </View> 
     );
 };
