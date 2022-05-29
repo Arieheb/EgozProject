@@ -48,7 +48,7 @@ jobGroups:{
     marginVertical:10,
     borderWidth:1,
     borderRadius:4,
-    // backgroundColor:"#35DB4E",
+    backgroundColor:"#35DB4E",
     backgroundColor:"white",
     borderColor:"gray",
     alignContent:"center",
@@ -70,7 +70,8 @@ jobGroupsLinks:{
     // backgroundColor:"brown",
     // borderRadius:5,
     // // alignContent:"space-between",
-    // justifyContent:"space-between"
+    // justifyContent:"space-between",
+    
 
     // TODO  *** Continue fron here ***
 },
