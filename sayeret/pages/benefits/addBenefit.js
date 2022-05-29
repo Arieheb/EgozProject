@@ -10,7 +10,7 @@ const AddBenefits= props=>{
     const [vision, setVision] = useState(false);
 
     const Submit =async function(){
-        addDoc(collection(db, 'benefit'), { name, info, photo});
+        addDoc(collection(db, 'Benefit'), { name, info, photo});
     }
 
   
@@ -25,7 +25,7 @@ const AddBenefits= props=>{
                     placeholder="פרטי הטבה"
                     onChangeText={(text)=>{setInfo(text)}}/>
         
-        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false)}}>
+        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{Submit()}}>
             <Text style= {styles.buttonText} >הוסף</Text>
         </TouchableOpacity>
         <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false)}}>

@@ -1,12 +1,14 @@
 import React from 'react';
 import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
-import Icon from "react-native-vector-icons/FontAwesome";
+// import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
 import map from "../../assets/Images/dark-topography.jpg";
 import masa from "../../assets/Images/unit-hero.jpg";
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+
 
 
 const NumberCard = props=>{
@@ -25,7 +27,7 @@ const UpCard = props=>{
             <View style = {styles.icon}>
                 {props.icon === 'hand-holding-heart'?
                 <Icons name ={props.icon} color="white" size={25}/>:
-                <Icon name ={props.icon} color="white" size={25}/>}
+                <Icon name ={props.icon} color="white" size={props.size?props.size:25}/>}
             </View>
             <Text style={{...styles.Text,color:"white"}}>{props.Text}</Text>
         </View>
@@ -40,20 +42,23 @@ const Home = props=>{
         
             <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-            <View style = {styles.topButtonView}>
-             <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
-                     <UpCard icon="id-card" Text = "הטבות" />
-                </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
-                      <UpCard icon="comments" Text="משרות"/>
-                </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                     <UpCard icon="hand-holding-heart" Text = "אירועים" />
-                </TouchableOpacity>
-            </View>
-                <Text style={styles.title}>הסיירת הצפונית</Text>
-                <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
-               
+                <View style = {styles.tint}>
+                    <View style = {{borderBottomWidth: 3, paddingBottom: 5}}>
+                            <View style = {styles.topButtonView}>
+                            <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
+                                    <UpCard icon="gift" Text = "הטבות" />
+                                </TouchableOpacity>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
+                                    <UpCard icon="briefcase" Text="משרות"/>
+                                </TouchableOpacity>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+                                    <UpCard icon="calendar-month" Text = "אירועים" />
+                                </TouchableOpacity>
+                            </View>
+                    </View>
+                        <Text style={styles.title}>הסיירת הצפונית</Text>
+                        <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
+                </View>
             </ImageBackground>
             <ImageBackground source={masa} style = {styles.view}>
                 <View style={styles.tint}>
@@ -103,17 +108,19 @@ const Home = props=>{
 
 
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-            <View style = {styles.bottamBar}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("Contact")}>
-                    <Text style = {styles.bottomButton}>צור קשר</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottomButton}> פייסבוק</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottomButton}> אינסטגרם</Text>
-            </TouchableOpacity>
-            </View>
+                <View style = {styles.tint}>
+                    <View style = {styles.bottamBar}>
+                    <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
+                            <UpCard icon="email-outline" Text = "צור קשר" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>props.navigation.navigate("calendar")}>
+                         <Icons name ="facebook"  color="white"  size={70}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>props.navigation.navigate("calendar")}>
+                         <Icons name ="instagram"  color="white" size={65}/>
+                    </TouchableOpacity>
+                    </View>
+                </View>
             </ImageBackground>
             {/* <ImageBackground source={memorial} style = {styles.view}>
                 <View style={styles.tint}>
@@ -139,12 +146,15 @@ const styles = StyleSheet.create({
     video: {
         paddingBottom: 0,
         marginBottom: 0,
+        borderWidth: 0,
     },
     bottamBar: {
         flexDirection: "row",
-        height: 100,
+        height: 60,
         margin: 0,
         padding: 0,
+        justifyContent: "center",
+
     },
     map: {
         width: '100%',
@@ -183,6 +193,8 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems:"center",
         justifyContent:"center",
+        margin: 0,
+        padding: 0
     },
     button: {
         borderRadius: 7,
@@ -208,6 +220,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginHorizontal: 20,
         marginTop: 8,
+        borderColor: "white",
+        borderWidth: 0.5,
     },
     bottomButton: {
         borderRadius: 100,
@@ -221,6 +235,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 8,
         color:"white",
+        borderWidth: 0.5,
+        borderColor: "white",
+
+
 
     },
     topButtonView: {
@@ -229,6 +247,13 @@ const styles = StyleSheet.create({
         fontSize: 20,  
         //backgroundColor: "#454554",
         margin: 0,
+        shadowOffset: { height: 20, width: 2},
+        //backgroundColor:"rgba(0,0,0,0.6)",
+        // elevation: 20,
+        // overflow:'hidden',
+        // borderBottomWidth: 20
+
+
     },
     view: {
         alignItems: "center",
