@@ -6,7 +6,6 @@ import Profile from '../../assets/Images/profile.png';
 import {auth, db} from '../../firebase';
 
 
-
 const Blurp = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
