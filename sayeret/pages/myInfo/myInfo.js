@@ -9,11 +9,17 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { block } from "react-native-reanimated";
 import { waitForPendingWrites } from "firebase/firestore";
 import UploadImage from "./uploadPhoto";
+import { signOut } from 'firebase/auth'
 
 const wWidth = Dimensions.get('window').width;
 const wHeight = Dimensions.get('window').height;
 
-
+const signOutNow = () => {
+    signOut(auth).then(() => {
+        navigation.replace('login');
+    }).catch((error) => {
+    });
+}
 
 const Profile = (props) => {
     const [email,setEmail] = useState("");
@@ -129,7 +135,9 @@ const Profile = (props) => {
             </TouchableOpacity>
 
             {/* log out button */}
-            <TouchableOpacity style = {styles.buttons}>
+            <TouchableOpacity style = {styles.buttons} onPress={signOutNow}>
+
+
                 <Text style= {styles.buttonText}>התנתק</Text>
             </TouchableOpacity>
 

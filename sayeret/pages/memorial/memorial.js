@@ -1,4 +1,3 @@
-
 import {Modal, FlatList, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
 import Blurp from './ModalTemp';
 import ProfilePic from '../../assets/Images/profile.png';
