@@ -5,7 +5,7 @@ import *as ImagePicker from 'expo-image-picker';
 import Profile from '../../assets/Images/profile.png';
 import {auth, db} from '../../firebase';
 
-const EventTamplate = (props) => {
+const EventTemplate = (props) => {
 
     return (
         <ScrollView>
@@ -43,7 +43,7 @@ const EventTamplate = (props) => {
 
 }
 
-export default EventTamplate
+export default EventTemplate
 
 const styles = StyleSheet.create ({ 
     headerText: {

@@ -7,7 +7,7 @@ import { Navigation } from 'react-calendar';
 import PButton from '../../assets/Images/plusButton.png';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {auth, db} from '../../firebase';
-import EventTamplate from './eventTemp';
+import EventTemplate from './eventTemp';
 
 
 const EventCal = (props) => {
@@ -37,7 +37,7 @@ const EventCal = (props) => {
        <View style = {styles.container}>
         <FlatList data = {eventInfo}
             keyExtractor = {item => item.eventName}
-            renderItem = {(data) => <EventTamplate eventName = {data.item.eventName} timeAndDate = {data.item.timeAndDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTamplate>}
+            renderItem = {(data) => <EventTemplate eventName = {data.item.eventName} timeAndDate = {data.item.timeAndDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTemplate>}
             // numColumns = {3}
 >
          </FlatList>
