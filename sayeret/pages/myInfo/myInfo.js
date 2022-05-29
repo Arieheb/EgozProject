@@ -9,11 +9,17 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { block } from "react-native-reanimated";
 import { waitForPendingWrites } from "firebase/firestore";
 import UploadImage from "./uploadPhoto";
+import { signOut } from 'firebase/auth'
 
 const wWidth = Dimensions.get('window').width;
 const wHeight = Dimensions.get('window').height;
 
-
+const signOutNow = () => {
+    signOut(auth).then(() => {
+        navigation.replace('login');
+    }).catch((error) => {
+    });
+}
 
 const Profile = (props) => {
     const [email,setEmail] = useState("");
@@ -53,21 +59,10 @@ const Profile = (props) => {
                 
             </View>
 
-            {/* date of birth view */}
-            <View style = {styles.itemLayout}>               
-            <Text style = {styles.textStyle}>תאריך לידה: </Text>
-                <TextInput placeholder='dd/mm/yyyy'
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    // value={email}
-                    // onChangeText={text=>setEmail(text)}
-                    />
-            </View>
-
             {/* user name view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>שם משתמש: </Text>
-                <TextInput placeholder='User Name'
+                <TextInput placeholder={user.userName}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
@@ -92,7 +87,6 @@ const Profile = (props) => {
                 <TextInput placeholder={user.phoneNumber}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={email}
                     onChangeText={text=>setEmail(text)}
                     />                                    
             </View>
@@ -129,7 +123,9 @@ const Profile = (props) => {
             </TouchableOpacity>
 
             {/* log out button */}
-            <TouchableOpacity style = {styles.buttons}>
+            <TouchableOpacity style = {styles.buttons} onPress={signOutNow}>
+
+
                 <Text style= {styles.buttonText}>התנתק</Text>
             </TouchableOpacity>
 

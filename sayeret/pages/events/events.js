@@ -1,94 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import {FlatList, Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 import AddEvent from './AddEvent';
 import { Navigation } from 'react-calendar';
 import PButton from '../../assets/Images/plusButton.png';
+import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
+import {auth, db} from '../../firebase';
+import EventTemplate from './eventTemp';
 
 
-const EventCal = props => {
-    // const [value, onChange] = useState(new Date());
-    // <Text>hello</Text>
+const EventCal = (props) => {
+    const [eventInfo , setEventInfo ] = useState([]);
+    useEffect (()=> {
+
+        const eventCollection = collection (db, 'events')
+        const que = query (eventCollection, orderBy ('dateAndTime', 'asc'));
+  
+        const unsubscribe = onSnapshot (que, QuerySnapshot => {
+            setEventInfo (
+              QuerySnapshot.docs.map (doc => ({
+                eventName: doc.data().eventName,
+                timeAndDate: doc.data().timeAndDate,
+                location: doc.data().location,
+                information: doc.data().information,
+                contact: doc.data().contact
+              }))
+            );
+      });
+      return () => unsubscribe();
+    },[]);
+
     return (
-        <ScrollView>
-            <View>
-                <Text style = {styles.headerText}>לוח אירועים</Text>
 
-                <View name='main' style = {styles.eventFrame} >
-                    <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.dateTimeText}> 01/04/2022</Text>
-                        <Text style = {styles.dateTimeText}> 19:00</Text>
 
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם האירוע: האחד באפריל</Text>
-                        <Text style = {styles.infoText}> מקום/כתובת: כל הארץ </Text>
-                        <Text style = {styles.infoText}>פרטים נוספים: חגיגות יום האחד באפריל מתחילות!! מסיבות והפקות ענק </Text>
-                        <Text style = {styles.infoText}> איש קשר: אריה ברלין - 05855392574 </Text>
-
-                    </View>
-                    
-                </View>
-                    
-                
-                <View name='main' style = {styles.eventFrame} >
-                    <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.dateTimeText}> 25/04/2022</Text>
-                        <Text style = {styles.dateTimeText}> 17:00</Text>
-
-                    </View>
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם האירוע: יום זיכרון לאבי יחיאל</Text>
-                        <Text style = {styles.infoText}> מקום/כתובת: כרמיאל</Text>
-                        <Text style = {styles.infoText}> פרטים נוספים: יום זיכרון לאבי יחיאל שנפל במלחמת יום העצמאות, המשפחה מארחת לעלייה לקבר וארוחת הודיה
-                        לאחר מכן. כולם מוזמנים להצטרף. כתובת מדויקת תינתן באופן פרטי</Text>
-                        <Text style = {styles.infoText}> איש קשר: סימה יחיאל</Text>
-
-                    </View>
-                     
-                </View>
-
-                <View name='main' style = {styles.eventFrame} >
-                    <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.dateTimeText}> תאריך</Text>
-                        <Text style = {styles.dateTimeText}> שעה</Text>
-
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם האירוע:</Text>
-                        <Text style = {styles.infoText}> מקום/כתובת: </Text>
-                        <Text style = {styles.infoText}> פרטים נוספים: </Text>
-                        <Text style = {styles.infoText}> איש קשר: </Text>
-
-                    </View>
-                    
-                </View>
-
-                <View name='main' style = {styles.eventFrame} >
-                    <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.dateTimeText}> תאריך</Text>
-                        <Text style = {styles.dateTimeText}> שעה</Text>
-
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם האירוע:</Text>
-                        <Text style = {styles.infoText}> מקום/כתובת: </Text>
-                        <Text style = {styles.infoText}> פרטים נוספים: </Text>
-                        <Text style = {styles.infoText}> איש קשר: </Text>
-
-                    </View>
-                    
-                </View>
-                
-                    <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
-                        <Text style= {styles.buttonText} >הוספת אירוע חדש</Text>
-                    </TouchableOpacity>
-            </View>
-        </ScrollView>
+       <View style = {styles.container}>
+        <FlatList data = {eventInfo}
+            keyExtractor = {item => item.eventName}
+            renderItem = {(data) => <EventTemplate eventName = {data.item.eventName} timeAndDate = {data.item.timeAndDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTemplate>}
+            // numColumns = {3}
+>
+         </FlatList>
+         </View>
 
     );
-}
+        }
 
 export default EventCal
 
@@ -125,6 +81,10 @@ const styles = StyleSheet.create ({
     dateTimeText: {
         textAlign: 'center',
         margin: '13%',
+        justifyContent: "center",
+      alignItems: "center",
+    //   marginTop: 5,
+    //   padding: 5,
         
 
     },
