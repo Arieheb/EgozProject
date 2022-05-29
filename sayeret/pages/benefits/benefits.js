@@ -9,6 +9,7 @@ import pizza from "../../assets/Images/pizza.jpg";
 import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import AddBenefits from './addBenefit';
+import { FlatList } from 'react-native-gesture-handler';
 
 const App = () => {
     const [alert, setAlert] = React.useState({
@@ -41,10 +42,10 @@ const Benefit = props => {
 
             <View name='benefit' style = {styles.benefit} >
             <View name = 'picPlace' style = {styles.picFrame}>
-            <Image source={pizza}style = {styles.benefitsPic}></Image>
+            <Image source={props.Image}style = {styles.benefitsPic}></Image>
             </View> 
             <View name= 'information' style = {styles.infoFrame}>
-                <Text style = {styles.infoText}> שם ההטבה: הנחה בפיצה</Text>
+                <Text style = {styles.infoText}> {props.name}</Text>
                 <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
                 <Text style= {styles.buttonText} >קרא עוד</Text>
                 </TouchableOpacity>
@@ -53,7 +54,7 @@ const Benefit = props => {
 
     <Modal visible={visible}>
         <View>
-            <Text>  cnvsflgfgmsf;bg;gk;gg;kbjg;kf;kgפרטי הטבה</Text>
+            <Text>{props.info}</Text>
             <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
                 <Text style= {styles.buttonText} >חזור</Text>
                 </TouchableOpacity>
@@ -74,6 +75,7 @@ const Benefits = props => {
             const unsubscribe = onSnapshot (que, QuerySnapshot => {
                 setBenefitInfo(
                     QuerySnapshot.docs.map (doc => ({
+                        id: doc.id,
                         Name: doc.data().Name,
                         photo: doc.data().photo,
                         info: doc.data().info
@@ -87,7 +89,10 @@ const Benefits = props => {
             <View style = {styles.page}>
                 <Text style = {styles.title}>הטבות</Text>
 
-                <Benefit></Benefit>
+                <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
+                Image = {data.item.photo} info ={data.item.info}> </Benefit>}>
+                    
+                </FlatList>
                 <AddBenefits/>
 
             </View>
