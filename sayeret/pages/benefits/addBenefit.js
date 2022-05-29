@@ -23,8 +23,11 @@ const AddBenefits= props=>{
                     onChangeText={(text)=>{setName(text)}}/>
         <TextInput     value={info}
                     placeholder="פרטי הטבה"
-                    onChangeText={(text)=>{setName(text)}}/>
+                    onChangeText={(text)=>{setInfo(text)}}/>
         
+        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false)}}>
+            <Text style= {styles.buttonText} >הוסף</Text>
+        </TouchableOpacity>
         <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false)}}>
             <Text style= {styles.buttonText} >חזור</Text>
         </TouchableOpacity>
