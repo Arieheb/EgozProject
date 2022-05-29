@@ -49,7 +49,7 @@ jobGroups:{
     borderWidth:1,
     borderRadius:4,
     backgroundColor:"#35DB4E",
-    backgroundColor:"white",
+    // backgroundColor:"white",
     borderColor:"gray",
     alignContent:"center",
     borderRadius: 20,
