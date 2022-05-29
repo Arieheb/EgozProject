@@ -41,13 +41,13 @@ const Home = props=>{
             <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
             <View style = {styles.topButtonView}>
-             <TouchableOpacity  onPress={()=>props.navigation.navigate("benefits")}>
+             <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
                      <UpCard icon="id-card" Text = "הטבות" />
                 </TouchableOpacity>
              <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
                       <UpCard icon="comments" Text="משרות"/>
                 </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("events")}>
+             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
                      <UpCard icon="hand-holding-heart" Text = "אירועים" />
                 </TouchableOpacity>
             </View>
@@ -98,7 +98,7 @@ const Home = props=>{
             </ImageBackground>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
             <View style = {styles.bottamBar}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate("Contact")}>
                     <Text style = {styles.bottomButton}>צור קשר</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
