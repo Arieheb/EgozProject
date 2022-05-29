@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import {  Modal, Alert, Image, Pressable,  TextInput, View, link, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
+// import { AntDesign } from '@expo/vector-icons';
+// import *as ImagePicker from 'expo-image-picker';
 import Profile from '../../assets/Images/profile.png';
-import {auth, db} from '../../firebase';
+import {auth, db, storage} from '../../firebase';
+import {ref, getDownloadURL} from 'firebase/storage';
 
 
 const Blurp = (props) => {
+  const [imageUrl, setImageUrl] = useState (undefined);
+  useEffect (() => {
+   getDownloadURL( ref(storage, props.image)).then ((url)=> {
+      setImageUrl (url);
+    })
+    .catch ((e)=> console.log ('ERROR=>', e));
+  }, []);
+  
+  
   const [modalVisible, setModalVisible] = useState(false);
   return (
    
@@ -15,7 +25,7 @@ const Blurp = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Image source={Profile} style = {{width: 100, height: 130, borderRadius: 50}} />
+        <Image source={{uri: imageUrl}} style = {{width: 100, height: 130, borderRadius: 50}} />
         <Text style={styles.textStyle}>{props.name}</Text>
         <Text style={styles.moreTextStyle}>קרא עוד</Text>
 
@@ -32,7 +42,7 @@ const Blurp = (props) => {
           <View style={styles.modalView}>
             <View name='top area' style = {styles.topArea} >
                 <View name = 'profile picture' style={styles.proPic}>
-                  <Image source={Profile} style = {{width: 100, height: 130}} />
+                  <Image source={{uri: imageUrl}} style = {{width: 100, height: 130}} />
                 </View>
                 <View name = 'buried'>
                   <Text style={styles.nameEdit}>{props.name} ז"ל</Text>

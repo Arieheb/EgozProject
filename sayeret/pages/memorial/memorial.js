@@ -6,7 +6,8 @@ import {auth, db} from '../../firebase';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import { useEffect,useState } from 'react';
 import memorial from "../../assets/Images/izkor.jpg";
-
+import { storage} from '../../firebase';
+import {ref, getDownloadURL} from 'firebase/storage';
 
 const Memorial = () => { 
     const [memoryInfo, setMemoryInfo] = useState([]);
@@ -30,7 +31,6 @@ const Memorial = () => {
     });
     return () => unsubscribe();
   },[]);
-
 
     
      return (

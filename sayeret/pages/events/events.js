@@ -7,40 +7,52 @@ import { Navigation } from 'react-calendar';
 import PButton from '../../assets/Images/plusButton.png';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {auth, db} from '../../firebase';
-import EventTemplate from './eventTemp';
+import EventTemplate from './EventTemp';
 
 
 const EventCal = (props) => {
+
     const [eventInfo , setEventInfo ] = useState([]);
     useEffect (()=> {
 
         const eventCollection = collection (db, 'events')
-        const que = query (eventCollection, orderBy ('dateAndTime', 'asc'));
+        const que = query(eventCollection, orderBy ('timeAndDate', 'asc'));
   
         const unsubscribe = onSnapshot (que, QuerySnapshot => {
+            console.log(QuerySnapshot.size)
             setEventInfo (
-              QuerySnapshot.docs.map (doc => ({
+              QuerySnapshot.docs.map(doc => {
+                  
+                console.log("having items")
+                return({
                 eventName: doc.data().eventName,
                 timeAndDate: doc.data().timeAndDate,
                 location: doc.data().location,
                 information: doc.data().information,
                 contact: doc.data().contact
-              }))
+              })})
             );
       });
       return () => unsubscribe();
     },[]);
 
+    console.log(eventInfo);
     return (
 
 
        <View style = {styles.container}>
+           <Text style = {styles.headerText}>לוח אירועים</Text>
+
         <FlatList data = {eventInfo}
             keyExtractor = {item => item.eventName}
             renderItem = {(data) => <EventTemplate eventName = {data.item.eventName} timeAndDate = {data.item.timeAndDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTemplate>}
             // numColumns = {3}
 >
          </FlatList>
+        <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
+                        <Text style= {styles.buttonText} >הוספת אירוע חדש</Text>
+                    </TouchableOpacity>
+
          </View>
 
     );
