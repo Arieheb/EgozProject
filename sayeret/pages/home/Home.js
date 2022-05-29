@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground} from 'react-native';
+import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 // import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
@@ -43,7 +43,7 @@ const Home = props=>{
             <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
                 <View style = {styles.tint}>
-                    <View style = {{borderBottomWidth: 3, paddingBottom: 5}}>
+                    <View style = {{borderBottomWidth: 3, paddingBottom: 5, }}>
                             <View style = {styles.topButtonView}>
                             <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
                                     <UpCard icon="gift" Text = "הטבות" />
@@ -113,10 +113,10 @@ const Home = props=>{
                     <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
                             <UpCard icon="email-outline" Text = "צור קשר" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>props.navigation.navigate("calendar")}>
+                    <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
                          <Icons name ="facebook"  color="white"  size={70}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>props.navigation.navigate("calendar")}>
+                    <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
                          <Icons name ="instagram"  color="white" size={65}/>
                     </TouchableOpacity>
                     </View>
