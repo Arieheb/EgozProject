@@ -50,7 +50,14 @@ jobGroups:{
     borderRadius:4,
     backgroundColor:"#35DB4E",
     borderColor:"gray",
-    alignContent:"center"
+    alignContent:"center",
+    borderRadius: 20,
+    shadowOffset: {
+        width: 2,
+        height: 2
+      },
+      shadowOpacity: 0.5,
+      shadowRadius: 5,
 },
 jobGroupsTitle:{
     textAlign:"center",
