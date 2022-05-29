@@ -59,21 +59,10 @@ const Profile = (props) => {
                 
             </View>
 
-            {/* date of birth view */}
-            <View style = {styles.itemLayout}>               
-            <Text style = {styles.textStyle}>תאריך לידה: </Text>
-                <TextInput placeholder='dd/mm/yyyy'
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    // value={email}
-                    // onChangeText={text=>setEmail(text)}
-                    />
-            </View>
-
             {/* user name view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>שם משתמש: </Text>
-                <TextInput placeholder='User Name'
+                <TextInput placeholder={user.userName}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     // value={email}
@@ -98,7 +87,6 @@ const Profile = (props) => {
                 <TextInput placeholder={user.phoneNumber}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={email}
                     onChangeText={text=>setEmail(text)}
                     />                                    
             </View>
