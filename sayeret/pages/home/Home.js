@@ -53,10 +53,7 @@ const Home = props=>{
             </View>
                 <Text style={styles.title}>הסיירת הצפונית</Text>
                 <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
-                <YoutubePlayer 
-                    height={300}
-                    videoId ={  "MMTuF941VzA" }
-                /> 
+               
             </ImageBackground>
             <ImageBackground source={masa} style = {styles.view}>
                 <View style={styles.tint}>
@@ -87,7 +84,8 @@ const Home = props=>{
                 <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
                 <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
             </View> */}
-            <ImageBackground source={event} style = {styles.view}>
+            
+            {/* <ImageBackground source={event} style = {styles.view}>
                 <View style={styles.tint}>
                 <Text style = {styles.title} >אירועים</Text>
                 <Text style={styles.content}>ליחידת אגוז מורשת מפוארת וחלק חשוב בהובלת הלחימה של צה”ל מאז הוקמה. כל השנים היינו עסוקים בלהילחם ולנצח- היום אנו עוסקים גם בתיעוד המורשת שלנו. במסגרת זה אנו מקימים את האתר אינטרנט, כותבים ספר מורשת, מחדשים את אתר ההנצחה בקלעת נמרוד וחדר ההנצחה בנווה אטי”ב ומחדשים את ארכיון היחידה.  </Text>
@@ -95,7 +93,15 @@ const Home = props=>{
                     <Text style = {styles.button}>קרא עוד</Text>
                 </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </ImageBackground> */}
+
+            <YoutubePlayer 
+                    height={230}
+                    videoId ={  "MMTuF941VzA" }
+                    style = {styles.video}
+                /> 
+
+
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
             <View style = {styles.bottamBar}>
             <TouchableOpacity onPress={()=>props.navigation.navigate("Contact")}>
@@ -129,6 +135,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '98%',
 
+    },
+    video: {
+        paddingBottom: 0,
+        marginBottom: 0,
     },
     bottamBar: {
         flexDirection: "row",
