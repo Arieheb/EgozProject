@@ -37,6 +37,7 @@ const data = [
   ];
  
 const SignUp = () => {
+  const [userName,setUserName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
@@ -44,7 +45,7 @@ const SignUp = () => {
   const [LastName, setLastName] =useState("")
   const [address, setAddress] =useState("")
   const [city, setCity] =useState("") 
-  const [phone, setPhone] =useState(0) 
+  const [phone, setPhone] =useState("") 
 
   const validate = () => {
        if(email=="" || password==""){
@@ -75,7 +76,8 @@ const SignUp = () => {
               user_id:user.uid,
               pic:"",
               phoneNumber: phone,
-              password:password
+              password:password,
+              userName:userName,
             })
             
           })
@@ -101,6 +103,12 @@ const SignUp = () => {
                 placeholderTextColor={"#fff"}
                 value={email}
                 onChangeText={text=>setEmail(text)}
+              />
+              <TextInput placeholder='User Name:'
+                style={styles.input}
+                placeholderTextColor={"#fff"}
+                value={userName}
+                onChangeText={text=>userName(text)}
               />
               <TextInput placeholder='Password:' 
                 style={styles.input}
