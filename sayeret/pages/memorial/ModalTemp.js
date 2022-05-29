@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  Modal, Alert, Image, Pressable,  TextInput, View, link, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
-// import { AntDesign } from '@expo/vector-icons';
-// import *as ImagePicker from 'expo-image-picker';
-import Profile from '../../assets/Images/profile.png';
+import {  Modal, Image, Pressable, View,ScrollView, Text, StyleSheet} from 'react-native';
 import {auth, db, storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
 

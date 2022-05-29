@@ -7,7 +7,7 @@ import { Navigation } from 'react-calendar';
 import PButton from '../../assets/Images/plusButton.png';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {auth, db} from '../../firebase';
-import EventTemplate from './eventTemp';
+import EventTemplate from './EventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from "react-native-vector-icons/FontAwesome5";
 
@@ -21,11 +21,8 @@ const EventCal = (props) => {
         const que = query(eventCollection, orderBy ('timeAndDate', 'asc'));
   
         const unsubscribe = onSnapshot (que, QuerySnapshot => {
-            console.log(QuerySnapshot.size)
             setEventInfo (
               QuerySnapshot.docs.map(doc => {
-                  
-                console.log("having items")
                 return({
                 eventName: doc.data().eventName,
                 timeAndDate: doc.data().timeAndDate,
@@ -38,7 +35,6 @@ const EventCal = (props) => {
       return () => unsubscribe();
     },[]);
 
-    console.log(eventInfo);
     return (
 
 
@@ -50,10 +46,10 @@ const EventCal = (props) => {
             renderItem = {(data) => <EventTemplate eventName = {data.item.eventName} timeAndDate = {data.item.timeAndDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTemplate>}
             // numColumns = {3}
 >
-         </FlatList>
-         <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
-    <Icon name ="plus"  color="white"  size={70}/>   
-     </TouchableOpacity> 
+        </FlatList>
+        <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+            <Icon name ="plus"  color="white"  size={70}/>   
+        </TouchableOpacity> 
         {/* <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
                         <Text style= {styles.buttonText} >הוספת אירוע חדש</Text>
                     </TouchableOpacity> */}

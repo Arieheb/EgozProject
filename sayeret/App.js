@@ -22,6 +22,7 @@ import Contact from './pages/contact/Contact';
 import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -62,7 +63,7 @@ export default function App() {
   return (
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right'}}>
-          <Drawer.Screen name='home' component={Home}  />
+          <Drawer.Screen name='home' component={Home}/>
           <Drawer.Screen name='jobs' component={Jobs} />
           <Drawer.Screen name='about' component={About} />
           <Drawer.Screen name='forums' component={Forum} />
