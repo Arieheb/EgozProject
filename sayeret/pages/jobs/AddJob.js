@@ -45,7 +45,7 @@ const handleSubmit = ()=>{
   }
     // TODO - fix JSON output
     addDoc(collection(db,'jobs'),{title:titleInput, location:locationInput, description:descriptionInput, name:nameInput, phone:phoneInput, email:emailInput});
-    props.navigation.back();
+    props.navigation.navigate('A');
 }
 
   return (
