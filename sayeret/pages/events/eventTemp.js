@@ -10,12 +10,11 @@ const EventTemplate = (props) => {
     return (
         <ScrollView>
             <View>
-                <Text style = {styles.headerText}>לוח אירועים</Text>
-
+                
                 <View name='main' style = {styles.eventFrame} >
                     <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.dateTimeText}> {props.timeAndDate} </Text>
-                        <Text style = {styles.dateTimeText}> 19:00</Text>
+                        {/* <Text style = {styles.dateTimeText}> {props.timeAndDate} </Text> */}
+                        <Text style = {styles.dateTimeText}> 19:00 </Text>
 
                     </View> 
                     <View name= 'information' style = {styles.infoFrame}>
@@ -27,10 +26,6 @@ const EventTemplate = (props) => {
                     </View>
                     
                 </View>
-
-                    <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
-                        <Text style= {styles.buttonText} >הוספת אירוע חדש</Text>
-                    </TouchableOpacity>
             </View>
         </ScrollView>
 
@@ -102,13 +97,7 @@ const styles = StyleSheet.create ({
      },
 
    
-     buttons: {
-        borderRadius: 100,
-        margin:30,
-        borderWidth:1,
-        height: 100,
-        width: 100,
-    },
+     
 
     buttonText: {
         textAlign: 'center',

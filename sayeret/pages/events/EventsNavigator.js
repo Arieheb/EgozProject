@@ -2,13 +2,16 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import EventCal from './events'
+import EventCal from './Events'
 import AddEvent from './AddEvent'
 
 const Stack = createStackNavigator();
 
 const EventsNavigator = () => {
   return (
+    // <View>
+    //   <Text>Test</Text>
+    // </View>
     <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name='events' component={EventCal}/>
         <Stack.Screen name='addEvent' component={AddEvent}/>
