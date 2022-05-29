@@ -1,4 +1,4 @@
-import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions} from 'react-native'
+import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions, Keyboard} from 'react-native'
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -45,6 +45,17 @@ const SignUp = () => {
   const [address, setAddress] =useState("")
   const [city, setCity] =useState("") 
   const [phone, setPhone] =useState(0) 
+
+  const validate = () => {
+       if(email=="" || password==""){
+          alert("אחד מהנתונים חסרים")
+          return
+       }
+       if(password!=confirmPassword){
+          alert("הסיסמאות אינן זהות")
+          return
+       }
+  }
   const renderItem = ({item}) => {
     const handleSignUp = () =>
       {   
