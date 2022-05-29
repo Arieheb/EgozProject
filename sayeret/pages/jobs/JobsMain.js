@@ -48,7 +48,8 @@ jobGroups:{
     marginVertical:10,
     borderWidth:1,
     borderRadius:4,
-    backgroundColor:"#35DB4E",
+    // backgroundColor:"#35DB4E",
+    backgroundColor:"white",
     borderColor:"gray",
     alignContent:"center",
     borderRadius: 20,
@@ -63,21 +64,26 @@ jobGroupsTitle:{
     textAlign:"center",
     fontWeight:"bold",
     fontSize:18,
-    paddingBottom:3
+    paddingBottom:3,
 },
 jobGroupsLinks:{
-    // backgroundColor:"brown"
+    // backgroundColor:"brown",
+    // borderRadius:5,
+    // // alignContent:"space-between",
+    // justifyContent:"space-between"
+
     // TODO  *** Continue fron here ***
 },
 jobGroupsLink:{
-    color:"#35DB4E",
+    // color:"#35DB4E",
+    backgroundColor:"white",
     fontWeight:"bold",
     fontSize:14,
 
 },
     container:{
     flex:1,
-    alignItems:"center"
+    alignItems:"center",
 },
 titleText:{
     fontSize:22,
