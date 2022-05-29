@@ -3,6 +3,10 @@ import { View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Icons from "react-native-vector-icons/FontAwesome5";
+
+
 const AddBenefits= props=>{
     const [photo, setPhoto] = useState("");
     const [name, setName] = useState("");
@@ -10,7 +14,10 @@ const AddBenefits= props=>{
     const [vision, setVision] = useState(false);
 
     const Submit =async function(){
-        addDoc(collection(db, 'Benefit'), { name, info, photo});
+        addDoc(collection(db, 'Benefits'), { name, info, photo});
+        setName("");
+        setInfo("");
+        setVision(false);
     }
 
   
@@ -25,17 +32,18 @@ const AddBenefits= props=>{
                     placeholder="פרטי הטבה"
                     onChangeText={(text)=>{setInfo(text)}}/>
         
-        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{Submit()}}>
+        <TouchableOpacity style = {styles.topButton} onPress={()=>{Submit() }}>
             <Text style= {styles.buttonText} >הוסף</Text>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false)}}>
+        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false);setName("");
+        setInfo("");}}>
             <Text style= {styles.buttonText} >חזור</Text>
         </TouchableOpacity>
     </View>
     </Modal>
-    <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>setVision(true)}>
-        <Text>הוספת הטבה</Text>
-    </TouchableOpacity> 
+    <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
+    <Icon name ="plus"  color="white"  size={70}/>   
+     </TouchableOpacity> 
     </View>
     )
     
@@ -101,5 +109,20 @@ const styles = StyleSheet.create ({
         marginTop: 8,
         color:"white",
     },
+    topButton: {
+        borderRadius: 100,
+        width: 80,
+        height: 80,
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        marginHorizontal: 20,
+        marginTop: 8,
+        borderColor: "white",
+        borderWidth: 0.5,
+    },
+    
 });
 

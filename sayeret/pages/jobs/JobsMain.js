@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
-import {Text,Button, View, StyleSheet,FlatList} from 'react-native';
+import {Text,Button, View, StyleSheet,FlatList, TouchableOpacity} from 'react-native';
 import { Linking } from 'react-native';
 import JobCard from './JobCard';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Icons from "react-native-vector-icons/FontAwesome5";
+
+
 
 const JobsMain = props=>{
     const [jobsList, updateJobsList] = useState([
@@ -32,9 +36,13 @@ const JobsMain = props=>{
                         return <JobCard title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description}/>
                     }}
                 />  
-                <View style={{minHeight:80}}>
+                {/* <View style={{minHeight:80}}>
              <Button title='הוסף משרה חדשה' onPress={goToAddJob}></Button>
-                </View>
+                </View> */}
+
+                <TouchableOpacity style = {styles.plusButton} onPress={()=>{goToAddJob}}>
+    <Icon name ="plus"  color="white"  size={70}/>   
+     </TouchableOpacity> 
         </View> 
     );
 }
@@ -88,7 +96,21 @@ jobGroupsLink:{
 },
 titleText:{
     fontSize:22,
-}
+},
+plusButton: {
+    borderRadius: 100,
+    width: 80,
+    height: 80,
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+    flexDirection: "row",
+    textAlign: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    marginHorizontal: 20,
+    marginTop: 8,
+    borderColor: "white",
+    borderWidth: 0.5,
+},
 })
 
 export default JobsMain

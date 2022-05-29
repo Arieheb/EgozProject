@@ -61,11 +61,14 @@ const OpenForum = props=>{
                 </TouchableRipple>
             </Modal>
 
-            <View style ={styles.plus} >
+            {/* <View style ={styles.plus} >
                 <TouchableOpacity  onPress={()=>setVision(true)}>
                     <Text style={styles.up}>+</Text>
             </TouchableOpacity>
-           </View>
+           </View> */}
+                   <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
+    <Icon name ="plus"  color="white"  size={70}/>   
+     </TouchableOpacity> 
 
         </View>
     );
@@ -109,7 +112,25 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios'? 30:15,
         paddingLeft:5,
         
-    }
+    },
+    topButton: {
+        borderRadius: 100,
+        width: 80,
+        height: 80,
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        marginHorizontal: 20,
+        marginTop: 8,
+        borderColor: "white",
+        borderWidth: 0.5,
+        position:'absolute',
+        top:530,
+        right:30,
+        zIndex:1
+    },
 })
 
 export default OpenForum;

@@ -8,6 +8,8 @@ import PButton from '../../assets/Images/plusButton.png';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {auth, db} from '../../firebase';
 import EventTemplate from './eventTemp';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Icons from "react-native-vector-icons/FontAwesome5";
 
 
 const EventCal = (props) => {
@@ -49,9 +51,12 @@ const EventCal = (props) => {
             // numColumns = {3}
 >
          </FlatList>
-        <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
+         <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+    <Icon name ="plus"  color="white"  size={70}/>   
+     </TouchableOpacity> 
+        {/* <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("addEvent")}>
                         <Text style= {styles.buttonText} >הוספת אירוע חדש</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
          </View>
 
@@ -131,7 +136,21 @@ const styles = StyleSheet.create ({
         paddingTop: '40%',
         fontSize: 15
         
-    }
+    },
+    plusButton: {
+        borderRadius: 100,
+        width: 80,
+        height: 80,
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        marginHorizontal: 20,
+        marginTop: 8,
+        borderColor: "white",
+        borderWidth: 0.5,
+    },
 
 
 
