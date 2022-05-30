@@ -59,34 +59,35 @@ const SignUp = props => {
   }
   const renderItem = ({item}) => {
     const handleSignUp = () =>
-    {   
-    auth
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        addDoc(collection(db,"users"),{
-          Address:address,
-          city:city,
-          FirstName:firstName,
-          LastName:LastName,
-          email:user.email,
-          isAdmin:false,
-          isMember:false,
-          guest:true,
-          user_id:user.uid,
-          pic:"",
-          phoneNumber: phone,
-          password:password,
-          userName:userName,
-        })
-        
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-    }
+      {   
+        auth
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            auth.currentUser.displayName=userName;
+            addDoc(collection(db,"users"),{
+              Address:address,
+              city:city,
+              FirstName:firstName,
+              LastName:LastName,
+              email:user.email,
+              isAdmin:false,
+              isMember:false,
+              guest:true,
+              user_id:user.uid,
+              pic:"",
+              phoneNumber: phone,
+              password:password,
+              userName:userName,
+            })
+            
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+          });
+        }
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
     return (
