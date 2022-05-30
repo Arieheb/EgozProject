@@ -22,6 +22,7 @@
     "expo-image-picker": "^12.0.2",
     "expo-status-bar": "~1.2.0",
     "firebase": "^9.6.11",
+    "formik": "^2.2.9",
     "google-sign-in": "^3.0.3",
     "link": "^1.4.0",
     "react": "17.0.1",
