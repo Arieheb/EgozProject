@@ -1,4 +1,4 @@
-import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions, KeyboardAvoidingView} from 'react-native'
+import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions,Keyboard, KeyboardAvoidingView} from 'react-native'
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -36,7 +36,7 @@ const data = [
     
   ];
  
-const SignUp = () => {
+const SignUp = props => {
   const [userName,setUserName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
@@ -48,77 +48,77 @@ const SignUp = () => {
   const [phone, setPhone] =useState("") 
 
   const validate = () => {
-       if(email=="" || password==""){
-          alert("אחד מהנתונים חסרים")
-          return
-       }
-       if(password!=confirmPassword){
-          alert("הסיסמאות אינן זהות")
-          return
-       }
+      if(email=="" || password==""){
+        alert("אחד מהנתונים חסרים")
+        return
+      }
+      if(password!=confirmPassword){
+        alert("הסיסמאות אינן זהות")
+        return
+      }
   }
   const renderItem = ({item}) => {
     const handleSignUp = () =>
-      {   
-        auth
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            addDoc(collection(db,"users"),{
-              Address:address,
-              city:city,
-              FirstName:firstName,
-              LastName:LastName,
-              email:user.email,
-              isAdmin:false,
-              isMember:false,
-              guest:true,
-              user_id:user.uid,
-              pic:"",
-              phoneNumber: phone,
-              password:password,
-              userName:userName,
-            })
-            
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage);
-          });
-        }
+    {   
+    auth
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        addDoc(collection(db,"users"),{
+          Address:address,
+          city:city,
+          FirstName:firstName,
+          LastName:LastName,
+          email:user.email,
+          isAdmin:false,
+          isMember:false,
+          guest:true,
+          user_id:user.uid,
+          pic:"",
+          phoneNumber: phone,
+          password:password,
+          userName:userName,
+        })
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+    }
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
-      return (
-      <ScrollView>
-      <View style={styles.container}>  
-        <View style = {styles.top}>
-          <Image style = {styles.logo} source={Logo} 
-          styles={styles.logo}
-          />
-        </View>
-        <View style = {styles.bottom}>
-          <View style = {styles.inputView}>
-              <TextInput placeholder='Email:'
+    return (
+    <ScrollView>
+      <KeyboardAvoidingView style={styles.container} behavior="padding"> 
+        <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}> 
+          <View style = {styles.top}>
+            <Image style = {styles.logo} source={Logo} 
+            styles={styles.logo}/>
+          </View>
+          <View style = {styles.bottom}>
+            <View style = {styles.inputView}>
+              <TextInput placeholder='אימייל:'
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={email}
                 onChangeText={text=>setEmail(text)}
               />
-              <TextInput placeholder='User Name:'
+              <TextInput placeholder='שם משתמש:'
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={userName}
                 onChangeText={text=>setUserName(text)}
               />
-              <TextInput placeholder='Password:' 
+              <TextInput placeholder='סיסמא:' 
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={password}
                 onChangeText={text=>setPassword(text)}
                 secureTextEntry
               />
-              <TextInput placeholder='Confirm Password:' 
+              <TextInput placeholder='אימות סיסמא:' 
                 style={styles.input}
                 placeholderTextColor={"#fff"}
                 value={confirmPassword}
@@ -127,31 +127,34 @@ const SignUp = () => {
               />
             </View>
           </View>
-        </View>  
-      </ScrollView>
-      );
+        </TouchableOpacity>
+      </KeyboardAvoidingView>  
+    </ScrollView>
+    );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)
       return ( 
         <ScrollView>
-          <KeyboardAvoidingView style = {styles.top}>
-            <Text style= {styles.heading}>פרטים אישיים</Text>
-          </KeyboardAvoidingView>
+          <KeyboardAvoidingView style={styles.container} behavior="padding"> 
+            <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
+              <View style = {styles.top}>
+                <Text style= {styles.heading}>פרטים אישיים</Text>
+              </View>
 
-          <KeyboardAvoidingView style = {styles.bottom}>
-            <View style = {styles.inputView}>
-                <TextInput placeholder='שם פרטי:'
+              <View style = {styles.bottom}>
+                <View style = {styles.inputView}>
+                 <TextInput placeholder='שם פרטי:'
                   style={styles.input}
                   placeholderTextColor={"#fff"}
                   value={firstName}
                   onChangeText={text=>setFirstName(text)}
-                />
-                <TextInput placeholder='שם משפחה:' 
+                  />
+                  <TextInput placeholder='שם משפחה:' 
                   style={styles.input}
                   placeholderTextColor={"#fff"}
                   value={LastName}
                   onChangeText={text=>setLastName(text)}
-                />
+                  />
                 <TextInput placeholder='כתובת:' 
                   style={styles.input}
                   placeholderTextColor={"#fff"}
@@ -173,8 +176,10 @@ const SignUp = () => {
                 />
                 <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
                 <Text style = {styles.buttonText} >המשך</Text>
-              </TouchableOpacity>
+                </TouchableOpacity>
             </View>
+            </View>
+            </TouchableOpacity>
           </KeyboardAvoidingView>
         </ScrollView>
         );
@@ -211,7 +216,7 @@ const styles = StyleSheet.create({
      },
      top:{
         width:'100%',
-        height:'25%',
+        height:'15%',
         display:'flex',
         alignItems:'center',
         backgroundColor:'#fff',
@@ -224,7 +229,7 @@ const styles = StyleSheet.create({
    
      bottom:{
          width:'100%',
-         height:'75%',
+         height:'85%',
          backgroundColor:'#373737fe',  
          borderTopLeftRadius:25,
          borderTopRightRadius:25,
@@ -253,6 +258,7 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10,
         color:"white",
+        textAlign: Platform.OS === 'ios' ?'right': 'left',
      },
      buttons:{  
         alignItems:'center',

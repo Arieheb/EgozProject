@@ -5,6 +5,7 @@ import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { ScrollView } from 'react-native-gesture-handler';
+import forgotPage from './forgotPage'
 const{width,height:wHeight} = Dimensions.get("window");
 
 const LoginScreen = props => {
@@ -24,7 +25,7 @@ const LoginScreen = props => {
           });
         }
     return (
-        <ScrollView>
+    <ScrollView>
         <KeyboardAvoidingView style={styles.container} behavior="padding">
           <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
             <View style = {styles.top}>
@@ -34,13 +35,13 @@ const LoginScreen = props => {
             <View style = {styles.bottom}>
                 <Text style = {styles.heading}>כניסה</Text>
                 <View style = {styles.inputView}>
-                    <TextInput placeholder='Email:'
+                    <TextInput placeholder='אימייל:'
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     value={email}
                     onChangeText={text=>setEmail(text)}
                     />
-                    <TextInput placeholder='Password:' 
+                    <TextInput placeholder='סיסמא:' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     value={password}
@@ -56,7 +57,7 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('SignUp')}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.props.navigation.navigate("forgotPage")}>
                     <Text style = {styles.forgot}>שכחת סיסמא?</Text>
                     </TouchableOpacity>
                     <View style= {styles.gf = { flexDirection:"row" }}>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         marginLeft:40,
         marginTop:30,
-        textAlign: 'left',
+        textAlign: Platform.OS === 'ios' ?'left': 'right',
     },
     inputView:{
         width:'100%',
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         alignItems:'center',
         marginTop:25,
+        
          
     },
     input: {
@@ -129,6 +131,7 @@ const styles = StyleSheet.create({
        margin:5,
        color: "white",
        padding:10,
+       textAlign: Platform.OS === 'ios' ?'right': 'left',
     },
     buttons:{
        alignItems:'center',

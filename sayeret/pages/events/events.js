@@ -7,7 +7,7 @@ import { Navigation } from 'react-calendar';
 import PButton from '../../assets/Images/plusButton.png';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {auth, db} from '../../firebase';
-import EventTemplate from './EventTemp';
+//import EventTemplate from './EventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from "react-native-vector-icons/FontAwesome5";
 

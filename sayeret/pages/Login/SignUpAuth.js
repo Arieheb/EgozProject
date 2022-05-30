@@ -1,4 +1,4 @@
-import { View, Text ,TextInput, Pressable , StyleSheet,TouchableOpacity,StatusBar,Alert, KeyboardAvoidingView} from 'react-native'
+import { View, Text ,TextInput,StyleSheet,TouchableOpacity,Alert,Keyboard, KeyboardAvoidingView} from 'react-native'
 import {React,useState} from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import { auth } from '../../firebase';
@@ -9,11 +9,8 @@ const SignUpAuth = props => {
   const [show1,setShow1] = useState(false);
   const [show2,setShow2] = useState(false);
 
-  
   return (
-    <ScrollView>
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-
+    <View style={styles.container} behavior="padding">
       <View style = {styles.top}>
         <Text style= {styles.heading}> שאלון אימות</Text>
       </View>
@@ -29,32 +26,32 @@ const SignUpAuth = props => {
               <Text style={styles.choiceText}>כן</Text>
             </TouchableOpacity>
             <TouchableOpacity 
-            onPress={()=>{if(show2)setShow2(false);else setShow2(true)&& show1==false}}
+            onPress={()=>{if(show2)setShow2(false);else setShow2(true) && show1==false}}
             style={styles.choiceButton}
             >
               <Text style={styles.choiceText}>לא</Text>
             </TouchableOpacity>  
           </View>  
-            {show1?
-              <View styel= {styles.show}>
-                <Text style={styles.text}>באיזה שנה?</Text>
-                <TextInput  
-                  style={styles.showInput}
-                  placeholder='...'
-                  placeholderTextColor={"#fff"}
-                />
-                <Text style={styles.text}>באיזה מחזור?</Text>
-                <TextInput  
-                  style={styles.showInput}
-                  placeholder='...'
-                  placeholderTextColor={"#fff"}
-                />
-                <Text style={styles.text}>באיזה צוות?</Text>
-                <TextInput  
-                  style={styles.showInput}
-                  placeholder='...'
-                  placeholderTextColor={"#fff"}
-                />  
+          {show1?
+            <View styel= {styles.show}>
+              <Text style={styles.text}>באיזה שנה?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholder='...'
+                placeholderTextColor={"#fff"}
+              />
+              <Text style={styles.text}>באיזה מחזור?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholder='...'
+                placeholderTextColor={"#fff"}
+              />
+              <Text style={styles.text}>באיזה צוות?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholder='...'
+                placeholderTextColor={"#fff"}
+              />  
             </View>:null}
             {show2?
               <View>
@@ -63,19 +60,16 @@ const SignUpAuth = props => {
                   style={styles.showInput}
                   placeholder='...'
                   placeholderTextColor={"#fff"}
-                />
-                
+                /> 
             </View>:null}
-            
             <TouchableOpacity style = {styles.buttons}>
               <Text style = {styles.buttonText} >סיום</Text>
             </TouchableOpacity>
           </View>
         </View>
-     </KeyboardAvoidingView>
-     </ScrollView>
-        );
-    };
+      </View>
+  );
+};
     
   
 
