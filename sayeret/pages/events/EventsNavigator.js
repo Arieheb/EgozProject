@@ -9,6 +9,9 @@ const Stack = createStackNavigator();
 
 const EventsNavigator = () => {
   return (
+    // <View>
+    //   <Text>Test</Text>
+    // </View>
     <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name='events' component={EventCal}/>
         <Stack.Screen name='addEvent' component={AddEvent}/>

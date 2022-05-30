@@ -37,6 +37,7 @@ const data = [
   ];
  
 const SignUp = () => {
+  const [userName,setUserName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
@@ -44,7 +45,7 @@ const SignUp = () => {
   const [LastName, setLastName] =useState("")
   const [address, setAddress] =useState("")
   const [city, setCity] =useState("") 
-  const [phone, setPhone] =useState(0) 
+  const [phone, setPhone] =useState("") 
 
   const validate = () => {
        if(email=="" || password==""){
@@ -75,7 +76,8 @@ const SignUp = () => {
               user_id:user.uid,
               pic:"",
               phoneNumber: phone,
-              password:password
+              password:password,
+              userName:userName,
             })
             
           })
@@ -89,9 +91,7 @@ const SignUp = () => {
     if(item.key == 1)
       return (
       <ScrollView>
-      <KeyboardAvoidingView 
-      style={styles.container}
-      behavior="padding">  
+      <View style={styles.container}>  
         <View style = {styles.top}>
           <Image style = {styles.logo} source={Logo} 
           styles={styles.logo}
@@ -104,6 +104,12 @@ const SignUp = () => {
                 placeholderTextColor={"#fff"}
                 value={email}
                 onChangeText={text=>setEmail(text)}
+              />
+              <TextInput placeholder='User Name:'
+                style={styles.input}
+                placeholderTextColor={"#fff"}
+                value={userName}
+                onChangeText={text=>setUserName(text)}
               />
               <TextInput placeholder='Password:' 
                 style={styles.input}
@@ -119,11 +125,10 @@ const SignUp = () => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
               />
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView> 
-     </ScrollView>
-
+        </View>  
+      </ScrollView>
       );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)

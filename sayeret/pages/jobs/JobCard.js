@@ -31,11 +31,17 @@ const styles = StyleSheet.create({
     minWidth:"98%",
     height:200,
     padding:5,
-    marginVertical:10,
+    marginVertical:5,
     borderWidth:1,
-    borderRadius:4,
+    borderRadius:20,
     backgroundColor:"white",
-    borderColor:"gray"
+    borderColor:"gray",
+    shadowOffset: {
+      width: 2,
+      height: 2
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
   },
 
   title:{

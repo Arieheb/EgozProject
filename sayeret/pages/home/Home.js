@@ -1,12 +1,14 @@
 import React from 'react';
-import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground} from 'react-native';
+import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
-import Icon from "react-native-vector-icons/FontAwesome";
+// import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
 import map from "../../assets/Images/dark-topography.jpg";
 import masa from "../../assets/Images/unit-hero.jpg";
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+
 
 
 const NumberCard = props=>{
@@ -25,7 +27,7 @@ const UpCard = props=>{
             <View style = {styles.icon}>
                 {props.icon === 'hand-holding-heart'?
                 <Icons name ={props.icon} color="white" size={25}/>:
-                <Icon name ={props.icon} color="white" size={25}/>}
+                <Icon name ={props.icon} color="white" size={props.size?props.size:25}/>}
             </View>
             <Text style={{...styles.Text,color:"white"}}>{props.Text}</Text>
         </View>
@@ -40,23 +42,23 @@ const Home = props=>{
         
             <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-            <View style = {styles.topButtonView}>
-             <TouchableOpacity  onPress={()=>props.navigation.navigate("benefits")}>
-                     <UpCard icon="id-card" Text = "הטבות" />
-                </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
-                      <UpCard icon="comments" Text="משרות"/>
-                </TouchableOpacity>
-             <TouchableOpacity onPress={()=>props.navigation.navigate("events")}>
-                     <UpCard icon="hand-holding-heart" Text = "אירועים" />
-                </TouchableOpacity>
-            </View>
-                <Text style={styles.title}>הסיירת הצפונית</Text>
-                <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
-                <YoutubePlayer 
-                    height={300}
-                    videoId ={  "MMTuF941VzA" }
-                /> 
+                <View style = {styles.tint}>
+                    <View style = {{borderBottomWidth: 3, paddingBottom: 5, }}>
+                            <View style = {styles.topButtonView}>
+                            <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
+                                    <UpCard icon="gift" Text = "הטבות" />
+                                </TouchableOpacity>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
+                                    <UpCard icon="briefcase" Text="משרות"/>
+                                </TouchableOpacity>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+                                    <UpCard icon="calendar-month" Text = "אירועים" />
+                                </TouchableOpacity>
+                            </View>
+                    </View>
+                        <Text style={styles.title}>הסיירת הצפונית</Text>
+                        <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
+                </View>
             </ImageBackground>
             <ImageBackground source={masa} style = {styles.view}>
                 <View style={styles.tint}>
@@ -87,7 +89,8 @@ const Home = props=>{
                 <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
                 <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
             </View> */}
-            <ImageBackground source={event} style = {styles.view}>
+            
+            {/* <ImageBackground source={event} style = {styles.view}>
                 <View style={styles.tint}>
                 <Text style = {styles.title} >אירועים</Text>
                 <Text style={styles.content}>ליחידת אגוז מורשת מפוארת וחלק חשוב בהובלת הלחימה של צה”ל מאז הוקמה. כל השנים היינו עסוקים בלהילחם ולנצח- היום אנו עוסקים גם בתיעוד המורשת שלנו. במסגרת זה אנו מקימים את האתר אינטרנט, כותבים ספר מורשת, מחדשים את אתר ההנצחה בקלעת נמרוד וחדר ההנצחה בנווה אטי”ב ומחדשים את ארכיון היחידה.  </Text>
@@ -95,19 +98,29 @@ const Home = props=>{
                     <Text style = {styles.button}>קרא עוד</Text>
                 </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </ImageBackground> */}
+
+            <YoutubePlayer 
+                    height={230}
+                    videoId ={  "MMTuF941VzA" }
+                    style = {styles.video}
+                /> 
+
+
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-            <View style = {styles.bottamBar}>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottomButton}>צור קשר</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottomButton}> פייסבוק</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.bottomButton}> אינסטגרם</Text>
-            </TouchableOpacity>
-            </View>
+                <View style = {styles.tint}>
+                    <View style = {styles.bottamBar}>
+                    <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
+                            <UpCard icon="email-outline" Text = "צור קשר" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
+                         <Icons name ="facebook"  color="white"  size={70}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
+                         <Icons name ="instagram"  color="white" size={65}/>
+                    </TouchableOpacity>
+                    </View>
+                </View>
             </ImageBackground>
             {/* <ImageBackground source={memorial} style = {styles.view}>
                 <View style={styles.tint}>
@@ -130,11 +143,18 @@ const styles = StyleSheet.create({
         height: '98%',
 
     },
+    video: {
+        paddingBottom: 0,
+        marginBottom: 0,
+        borderWidth: 0,
+    },
     bottamBar: {
         flexDirection: "row",
-        height: 100,
+        height: 60,
         margin: 0,
         padding: 0,
+        justifyContent: "center",
+
     },
     map: {
         width: '100%',
@@ -173,6 +193,8 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems:"center",
         justifyContent:"center",
+        margin: 0,
+        padding: 0
     },
     button: {
         borderRadius: 7,
@@ -198,6 +220,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginHorizontal: 20,
         marginTop: 8,
+        borderColor: "white",
+        borderWidth: 0.5,
     },
     bottomButton: {
         borderRadius: 100,
@@ -211,6 +235,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 8,
         color:"white",
+        borderWidth: 0.5,
+        borderColor: "white",
+
+
 
     },
     topButtonView: {
@@ -219,6 +247,13 @@ const styles = StyleSheet.create({
         fontSize: 20,  
         //backgroundColor: "#454554",
         margin: 0,
+        shadowOffset: { height: 20, width: 2},
+        //backgroundColor:"rgba(0,0,0,0.6)",
+        // elevation: 20,
+        // overflow:'hidden',
+        // borderBottomWidth: 20
+
+
     },
     view: {
         alignItems: "center",
