@@ -64,6 +64,7 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
+            auth.currentUser.displayName=userName;
             addDoc(collection(db,"users"),{
               Address:address,
               city:city,
