@@ -1,4 +1,4 @@
-import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions, Keyboard} from 'react-native'
+import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions, KeyboardAvoidingView} from 'react-native'
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -88,7 +88,10 @@ const SignUp = () => {
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
       return (
-      <View style={styles.container}>  
+      <ScrollView>
+      <KeyboardAvoidingView 
+      style={styles.container}
+      behavior="padding">  
         <View style = {styles.top}>
           <Image style = {styles.logo} source={Logo} 
           styles={styles.logo}
@@ -118,17 +121,19 @@ const SignUp = () => {
               />
           </View>
         </View>
-     </View> 
+      </KeyboardAvoidingView> 
+     </ScrollView>
+
       );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)
       return ( 
-        <View>
-           <View style = {styles.top}>
-        <Text style= {styles.heading}>פרטים אישיים</Text>
-      </View>
+        <ScrollView>
+          <KeyboardAvoidingView style = {styles.top}>
+            <Text style= {styles.heading}>פרטים אישיים</Text>
+          </KeyboardAvoidingView>
 
-          <View style = {styles.bottom}>
+          <KeyboardAvoidingView style = {styles.bottom}>
             <View style = {styles.inputView}>
                 <TextInput placeholder='שם פרטי:'
                   style={styles.input}
@@ -165,8 +170,8 @@ const SignUp = () => {
                 <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
             </View>
-          </View>
-        </View>
+          </KeyboardAvoidingView>
+        </ScrollView>
         );
         //----------------------------------------------third page ----------------------------------
       else
@@ -184,6 +189,7 @@ const SignUp = () => {
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         data={data}
+        onDone={validate}
       />
     </View>
   );

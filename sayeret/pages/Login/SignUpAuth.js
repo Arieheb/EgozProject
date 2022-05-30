@@ -1,4 +1,4 @@
-import { View, Text ,TextInput, Pressable , StyleSheet,TouchableOpacity,StatusBar,Alert} from 'react-native'
+import { View, Text ,TextInput, Pressable , StyleSheet,TouchableOpacity,StatusBar,Alert, KeyboardAvoidingView} from 'react-native'
 import {React,useState} from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import { auth } from '../../firebase';
@@ -10,14 +10,9 @@ const SignUpAuth = props => {
   const [show2,setShow2] = useState(false);
 
   
-  //const [nameInput, setNameInput] = useState("")
-  // const [year, setYear] = useState("")
-  // const [month, setMonth] = useState("")
-  // const [descriptionInput, setDescriptionInput] = useState("")
-  // const [phoneInput, setPhoneInput] = useState("")
-  
   return (
-    <View style={styles.container}>
+    <ScrollView>
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
 
       <View style = {styles.top}>
         <Text style= {styles.heading}> שאלון אימות</Text>
@@ -77,8 +72,8 @@ const SignUpAuth = props => {
             </TouchableOpacity>
           </View>
         </View>
-     </View>
-     
+     </KeyboardAvoidingView>
+     </ScrollView>
         );
     };
     
