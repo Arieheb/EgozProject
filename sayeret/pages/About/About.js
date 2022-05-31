@@ -140,10 +140,11 @@ const styles = StyleSheet.create({
 
   },
   content:{
+    margin:10,
     fontSize:20,
     paddingRight:10,
     paddingLeft:10,
-    direction: "rtl",
+    textAlign: 'left'
   },
   image:{
     

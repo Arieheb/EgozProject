@@ -58,7 +58,9 @@ const DrawerContent = props => {
             })
         })
     },[])
+    
   return (
+    
     <View style={{flex:1}}>
         <DrawerContentScrollView {...props}>
             <View style={styles.drawerContent}>
@@ -69,7 +71,7 @@ const DrawerContent = props => {
                         size={50}/>
 
                         <View style={{marginLeft:15}}>
-                            <Title style={styles.title}>שם משתמש</Title>
+                            <Title style={styles.title}>{user.FirstName + " "}{user.LastName} </Title>
                             <Caption style={styles.caption}>פרטים נוספים</Caption>
                         </View>
                     </View>
@@ -83,8 +85,8 @@ const DrawerContent = props => {
                     <Card title="פורטל משרות" iconName="briefcase" nav="jobs" navigation={props.navigation} user={user}/>
                     <Card title="לוח אירועים" iconName="calendar-month" nav="calendar" navigation={props.navigation} user={user}/>
                     <Card title="זיכרון והנצחה" iconName="candle" nav="Memorial" navigation={props.navigation} user={user}/>
-                    <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation} user={user}/>
                     <Card title="הטבות" iconName="gift" nav="Benefits" navigation={props.navigation} user={user}/>
+                    <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation} user={user}/>
                     <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
                 </Drawer.Section>
             </View>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {  Modal, Image, Pressable, View,ScrollView, Text, StyleSheet} from 'react-native';
+import {  Modal, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet} from 'react-native';
 import {auth, db, storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
 
+const scrWidth = Dimensions.get('screen').width;
+const scrHeight = Dimensions.get('screen').height;
 
 const Blurp = (props) => {
   const [imageUrl, setImageUrl] = useState (undefined);

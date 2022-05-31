@@ -57,7 +57,9 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('SignUp')}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.props.navigation.navigate("forgotPage")}>
+                    <TouchableOpacity 
+                    // onPress={this.props.navigation.navigate("forgotPage")}
+                    >
                     <Text style = {styles.forgot}>שכחת סיסמא?</Text>
                     </TouchableOpacity>
                     <View style= {styles.gf = { flexDirection:"row" }}>
