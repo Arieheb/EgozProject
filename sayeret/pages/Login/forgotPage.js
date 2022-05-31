@@ -5,8 +5,7 @@
 // import FormInput from '../components/FormInput'
 // import FormButton from '../components/FormButton'
 // import ErrorMessage from '../components/ErrorMessage'
-// import { withFirebaseHOC } from '../config/Firebase'
-
+// import { withFirebaseHOC } from '../firebase'
 // const validationSchema = Yup.object().shape({
 //     email: Yup.string()
 //       .label('Email')
@@ -24,7 +23,8 @@
 //       actions.setFieldError('general', error.message)
 //     }
 //   }
-// const forgotPage = () => {
+//   class forgotPage extends Component {
+//     render(){
 //     return (
 //       <SafeAreaView style={styles.container}>
 //         <Text style={styles.text}>Forgot Password?</Text>
