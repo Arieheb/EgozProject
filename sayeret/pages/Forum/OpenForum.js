@@ -66,7 +66,7 @@ const OpenForum = props=>{
                     <Text style={styles.up}>+</Text>
             </TouchableOpacity>
            </View> */}
-                   <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
+                   <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
     <Icon name ="plus"  color="white"  size={70}/>   
      </TouchableOpacity> 
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         paddingLeft:5,
         
     },
-    topButton: {
+    plusButton: {
         borderRadius: 100,
         width: 80,
         height: 80,

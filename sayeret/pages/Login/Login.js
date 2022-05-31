@@ -57,9 +57,9 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} >
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.props.navigation.navigate("forgotPage")}>
+                    {/* <TouchableOpacity onPress={props.navigation.navigate("forgotPage")}> */}
                     <Text style = {styles.forgot}>שכחת סיסמא?</Text>
-                    </TouchableOpacity>
+                    {/* </TouchableOpacity> */}
                     <View style= {styles.gf = { flexDirection:"row" }}>
                         <TouchableOpacity style={styles.gfButtons}>
                             <Text style = {styles.gfText}>google</Text>

@@ -22,6 +22,7 @@ import Contact from './pages/contact/Contact';
 import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
+// import forgotPage from './forgotPage'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -54,6 +55,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen options={{headerMode:'none'}} name='login' component={LoginScreen}/>
+          {/* <Stack.Screen options={{headerMode:'none'}} name='forgotPage' component={forgotPage}/> */}
           <Stack.Screen name='SignUp' component={SignUp}/>
         </Stack.Navigator>
       </NavigationContainer>
