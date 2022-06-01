@@ -20,13 +20,13 @@ const SignUpAuth = props => {
           <Text style={styles.text}>האם שירתת ביחידה?</Text>
           <View style ={styles.choiceView}>   
             <TouchableOpacity 
-            onPress={()=>{if(show1)setShow1(false);else{setShow1(true);setShow2(false)}}}
+            onPress={()=>{setShow1(true);setShow2(false)}}
             style={styles.choiceButton}
             >
               <Text style={styles.choiceText}>כן</Text>
             </TouchableOpacity>
             <TouchableOpacity 
-            onPress={()=>{if(show2)setShow2(false);else {setShow2(true); setShow1(false)}}}
+            onPress={()=>{setShow2(true); setShow1(false)}}
             style={styles.choiceButton}
             >
               <Text style={styles.choiceText}>לא</Text>
