@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {FlatList, View,TouchableOpacity, Text, StyleSheet, setVision } from 'react-native';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
-import EventTemplate from './eventTemp';
+import EventTemplate from './EventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
