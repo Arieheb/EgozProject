@@ -66,9 +66,9 @@ const OpenForum = props=>{
                     <Text style={styles.up}>+</Text>
             </TouchableOpacity>
            </View> */}
-                   <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
-    <Icon name ="plus"  color="white"  size={70}/>   
-     </TouchableOpacity> 
+        <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+            <Icon name ="plus"  color="white"  size={45}/>   
+        </TouchableOpacity> 
 
         </View>
     );
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         position:'absolute',
-        top:530,
-        right:30,
+        bottom:90,
+        left:2,
         zIndex:1
     },
     up:{
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     },
     plusButton: {
         borderRadius: 100,
-        width: 80,
-        height: 80,
+        width: 50,
+        height: 50,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
         flexDirection: "row",
         textAlign: "center",
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         position:'absolute',
         top:530,
-        right:30,
+        right:7,
         zIndex:1
     },
 })
