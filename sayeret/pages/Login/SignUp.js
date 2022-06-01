@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10,
         color:"white",
-        textAlign: Platform.OS === 'ios' ?'right': 'left',
+        textAlign: 'right',
      },
      buttons:{  
         alignItems:'center',

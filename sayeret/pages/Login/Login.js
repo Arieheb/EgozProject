@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
        margin:5,
        color: "white",
        padding:10,
-       textAlign: Platform.OS === 'ios' ?'right': 'left',
+       textAlign: 'right',
     },
     buttons:{
        alignItems:'center',
