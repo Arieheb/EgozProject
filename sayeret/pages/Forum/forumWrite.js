@@ -59,14 +59,17 @@ const WriteToForum = (props) => {
    }
 
   // compares two messages and sees if it is from the same user
-  function isSameUser(a, b){return a.user.name == b.user.name? true: false;}
+  function isSameUser(a, b){
+    return (a.user === b.user)? false: true;}
   //comapres two messages and sees if it is on the same day or not
-  // function isSameDay(a, b){
-  //   let dayA = new Date(a.createdAt)
-  //   let dayB = new Date(b.createdAt)
-  // }
+  function isSameDay(a, b){
+    let dayA = new Date(a.createdAt)
+    let dayB = new Date(b.createdAt)
+    return dayA.getDate()===dayB.getDate()?true: false;
+  }
   function bubble(props) {
-    if (isSameUser(props.currentMessage, props.previousMessage) && isSameDay(props.currentMessage, props.previousMessage)) {
+    if ( isSameDay(props.currentMessage, props.previousMessage) && isSameUser(props.currentMessage, props.previousMessage)) {
+      console.log("ddd")
       return (
         <Bubble
           {...props}
