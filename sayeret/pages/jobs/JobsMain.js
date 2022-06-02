@@ -47,8 +47,12 @@ const JobsMain = props=>{
             <View style={styles.jobGroups}>
                 <Text style={styles.jobGroupsTitle}>קבוצות ה-WhatsApp שלנו:</Text>
                 <View style={styles.jobGroupsLinks}>
-                <Button style={styles.jobGroupsLink} title='הייטק' onPress={() => Linking.openURL("https://chat.whatsapp.com/Jyd1Rw8XaHcIaJ2I8j5OCL")}></Button>
-                <Button style={styles.jobGroupsLink} title='כללי' onPress={() => Linking.openURL("https://chat.whatsapp.com/I6oOrQn0BfT3mGFaUig2Oc")}></Button>
+                <TouchableOpacity style = {styles.jobGroupsLink} onPress={()=>Linking.openURL("https://chat.whatsapp.com/Jyd1Rw8XaHcIaJ2I8j5OCL")}>
+                       <Text>היי-טק</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.jobGroupsLink} onPress={()=>Linking.openURL("https://chat.whatsapp.com/I6oOrQn0BfT3mGFaUig2Oc")}>
+                      <Text>כללי</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             
@@ -83,7 +87,6 @@ jobGroups:{
     borderWidth:1,
     borderRadius:4,
     backgroundColor:"white",
-    // backgroundColor:"white",
     borderColor:"gray",
     alignContent:"center",
     borderRadius: 20,
@@ -108,7 +111,7 @@ jobGroupsLinks:{
    
     flexDirection:'row',
     justifyContent: 'space-evenly',
-    flex:1
+    flex:1,
 
 
     
@@ -118,9 +121,9 @@ jobGroupsLink:{
     backgroundColor:"white",
     fontWeight:"bold",
     fontSize:14,
-    borderWidth: 3,
-//     borderColor: "black"
-
+    borderWidth: 1,
+    padding: 5,
+    borderRadius: 10
 },
     container:{
     flex:1,

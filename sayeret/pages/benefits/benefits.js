@@ -132,6 +132,8 @@ const styles = StyleSheet.create ({
         padding: 5,
         height: 200,
         flexDirection: "row",
+        borderColor: "black",
+        borderWidth: 1
     },
     picFrame: {
         width: '50%',
