@@ -54,7 +54,7 @@ const Benefit = props => {
 
     <Modal visible={visible}>
         <View>
-            <Text>{props.info}</Text>
+            <Text style = {styles.infoText}>{props.info}</Text>
             <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
                 <Text style= {styles.buttonText} >חזור</Text>
                 </TouchableOpacity>
@@ -76,7 +76,7 @@ const Benefits = props => {
                 setBenefitInfo(
                     QuerySnapshot.docs.map (doc => ({
                         id: doc.id,
-                        Name: doc.data().Name,
+                        Name: doc.data().name,
                         photo: doc.data().photo,
                         info: doc.data().info
                     }))
@@ -85,9 +85,9 @@ const Benefits = props => {
             return () => unsubscribe();
          },[]);
          return (
-            <ScrollView >
+         
             <View style = {styles.page}>
-                <Text style = {styles.title}>הטבות</Text>
+                {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
                 Image = {data.item.photo} info ={data.item.info}> </Benefit>}>
@@ -96,7 +96,6 @@ const Benefits = props => {
                 <AddBenefits/>
 
             </View>
-        </ScrollView>
 
     );
 }

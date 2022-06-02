@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import {Text,Button, View, StyleSheet,FlatList, TouchableOpacity} from 'react-native';
 import { Linking } from 'react-native';
 import JobCard from './JobCard';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from "react-native-vector-icons/FontAwesome5";
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase';
+
+
 
 
 
@@ -14,6 +18,25 @@ const JobsMain = props=>{
         {id:2,title:"מתכנת/ת Fullstack",location:"ירושלים",contactName: "אפרת", contactPhone:"0505488023", contactEmail:"efrata@lightricks.com", description:"לנעה מערכות בעמ דרושים /ות מתכנתים /ות Fullstack ו- Backend. דרוש /ה CTO שייכנס / תכנס כ- Founder ודרושים מתכנתים /ות Fullstack ו- Backend."},
         {id:3,title:"מנהל אורחן",location:"קרית מוצקין",contactName: "משיח", contactPhone:"0509321083", contactEmail:"lamalo@orhanmashiah.com", description:"לאורחן משיח דרוש מנהל, זמר ופרזנטור ששיאו מאחוריו, ויעשה הכל כדי להיות בטופ. דרישות תפקיד: שחצן, וולגרי ובעל ביטחון עצמי מופרז."}
     ]);
+    useEffect (()=>{
+        const collectionJobs = collection(db, 'jobs');
+        const que = query (collectionJobs);
+        
+        const unsubscribe = onSnapshot (que, QuerySnapshot => {
+            updateJobsList(
+                QuerySnapshot.docs.map (doc => ({
+                    id: doc.id,
+                    contactName: doc.data().name,
+                    description: doc.data().description,
+                    contactEmail: doc.data().email,
+                    title: doc.data().title,
+                    location: doc.data().location,
+
+                }))
+            );
+        });
+        return () => unsubscribe();
+     },[]);
 
     function goToAddJob (){
         props.navigation.navigate('B');
@@ -73,15 +96,12 @@ jobGroupsTitle:{
     fontWeight:"bold",
     fontSize:18,
     paddingBottom:3,
+    alignItems: 'center',
+    flexDirection:'row',
 },
 jobGroupsLinks:{
-    // backgroundColor:"brown",
-    // borderRadius:5,
-    // // alignContent:"space-between",
-    // justifyContent:"space-between",
     
-
-    // TODO  *** Continue fron here ***
+    
 },
 jobGroupsLink:{
     // color:"#35DB4E",
