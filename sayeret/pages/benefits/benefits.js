@@ -109,15 +109,17 @@ const styles = StyleSheet.create ({
         alignItems: "center",
     },
     buttonsBenefit: {
-        backgroundColor: "red",
-        borderRadius: 20,
+        backgroundColor: "#115B99",
+        borderRadius: 10,
         textAlign: "center",
+        color: "white",
     },
     buttonText: {
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
-        margin: 2
+        margin: 2,
+        color: "white",
     },
     title: {
         fontWeight: "bold",
@@ -161,7 +163,6 @@ const styles = StyleSheet.create ({
         textAlign: "center",
         margin: 20,
         marginTop: 8,
-        color:"white",
     },
     // button: {
     //     borderRadius: 7,
