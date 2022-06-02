@@ -45,12 +45,13 @@ const JobsMain = props=>{
     return(
         <View style={styles.container}>
             <View style={styles.jobGroups}>
-                <Text style={styles.jobGroupsTitle}>קבוצות ה-WhatsApp שלנו</Text>
+                <Text style={styles.jobGroupsTitle}>קבוצות ה-WhatsApp שלנו:</Text>
                 <View style={styles.jobGroupsLinks}>
                 <Button style={styles.jobGroupsLink} title='הייטק' onPress={() => Linking.openURL("https://chat.whatsapp.com/Jyd1Rw8XaHcIaJ2I8j5OCL")}></Button>
                 <Button style={styles.jobGroupsLink} title='כללי' onPress={() => Linking.openURL("https://chat.whatsapp.com/I6oOrQn0BfT3mGFaUig2Oc")}></Button>
                 </View>
             </View>
+            
                 <FlatList   
                     style={{width:"100%"}}
                     contentContainerStyle={{alignItems:"center"}}
@@ -63,9 +64,11 @@ const JobsMain = props=>{
              <Button title='הוסף משרה חדשה' onPress={goToAddJob}></Button>
                 </View> */}
 
-                <TouchableOpacity style = {styles.plusButton} onPress={()=>{goToAddJob}}>
-    <Icon name ="plus"  color="white"  size={70}/>   
-     </TouchableOpacity> 
+                <View>
+                    <TouchableOpacity style = {styles.plusButton} onPress={()=>{goToAddJob}}>
+                        <Icon name ="plus"  color="white"  size={70}/>   
+                    </TouchableOpacity> 
+                </View>
         </View> 
     );
 }
@@ -79,7 +82,7 @@ jobGroups:{
     marginVertical:10,
     borderWidth:1,
     borderRadius:4,
-    backgroundColor:"#35DB4E",
+    backgroundColor:"white",
     // backgroundColor:"white",
     borderColor:"gray",
     alignContent:"center",
@@ -90,6 +93,8 @@ jobGroups:{
       },
       shadowOpacity: 0.5,
       shadowRadius: 5,
+      alignItems: 'center',
+      flexDirection:'row',
 },
 jobGroupsTitle:{
     textAlign:"center",
@@ -100,14 +105,21 @@ jobGroupsTitle:{
     flexDirection:'row',
 },
 jobGroupsLinks:{
-    
+   
+    flexDirection:'row',
+    justifyContent: 'space-evenly',
+    flex:1
+
+
     
 },
 jobGroupsLink:{
-    // color:"#35DB4E",
+    color:"#35DB4E",
     backgroundColor:"white",
     fontWeight:"bold",
     fontSize:14,
+    borderWidth: 3,
+//     borderColor: "black"
 
 },
     container:{
