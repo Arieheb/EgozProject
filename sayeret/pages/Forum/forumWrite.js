@@ -4,8 +4,9 @@ import { Avatar } from 'react-native-elements';
 import { auth, db } from '../../firebase';
 // import { signOut } from 'firebase/auth';
 import { collection, addDoc, updateDoc,doc, query, orderBy, onSnapshot, limit, startAfter, getDocs, getDoc,where } from 'firebase/firestore';
-import { GiftedChat } from 'react-native-gifted-chat';
-
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+import profile from '../../assets/Images/profile.png'
+import { isSameUser } from 'react-native-gifted-chat/lib/utils';
 
 const WriteToForum = (props) => {
     const [messages, setMessages] = useState([]);
@@ -57,6 +58,30 @@ const WriteToForum = (props) => {
     return contentSize.height - layoutMeasurement.height - paddingToTop <= contentOffset.y;
    }
 
+  // compares two messages and sees if it is from the same user
+  function isSameUser(a, b){return a.user.name == b.user.name? true: false;}
+  //comapres two messages and sees if it is on the same day or not
+  // function isSameDay(a, b){
+  //   let dayA = new Date(a.createdAt)
+  //   let dayB = new Date(b.createdAt)
+  // }
+  function bubble(props) {
+    if (isSameUser(props.currentMessage, props.previousMessage) && isSameDay(props.currentMessage, props.previousMessage)) {
+      return (
+        <Bubble
+          {...props}
+        />
+      );
+    }
+    return (
+      <View>
+        <Text style={styles.name}>{props.currentMessage.user.name}</Text>
+        <Bubble
+          {...props}
+        />
+      </View>
+    );
+  }
 
    //adding the new message to the database
   const onSend = useCallback((messages = []) => {
@@ -71,11 +96,11 @@ const WriteToForum = (props) => {
   return (
     <GiftedChat
       messages={messages}
+      renderBubble={bubble}
       onSend={messages => onSend(messages)}
       user={{
         _id: auth?.currentUser?.email,
         name: auth?.currentUser?.displayName,
-        
       }}
       //when getting to the top load previous messages
       listViewProps={{
@@ -91,3 +116,9 @@ const WriteToForum = (props) => {
 }
 
 export default WriteToForum
+const styles = StyleSheet.create({
+  name:{
+    color:'blue',
+
+  }
+})

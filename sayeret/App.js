@@ -7,6 +7,8 @@ import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth } from './firebase';
+import {WebView} from 'react-native-webview';
+
 
 import DrawerContent from './DrawerContent';
 
@@ -22,6 +24,7 @@ import Contact from './pages/contact/Contact';
 import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
+import membership from './pages/memberPay/Membership'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -64,11 +67,10 @@ export default function App() {
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right'}}>
           <Drawer.Screen name='home' component={Home} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
+                  <TouchableOpacity style={styles.memberBtn} onPress = {()=> props.navigation.navigate("PayMember")}
+                     //need to input link to membership 
+                     //https://shop117095.istores.co.il/%D7%97%D7%91%D7%A8-%D7%A2%D7%9E%D7%95%D7%AA%D7%94-%D7%97%D7%91%D7%A8%D7%95%D7%AA-%D7%A9%D7%A0%D7%AA%D7%99%D7%AA/                   
+                  >
                       <Text style={styles.text}>תשלום חברות</Text>
                   </TouchableOpacity>
                 ),
@@ -144,16 +146,18 @@ export default function App() {
                 ),
               }}/>
           <Drawer.Screen name='Memorial' component={Memorial} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
+                  
+                  
+                  
+                  <TouchableOpacity style={styles.memberBtn} onPress = {()=> {//need to input link to membership                    
                   }}>
                       <Text style={styles.text}>תשלום חברות</Text>
                   </TouchableOpacity>
                 ),
-              }}/>
+              }
+              }/>
           <Drawer.Screen name='store' component={Store} />
+          <Drawer.Screen name='membership' component={membership} />
 
 
 

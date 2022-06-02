@@ -124,13 +124,13 @@ const Forum = props=>{
     return(
         
         <View>
-           
-            <OpenForum/> 
+            <OpenForum/>
             <FlatList data={forumList}
                 style={{height:"95%"}}
                 keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  user={data.item} params={props.route.params}/>}
-            />   
+                />   
+             
         </View> 
     );
 };
