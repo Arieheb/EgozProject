@@ -51,21 +51,12 @@ const OpenForum = props=>{
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
                 />
-                <Text>catagories</Text>
-                <Text>forum / chat</Text>
-                <Text>members</Text>
                 <TouchableRipple onPress={()=>submit()}>
                     <View style={styles.button}>
                         <Text style={styles.up}>הוסף</Text>
                     </View>
                 </TouchableRipple>
             </Modal>
-
-            {/* <View style ={styles.plus} >
-                <TouchableOpacity  onPress={()=>setVision(true)}>
-                    <Text style={styles.up}>+</Text>
-            </TouchableOpacity>
-           </View> */}
         <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
             <Icon name ="plus"  color="white"  size={45}/>   
         </TouchableOpacity> 
