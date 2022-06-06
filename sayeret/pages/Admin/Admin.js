@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native'
 import React from 'react'
 
 const Admin = () => {
@@ -6,6 +6,12 @@ const Admin = () => {
     <View>
         <View>
         <Text>ניהול משתמשים</Text>
+        <FlatList data={newUsers}
+              keyExtractor = {item=> item.id}>
+                
+              </FlatList>
+
+        
 
         </View>
         <View>
@@ -16,6 +22,7 @@ const Admin = () => {
      
 
     </View>
+
   )
 }
 

@@ -58,7 +58,7 @@ const About = () => {
 
         <View>
           <TouchableOpacity onPress={()=>{if(show3)setShow3(false);else setShow3(true)}}>
-          <ImageBackground style={styles.image} source={require('../../assets/Images/egoz_sign.png')} resizeMode='cover'>
+          <ImageBackground style={styles.image} source={require('../../assets/Images/new_egoz_pic.png')} resizeMode='cover'>
             <Text style = {styles.title}>1956 - הקמת סיירת אגוז</Text>
           </ImageBackground>
          
