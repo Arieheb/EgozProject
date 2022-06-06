@@ -54,7 +54,7 @@ const Benefit = props => {
 
     <Modal visible={visible}>
         <View>
-            <Text>{props.info}</Text>
+            <Text style = {styles.infoText}>{props.info}</Text>
             <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
                 <Text style= {styles.buttonText} >חזור</Text>
                 </TouchableOpacity>
@@ -76,7 +76,7 @@ const Benefits = props => {
                 setBenefitInfo(
                     QuerySnapshot.docs.map (doc => ({
                         id: doc.id,
-                        Name: doc.data().Name,
+                        Name: doc.data().name,
                         photo: doc.data().photo,
                         info: doc.data().info
                     }))
@@ -85,9 +85,9 @@ const Benefits = props => {
             return () => unsubscribe();
          },[]);
          return (
-            <ScrollView >
+         
             <View style = {styles.page}>
-                <Text style = {styles.title}>הטבות</Text>
+                {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
                 Image = {data.item.photo} info ={data.item.info}> </Benefit>}>
@@ -96,7 +96,6 @@ const Benefits = props => {
                 <AddBenefits/>
 
             </View>
-        </ScrollView>
 
     );
 }
@@ -109,15 +108,17 @@ const styles = StyleSheet.create ({
         alignItems: "center",
     },
     buttonsBenefit: {
-        backgroundColor: "red",
-        borderRadius: 20,
+        backgroundColor: "#115B99",
+        borderRadius: 10,
         textAlign: "center",
+        color: "white",
     },
     buttonText: {
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
-        margin: 2
+        margin: 2,
+        color: "white",
     },
     title: {
         fontWeight: "bold",
@@ -131,6 +132,8 @@ const styles = StyleSheet.create ({
         padding: 5,
         height: 200,
         flexDirection: "row",
+        borderColor: "black",
+        borderWidth: 1
     },
     picFrame: {
         width: '50%',
@@ -161,7 +164,6 @@ const styles = StyleSheet.create ({
         textAlign: "center",
         margin: 20,
         marginTop: 8,
-        color:"white",
     },
     // button: {
     //     borderRadius: 7,

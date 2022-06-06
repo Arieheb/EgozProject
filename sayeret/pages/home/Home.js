@@ -43,7 +43,6 @@ const Home = props=>{
             <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
                 <View style = {styles.tint}>
-                    <View style = {{borderBottomWidth: 3, paddingBottom: 5, }}>
                             <View style = {styles.topButtonView}>
                             <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
                                     <UpCard icon="gift" Text = "הטבות" />
@@ -55,7 +54,6 @@ const Home = props=>{
                                     <UpCard icon="calendar-month" Text = "אירועים" />
                                 </TouchableOpacity>
                             </View>
-                    </View>
                         <Text style={styles.title}>הסיירת הצפונית</Text>
                         <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
                 </View>
@@ -108,17 +106,17 @@ const Home = props=>{
 
 
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-                <View style = {styles.tint}>
+             <View style = {{...styles.tint, paddingBottom:0}}>
                     <View style = {styles.bottamBar}>
-                    <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
-                            <UpCard icon="email-outline" Text = "צור קשר" />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
-                         <Icons name ="facebook"  color="white"  size={70}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
-                         <Icons name ="instagram"  color="white" size={65}/>
-                    </TouchableOpacity>
+                        <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
+                                <UpCard icon="email-outline" Text = "צור קשר" />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
+                            <Icons name ="facebook"  color="white"  size={70}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
+                            <Icons name ="instagram"  color="white" size={65}/>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ImageBackground>
@@ -150,10 +148,12 @@ const styles = StyleSheet.create({
     },
     bottamBar: {
         flexDirection: "row",
-        height: 60,
+        // height: 60,
         margin: 0,
         padding: 0,
         justifyContent: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.50)",
+        height: 100,
 
     },
     map: {
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
     },
     stat: {
         flexDirection: "row",
-        backgroundColor: "#454554",
+        backgroundColor: "black",
         justifyContent: "space-around"
     },
     icon: {
@@ -244,14 +244,9 @@ const styles = StyleSheet.create({
     topButtonView: {
         flexDirection: "row",
         justifyContent: "center",
-        fontSize: 20,  
-        //backgroundColor: "#454554",
-        margin: 0,
-        shadowOffset: { height: 20, width: 2},
-        //backgroundColor:"rgba(0,0,0,0.6)",
-        // elevation: 20,
-        // overflow:'hidden',
-        // borderBottomWidth: 20
+        backgroundColor: "rgba(0, 0, 0, 0.50)",
+        height: 100,
+   
 
 
     },

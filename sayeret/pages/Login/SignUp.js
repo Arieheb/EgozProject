@@ -3,7 +3,7 @@ import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
 import { auth, db } from '../../firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import SignUpAuth from './SignUpAuth';
 const{width,height:wHeight} = Dimensions.get("window");
 import { addDoc, collection } from 'firebase/firestore'; 
@@ -60,18 +60,20 @@ const SignUp = props => {
         auth
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            const user = userCredential.user;
-            auth.currentUser.displayName=firstName+' '+LastName;
+         updateProfile(userCredential.user,{
+            displayName: firstName+' '+LastName,
+            phoneNumber: phone,
+          })
             addDoc(collection(db,"users"),{
               Address:address,
               city:city,
               FirstName:firstName,
               LastName:LastName,
-              email:user.email,
+              email:auth.currentUser.email,
               isAdmin:false,
               isMember:false,
               guest:true,
-              user_id:user.uid,
+              user_id:auth.currentUser.uid,
               pic:"",
               password:password,
               

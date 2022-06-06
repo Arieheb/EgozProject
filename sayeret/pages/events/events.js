@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {FlatList, View,TouchableOpacity, Text, StyleSheet, setVision } from 'react-native';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
-//import EventTemplate from './EventTemp';
+import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
@@ -70,7 +70,9 @@ const styles = StyleSheet.create ({
           height: 2
         },
         shadowOpacity: 0.5,
-        shadowRadius: 5,        
+        shadowRadius: 5, 
+        borderWidth: 1,
+        borderColor: "black"       
     }, 
     
 
