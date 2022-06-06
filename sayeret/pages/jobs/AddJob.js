@@ -1,7 +1,8 @@
+import { addDoc, collection } from 'firebase/firestore';
 import React,{useState} from 'react';
 import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Job from '../../models/job'
+import { db } from '../../firebase';
 
 const AddJob = props => {
 const [titleInput, setTitleInput] = useState("")
@@ -42,11 +43,9 @@ const handleSubmit = ()=>{
   if(!emailInput.length){
     return Alert.alert("יש להזין כתובת אימייל")
   }
-
-    const newJob = new Job(titleInput, locationInput, descriptionInput, nameInput, phoneInput, emailInput);
-    Alert.alert(JSON.stringify(newJob))
     // TODO - fix JSON output
-    // TODO - update databse
+    addDoc(collection(db,'jobs'),{title:titleInput, location:locationInput, description:descriptionInput, name:nameInput, phone:phoneInput, email:emailInput});
+    props.navigation.navigate('A');
 }
 
   return (

@@ -1,13 +1,14 @@
-
-import {Modal, FlatList, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
+import {Modal, FlatList, Dimensions, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
 import Blurp from './ModalTemp';
-import ProfilePic from '../../assets/Images/profile.png';
-import logoGrey from '../../assets/Images/logo_grey.png';
 import {auth, db} from '../../firebase';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import { useEffect,useState } from 'react';
 import memorial from "../../assets/Images/izkor.jpg";
 
+
+
+const scrWidth = Dimensions.get('screen').width;
+const scrHeight = Dimensions.get('screen').height;
 
 const Memorial = () => { 
     const [memoryInfo, setMemoryInfo] = useState([]);
@@ -32,7 +33,6 @@ const Memorial = () => {
     return () => unsubscribe();
   },[]);
 
-
     
      return (
       <ImageBackground source={memorial} style = {styles.view}>
@@ -41,7 +41,6 @@ const Memorial = () => {
             keyExtractor = {item => item.Name}
             renderItem = {(data) => <Blurp name = {data.item.Name} image={data.item.profilePic} info = {data.item.information} semitary = {data.item.semitary} part = {data.item.section} row = {data.item.row} graveNumber = {data.item.graveNumber}  ></Blurp>}
             numColumns = {3}
-
 >
          </FlatList>
          </View>
@@ -54,11 +53,13 @@ const Memorial = () => {
 
   const styles = StyleSheet.create({
     container: {
-        // flex: 3, // the number of columns you want to devide the screen into
         marginHorizontal: "auto",
-        
-        
+        width: scrWidth,
+        height: scrHeight,
+        paddingTop: 20,
+        paddingBottom: 100
       },
+      
     item: {
         flex: 1,
         maxWidth: "30%", // 100% devided by the number of rows you want

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import { View,Text,StyleSheet,Modal,Button, SafeAreaView } from 'react-native';
+import { View,Text,StyleSheet,Modal,Button, SafeAreaView,TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import {db} from "../../firebase";
 import {collection,query,addDoc,getDocs, where, orderBy} from 'firebase/firestore';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -52,28 +51,40 @@ const OpenForum = props=>{
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
                 />
-                <Text>catagories</Text>
-                <Text>forum / chat</Text>
-                <Text>members</Text>
                 <TouchableRipple onPress={()=>submit()}>
-                    <View style={styles.plus}>
-                        <Text style={styles.up}>+</Text>
+                    <View style={styles.button}>
+                        <Text style={styles.up}>הוסף</Text>
                     </View>
                 </TouchableRipple>
             </Modal>
-            <Button title='add forum' onPress={()=>{setVision(true);}}></Button>
+        <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+            <Icon name ="plus"  color="white"  size={45}/>   
+        </TouchableOpacity> 
+
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    button:{
+      width:100,
+      height:50,
+      backgroundColor:"blue",
+      borderRadius:20,
+      alignItems:'center',
+      justifyContent:'center',
+    },
     plus:{
-        height : 50,
-        width: 50,
+        height : 75,
+        width: 75,
         backgroundColor: "blue",
-        borderRadius:25,
+        borderRadius:50,
         justifyContent:'center',
         alignItems:'center',
+        position:'absolute',
+        bottom:90,
+        left:2,
+        zIndex:1
     },
     up:{
         color:"white",
@@ -92,7 +103,25 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios'? 30:15,
         paddingLeft:5,
         
-    }
+    },
+    plusButton: {
+        borderRadius: 100,
+        width: 50,
+        height: 50,
+        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        flexDirection: "row",
+        textAlign: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        marginHorizontal: 20,
+        marginTop: 8,
+        borderColor: "white",
+        borderWidth: 0.5,
+        position:'absolute',
+        top:530,
+        right:7,
+        zIndex:1
+    },
 })
 
 export default OpenForum;
