@@ -24,7 +24,7 @@ import Contact from './pages/contact/Contact';
 import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
-import membership from './pages/memberPay/Membership'
+// import membership from './pages/memberPay/Membership'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -157,7 +157,7 @@ export default function App() {
               }
               }/>
           <Drawer.Screen name='store' component={Store} />
-          <Drawer.Screen name='membership' component={membership} />
+          {/* <Drawer.Screen name='membership' component={membership} /> */}
 
 
 
