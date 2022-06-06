@@ -13,6 +13,8 @@ const SignUpAuth = props => {
     <View style={styles.container} behavior="padding">
       <View style = {styles.top}>
         <Text style= {styles.heading}> שאלון אימות</Text>
+        <Text></Text>
+        <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות פרטי המשתמש</Text>
       </View>
 
       <View style = {styles.bottom}>
@@ -84,10 +86,10 @@ const styles = StyleSheet.create({
  },
  top:{
     width:'100%',
-    height:'15%',
+    height:'25%',
     display:'flex',
     alignItems:'flex-start',
-    justifyContent:'flex-end',
+    justifyContent:'flex-start',
     paddingBottom:20,
     alignItems:'center',
     backgroundColor:'#fff'
@@ -96,10 +98,11 @@ const styles = StyleSheet.create({
   color:'black',
   fontSize:40,
   fontWeight:'bold',
+  paddingTop:15,
 },
  bottom:{
      width:'100%',
-     height:'85%',
+     height:'75%',
      backgroundColor:'#373737fe',   
      borderTopLeftRadius:25,
      borderTopRightRadius:25,

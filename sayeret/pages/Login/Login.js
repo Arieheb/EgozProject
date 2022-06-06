@@ -60,14 +60,7 @@ const LoginScreen = props => {
                     {/* <TouchableOpacity onPress={props.navigation.navigate("forgotPage")}> */}
                     <Text style = {styles.forgot}>שכחת סיסמא?</Text>
                     {/* </TouchableOpacity> */}
-                    <View style= {styles.gf = { flexDirection:"row" }}>
-                        <TouchableOpacity style={styles.gfButtons}>
-                            <Text style = {styles.gfText}>google</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.gfButtons}>
-                            <Text style = {styles.gfText}>facebook</Text>
-                        </TouchableOpacity>
-                    </View>
+                    
                 </View>
             </View>
             </TouchableOpacity>
@@ -150,7 +143,7 @@ const styles = StyleSheet.create({
     },
     forgot:{
         margin:10,
-        paddingTop:5,
+        paddingTop:15,
         color:'white',
     },
     gf:{

@@ -2,7 +2,6 @@ import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dime
 import {React,useState} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { ScrollView } from 'react-native-gesture-handler';
-// import SelectDropdown from 'react-native-select-dropdown';
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import SignUpAuth from './SignUpAuth';
@@ -37,7 +36,6 @@ const data = [
   ];
  
 const SignUp = props => {
-  const [userName,setUserName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
@@ -45,7 +43,6 @@ const SignUp = props => {
   const [LastName, setLastName] =useState("")
   const [address, setAddress] =useState("")
   const [city, setCity] =useState("") 
-  const [phone, setPhone] =useState("") 
 
   const validate = () => {
       if(email=="" || password==""){
@@ -76,9 +73,8 @@ const SignUp = props => {
               guest:true,
               user_id:user.uid,
               pic:"",
-              phoneNumber: phone,
               password:password,
-              userName:userName,
+              
             })
             
           })
@@ -106,12 +102,6 @@ const SignUp = props => {
                 value={email}
                 onChangeText={text=>setEmail(text)}
               />
-              <TextInput placeholder='שם משתמש:'
-                style={styles.input}
-                placeholderTextColor={"#fff"}
-                value={userName}
-                onChangeText={text=>setUserName(text)}
-              />
               <TextInput placeholder='סיסמא:' 
                 style={styles.input}
                 placeholderTextColor={"#fff"}
@@ -126,6 +116,9 @@ const SignUp = props => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
               />
+              <TouchableOpacity style = {styles.buttons} onPress = {{handleSignUp,validate}}>
+                <Text style = {styles.buttonText} >המשך</Text>
+                </TouchableOpacity>
             </View>
           </View>
         </TouchableOpacity>
@@ -168,13 +161,7 @@ const SignUp = props => {
                   value={city}
                   onChangeText={text=>setCity(text)}
                 />
-                <TextInput placeholder='מספר טלפון:' 
-                  style={styles.input}
-                  placeholderTextColor={"#fff"}
-                  value={phone}
-                  keyboardType='phone-pad'
-                  onChangeText={text=>setPhone(text)}
-                />
+                
                 <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
                 <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
@@ -217,7 +204,7 @@ const styles = StyleSheet.create({
      },
      top:{
         width:'100%',
-        height:'15%',
+        height:'25%',
         display:'flex',
         alignItems:'center',
         backgroundColor:'#fff',
@@ -230,7 +217,7 @@ const styles = StyleSheet.create({
    
      bottom:{
          width:'100%',
-         height:'85%',
+         height:'75%',
          backgroundColor:'#373737fe',  
          borderTopLeftRadius:25,
          borderTopRightRadius:25,
