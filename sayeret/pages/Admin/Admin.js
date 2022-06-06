@@ -9,7 +9,7 @@ const accept = (id)=>{
   return false;
 } 
 
-const decline = (id)=>{
+const decline = (id, userId)=>{
   Alert.alert(
     "למחוק?",
     "האם אתה בטוח שאתה רוצה למחוק את המשתמש הזה",
@@ -52,7 +52,7 @@ GuestItem = props=>{
         <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(accept(props.id))}>
           <Text style = {styles.buttensText}>אשר</Text>
         </TouchableOpacity>        
-        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id))}>
+        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, userId))}>
           <Text style = {styles.buttensText}>סרב</Text>
         </TouchableOpacity> 
         <View >
@@ -81,6 +81,7 @@ const Admin = () => {
           fname: doc.data().FirstName,
           lname: doc.data().LastName,
           questionaire: doc.data().questionaire,
+          userId: doc.data().user_id,
         }))
       );
     });
@@ -93,7 +94,7 @@ const Admin = () => {
         <Text>ניהול משתמשים</Text>
         <FlatList data={newUsers}
         keyExtractor = {item=> item.id}
-        renderItem = {(data)=><GuestItem id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
+        renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
         />
         </View>
 
