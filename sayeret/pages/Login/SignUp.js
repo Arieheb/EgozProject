@@ -62,7 +62,6 @@ const SignUp = props => {
         .then((userCredential) => {
          updateProfile(userCredential.user,{
             displayName: firstName+' '+LastName,
-            phoneNumber: phone,
           })
             addDoc(collection(db,"users"),{
               Address:address,
