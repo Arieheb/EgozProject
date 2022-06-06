@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Alert } from
 import React, {useEffect, useState} from 'react'
 import {doc,collection, query, where, onSnapshot, updateDoc, deleteDoc} from 'firebase/firestore'
 import {db} from '../../firebase'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const accept = (id)=>{
   updateDoc(doc(db,'users',id),{'guest':false});
@@ -39,6 +40,9 @@ GuestItem = props=>{
         <Text>סתכל</Text>
       </TouchableOpacity>
       <Modal visible={visible}>
+        <TouchableOpacity onPress={()=>setVisiblity(false)}>
+          <Icon name="arrow-right-thick" size={20}/>
+        </TouchableOpacity>
         <Text>{props.name}</Text>
         {/* {props.questionaire.map((item, index) => (
          <Text key={index}>{item.productTitle}</Text>
