@@ -107,8 +107,7 @@ const Blurp = (props) => {
       justifyContent: "center",
       alignItems: "center",
       marginTop: 5,
-      padding: 5,
-      
+      padding: 5,      
       borderRadius: 20,
       shadowColor: "#000",
       shadowOffset: {

@@ -39,7 +39,6 @@ const Benefit = props => {
     const [visible, setVisible] = useState(false);
     return(
         <View>
-
             <View name='benefit' style = {styles.benefit} >
             <View name = 'picPlace' style = {styles.picFrame}>
             <Image source={props.Image}style = {styles.benefitsPic}></Image>
