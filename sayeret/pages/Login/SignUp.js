@@ -185,6 +185,9 @@ const SignUp = props => {
     <View style={{flex: 1}}>
       <StatusBar translucent backgroundColor="transparent" />
       <AppIntroSlider
+        showNextButton={false}
+        showDoneButton={false}
+        showPrevButton={true}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         data={data}
