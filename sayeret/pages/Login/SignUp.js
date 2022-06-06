@@ -117,7 +117,9 @@ const SignUp = props => {
                 onChangeText={text=>setConfirmPassword(text)}
                 secureTextEntry
               />
-              <TouchableOpacity style = {styles.buttons} onPress = {{handleSignUp,validate}}>
+              <TouchableOpacity 
+              style = {styles.buttons} 
+              onPress = {validate}>
                 <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
             </View>
@@ -164,7 +166,7 @@ const SignUp = props => {
                 />
                 
                 <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
-                <Text style = {styles.buttonText} >המשך</Text>
+                  <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
             </View>
             </View>

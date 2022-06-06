@@ -1,5 +1,5 @@
 import {React,useState,} from 'react';
-import {View,StyleSheet,Image,TextInput,Button,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground, Keyboard} from 'react-native';
+import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground, Keyboard} from 'react-native';
 import Logo from '../../assets/Images/login_logo.png';
 import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
@@ -57,9 +57,9 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("SignUp")}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
-                    {/* <TouchableOpacity onPress={props.navigation.navigate("forgotPage")}> */}
+                    <TouchableOpacity onPress={()=>props.navigation.navigate("forgotPage")}>
                     <Text style = {styles.forgot}>שכחת סיסמא?</Text>
-                    {/* </TouchableOpacity> */}
+                    </TouchableOpacity>
                     
                 </View>
             </View>
