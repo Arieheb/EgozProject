@@ -52,7 +52,7 @@ GuestItem = props=>{
         <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(accept(props.id))}>
           <Text style = {styles.buttensText}>אשר</Text>
         </TouchableOpacity>        
-        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, userId))}>
+        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, props.userId))}>
           <Text style = {styles.buttensText}>סרב</Text>
         </TouchableOpacity> 
         <View >
