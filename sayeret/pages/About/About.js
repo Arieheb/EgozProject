@@ -11,7 +11,7 @@ const About = () => {
 
   return (
     <ScrollView style = {styles.container}>
-        <TouchableOpacity onPress={()=>{if(show1)setShow1(false);else setShow1(true)}}>
+        <TouchableOpacity activeOpacity={0.95} onPress={()=>{if(show1)setShow1(false);else setShow1(true)}}>
           <ImageBackground style={styles.image} source= {Unit} resizeMode='cover'>
             <Text style = {styles.title}> על היחידה </Text>
           </ImageBackground>
@@ -33,7 +33,7 @@ const About = () => {
         </View>:null}
 
         <View>
-          <TouchableOpacity onPress={()=>{if(show2)setShow2(false);else setShow2(true)}}>
+          <TouchableOpacity activeOpacity={0.95} onPress={()=>{if(show2)setShow2(false);else setShow2(true)}}>
           <ImageBackground style={styles.image} source={require('../../assets/Images/amuta_egoz.png')} resizeMode='cover' >
             <Text style = {styles.title}>על העמותה</Text>
           </ImageBackground>
@@ -57,7 +57,7 @@ const About = () => {
         </View>:null}
 
         <View>
-          <TouchableOpacity onPress={()=>{if(show3)setShow3(false);else setShow3(true)}}>
+          <TouchableOpacity activeOpacity={0.95} onPress={()=>{if(show3)setShow3(false);else setShow3(true)}}>
           <ImageBackground style={styles.image} source={require('../../assets/Images/new_egoz_pic.png')} resizeMode='cover'>
             <Text style = {styles.title}>1956 - הקמת סיירת אגוז</Text>
           </ImageBackground>
@@ -75,7 +75,7 @@ const About = () => {
         </View>:null}
 
         <View>
-          <TouchableOpacity onPress={()=>{if(show4)setShow4(false);else setShow4(true)}}>
+          <TouchableOpacity activeOpacity={0.95} onPress={()=>{if(show4)setShow4(false);else setShow4(true)}}>
           <ImageBackground style={styles.image} source={require('../../assets/Images/walking_egoz.png')} resizeMode='cover'>
           <Text style = {styles.title}>1995 - הקמת יחידת אגוז</Text>
           </ImageBackground>
@@ -95,7 +95,7 @@ const About = () => {
 
 
         <View>
-          <TouchableOpacity onPress={()=>{if(show5)setShow5(false);else setShow5(true)}}>
+          <TouchableOpacity activeOpacity={0.95} onPress={()=>{if(show5)setShow5(false);else setShow5(true)}}>
           <ImageBackground style={styles.image} source={require('../../assets/Images/commando_egoz.png')} resizeMode='cover' >
             <Text style = {styles.title}>2015 - הצטרפות לחטיבת הקומנדו</Text>
           </ImageBackground>
