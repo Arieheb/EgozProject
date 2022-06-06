@@ -1,7 +1,34 @@
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Alert } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import {collection, query, where, getDocs} from 'firebase/firestore'
+import {doc,collection, query, where, onSnapshot, updateDoc, deleteDoc} from 'firebase/firestore'
 import {db} from '../../firebase'
+
+const accept = (id)=>{
+  updateDoc(doc(db,'users',id),{'guest':false});
+  return false;
+} 
+
+const decline = (id)=>{
+  Alert.alert(
+    "למחוק?",
+    "האם אתה בטוח שאתה רוצה למחוק את המשתמש הזה",
+    [
+      {
+        text: "בטל",
+        onPress: () => {return},
+      },
+      {
+        text: "מחק",
+        onPress: async () => {
+            await deleteDoc(doc(db, "users", id));
+        },
+    },
+],
+);
+
+  return false;
+}
+
 
 GuestItem = props=>{
   const [visible, setVisiblity] = useState(false);
@@ -12,10 +39,15 @@ GuestItem = props=>{
         <Text>סתכל</Text>
       </TouchableOpacity>
       <Modal visible={visible}>
-        <TouchableOpacity onPress={()=>setVisiblity(false)}>
+        <Text>{props.name}</Text>
+        {/* {props.questionaire.map((item, index) => (
+         <Text key={index}>{item.productTitle}</Text>
+        ))} */}
+
+        <TouchableOpacity onPress={()=>setVisiblity(accept(props.id))}>
           <Text>אשר</Text>
         </TouchableOpacity>        
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>setVisiblity(decline(props.id))}>
           <Text>בטל</Text>
         </TouchableOpacity>        
       </Modal>
@@ -26,20 +58,21 @@ GuestItem = props=>{
 
 const Admin = () => {
   const [newUsers, setWaiter] = useState([]);
+  //getting the new users
   useEffect (async()=>{
     const ref = collection(db, 'users');
     const que = query (ref,where("guest","==",true));
-    const results = await getDocs(que)
-    const p=[]
-    results.forEach(doc=>{
-      p.push({
-        id: doc.id,
-        fname: doc.data().FirstName,
-        lname: doc.data().LastName,
-        questionaire: doc.data().questionaire,
-      })
-    })
-    setWaiter(p);
+    const unsubscribe = onSnapshot(que, querySnapshot => {
+      setWaiter(
+        querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          fname: doc.data().FirstName,
+          lname: doc.data().LastName,
+          questionaire: doc.data().questionaire,
+        }))
+      );
+    });
+    return () => unsubscribe();
  },[]);
 
   return (
@@ -48,10 +81,10 @@ const Admin = () => {
         <Text>ניהול משתמשים</Text>
         <FlatList data={newUsers}
         keyExtractor = {item=> item.id}
-        renderItem = {(data)=><GuestItem name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
+        renderItem = {(data)=><GuestItem id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
         />
-
         </View>
+
         <View>
             <TouchableOpacity>
                 

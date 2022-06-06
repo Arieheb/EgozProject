@@ -8,6 +8,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
 const SignUpAuth = props => {
   const [show1,setShow1] = useState(false);
   const [show2,setShow2] = useState(false);
+  const [year ,setYear] = useState("")
+  const [generation ,setGeneration] = useState("")
+  const [team ,setTeam] = useState("")
+  const [why ,setWhy] = useState("")
 
   return (
     <View style={styles.container} behavior="padding">
@@ -41,18 +45,24 @@ const SignUpAuth = props => {
                 style={styles.showInput}
                 placeholder='...'
                 placeholderTextColor={"#fff"}
+                value={year}
+                onChangeText={text=>setYear(text)}
               />
               <Text style={styles.text}>באיזה מחזור?</Text>
               <TextInput  
                 style={styles.showInput}
                 placeholder='...'
                 placeholderTextColor={"#fff"}
+                value={generation}
+                onChangeText={text=>setGeneration(text)}
               />
               <Text style={styles.text}>באיזה צוות?</Text>
               <TextInput  
                 style={styles.showInput}
                 placeholder='...'
                 placeholderTextColor={"#fff"}
+                value={team}
+                onChangeText={text=>setTeam(text)}
               />  
             </View>:null}
             {show2?
@@ -62,6 +72,8 @@ const SignUpAuth = props => {
                   style={styles.showInput}
                   placeholder='...'
                   placeholderTextColor={"#fff"}
+                  value={why}
+                onChangeText={text=>setWhy(text)}
                 /> 
             </View>:null}
             <TouchableOpacity style = {styles.buttons}>
