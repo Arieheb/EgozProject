@@ -25,6 +25,7 @@ import Memorial from './pages/memorial/memorial';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
 import forgotPage from './pages/Login/forgotPage';
+import Admin from './pages/Admin/Admin';
 // import membership from './pages/memberPay/Membership'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -164,6 +165,7 @@ export default function App() {
 
 
 
+          <Drawer.Screen name='admin' component={Admin} />
           <Drawer.Screen options={{headerMode:'none'}} name='login' component={LoginScreen} />
         </Drawer.Navigator>
 

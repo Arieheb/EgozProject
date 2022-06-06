@@ -1,10 +1,11 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { auth, db } from '../../firebase';
 import { collection, addDoc, updateDoc,doc, query, orderBy, onSnapshot, limit, startAfter, getDocs, getDoc,where } from 'firebase/firestore';
 import { GiftedChat, Bubble, Send, InputToolbar } from 'react-native-gifted-chat';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { TouchableRipple } from 'react-native-paper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+const{width,height:wHeight} = Dimensions.get("window");
 
 
 const WriteToForum = (props) => {
@@ -12,7 +13,6 @@ const WriteToForum = (props) => {
     
     //when page is loaded get the last 20 messages
     useEffect(async () => {
-      let mount = true;
       setMessages([]);
       const collectionRef = collection(db, 'chats', props.id, 'chat');
       const q = query(collectionRef, orderBy('createdAt', 'desc'), limit(20));
@@ -128,6 +128,7 @@ const WriteToForum = (props) => {
 
   return (
       <GiftedChat
+        placeholder='תכתוב משהו...'
         messages={messages}
         renderAvatar={null}
         renderSend = {sendButton}

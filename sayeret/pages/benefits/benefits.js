@@ -10,6 +10,8 @@ import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase
 import { db } from '../../firebase';
 import AddBenefits from './addBenefit';
 import { FlatList } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
 
 const App = () => {
     const [alert, setAlert] = React.useState({
@@ -39,7 +41,6 @@ const Benefit = props => {
     const [visible, setVisible] = useState(false);
     return(
         <View>
-
             <View name='benefit' style = {styles.benefit} >
             <View name = 'picPlace' style = {styles.picFrame}>
             <Image source={props.Image}style = {styles.benefitsPic}></Image>
@@ -52,12 +53,17 @@ const Benefit = props => {
             </View>
     </View>
 
-    <Modal visible={visible}>
-        <View>
+    <Modal visible={visible} transparent={true} >
+        <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
+        <View style={styles.modal} >
             <Text style = {styles.infoText}>{props.info}</Text>
-            <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
+            {/* <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
                 <Text style= {styles.buttonText} >חזור</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                 <TouchableOpacity style={styles.returnButten} onPress={()=>setVisible(false)}>
+          <Icon name="arrow-right-thick" size={55}/>
+        </TouchableOpacity>
+        </View>
         </View>
     </Modal>
 
@@ -108,17 +114,19 @@ const styles = StyleSheet.create ({
         alignItems: "center",
     },
     buttonsBenefit: {
-        backgroundColor: "#115B99",
+        backgroundColor:"white",
+        fontSize:14,
+        borderWidth: 1,
+        padding: 5,
+        marginTop: 10,
         borderRadius: 10,
-        textAlign: "center",
-        color: "white",
+        width: 100,
+        height: 40,
     },
     buttonText: {
-        textAlign: "center",
-        fontSize: 25,
-        fontWeight: "bold",
-        margin: 2,
-        color: "white",
+        color: "black",
+        textAlign: 'center',
+        fontWeight:"bold",
     },
     title: {
         fontWeight: "bold",
@@ -165,6 +173,26 @@ const styles = StyleSheet.create ({
         margin: 20,
         marginTop: 8,
     },
+    modal: {
+        backgroundColor: "white",
+        borderRadius: 25,
+        marginTop: '50%',
+        marginHorizontal: '2.5%',
+        padding: 40,
+        height: 250,
+        width: '95%',
+        flexDirection: "column",
+        alignItems: "center",
+        borderColor: "black",
+        borderWidth: 1,
+        shadowOffset: {
+          width: 2,
+          height: 2
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 4,
+        elevation: 5,
+      },
     // button: {
     //     borderRadius: 7,
     //     backgroundColor: "rgba(0, 0, 0, 0)",

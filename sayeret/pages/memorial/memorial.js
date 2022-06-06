@@ -35,6 +35,7 @@ const Memorial = () => {
 
     
      return (
+       <View style = {{width: scrWidth, height: scrHeight}}>
       <ImageBackground source={memorial} style = {styles.view}>
        <View style = {styles.container}>
         <FlatList data = {memoryInfo}
@@ -46,6 +47,7 @@ const Memorial = () => {
          </View>
 
          </ImageBackground>
+         </View>
     );
   };
   
@@ -54,8 +56,8 @@ const Memorial = () => {
   const styles = StyleSheet.create({
     container: {
         marginHorizontal: "auto",
-        width: scrWidth,
-        height: scrHeight,
+        // width: "100%",
+        // height: "100%",
         paddingTop: 20,
         paddingBottom: 100
       },

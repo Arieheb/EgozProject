@@ -47,9 +47,7 @@ const DrawerContent = props => {
                 city: userFields.city.stringValue,
                 email: userFields.email.stringValue,
                 user_id: userFields.user_id.stringValue,
-                userName: userFields.userName.stringValue,
                 pic: userFields.pic.stringValue,
-                phoneNumber: userFields.phoneNumber.stringValue,
                 password: userFields.password.stringValue,
                 guest: userFields.guest.booleanValue,
                 isAdmin: userFields.isAdmin.booleanValue,
@@ -88,6 +86,8 @@ const DrawerContent = props => {
                     <Card title="הטבות" iconName="gift" nav="Benefits" navigation={props.navigation} user={user}/>
                     <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation} user={user}/>
                     <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
+                   {user.isAdmin?
+                    <Card title="דף מנהל" iconName="email-outline" nav="admin" navigation={props.navigation} user={user}/>:null}
                     {/* <Card title="תשלום חברות" iconName="email-outline" nav="membership" navigation={props.navigation} user={user} /> */}
                 </Drawer.Section>
             </View>
