@@ -12,6 +12,7 @@ const WriteToForum = (props) => {
     
     //when page is loaded get the last 20 messages
     useEffect(async () => {
+      let mount = true;
       setMessages([]);
       const collectionRef = collection(db, 'chats', props.id, 'chat');
       const q = query(collectionRef, orderBy('createdAt', 'desc'), limit(20));

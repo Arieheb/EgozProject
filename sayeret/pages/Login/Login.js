@@ -54,7 +54,7 @@ const LoginScreen = props => {
                     >
                         <Text style = {styles.buttonText} >היכנס</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style = {styles.buttons}>
+                    <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("SignUp")}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
                     {/* <TouchableOpacity onPress={props.navigation.navigate("forgotPage")}> */}
