@@ -35,25 +35,33 @@ GuestItem = props=>{
   const [visible, setVisiblity] = useState(false);
   return(
     <View>
+      <View style = {styles.newUsers}>
       <Text>{props.name}</Text>
-      <TouchableOpacity onPress={()=>setVisiblity(true)}>
-        <Text>סתכל</Text>
+      <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(true)}>
+        <Text style = {styles.buttensText}>אפשרויות</Text>
       </TouchableOpacity>
-      <Modal visible={visible}>
-        <TouchableOpacity onPress={()=>setVisiblity(false)}>
-          <Icon name="arrow-right-thick" size={20}/>
-        </TouchableOpacity>
-        <Text>{props.name}</Text>
+      </View>
+      <Modal visible={visible} transparent={true}>
+       <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
+        <View style={styles.modal}>
+        <Text style = {styles.textStyle} >{props.name}</Text>
         {/* {props.questionaire.map((item, index) => (
          <Text key={index}>{item.productTitle}</Text>
         ))} */}
 
-        <TouchableOpacity onPress={()=>setVisiblity(accept(props.id))}>
-          <Text>אשר</Text>
+        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(accept(props.id))}>
+          <Text style = {styles.buttensText}>אשר</Text>
         </TouchableOpacity>        
-        <TouchableOpacity onPress={()=>setVisiblity(decline(props.id))}>
-          <Text>בטל</Text>
-        </TouchableOpacity>        
+        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id))}>
+          <Text style = {styles.buttensText}>סרב</Text>
+        </TouchableOpacity> 
+        <View >
+        <TouchableOpacity style={styles.returnButten} onPress={()=>setVisiblity(false)}>
+          <Icon name="arrow-right-thick" size={55}/>
+        </TouchableOpacity>
+        </View>
+        </View>  
+        </View>     
       </Modal>
     </View>
   );
@@ -103,4 +111,57 @@ const Admin = () => {
 
 export default Admin
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  newUsers: {
+    backgroundColor: "white",
+    borderRadius: 25,
+    margin: 5,
+    padding: 5,
+    height: 100,
+    flexDirection: "column",
+    alignItems: "center",
+    borderColor: "black",
+    borderWidth: 1
+  },
+  buttensStyle: {
+    backgroundColor:"white",
+    fontSize:14,
+    borderWidth: 1,
+    padding: 5,
+    marginTop: 10,
+    borderRadius: 10,
+    width: 300,
+    height: 40,
+},
+buttensText: {
+  textAlign: 'center',
+  fontWeight:"bold",
+},
+textStyle: {
+  fontSize:20,
+  fontWeight:"bold",
+},
+modal: {
+  backgroundColor: "white",
+  borderRadius: 25,
+  marginTop: '50%',
+  marginHorizontal: '2.5%',
+  padding: 40,
+  height: 250,
+  width: '95%',
+  flexDirection: "column",
+  alignItems: "center",
+  borderColor: "black",
+  borderWidth: 1,
+  shadowOffset: {
+    width: 2,
+    height: 2
+  },
+  shadowOpacity: 0.5,
+  shadowRadius: 4,
+  elevation: 5,
+},
+returnButten: {
+  justifyContent: 'flex-start', 
+},
+})
