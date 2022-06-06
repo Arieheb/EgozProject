@@ -43,6 +43,10 @@ const SignUp = props => {
   const [LastName, setLastName] =useState("")
   const [address, setAddress] =useState("")
   const [city, setCity] =useState("") 
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
 
   const validate = () => {
       if(email=="" || password==""){
@@ -76,7 +80,10 @@ const SignUp = props => {
               user_id:auth.currentUser.uid,
               pic:"",
               password:password,
+<<<<<<< Updated upstream
               
+=======
+>>>>>>> Stashed changes
             })
             
           })
@@ -120,7 +127,11 @@ const SignUp = props => {
               />
               <TouchableOpacity style = {styles.buttons} onPress = {{handleSignUp,validate}}>
                 <Text style = {styles.buttonText} >המשך</Text>
+<<<<<<< Updated upstream
                 </TouchableOpacity>
+=======
+              </TouchableOpacity>
+>>>>>>> Stashed changes
             </View>
           </View>
         </TouchableOpacity>

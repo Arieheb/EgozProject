@@ -54,7 +54,11 @@ const LoginScreen = props => {
                     >
                         <Text style = {styles.buttonText} >היכנס</Text>
                     </TouchableOpacity>
+<<<<<<< Updated upstream
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("SignUp")} >
+=======
+                    <TouchableOpacity style = {styles.buttons}>
+>>>>>>> Stashed changes
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
                     {/* <TouchableOpacity onPress={props.navigation.navigate("forgotPage")}> */}
@@ -146,20 +150,7 @@ const styles = StyleSheet.create({
         paddingTop:15,
         color:'white',
     },
-    gf:{
-        alignItems:'center',
-        justifyContent:'center',
-    
-    },
-    gfButtons:{
-        paddingTop:5,
-        padding:30,
-        margin:10,
-    },
-    gfText:{
-        fontWeight:'bold',
-        fontSize:16,
-    },
+   
     
 })
 export default LoginScreen
