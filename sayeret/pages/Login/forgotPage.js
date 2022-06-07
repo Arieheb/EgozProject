@@ -5,7 +5,7 @@ const{height:wHeight} = Dimensions.get("window");
 
 const auth = getAuth();
 
-  const forgotPage = props => {
+  const ForgotPage = props => {
     const [email,setEmail] = useState("");
     sendPasswordResetEmail(auth, email)
     .then(() => {
@@ -45,7 +45,7 @@ const auth = getAuth();
     )
   }
   
-  export default forgotPage
+  export default ForgotPage
   
   const styles = StyleSheet.create({
     container:{

@@ -5,7 +5,7 @@ import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { ScrollView } from 'react-native-gesture-handler';
-import forgotPage from './forgotPage'
+import ForgotPage from './ForgotPage'
 const{width,height:wHeight} = Dimensions.get("window");
 
 const LoginScreen = props => {
@@ -57,7 +57,7 @@ const LoginScreen = props => {
                     <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("SignUp")}>
                         <Text style = {styles.buttonText}>הירשם</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>props.navigation.navigate("forgotPage")}>
+                    <TouchableOpacity onPress={()=>props.navigation.navigate("ForgotPage")}>
                     <Text style = {styles.forgot}>שכחת סיסמא?</Text>
                     </TouchableOpacity>
                     
