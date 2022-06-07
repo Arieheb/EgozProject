@@ -69,7 +69,7 @@ const JobsMain = props=>{
                 </View> */}
 
                 <View>
-                    <TouchableOpacity style = {styles.plusButton} onPress={()=>{goToAddJob}}>
+                    <TouchableOpacity style = {styles.plusButton} onPress={()=>goToAddJob()}>
                         <Icon name ="plus"  color="white"  size={70}/>   
                     </TouchableOpacity> 
                 </View>

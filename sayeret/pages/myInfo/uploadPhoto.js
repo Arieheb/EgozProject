@@ -1,45 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 import Profile from '../../assets/Images/profile.png';
-
-
-const checkCameraPermission = async() => {
-    const {status} = await
-    ImagePicker.getMediaLibraryPermissionsAsync();
-    if (status != 'granted') {
-        alert ("יש לאפשר גישה לאלבום תמונות");
-    }
-    else {
-        console.log ('permission granted')
-    }
-}
+import { storage } from '../../firebase';
+import { ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 
  const UploadImage = () => {  
      
+const download = (name)=>{
+    getDownloadURL( ref(storage, "profile/"+name)).then((url)=> {
+        setImage(url);
+      })
+      .catch ((e)=> console.log ('ERROR=>', e));
+}
  const [image, setImage] = useState(null);
- 
- useEffect (()=> {checkCameraPermission()}, []);
- const addImage = async () => {
-     
-    let _image = await ImagePicker.launchImageLibraryAsync({
+ //showing profile image on page load
+ useEffect (()=> {
+    download("image-name");
+ },[]);
+
+const uploadPic = async()=>{
+    let result = await ImagePicker.launchImageLibraryAsync({
          mediaTypes: ImagePicker.MediaTypeOptions.Images, 
          allowsEditing: true,
          aspect: [4,3],
          quality: 1,
      });
-     if (!_image.cancelled) {
-         setImage(_image.uri)
-     }
- };
+     if(!result.cancelled){
+        uploadImage(result.uri,"image-name").then(()=>{
+            download("image-name");
+        }).catch((error)=>{
+            alert("failure")
+        })
+    }
+}
  
+const takePic = async()=>{
+    let result = await ImagePicker.launchCameraAsync(
+        {
+            mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+            allowsEditing: true,
+            aspect: [4,3],
+            quality: 1,
+        }
+    );
+    if(!result.cancelled){
+        uploadImage(result.uri,"image-name").then(()=>{
+            download("image-name");
+        }).catch((error)=>{
+            alert("failed to upload picture")
+        })
+    }
+}
+
+const uploadImage = async(uri, imageName)=>{
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    let storageRef = ref(storage,"profile/"+imageName);
+    return uploadBytesResumable(storageRef,blob);
+}
+
 return (
     <View style={imageUploaderStyles.container}>
         { <Image source={image?{uri: image}:Profile} style={{ width: 200, height: 200 }}/>}
         
         <View style={imageUploaderStyles.uploadBtnContainer}>
-            <TouchableOpacity onPress={addImage} style={imageUploaderStyles.uploadBtn} >
+            <TouchableOpacity onPress={()=>takePic()} style={imageUploaderStyles.uploadBtn} >
                 <Text>{image ? 'עריכת תמונה' : 'העלאת תמונה'} </Text>
                 <AntDesign name="camera" size={20} color="black" />
             </TouchableOpacity>
