@@ -126,8 +126,8 @@ titleText:{
 },
 plusButton: {
     borderRadius: 100,
-    width: 80,
-    height: 80,
+    width: 50,
+    height: 50,
     backgroundColor: "rgba(0, 0, 0, 0.75)",
     flexDirection: "row",
     textAlign: "center",
@@ -137,6 +137,10 @@ plusButton: {
     marginTop: 8,
     borderColor: "white",
     borderWidth: 0.5,
+    position:'absolute',
+    top:530,
+    right:7,
+    zIndex:1
 },
 })
 
