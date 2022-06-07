@@ -27,7 +27,7 @@ const Card = props=>{
                         name={props.iconName}
                         color = {color}
                         size={size}/>}
-                onPress={()=>{props.navigation.navigate(props.nav,{user:props.user})}}
+                onPress={()=>{props.navigation.navigate(props.nav,{'user':props.user})}}
              />
 }
 

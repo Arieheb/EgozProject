@@ -6,6 +6,8 @@ import { TextInput } from 'react-native-paper';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from "react-native-vector-icons/FontAwesome5";
 import * as ImagePicker from 'expo-image-picker'
+import { ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../firebase';
 
 
 const AddBenefits= props=>{
@@ -22,7 +24,7 @@ const AddBenefits= props=>{
              quality: 1,
          });
          if(!result.cancelled){
-            setImage(result.uri);
+            setPhoto(result.uri);
         }
     }
 
@@ -36,7 +38,7 @@ const AddBenefits= props=>{
     const Submit =async function(){
         const dat = new Date().getTime();
         let pic = dat+name
-        addDoc(collection(db, 'Benefits'), { name, info, photo});
+        addDoc(collection(db, 'Benefits'), { 'name':name, 'info':info, 'pic':pic});
         uploadImage(photo,pic)
         setName("");
         setInfo("");
@@ -46,7 +48,7 @@ const AddBenefits= props=>{
   
     return(
         <View>
-              <View style={{height: '35%'}}>
+            <View style={{height: '35%'}}>
                 <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
                 <Icon name ="plus"  color="white"  size={70}/>   
                 </TouchableOpacity> 

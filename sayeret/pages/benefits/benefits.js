@@ -41,8 +41,10 @@ const App = () => {
 const Benefit = props => {
     const bene = props.user
     const [visible, setVisible] = useState(false);
-    const [imageUrl, setImageUrl] = useState(""); 
-    useEffect(()=> {getDownloadURL( ref(storage, props.image)).then ((url)=> {
+    const [imageUrl, setImageUrl] = useState(); 
+    useEffect(()=> {
+        console.log(props.image)
+        getDownloadURL( ref(storage,"Benefits/"+props.image)).then ((url)=> {
         setImageUrl (url);
       })
       .catch ((e)=> console.log ('ERROR=>', e));},[])
@@ -50,7 +52,7 @@ const Benefit = props => {
         <View>
             <View name='benefit' style = {styles.benefit} >
             <View name = 'picPlace' style = {styles.picFrame}>
-            <Image source={{uri:imageUrl}}style = {styles.benefitsPic}></Image>
+            <Image source={imageUrl?{uri:imageUrl}:pizza} style = {styles.benefitsPic}></Image>
             </View> 
             <View name= 'information' style = {styles.infoFrame}>
                 <Text style = {styles.infoText}> {props.name}</Text>
@@ -90,7 +92,7 @@ const Benefits = props => {
                     QuerySnapshot.docs.map (doc => ({
                         id: doc.id,
                         Name: doc.data().name,
-                        photo: doc.data().photo,
+                        photo: doc.data().pic,
                         info: doc.data().info
                     }))
                 );
@@ -103,10 +105,10 @@ const Benefits = props => {
                 {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
-                image = {"/Alexander_Shwartsman.png"} info ={data.item.info}> </Benefit>}>
+                image = {data.item.photo} info ={data.item.info}> </Benefit>}>
                     
                 </FlatList>
-                <AddBenefits/>
+                {props.route.params.user.isAdmin?<AddBenefits/>:null}
 
             </View>
 
