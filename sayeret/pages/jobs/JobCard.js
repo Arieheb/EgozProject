@@ -1,25 +1,52 @@
-import {StyleSheet, Text, View } from 'react-native'
+import {StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from "react-native-vector-icons/Ionicons"
+import {deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase';
 
-const JobCard = ({title, location, contactName, contactPhone, contactEmail, description}) => {
+const JobCard = ({id,title, location, contactName, contactPhone, contactEmail, description}) => {
+ 
+ 
+  const del = async(id)=>{
+    Alert.alert(
+        "למחוק?",
+        "האם אתה בטוח שאתה רוצה למחוק את עבודה הזה",
+        [
+          {
+            text: "בטל",
+            onPress: () => {return},
+          },
+          {
+            text: "מחק",
+            onPress: async () => {
+                await deleteDoc(doc(db, "jobs", id));
+            },
+        },
+    ],
+    );
+  }
+  
+ 
+ 
   return (
-    <View style={styles.cardContainer}>
-      <View>
-        <Text style={styles.title}>{title}</Text>
+    <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
+      <View style={styles.cardContainer}>
+        <View>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+        <View style={{flexDirection:"row", width:"100%", justifyContent:"flex-start"}}>
+          <Icon style={styles.icon} name="ios-location-outline"/>
+          <Text style={styles.location}>{location}</Text>
+        </View>
+        <View style={styles.description}>
+          <Text style={{textAlign:"center"}}>{description}</Text>
+        </View>
+        <View style={styles.contactInfo}>
+          <Text>{contactName} - {contactPhone}</Text>
+          <Text>{contactEmail}</Text>
+        </View>
       </View>
-      <View style={{flexDirection:"row", width:"100%", justifyContent:"flex-start"}}>
-        <Icon style={styles.icon} name="ios-location-outline"/>
-        <Text style={styles.location}>{location}</Text>
-      </View>
-      <View style={styles.description}>
-        <Text style={{textAlign:"center"}}>{description}</Text>
-      </View>
-      <View style={styles.contactInfo}>
-        <Text>{contactName} - {contactPhone}</Text>
-        <Text>{contactEmail}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

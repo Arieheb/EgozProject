@@ -52,17 +52,17 @@ const JobsMain = props=>{
             </View>
             
                 <FlatList   
-                    style={{width:"100%"}}
+                    style={{width:"100%",}}
                     contentContainerStyle={{alignItems:"center"}}
                     data={jobsList}
                     renderItem={({item}) => {
-                        return <JobCard title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description}/>
+                        return <JobCard id={item.id} title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description}/>
                     }}
                 />  
         
-                <View>
-                    <TouchableOpacity style = {styles.plusButton} onPress={()=>goToAddJob()}>
-                        <Icon name ="plus"  color="white"  size={70}/>   
+                <View  style = {styles.plusButton}>
+                    <TouchableOpacity onPress={()=>goToAddJob()}>
+                        <Icon name ="plus"  color="white"  size={45}/>   
                     </TouchableOpacity> 
                 </View>
         </View> 
