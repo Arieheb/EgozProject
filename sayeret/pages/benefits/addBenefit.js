@@ -5,6 +5,7 @@ import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from "react-native-vector-icons/FontAwesome5";
+import * as ImagePicker from 'expo-image-picker'
 
 
 const AddBenefits= props=>{
@@ -13,41 +14,66 @@ const AddBenefits= props=>{
     const [info, setInfo] = useState("");
     const [vision, setVision] = useState(false);
 
+    const uploadPic = async()=>{
+        let result = await ImagePicker.launchImageLibraryAsync({
+             mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+             allowsEditing: true,
+             aspect: [4,4],
+             quality: 1,
+         });
+         if(!result.cancelled){
+            setImage(result.uri);
+        }
+    }
+
+    const uploadImage = async(uri, photoName)=>{
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        let storageRef = ref(storage,"Benefits/"+photoName);
+        return uploadBytesResumable(storageRef,blob);
+    }
+
     const Submit =async function(){
+        const dat = new Date().getTime();
+        let pic = dat+name
         addDoc(collection(db, 'Benefits'), { name, info, photo});
+        uploadImage(photo,pic)
         setName("");
         setInfo("");
         setVision(false);
     }
-    // const addImage = e => {
-    //     if(e.target)
-    // }
 
   
     return(
         <View>
-     <Modal visible={vision}>
-    <View>
-        <TextInput     value={name}
-                    placeholder="שם ההטבה"
-                    onChangeText={(text)=>{setName(text)}}/>
-        <TextInput     value={info}
-                    placeholder="פרטי הטבה"
-                    onChangeText={(text)=>{setInfo(text)}}/>
-        
-        <TouchableOpacity style = {styles.topButton} onPress={()=>{Submit() }}>
-            <Text style= {styles.buttonText} >הוסף</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVision(false);setName("");
-        setInfo("");}}>
-            <Text style= {styles.buttonText} >חזור</Text>
-        </TouchableOpacity>
-    </View>
-    </Modal>
-    <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
-    <Icon name ="plus"  color="white"  size={70}/>   
-     </TouchableOpacity> 
-    </View>
+              <View style={{height: '35%'}}>
+                <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
+                <Icon name ="plus"  color="white"  size={70}/>   
+                </TouchableOpacity> 
+            </View>
+            <Modal visible={vision}>
+                <View>
+                    <TextInput     value={name}
+                                placeholder="שם ההטבה"
+                                onChangeText={(text)=>{setName(text)}}/>
+                    <TextInput     value={info}
+                                placeholder="פרטי הטבה"
+                                onChangeText={(text)=>{setInfo(text)}}/>
+                    <TouchableOpacity onPress={()=>uploadPic()}>
+                        <Text>העלה תמונה</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.buttensStyle} onPress={()=>{Submit() }}>
+                        <Text style= {styles.buttonText} >הוסף</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
+                    setInfo("");}}>
+                        <Icon name="arrow-right-thick" size={55}/>
+                    </TouchableOpacity>
+
+                </View>
+            </Modal>
+          
+         </View>
     )
     
 }
@@ -56,6 +82,23 @@ export default AddBenefits
 const styles = StyleSheet.create ({ 
     page: {
         alignItems: "center",
+    },
+    returnButten: {
+        alignItems: 'center',
+      },
+    buttensStyle: {
+        backgroundColor:"white",
+        fontSize:14,
+        borderWidth: 1,
+        padding: 5,
+        marginTop: 10,
+        borderRadius: 10,
+        width: 300,
+        height: 40,
+    },
+    buttensText: {
+      textAlign: 'center',
+      fontWeight:"bold",
     },
     buttonsBenefit: {
         backgroundColor: "red",

@@ -103,7 +103,7 @@ const Benefits = props => {
                 {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
-                image = "/Alexander_Shwartsman.png" info ={data.item.info}> </Benefit>}>
+                image = {"/Alexander_Shwartsman.png"} info ={data.item.info}> </Benefit>}>
                     
                 </FlatList>
                 <AddBenefits/>
