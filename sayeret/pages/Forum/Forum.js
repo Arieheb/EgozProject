@@ -3,7 +3,7 @@ import {Platform,Text, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert} fro
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db,storage } from '../../firebase';
-import { ref,getDownloadURL } from 'firebase/storage';
+import { ref,getDownloadURL, deleteObject  } from 'firebase/storage';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -43,7 +43,7 @@ function dateFormat(timeStamp){
 }
 
 //deletes a chat from the app
-const Delete =(id)=>{
+const Delete =(id, pic)=>{
     Alert.alert(
         "למחוק?",
         "האם אתה בטוח שאתה רוצה למחוק את הפורום הזה",
@@ -55,6 +55,7 @@ const Delete =(id)=>{
           {
             text: "מחק",
             onPress: async () => {
+                deleteObject(ref(storage,"forum/"+pic));
                 await deleteDoc(doc(db, "chats", id));
             },
         },
@@ -79,7 +80,7 @@ const ForumItem = props=>{
     return(
         <View>
             {/* the item */}
-            <TouchableRipple onLongPress={()=>Delete(user.id)} onPress={()=>{setVisible(true)}}>
+            <TouchableRipple onLongPress={()=>Delete(user.id, user.pic)} onPress={()=>{setVisible(true)}}>
                 <View style={styles.container}>
                     <Avatar.Image source={!image?Profile:{uri:image}}/>
                     <View style={styles.mid}>
