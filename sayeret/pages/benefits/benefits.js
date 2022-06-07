@@ -12,7 +12,7 @@ import AddBenefits from './addBenefit';
 import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { storage } from '../../firebase';
-import {ref, getDownloadURL} from 'firebase/storage';
+import {ref, getDownloadURL, deleteObject} from 'firebase/storage';
 
 
 const App = () => {
@@ -42,41 +42,76 @@ const Benefit = props => {
     const bene = props.user
     const [visible, setVisible] = useState(false);
     const [imageUrl, setImageUrl] = useState(); 
+
+    const Delete =(id, pic)=>{
+    Alert.alert(
+        "למחוק?",
+        "האם אתה בטוח שאתה רוצה למחוק את ההטבה הזו?",
+        [
+          {
+            text: "בטל",
+            onPress: () => {return},
+          },
+          {
+            text: "מחק",
+            onPress: async () => {
+                deleteObject(ref(storage,"Benefits/"+pic));
+                await deleteDoc(doc(db, "Benefits", id));
+            },
+        },
+    ],
+    );
+   
+}  
+   
     useEffect(()=> {
-        console.log(props.image)
         getDownloadURL( ref(storage,"Benefits/"+props.image)).then ((url)=> {
         setImageUrl (url);
       })
       .catch ((e)=> console.log ('ERROR=>', e));},[])
     return(
-        <View>
-            <View name='benefit' style = {styles.benefit} >
-            <View name = 'picPlace' style = {styles.picFrame}>
-            <Image source={imageUrl?{uri:imageUrl}:pizza} style = {styles.benefitsPic}></Image>
-            </View> 
-            <View name= 'information' style = {styles.infoFrame}>
-                <Text style = {styles.infoText}> {props.name}</Text>
-                <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
-                <Text style= {styles.buttonText} >קרא עוד</Text>
-                </TouchableOpacity>
+
+       <View>
+           {/* admin could delete */}
+           {bene.isAdmin?<TouchableOpacity onLongPress={()=>Delete(props.id,props.image)}>
+           <View name='benefit' style = {styles.benefit} >
+                <View name = 'picPlace' style = {styles.picFrame}>
+                    <Image source={imageUrl?{uri:imageUrl}:pizza} style = {styles.benefitsPic}></Image>
+                </View> 
+                <View name= 'information' style = {styles.infoFrame}>
+                    <Text style = {styles.infoText}> {props.name}</Text>
+                    <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
+                    <Text style= {styles.buttonText} >קרא עוד</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-    </View>
-
-    <Modal visible={visible} transparent={true} >
-        <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
-        <View style={styles.modal} >
-            <Text style = {styles.infoText}>{props.info}</Text>
-            {/* <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
-                <Text style= {styles.buttonText} >חזור</Text>
-                </TouchableOpacity> */}
-                 <TouchableOpacity style={styles.returnButten} onPress={()=>setVisible(false)}>
-          <Icon name="arrow-right-thick" size={55}/>
-        </TouchableOpacity>
-        </View>
-        </View>
-    </Modal>
-
-     </View>
+           </TouchableOpacity>:
+            //not admin view
+            <View name='benefit' style = {styles.benefit} >
+                <View name = 'picPlace' style = {styles.picFrame}>
+                    <Image source={imageUrl?{uri:imageUrl}:pizza} style = {styles.benefitsPic}></Image>
+                </View> 
+                <View name= 'information' style = {styles.infoFrame}>
+                    <Text style = {styles.infoText}> {props.name}</Text>
+                    <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
+                    <Text style= {styles.buttonText} >קרא עוד</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>}
+            <Modal visible={visible} transparent={true} >
+                <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
+                    <View style={styles.modal} >
+                        <Text style = {styles.infoText}>{props.info}</Text>
+                        {/* <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
+                            <Text style= {styles.buttonText} >חזור</Text>
+                            </TouchableOpacity> */}
+                            <TouchableOpacity style={styles.returnButten} onPress={()=>setVisible(false)}>
+                        <Icon name="arrow-right-thick" size={55}/>
+                    </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+         </View>
     );
 }
 const Benefits = props => {
@@ -104,8 +139,9 @@ const Benefits = props => {
             <View style = {styles.page}>
                 {/* <Text style = {styles.title}>הטבות</Text> */}
 
-                <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
-                image = {data.item.photo} info ={data.item.info}> </Benefit>}>
+                <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=>
+                <Benefit name={data.item.Name} id={data.item.id}
+                image = {data.item.photo} info ={data.item.info} user={props.route.params.user}> </Benefit>}>
                     
                 </FlatList>
                 {props.route.params.user.isAdmin?<AddBenefits/>:null}
