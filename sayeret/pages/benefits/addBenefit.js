@@ -19,6 +19,9 @@ const AddBenefits= props=>{
         setInfo("");
         setVision(false);
     }
+    // const addImage = e => {
+    //     if(e.target)
+    // }
 
   
     return(

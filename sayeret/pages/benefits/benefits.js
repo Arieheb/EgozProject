@@ -10,7 +10,9 @@ import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase
 import { db } from '../../firebase';
 import AddBenefits from './addBenefit';
 import { FlatList } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { storage } from '../../firebase';
+import {ref, getDownloadURL} from 'firebase/storage';
 
 
 const App = () => {
@@ -39,11 +41,16 @@ const App = () => {
 const Benefit = props => {
     const bene = props.user
     const [visible, setVisible] = useState(false);
+    const [imageUrl, setImageUrl] = useState(""); 
+    useEffect(()=> {getDownloadURL( ref(storage, props.image)).then ((url)=> {
+        setImageUrl (url);
+      })
+      .catch ((e)=> console.log ('ERROR=>', e));},[])
     return(
         <View>
             <View name='benefit' style = {styles.benefit} >
             <View name = 'picPlace' style = {styles.picFrame}>
-            <Image source={props.Image}style = {styles.benefitsPic}></Image>
+            <Image source={{uri:imageUrl}}style = {styles.benefitsPic}></Image>
             </View> 
             <View name= 'information' style = {styles.infoFrame}>
                 <Text style = {styles.infoText}> {props.name}</Text>
@@ -96,7 +103,7 @@ const Benefits = props => {
                 {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=> <Benefit name={data.item.Name}
-                Image = {data.item.photo} info ={data.item.info}> </Benefit>}>
+                image = "/Alexander_Shwartsman.png" info ={data.item.info}> </Benefit>}>
                     
                 </FlatList>
                 <AddBenefits/>
