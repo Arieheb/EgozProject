@@ -5,8 +5,9 @@ import {Avatar,Title,Caption, Drawer, TouchableRipple} from 'react-native-paper'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Profile from "./assets/Images/profile.png"
 import { signOut } from 'firebase/auth'
-import { auth, db } from './firebase'
+import { auth, db, storage } from './firebase'
 import { query, collection, where, getDocs } from 'firebase/firestore'
+import { getDownloadURL, ref } from 'firebase/storage'
 
 const signOutNow = () => {
     signOut(auth).then(() => {
@@ -34,12 +35,17 @@ const Card = props=>{
 
 const DrawerContent = props => {
     const [user,setUser] = useState({});
+    const [uri, setImage] = useState();
     useEffect(async ()=>{
         const id = auth.currentUser.uid;
         const q = query(collection(db,"users"),where("user_id","==",id));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(doc=>{
             const userFields = doc._document.data.value.mapValue.fields 
+             getDownloadURL( ref(storage, "profile/"+userFields.pic.stringValue)).then((url)=> {
+                setImage(url);
+              })
+              .catch ((e)=> console.log ('ERROR=>', e));
             setUser({
                 Address: userFields.Address.stringValue,
                 FirstName: userFields.FirstName.stringValue,
@@ -52,8 +58,10 @@ const DrawerContent = props => {
                 guest: userFields.guest.booleanValue,
                 isAdmin: userFields.isAdmin.booleanValue,
                 isMember: userFields.isMember.booleanValue,
+                imageurl:uri
                 
             })
+
         })
     },[])
     
@@ -65,7 +73,7 @@ const DrawerContent = props => {
                 <TouchableRipple style={styles.userInoSection}  onPress={()=>{props.navigation.navigate("profile",{user:user})}}>
                     <View style={{flexDirection:'row',marginTop:15 }}>
                         <Avatar.Image
-                        source={Profile}
+                        source={uri?{uri:uri}:Profile}
                         size={50}/>
 
                         <View style={{marginLeft:15}}>

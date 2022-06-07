@@ -3,13 +3,14 @@ import { Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackgro
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import Profile from '../../assets/Images/profile.png';
-import { storage } from '../../firebase';
+import {storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 
- const UploadImage = () => {  
-     
-const download = (name)=>{
-    getDownloadURL( ref(storage, "profile/"+name)).then((url)=> {
+ const UploadImage = (props) => {  
+    const user = props.user; 
+
+const download = ()=>{
+    getDownloadURL( ref(storage, "profile/"+user.pic)).then((url)=> {
         setImage(url);
       })
       .catch ((e)=> console.log ('ERROR=>', e));
@@ -17,7 +18,7 @@ const download = (name)=>{
  const [image, setImage] = useState(null);
  //showing profile image on page load
  useEffect (()=> {
-    download("image-name");
+    download();
  },[]);
 
 const uploadPic = async()=>{
@@ -28,8 +29,8 @@ const uploadPic = async()=>{
          quality: 1,
      });
      if(!result.cancelled){
-        uploadImage(result.uri,"image-name").then(()=>{
-            download("image-name");
+        uploadImage(result.uri,user.pic).then(()=>{
+            download();
         }).catch((error)=>{
             alert("failure")
         })
@@ -46,8 +47,8 @@ const takePic = async()=>{
         }
     );
     if(!result.cancelled){
-        uploadImage(result.uri,"image-name").then(()=>{
-            download("image-name");
+        uploadImage(result.uri,user.pic).then(()=>{
+            download();
         }).catch((error)=>{
             alert("failed to upload picture")
         })
@@ -66,7 +67,7 @@ return (
         { <Image source={image?{uri: image}:Profile} style={{ width: 200, height: 200 }}/>}
         
         <View style={imageUploaderStyles.uploadBtnContainer}>
-            <TouchableOpacity onPress={()=>takePic()} style={imageUploaderStyles.uploadBtn} >
+            <TouchableOpacity onPress={()=>uploadPic()} style={imageUploaderStyles.uploadBtn} >
                 <Text>{image ? 'עריכת תמונה' : 'העלאת תמונה'} </Text>
                 <AntDesign name="camera" size={20} color="black" />
             </TouchableOpacity>

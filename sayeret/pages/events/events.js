@@ -3,7 +3,6 @@ import {FlatList, View,TouchableOpacity, Text, StyleSheet, setVision } from 'rea
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
 import EventTemplate from './eventTemp';
-import AddEvent from './AddEvent';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 

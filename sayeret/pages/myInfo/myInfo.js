@@ -31,7 +31,7 @@ const Profile = (props) => {
         <View style = {styles.container}>   
             {/* profile picture view */}
             <View style = {styles.headName}>               
-                <UploadImage/>
+                <UploadImage user={user}/>
                 <Text style = {{fontSize: 30, color: 'black',}}>{user.FirstName} {user.LastName}</Text>
             </View>
             

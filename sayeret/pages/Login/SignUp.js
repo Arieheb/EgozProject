@@ -62,6 +62,7 @@ const SignUp = props => {
         .then((userCredential) => {
          updateProfile(userCredential.user,{
             displayName: firstName+' '+LastName,
+            photoURL: firstName+email+LastName,
           })
             addDoc(collection(db,"users"),{
               Address:address,
