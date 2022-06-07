@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Platform,Text, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert} from 'react-native';
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db,storage } from '../../firebase';
+import { ref,getDownloadURL } from 'firebase/storage';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -65,12 +66,22 @@ const Delete =(id)=>{
 const ForumItem = props=>{
     const user = props.user
     const [visible,setVisible] = useState(false);
+    const [image,setImage] = useState();
+
+    const download = ()=>{
+        getDownloadURL( ref(storage, "forum/"+user.pic)).then((url)=> {
+            setImage(url);
+          })
+          .catch ((e)=> console.log ('ERROR=>', e));
+    }
+
+    useEffect(()=>{download()},[])
     return(
         <View>
             {/* the item */}
             <TouchableRipple onLongPress={()=>Delete(user.id)} onPress={()=>{setVisible(true)}}>
                 <View style={styles.container}>
-                    <Avatar.Image source={!user.image?Profile:user.image}/>
+                    <Avatar.Image source={!image?Profile:{uri:image}}/>
                     <View style={styles.mid}>
                         <Text style={styles.name}>{user.name}</Text>
                         <Text style={styles.message} numberOfLines={1}>{user.last_message}</Text>
@@ -89,7 +100,7 @@ const ForumItem = props=>{
                         />
                     </TouchableRipple>
                     <Avatar.Image 
-                        source={!user.image?Profile:user.image}
+                        source={!image?Profile:{uri:image}}
                         size={40}
                         style={{marginLeft:20,marginRight:10}}
                     />
@@ -115,6 +126,7 @@ const Forum = props=>{
               name: doc.data().name,
               last_time: doc.data().last_time,
               last_message: doc.data().last_message,
+              pic:doc.data().pic,
             }))
           );
         });

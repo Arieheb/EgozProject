@@ -1,24 +1,65 @@
 import React, {useState} from 'react';
-import { View,Text,StyleSheet,Modal,Button, SafeAreaView,TouchableOpacity } from 'react-native';
+import { View,Text,StyleSheet,Modal,Image, SafeAreaView,TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import {db} from "../../firebase";
+import * as ImagePicker from 'expo-image-picker'
+import {db, storage} from "../../firebase";
+import { ref, uploadBytesResumable} from 'firebase/storage';
 import {collection,query,addDoc,getDocs, where, orderBy} from 'firebase/firestore';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import { TouchableRipple,Avatar} from 'react-native-paper';
+import profile from '../../assets/Images/profile.png'
 
 const OpenForum = props=>{
     const [name, setName] = useState("");
-    [vision, setVision] = useState(false);
+    const [vision, setVision] = useState(false);
+    const [image, setImage] = useState();
+    const [preview, setPrev] =useState();
 
+    const uploadPic = async()=>{
+        let result = await ImagePicker.launchImageLibraryAsync({
+             mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+             allowsEditing: true,
+             aspect: [4,4],
+             quality: 1,
+         });
+         if(!result.cancelled){
+            setImage(result.uri);
+        }
+    }
+     
+    const takePic = async()=>{
+        let result = await ImagePicker.launchCameraAsync(
+            {
+                mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+                allowsEditing: true,
+                aspect: [4,4],
+                quality: 1,
+            }
+        );
+        if(!result.cancelled){
+            setImage(result.uri);
+        }
+    }
+    
+    const uploadImage = async(uri, imageName)=>{
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        let storageRef = ref(storage,"forum/"+imageName);
+        return uploadBytesResumable(storageRef,blob);
+    }
+
+    
     const submit =async function(){
         if(name === ""){
             alert("חייב לשים שם לפורום")
             return
         }
+        const dat = new Date().getTime();
+        let pic = dat+name
 
         //adding a new document
         const ref = collection(db,'chats');
-        addDoc(ref,{"name":name,"last_time":new Date(), "last_message":""})
+        addDoc(ref,{"name":name,"last_time":new Date(), "last_message":"", 'pic':pic})
         //getting the document for the id
         const q = query(ref, where("name", "==", name) ,orderBy("last_time", "desc"));
         const querySnapshot = await getDocs(q);
@@ -31,10 +72,12 @@ const OpenForum = props=>{
                 once++;
             }
         });
+        uploadImage(image,pic);
         setName("");
+        setImage("")
         setVision(false)
     }
-   
+    
     return(
         <View>
             <Modal visible={vision}>
@@ -51,6 +94,19 @@ const OpenForum = props=>{
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
                 />
+                <TouchableRipple onPress={()=>uploadPic()}>
+                <View style={{...styles.button,width:200}}>
+                        <Text style={styles.up}>העלה תמונה</Text>
+                    </View>
+                </TouchableRipple>
+                <TouchableRipple onPress={()=>takePic()}>
+                <View style={{...styles.button,width:200}}>
+                        <Text style={styles.up}>צלם תמונה</Text>
+                    </View>
+                </TouchableRipple>
+
+                <Avatar.Image source={image?{uri:image}:profile}/>
+
                 <TouchableRipple onPress={()=>submit()}>
                     <View style={styles.button}>
                         <Text style={styles.up}>הוסף</Text>
