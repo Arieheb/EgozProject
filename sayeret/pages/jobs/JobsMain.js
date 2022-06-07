@@ -12,12 +12,7 @@ import { db } from '../../firebase';
 
 
 const JobsMain = props=>{
-    const [jobsList, updateJobsList] = useState([
-        {id:0,title:"מתכנת/ת dot.net",location:"פתח תקווה", contactName: "לירון", contactPhone:"0509397547", contactEmail:"lirona@eltek.com", description:"דרוש/ה מתכנת/ת לחברה תעשייתית בתחום האלקטרוניקה בפתח תקווה, כפיפות ישירה למנהל IT, משרה מלאה ללא ימי שישי, תנאים מעולים למתאימים/ות."},
-        {id:1,title:"מתכנת/ת ++C",location:"נתניה",contactName: "תומר", contactPhone:"0545782209", contactEmail:"tomerco@amdocs.com", description:"לצוות פיתוח איכותי המפתח פתרונות עבור חברת אנרגיה קמעונאית באזור השרון דרוש /ה מתכנת /ת בעל /ת ניסיון."},
-        {id:2,title:"מתכנת/ת Fullstack",location:"ירושלים",contactName: "אפרת", contactPhone:"0505488023", contactEmail:"efrata@lightricks.com", description:"לנעה מערכות בעמ דרושים /ות מתכנתים /ות Fullstack ו- Backend. דרוש /ה CTO שייכנס / תכנס כ- Founder ודרושים מתכנתים /ות Fullstack ו- Backend."},
-        {id:3,title:"מנהל אורחן",location:"קרית מוצקין",contactName: "משיח", contactPhone:"0509321083", contactEmail:"lamalo@orhanmashiah.com", description:"לאורחן משיח דרוש מנהל, זמר ופרזנטור ששיאו מאחוריו, ויעשה הכל כדי להיות בטופ. דרישות תפקיד: שחצן, וולגרי ובעל ביטחון עצמי מופרז."}
-    ]);
+    const [jobsList, updateJobsList] = useState([]);
     useEffect (()=>{
         const collectionJobs = collection(db, 'jobs');
         const que = query (collectionJobs);
@@ -64,10 +59,7 @@ const JobsMain = props=>{
                         return <JobCard title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description}/>
                     }}
                 />  
-                {/* <View style={{minHeight:80}}>
-             <Button title='הוסף משרה חדשה' onPress={goToAddJob}></Button>
-                </View> */}
-
+        
                 <View>
                     <TouchableOpacity style = {styles.plusButton} onPress={()=>goToAddJob()}>
                         <Icon name ="plus"  color="white"  size={70}/>   

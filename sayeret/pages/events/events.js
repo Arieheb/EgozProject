@@ -3,6 +3,7 @@ import {FlatList, View,TouchableOpacity, Text, StyleSheet, setVision } from 'rea
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
 import EventTemplate from './eventTemp';
+import AddEvent from './AddEvent';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
@@ -41,7 +42,7 @@ const EventCal = (props) => {
             renderItem = {(data) => <EventTemplate eventName = {data.item.eventName} time = {data.item.time} eventDate = {data.item.eventDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTemplate>}
 >
         </FlatList>
-        <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+        <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
             <Icon name ="plus"  color="white"  size={70}/>   
         </TouchableOpacity>
          </View>
