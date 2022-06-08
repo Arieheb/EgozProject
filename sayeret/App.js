@@ -191,8 +191,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 5,
-    
-      
   },
   text:{
     justifyContent: "center",
