@@ -68,102 +68,25 @@ export default function App() {
 
   return (
     <NavigationContainer>
-        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right'}}>
-          <Drawer.Screen name='home' component={Home} options={{headerRight: () => (
+        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right', headerRight: () => (
                   <TouchableOpacity style={styles.memberBtn} onPress = {()=> props.navigation.navigate("PayMember")}
                      //need to input link to membership 
                      //https://shop117095.istores.co.il/%D7%97%D7%91%D7%A8-%D7%A2%D7%9E%D7%95%D7%AA%D7%94-%D7%97%D7%91%D7%A8%D7%95%D7%AA-%D7%A9%D7%A0%D7%AA%D7%99%D7%AA/                   
                   >
                       <Text style={styles.text}>תשלום חברות</Text>
                   </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='jobs' component={Jobs} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='about' component={About} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='forums' component={Forum} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='profile' component={Profile} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='calendar' component={EventsNavigator} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='Benefits' component={Benefits} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='Contact' component={Contact} options={{headerRight: () => (
-                  <TouchableOpacity 
-                    style={styles.memberBtn} 
-                    onPress = {()=> {
-                     //need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }}/>
-          <Drawer.Screen name='Memorial' component={Memorial} options={{headerRight: () => (
-                  
-                  
-                  
-                  <TouchableOpacity style={styles.memberBtn} onPress = {()=> {//need to input link to membership                    
-                  }}>
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),
-              }
-              }/>
+                ),}}>
+          <Drawer.Screen name='home' component={Home}/>
+          <Drawer.Screen name='jobs' component={Jobs}/>
+          <Drawer.Screen name='about' component={About}/>
+          <Drawer.Screen name='forums' component={Forum}/>
+          <Drawer.Screen name='profile' component={Profile}/>
+          <Drawer.Screen name='calendar' component={EventsNavigator}/>
+          <Drawer.Screen name='Benefits' component={Benefits}/>
+          <Drawer.Screen name='Contact' component={Contact}/>
+          <Drawer.Screen name='Memorial' component={Memorial}/>
           <Drawer.Screen name='store' component={Store} />
           {/* <Drawer.Screen name='membership' component={membership} /> */}
-
-
-
 
           <Drawer.Screen name='admin' component={Admin} />
           <Drawer.Screen options={{headerMode:'none'}} name='login' component={LoginScreen} />
