@@ -1,54 +1,129 @@
 import React, { useState, useEffect } from 'react';
-import {TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TextInput, View,Alert, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
 import {AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 
-const AddEvent = () => {
-    const [selectedValue, setSelectedValue] = useState("java");
+const AddEvent = (props) => {
+    const [titleInput, setTitleInput] = useState("");
+    const [locationInput, setLocationInput] = useState("");
+    const [infomationInput, setInformationInput] = useState("");
+    const [contactInput, setContactInput] = useState("");
+    const [timeInput, setTimeInput] = useState("");
+    const [dateInput, setDateInput] = useState("");
+
+    const handleSubmit = () => {
+        if(!titleInput.length){
+            return Alert.alert("יש להזין את שם האירוע")
+        }
+        if(!locationInput.length){
+            return Alert.alert("יש להזין את מיקום המאירוע")
+        }
+        if(!infomationInput.length){
+            return Alert.alert("יש להזין את תיאור האירוע")
+        }
+        if(!contactInput.length){
+            return Alert.alert("יש להזין את שם איש הקשר")
+        }
+        // if(!timeInput.length){
+        //     return Alert.alert("יש להזין מספר טלפון")
+        // }
+        // if(!dateInput.length){
+        //     return Alert.alert("יש להזין כתובת אימייל")
+        // }
+        //TODO - fix JSON output
+        addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: dateInput});
+        props.navigation.navigate('events');
+    }
+
+
+
+
+
     return (
         <ScrollView>
-        <View style= {styles.container}>
-        <Text style = {{textAlign: 'center', fontSize: 35, color: 'white'}}>הוספת אירוע חדש</Text>
-            <View >
-                <Text style = {styles.textStyle}>שם האירוע:</Text>
-                <TextInput placeholder='שם האירוע'
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                />
-            </View>
+            <View style= {styles.container}>
+                <Text style = {{textAlign: 'center', fontSize: 35, color: 'white'}}>הוספת אירוע חדש</Text>
+                    <View style = {{}}>
+                        <Text style = {styles.textStyle}>שם האירוע:</Text>
+                        <TextInput 
+                            style={styles.input}
+                            placeholder='שם האירוע'
+                            value = {titleInput}
+                            onChangeText = {text => setTitleInput(text)}
+                            placeholderTextColor={"#fff"}
+                        />
+                    </View>
 
-            <View style= {{}}>
-           <Text style = {styles.textStyle}>מיקום: </Text>
-                <TextInput placeholder='מיקום' 
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                />
-            </View>
+                    <View style = {{}}>
+                <Text style = {styles.textStyle}>מיקום: </Text>
+                        <TextInput 
+                            style={styles.input}
+                            placeholder='מיקום' 
+                            value = {locationInput}
+                            onChangeText = {text => setLocationInput(text)}
+                            placeholderTextColor={"#fff"}
+                        
+                        />
+                    </View>
 
-            <View style= {{}}>
-           <Text style = {styles.textStyle}>תיאור האירוע:</Text>
-                <ScrollView>
-                <TextInput placeholder= 'תיאור האירוע' 
-                    multiline = {true}
-                    style={styles.infoText}
-                    placeholderTextColor={"#fff"}
-                />
-                </ScrollView>
-            </View>
+                    <View style = {{}}>
+                <Text style = {styles.textStyle}>תיאור האירוע:</Text>
+                        <ScrollView>
+                        <TextInput placeholder= 'תיאור האירוע' 
+                            multiline
+                            style={styles.infoText}
+                            value = {infomationInput}
+                            onChangeText = {text => setInformationInput(text)}
+                            placeholderTextColor={"#fff"}
+                        />
+                        </ScrollView>
+                    </View>
 
-            <View style= {{}}>
-           <Text style = {styles.textStyle}>איש קשר:</Text>
-                <TextInput placeholder='איש קשר' 
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                />
-            </View>
+                    <View style = {{}}>
+                <Text style = {styles.textStyle}>איש קשר:</Text>
+                        <TextInput placeholder='איש קשר' 
+                            style={styles.input}
+                            value = {contactInput}
+                            onChangeText = {text => setContactInput(text)}
+                            placeholderTextColor={"#fff"}
+                        />
+                    </View>
 
-           
-        <TouchableOpacity style = {styles.buttons}>
-                <Text style= {styles.buttonText}>הוספת אירוע</Text>
-            </TouchableOpacity>
+                    <View style = {{}}>
+                        <Text style = {styles.textStyle}>זמן:</Text>
+                        <TextInput 
+                            style={styles.input}
+                            placeholder='00:00'
+                            value = {timeInput}
+                            onChangeText = {text => setTimeInput(text)}
+                            placeholderTextColor={"#fff"}
+                        />
+                    </View>
+
+                    <View style = {{}}>
+                        <Text style = {styles.textStyle}>תאריך:</Text>
+                        <TextInput 
+                            style={styles.input}
+                            placeholder='dd/mm/yyyy'
+                            value = {dateInput}
+                            onChangeText = {text => setDateInput(text)}
+                            placeholderTextColor={"#fff"}
+                        />
+                    </View>
+                    <Pressable 
+                    style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
+                    onPress={handleSubmit}
+                    >                        
+                        <Text style= {styles.buttonText}>הוספת אירוע</Text>
+                    </Pressable>
+            </View>
+        </ScrollView>
+    );
+
+}
 {/* <Picker
         selectedValue={selectedValue}
         style={{ height: 50, width: 150}}
@@ -64,12 +139,7 @@ const AddEvent = () => {
         <Picker.Item label="JavaScript" value="js" />
       </Picker> */}
 
-            </View>
-            </ScrollView>
-    );
-
-}
-
+          
 export default AddEvent
 
 const styles = StyleSheet.create ({ 

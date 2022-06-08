@@ -13,15 +13,15 @@ const EventTemplate = (props) => {
                 
                 <View name='main' style = {styles.eventFrame} >
                     <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.timeText}>{props.time} </Text>
+                        <Text style = {styles.timeText}>{props.eventTime} </Text>
                         <Text style = {styles.dateText}>{props.eventDate}</Text>
 
                     </View> 
                     <View name= 'information' style = {styles.infoFrame}>
                         <Text style = {styles.infoText}> שם האירוע: {props.eventName} </Text>
-                        <Text style = {styles.infoText}> מקום/כתובת: {props.location} </Text>
-                        <Text style = {styles.infoText}>פרטים נוספים: {props.information} </Text>
-                        <Text style = {styles.infoText}> איש קשר: {props.contact} </Text>
+                        <Text style = {styles.infoText}> מקום/כתובת: {props.eventLocation} </Text>
+                        <Text style = {styles.infoText}>פרטים נוספים: {props.eventInformation} </Text>
+                        <Text style = {styles.infoText}> איש קשר: {props.eventContact} </Text>
 
                     </View>
                     

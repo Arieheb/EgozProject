@@ -3,7 +3,7 @@ import React,{useState} from 'react';
 import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
 import { db } from '../../firebase';
 
-const AddJob = props => {
+const AddJob = (props) => {
 const [titleInput, setTitleInput] = useState("")
 const [locationInput, setLocationInput] = useState("")
 const [descriptionInput, setDescriptionInput] = useState("")

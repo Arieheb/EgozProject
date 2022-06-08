@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {FlatList, View,TouchableOpacity, Text, StyleSheet, setVision } from 'react-native';
+import {FlatList, View,TouchableOpacity,Alert, Text, StyleSheet, setVision } from 'react-native';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
+import {deleteDoc, doc } from 'firebase/firestore';
+
 import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
@@ -18,34 +20,55 @@ const EventCal = (props) => {
             setEventInfo (
               QuerySnapshot.docs.map(doc => {
                 return({
-                eventName: doc.data().eventName,
-                location: doc.data().location,
-                information: doc.data().information,
-                contact: doc.data().contact,
-                time: doc.data().time,
-                eventDate: doc.data().eventDate
+                    id: doc.id,
+                    eventName: doc.data().eventName,
+                    eventLocation: doc.data().eventLocation,
+                    eventInformation: doc.data().eventInformation,
+                    eventContact: doc.data().eventContact,
+                    eventTime: doc.data().eventTime,
+                    eventDate: doc.data().eventDate
               })})
             );
       });
       return () => unsubscribe();
     },[]);
 
+    const del = async(id)=>{
+        Alert.alert(
+            "למחוק?",
+            "האם אתה בטוח שאתה רוצה למחוק את האירוע הזה?",
+            [
+              {
+                text: "בטל",
+                onPress: () => {return},
+              },
+              {
+                text: "מחק",
+                onPress: async () => {
+                    await deleteDoc(doc(db, "events", id));
+                },
+            },
+        ],
+        );
+      }
+
     return (
 
-
+<TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
        <View style = {styles.container}>
            <Text style = {styles.headerText}>לוח אירועים</Text>
 
         <FlatList data = {eventInfo}
-            keyExtractor = {item => item.eventName}
-            renderItem = {(data) => <EventTemplate eventName = {data.item.eventName} time = {data.item.time} eventDate = {data.item.eventDate} location = {data.item.location} information = {data.item.information} contact = {data.item.contact}></EventTemplate>}
+            keyExtractor = {item => item.id}
+            renderItem={({item}) => {
+                return <EventTemplate eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}></EventTemplate>}}
 >
         </FlatList>
         <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
             <Icon name ="plus"  color="white"  size={70}/>   
         </TouchableOpacity>
          </View>
-
+         </TouchableOpacity>
     );
         }
 

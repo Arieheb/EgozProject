@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 const Jobs = () => {
 
   return (
-      <Stack.Navigator screenOptions={{headerShown:true}}>
+      <Stack.Navigator screenOptions={{headerShown:false}}>
           <Stack.Screen name="A" component={JobsMain} options={{title:"משרות"}}/>
           <Stack.Screen name="B" component={AddJob} options={{title:"הוספת משרה חדשה"}}/>
       </Stack.Navigator>
