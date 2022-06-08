@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity,Dimensions,Image} f
 import {React,useState,} from 'react';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
-import Login from '../Login/Login';
 const{height:wHeight} = Dimensions.get("window");
 
 const auth = getAuth();
