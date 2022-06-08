@@ -8,6 +8,8 @@ import SignUpAuth from './SignUpAuth';
 const{width,height:wHeight} = Dimensions.get("window");
 import { addDoc, collection } from 'firebase/firestore'; 
 import Logo from '../../assets/Images/signUpLogo.png';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 const data = [
     {
       title: 'הירשם',
@@ -177,7 +179,8 @@ const SignUp = props => {
         //----------------------------------------------third page ----------------------------------
       else
       return (
-        <SignUpAuth></SignUpAuth>
+        
+          <SignUpAuth></SignUpAuth>
         );
     };
     

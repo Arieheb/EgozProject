@@ -1,11 +1,18 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,Dimensions,Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Dimensions,Image,Alert} from 'react-native';
 import {React,useState,} from 'react';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 const{height:wHeight} = Dimensions.get("window");
 
 const auth = getAuth();
-
+const emailMessege=()=>{
+    if(email==""){
+        alert("אחד מהנתונים חסרים")
+        return
+      }
+    alert("קישור לאיפוס סיסמא נשלח לחשבון המייל שלך")
+}
   const ForgotPage = props => {
     const [email,setEmail] = useState("");
     sendPasswordResetEmail(auth, email)
@@ -18,9 +25,8 @@ const auth = getAuth();
     
     });
     return (
-        
+       <KeyboardAwareScrollView> 
         <View style={styles.container} >
-          
             <View style = {styles.top}>
                <IconEvilIcons name='unlock' size={200}/>
                <Text style={styles.heading}>שחזור סיסמא</Text>
@@ -34,8 +40,8 @@ const auth = getAuth();
                     value={email}
                     onChangeText={text=>setEmail(text)}
                     />
-                    <TouchableOpacity style = {styles.button1}>
-                        <Text style = {styles.buttonText}>שלח סיסמא חדשה</Text>
+                    <TouchableOpacity style = {styles.button1} onPress={emailMessege}>
+                        <Text style = {styles.buttonText}>אפס סיסמא</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style = {styles.button2} onPress={()=>props.navigation.navigate("login")}>
                         <Text style = {styles.buttonText}>חזרה לעמוד כניסה</Text>
@@ -44,6 +50,7 @@ const auth = getAuth();
                 </View>
             </View>
         </View >
+        </KeyboardAwareScrollView>
         
     )
   }
@@ -68,7 +75,7 @@ const auth = getAuth();
         fontSize:50,
      },
      text1:{
-        fontSize:25,
+        fontSize:24,
         color:'#fff',
         paddingTop:20, 
      },
@@ -99,7 +106,7 @@ const auth = getAuth();
         color: "white",
         padding:30,
         textAlign: 'right',
-        fontSize:20,
+        fontSize:17,
      },
      button1:{
         alignItems:'center',
@@ -112,12 +119,13 @@ const auth = getAuth();
         justifyContent:'center',
         borderWidth:2,
         borderColor:'#fff',
+        fontWeight:'bold',
         
      },
      button2:{
         alignItems:'center',
         width:'90%',
-        height:50,
+        height:38,
         backgroundColor:'#191917fe',
         marginTop:10,
         borderRadius:8,
@@ -129,7 +137,7 @@ const auth = getAuth();
      },
      buttonText:{
          fontWeight:'400',
-         fontSize:19,
+         fontSize:17,
          color:'white'
          
      },

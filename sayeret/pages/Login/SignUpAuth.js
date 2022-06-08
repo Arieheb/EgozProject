@@ -3,8 +3,8 @@ import {React,useState} from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import { auth } from '../../firebase';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
- 
 const SignUpAuth = props => {
   const [show1,setShow1] = useState(false);
   const [show2,setShow2] = useState(false);
@@ -14,14 +14,15 @@ const SignUpAuth = props => {
   const [why ,setWhy] = useState("")
 
   return (
-    <View style={styles.container} behavior="padding">
+          <KeyboardAvoidingView style={styles.container} behavior="padding"> 
+            <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
       <View style = {styles.top}>
         <Text style= {styles.heading}> שאלון אימות</Text>
         <Text></Text>
-        <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות פרטי המשתמש</Text>
+        <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text>
       </View>
 
-      <View style = {styles.bottom}>
+      <KeyboardAwareScrollView style = {styles.bottom}>
         <View style = {styles.inputView}>
           <Text style={styles.text}>האם שירתת ביחידה?</Text>
           <View style ={styles.choiceView}>   
@@ -77,11 +78,13 @@ const SignUpAuth = props => {
                 /> 
             </View>:null}
             <TouchableOpacity style = {styles.buttons}>
-              <Text style = {styles.buttonText} >סיום</Text>
+              <Text style = {styles.buttonText}>סיום</Text>
             </TouchableOpacity>
           </View>
-        </View>
-      </View>
+        </KeyboardAwareScrollView>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+     
   );
 };
     
@@ -90,18 +93,17 @@ const SignUpAuth = props => {
 const styles = StyleSheet.create({
   container:{
     width:'100%',
+    height:'100%',
     flex:1,
     flexDirection:'column',
     backgroundColor:'#fff',
-    alignItems:'center',
-    justifyContent:'center',
  },
  top:{
     width:'100%',
     height:'25%',
     display:'flex',
     alignItems:'flex-start',
-    justifyContent:'flex-start',
+    justifyContent:'center',
     paddingBottom:20,
     alignItems:'center',
     backgroundColor:'#fff'
@@ -125,11 +127,19 @@ const styles = StyleSheet.create({
  },
  choiceButton:{
     margin:30,
+    borderWidth:1.5,
+    borderRadius:6,
+    width:50,
+    height:25,
+    borderColor:'#fff',
+    borderTopWidth:3,
+    borderLeftWidth:3,
  },
  choiceText:{
     color:'#fff',
     fontSize:20,
     fontWeight:'800',
+    textAlign:'center',
  },
  inputView:{
      width:'100%',
@@ -142,14 +152,13 @@ const styles = StyleSheet.create({
     textAlign:'left', 
     color:'#fff',
     fontWeight:'bold',
-    fontSize:15,
+    fontSize:16,
+    
  },
  show:{
     width:700,
     justifyContent:'center',
     alignItems:'center',
-    
-  
  },
  showInput:{
     display:'flex',
