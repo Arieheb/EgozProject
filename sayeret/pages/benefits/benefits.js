@@ -93,12 +93,12 @@ const Benefit = props => {
                 </View> 
                 <View name= 'information' style = {styles.infoFrame}>
                     <Text style = {styles.infoText}> {props.name}</Text>
+                </View>
                     <View style = {{...styles.buttonView, backgroundColor: "yellow"}}>
                         <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
                         <Text style= {styles.buttonText} >קרא עוד</Text>
                         </TouchableOpacity>
                    </View>
-                </View>
             </View>}
             <Modal visible={visible} transparent={true} >
                 <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
@@ -166,8 +166,9 @@ const styles = StyleSheet.create ({
         fontSize:14,
         borderWidth: 1,
         padding: 5,
-        marginTop: '50%',
-        marginLeft: '25%',
+        position: 'absolute',
+        marginTop: 140,
+        marginLeft: 35,
         borderRadius: 10,
         width: 100,
         height: 40,
