@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity,Dimensions,Image} from 'react-native';
 import {React,useState,} from 'react';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import IconEvilIcons from 'react-native-vector-icons/EvilIcons';
+import Login from '../Login/Login';
 const{height:wHeight} = Dimensions.get("window");
 
 const auth = getAuth();
@@ -21,9 +23,11 @@ const auth = getAuth();
         <View style={styles.container} >
           
             <View style = {styles.top}>
-                
+               <IconEvilIcons name='unlock' size={200}/>
+               <Text style={styles.heading}>שחזור סיסמא</Text>
             </View>
             <View style = {styles.bottom}>
+                <Text style={styles.text1}>הכנס אימייל משתמש:</Text>
                 <View style = {styles.inputView}>
                     <TextInput placeholder='אימייל:'
                     style={styles.input}
@@ -61,38 +65,42 @@ const auth = getAuth();
         alignItems:'center',
         backgroundColor:'#fff',
      },
-     logo:{
-         flex:1,
-         resizeMode:'contain',
-         width:'70%',
+     heading:{
+        fontSize:50,
      },
-   
+     text1:{
+        fontSize:25,
+        color:'#fff',
+        paddingTop:20, 
+     },
      bottom:{
          width:'100%',
          height:'65%',
          backgroundColor:'#373737fe',  
          borderTopLeftRadius:25,
          borderTopRightRadius:25,  
+         alignItems:'center',
      },
      inputView:{
          width:'100%',
          display:'flex',
          flexDirection:'column',
          alignItems:'center',
-         marginTop:25, 
-         paddingTop:30,
+         marginTop:10, 
+         paddingTop:3,
      },
      input: {
         width:'90%',
         borderWidth:1,
         borderColor:'#fff',
-        height:52,
+        height:60,
         borderRadius:8,
         paddingRight:15,
         margin:5,
         color: "white",
-        padding:20,
+        padding:30,
         textAlign: 'right',
+        fontSize:20,
      },
      button1:{
         alignItems:'center',
@@ -103,7 +111,8 @@ const auth = getAuth();
         borderRadius:8,
         display:'flex',
         justifyContent:'center',
-        borderWidth:3,
+        borderWidth:2,
+        borderColor:'#fff',
         
      },
      button2:{
@@ -113,13 +122,14 @@ const auth = getAuth();
         backgroundColor:'#191917fe',
         marginTop:10,
         borderRadius:8,
-        borderWidth:3,
+        borderWidth:1.5,
         display:'flex',
         justifyContent:'center',
+        borderColor:'#fff',
 
      },
      buttonText:{
-         fontWeight:'bold',
+         fontWeight:'400',
          fontSize:19,
          color:'white'
          

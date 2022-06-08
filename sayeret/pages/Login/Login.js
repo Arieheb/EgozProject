@@ -6,6 +6,7 @@ import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { ScrollView } from 'react-native-gesture-handler';
 import ForgotPage from './ForgotPage'
+
 const{width,height:wHeight} = Dimensions.get("window");
 
 const LoginScreen = props => {
