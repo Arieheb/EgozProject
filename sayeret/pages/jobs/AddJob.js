@@ -1,7 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore';
 import React,{useState} from 'react';
 import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 import { db } from '../../firebase';
 
 const AddJob = props => {
@@ -11,18 +10,6 @@ const [descriptionInput, setDescriptionInput] = useState("")
 const [nameInput, setNameInput] = useState("")
 const [phoneInput, setPhoneInput] = useState("")
 const [emailInput, setEmailInput] = useState("")
-
-const [open, setOpen] = useState(false);
-const [value, setValue] = useState(['מרכז', 'ירושלים והסביבה', 'צפון', 'דרום']);
-const [items, setItems] = useState([
-  {label: 'מרכז', value: 'מרכז'},
-  {label: 'תל אביב', value: 'תל אביב', parent: 'מרכז'},
-  {label: 'רמת גן', value: 'רמת גן', parent: 'מרכז'},
-  {label: 'ירושלים והסביבה', value: 'ירושלים והסביבה'},
-  {label: 'ירושלים', value: 'ירושלים', parent: 'ירושלים והסביבה'},
-  {label: 'צפון', value: 'צפון'},
-  {label: 'דרום', value: 'דרום'}
-]);
 
 const handleSubmit = ()=>{
   if(!titleInput.length){
@@ -64,21 +51,6 @@ const handleSubmit = ()=>{
           value={locationInput}
           onChangeText={text=>setLocationInput(text)}
           placeholderTextColor="#7f8c8d"
-        />
-        <DropDownPicker
-          style={{... styles.textInput, ... styles.selectInput}}
-          placeholder='מיקום'
-          open={open}
-          value={value}
-          items={items}
-          setOpen={setOpen}
-          setValue={setValue}
-          setItems={setItems}
-          onChangeText={text=>setLocationInput(text)}
-
-          multiple={true}
-          mode="BADGE"
-          badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
         />
         <TextInput
         style={{...styles.textInput,height:120}}
@@ -160,6 +132,5 @@ const styles = StyleSheet.create({
     justifyContent:"flex-start",
     justifyContent: 'center',
     borderRadius:5,
-    // textAlign:"left",
   }
 })
