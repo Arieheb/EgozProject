@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, View} from 'react-native'
+import { Platform, StyleSheet, View} from 'react-native'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import {Avatar,Title,Caption, Drawer, TouchableRipple} from 'react-native-paper'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -146,12 +146,13 @@ const styles = StyleSheet.create({
     },
     drawerSection:{
         marginTop:15,
+        
     },
     bottomDrawerSection:{
         marginBottom:15,
         borderTopColor:"#f4f4f4",
         borderTopWidth:1,
-        
+        // direction:Platform.OS=='ios'?'rtl':'ltr',
     },
     preference:{
         flexDirection:'row',
