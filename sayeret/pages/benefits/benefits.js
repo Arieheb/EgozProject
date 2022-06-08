@@ -5,7 +5,7 @@ import *as ImagePicker from 'expo-image-picker';
 import { Navigation } from 'react-calendar';
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
-import pizza from "../../assets/Images/pizza.jpg";
+import pizza from "../../assets/Images/gift.png";
 import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import AddBenefits from './addBenefit';
@@ -93,9 +93,11 @@ const Benefit = props => {
                 </View> 
                 <View name= 'information' style = {styles.infoFrame}>
                     <Text style = {styles.infoText}> {props.name}</Text>
-                    <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
-                    <Text style= {styles.buttonText} >קרא עוד</Text>
-                    </TouchableOpacity>
+                    <View style = {{...styles.buttonView, backgroundColor: "yellow"}}>
+                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
+                        <Text style= {styles.buttonText} >קרא עוד</Text>
+                        </TouchableOpacity>
+                   </View>
                 </View>
             </View>}
             <Modal visible={visible} transparent={true} >
@@ -158,15 +160,18 @@ const styles = StyleSheet.create ({
     page: {
         alignItems: "center",
     },
+    
     buttonsBenefit: {
         backgroundColor:"white",
         fontSize:14,
         borderWidth: 1,
         padding: 5,
-        marginTop: 10,
+        marginTop: '50%',
+        marginLeft: '25%',
         borderRadius: 10,
         width: 100,
         height: 40,
+        alignContent:'flex-end'
     },
     buttonText: {
         color: "black",
@@ -192,10 +197,22 @@ const styles = StyleSheet.create ({
         width: '50%',
         alignItems: "center",
         padding: 5,
+        borderColor: "black",
+        borderWidth: 0,
+        borderRadius: 25,
+
     },
     infoFrame: {
         width: '50%',
         fontSize: 35,
+        height: '100%',
+    },
+    buttonView: {
+        height: '50%',
+        backgroundColor: "yellow",
+        width: '50%'
+
+        
     },
     infoText: {
         fontWeight: "bold",
@@ -203,9 +220,11 @@ const styles = StyleSheet.create ({
 
     },
     benefitsPic: {
-        width: 180,
-        height: 180,
-        borderRadius: 20
+        // width: 180,
+        // height: 180,
+        borderRadius: 20,
+        width: '100%',
+        height: '100%',
     },
     buttons: {
         borderRadius: 100,
