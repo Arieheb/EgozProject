@@ -37,7 +37,7 @@ const auth = getAuth();
                     <TouchableOpacity style = {styles.button1}>
                         <Text style = {styles.buttonText}>שלח סיסמא חדשה</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style = {styles.button2} onPress={()=>props.navigation.navigate("Login")}>
+                    <TouchableOpacity style = {styles.button2} onPress={()=>props.navigation.navigate("login")}>
                         <Text style = {styles.buttonText}>חזרה לעמוד כניסה</Text>
                     </TouchableOpacity>
                     
