@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         alignItems:"center",
         paddingVertical:15,
-        backgroundColor:"#00aadd",
+        backgroundColor:"#616161", 
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 5 },
         shadowOpacity: 0.5,
