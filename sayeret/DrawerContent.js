@@ -16,9 +16,6 @@ const signOutNow = () => {
     });
 }
 
-
-
-
 const Card = props=>{
    return <DrawerItem
                 label= {props.title}
@@ -30,8 +27,6 @@ const Card = props=>{
                 onPress={()=>{props.navigation.navigate(props.nav,{'user':props.user})}}
              />
 }
-
-
 
 const DrawerContent = props => {
     const [user,setUser] = useState({});
