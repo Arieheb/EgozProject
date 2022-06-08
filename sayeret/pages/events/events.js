@@ -6,6 +6,7 @@ import {deleteDoc, doc } from 'firebase/firestore';
 
 import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const EventCal = (props) => {
@@ -53,22 +54,29 @@ const EventCal = (props) => {
       }
 
     return (
+    
+    <View>
+        <ScrollView>
+            <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
+                <View style = {styles.container}>
+                    <Text style = {styles.headerText}>לוח אירועים</Text>
 
-<TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
-       <View style = {styles.container}>
-           <Text style = {styles.headerText}>לוח אירועים</Text>
+                <FlatList data = {eventInfo}
+                    keyExtractor = {item => item.id}
+                    renderItem={({item}) => {
+                    return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}></EventTemplate>}}
+                    >
+                </FlatList>
+        
+                </View>
+         
+            </TouchableOpacity>
 
-        <FlatList data = {eventInfo}
-            keyExtractor = {item => item.id}
-            renderItem={({item}) => {
-                return <EventTemplate eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}></EventTemplate>}}
->
-        </FlatList>
-        <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
-            <Icon name ="plus"  color="white"  size={70}/>   
-        </TouchableOpacity>
-         </View>
-         </TouchableOpacity>
+        </ScrollView>
+            <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
+                <Icon name ="plus"  color="white"  size={70}/>   
+            </TouchableOpacity>
+    </View>
     );
         }
 
@@ -110,7 +118,7 @@ const styles = StyleSheet.create ({
         textAlign: 'center',
         margin: '13%',
         justifyContent: "center",
-      alignItems: "center",
+        alignItems: "center",
     //   marginTop: 5,
     //   padding: 5,
         

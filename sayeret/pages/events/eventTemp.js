@@ -30,13 +30,8 @@ const EventTemplate = (props) => {
         </ScrollView>
 
         );
-
-    
-
-
-
-
 }
+
 
 export default EventTemplate
 

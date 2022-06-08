@@ -4,6 +4,8 @@ import {AntDesign } from '@expo/vector-icons';
 import *as ImagePicker from 'expo-image-picker';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 
 const AddEvent = (props) => {
@@ -27,23 +29,20 @@ const AddEvent = (props) => {
         if(!contactInput.length){
             return Alert.alert("יש להזין את שם איש הקשר")
         }
-        // if(!timeInput.length){
-        //     return Alert.alert("יש להזין מספר טלפון")
-        // }
-        // if(!dateInput.length){
-        //     return Alert.alert("יש להזין כתובת אימייל")
-        // }
+        if(!timeInput.length){
+            return Alert.alert("יש להזין מספר טלפון")
+        }
+        if(!dateInput.length){
+            return Alert.alert("יש להזין כתובת אימייל")
+        }
         //TODO - fix JSON output
         addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: dateInput});
         props.navigation.navigate('events');
     }
 
 
-
-
-
     return (
-        <ScrollView>
+        <KeyboardAwareScrollView>
             <View style= {styles.container}>
                 <Text style = {{textAlign: 'center', fontSize: 35, color: 'white'}}>הוספת אירוע חדש</Text>
                     <View style = {{}}>
@@ -120,7 +119,7 @@ const AddEvent = (props) => {
                         <Text style= {styles.buttonText}>הוספת אירוע</Text>
                     </Pressable>
             </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
     );
 
 }

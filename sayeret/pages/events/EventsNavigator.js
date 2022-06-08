@@ -14,7 +14,7 @@ const EventsNavigator = () => {
     // </View>
     <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name='events' component={EventCal}/>
-        <Stack.Screen name='addEvent' component={AddEvent}/>
+        <Stack.Screen options={{headerShown: false}} name='addEvent' component={AddEvent}/>
     </Stack.Navigator>
   )
 }
