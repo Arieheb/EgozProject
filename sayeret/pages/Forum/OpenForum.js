@@ -98,7 +98,7 @@ const OpenForum = props=>{
                 <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
                 <View style={{...styles.button,width:200}}>
                         <Text style={styles.buttonText}>העלה תמונה</Text>
-                        <Icons name="picture-o" size={55}/>
+                        <Icon name="picture-o" size={55}/>
                     </View>
                 </TouchableRipple>
                 <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
@@ -114,16 +114,17 @@ const OpenForum = props=>{
                         <Text style={styles.buttonText}>הוסף</Text>
                     </View>
                 </TouchableRipple>
+
+                
+                <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
+                    setInfo("");}}>
+                        <Icon name="arrow-right-thick" size={55}/>
+                </TouchableOpacity>
+
             </Modal>
         <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
             <Icon name ="plus"  color="white"  size={45}/>   
         </TouchableOpacity> 
-
-        <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
-                    setInfo("");}}>
-                        <Icon name="arrow-right-thick" size={55}/>
-                    </TouchableOpacity>
-
         </View>
     );
 };
