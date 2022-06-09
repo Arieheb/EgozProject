@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image,View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
@@ -8,6 +8,8 @@ import Icons from "react-native-vector-icons/FontAwesome";
 import * as ImagePicker from 'expo-image-picker'
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../firebase';
+import Picture from '../../assets/Images/picture.png';
+
 
 
 const AddBenefits= props=>{
@@ -20,7 +22,7 @@ const AddBenefits= props=>{
         let result = await ImagePicker.launchImageLibraryAsync({
              mediaTypes: ImagePicker.MediaTypeOptions.Images, 
              allowsEditing: true,
-             aspect: [4,4],
+             aspect: [4,3],
              quality: 1,
          });
          if(!result.cancelled){
@@ -47,35 +49,39 @@ const AddBenefits= props=>{
 
   
     return(
-        <View>
+        <View >
             <View style={{height: '35%'}}>
                 <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
                 <Icon name ="plus"  color="white"  size={70}/>   
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
-                <View style= {styles.container}>
+                <View style= {{...styles.container, }}>
                 <Text style = {styles.title}>הוספת הטבה חדשה</Text>
                 <Text style = {styles.textStyle}> שם ההטבה:</Text>
                     <TextInput    
-                                style={styles.input} 
-                                placeholder="שם ההטבה"
+                                style={{...styles.input, height: 40,}} 
+                                placeholder="שם ההטבה..."
                                 value={name}
                                 onChangeText={(text)=>{setName(text)}}
                                 placeholderTextColor={"grey"}
                                 />
                     <Text style = {styles.textStyle}> תיאור ההטבה:</Text>
                     <TextInput     
-                                style={{...styles.input, height: 100}} 
-                                placeholder="פרטי הטבה..."
-                                value={info}
-                                onChangeText={(text)=>{setInfo(text)}}
-                                placeholderTextColor={"grey"}
+                                 style={{...styles.input, }} 
+                                 multiline
+                                 numberOfLines={6}
+                                 placeholder="פרטי הטבה..."
+                                 value={info}
+                                 onChangeText={(text)=>{setInfo(text)}}
+                                 placeholderTextColor={"grey"}
                                 />
+                    <View >
                     <TouchableOpacity style={styles.picButton}onPress={()=>uploadPic()}>
                         <Text style= {styles.buttonText}>העלה תמונה</Text>
-                        <Icons name="picture-o" size={55}/>
+                        {<Image source={photo?{uri: photo}:Picture} style={{ width: 150, height: 150 }}/>}
                     </TouchableOpacity>
+                    </View>
                     <TouchableOpacity style = {styles.buttensStyle} onPress={()=>{Submit() }}>
                         <Text style= {styles.buttonText} >הוסף הטבה</Text>
                     </TouchableOpacity>
@@ -94,6 +100,7 @@ const AddBenefits= props=>{
 
 export default AddBenefits
 const styles = StyleSheet.create ({ 
+
     textStyle: {
         fontSize: 17,
         paddingTop: 3,
@@ -106,20 +113,19 @@ const styles = StyleSheet.create ({
     container: {
         height: '100%',
         paddingBottom: 70, 
-        width: '100%',
+        width: '95%',
         display: 'flex', 
+        alignSelf:'center'
     },
     title: {
         textAlign: 'center',
         fontSize: 35,
         color: 'black',
         fontWeight: 'bold',
-        paddingTop: 10,
+        paddingTop: '8%',
     },
     input: {
-        height:40,
         borderRadius: 12,
-        // paddingRight:10,
         margin:5,
         paddingLeft: 7,
         borderWidth: 1,
@@ -129,34 +135,17 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
       },
     buttensStyle: {
-        // backgroundColor:"white",
-        // fontSize:14,
-        // borderWidth: 1,
-        // padding: 5,
-        // marginTop: 10,
-        // borderRadius: 10,
-        // width: 300,
-        // height: 40,
         alignSelf:'center',
         alignItems:'center',
-        // width:'85%',
-        // color:'blue',
-        // height:40,
-        // backgroundColor:'#fff',
         marginTop:30,
-        // borderRadius:8,
         display:'flex',
         justifyContent:'center',
         backgroundColor:"white",
         fontSize:16,
         borderWidth: 1,
-        // padding: 5,
-        // position: 'absolute',
-        marginTop: 50,
         borderRadius: 10,
         width: 120,
         height: 60,
-        // alignContent:'flex-end'
     },
     buttensText: {
       textAlign: 'center',
@@ -168,10 +157,6 @@ const styles = StyleSheet.create ({
         textAlign: "center",
     },
     buttonText: {
-        // textAlign: "center",
-        // fontSize: 25,
-        // fontWeight: "bold",
-        // margin: 2
         color: "black",
         textAlign: 'center',
         fontWeight:"bold",
@@ -185,11 +170,7 @@ const styles = StyleSheet.create ({
         height: 200,
         flexDirection: "row",
     },
-    picFrame: {
-        width: '50%',
-        alignItems: "center",
-        padding: 5,
-    },
+   
     infoFrame: {
         width: '50%',
         fontSize: 35,
@@ -199,45 +180,26 @@ const styles = StyleSheet.create ({
         fontSize: 25,
 
     },
-    buttons: {
-        borderRadius: 100,
-        width:170,
-        height: 75,
-        backgroundColor: "rgba(0, 0, 0, 0.75)",
-        flexDirection: "row",
-        justifyContent: "center",
-        textAlign: "center",
-        margin: 20,
-        marginTop: 8,
-        color:"white",
-    },
     plusButton: {
         borderRadius: 100,
-        width: 80,
-        height: 80,
+        width: '100%',
+        height: '55%',
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        flexDirection: "row",
-        textAlign: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        marginHorizontal: 20,
-        marginTop: 8,
+        marginTop: '10%',
         borderColor: "white",
         borderWidth: 0.5,
     },
     picButton: {
         alignSelf:'center',
         alignItems:'center',
-        marginTop:30,
-        display:'flex',
+        marginTop:'5%',
         justifyContent:'center',
         backgroundColor:"white",
         fontSize:16,
         borderWidth: 1,
-        marginTop: 50,
         borderRadius: 10,
-        width: 160,
-        height: 160,
+        width: '50%',
+     
     }
     
 });

@@ -145,13 +145,13 @@ const Blurp = (props) => {
       borderRadius: 20,
       padding: 10,
       elevation: 2,
-      maxWidth: 110
     },
     buttonOpen: {
       backgroundColor: 'black',
       borderRadius: 50,
-      
-      
+      maxWidth:110,
+      height:205,
+      alignItems:'center',
     },
     buttonClose: {
       backgroundColor: "#2196F3",
