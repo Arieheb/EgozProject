@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {FlatList, View,TouchableOpacity,Alert, Text, StyleSheet, setVision } from 'react-native';
 import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
-import {deleteDoc, doc } from 'firebase/firestore';
 
 import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -34,45 +33,17 @@ const EventCal = (props) => {
       return () => unsubscribe();
     },[]);
 
-    const del = async(id)=>{
-        Alert.alert(
-            "למחוק?",
-            "האם אתה בטוח שאתה רוצה למחוק את האירוע הזה?",
-            [
-              {
-                text: "בטל",
-                onPress: () => {return},
-              },
-              {
-                text: "מחק",
-                onPress: async () => {
-                    await deleteDoc(doc(db, "events", id));
-                },
-            },
-        ],
-        );
-      }
-
     return (
-    
-    <View>
-        <ScrollView>
-            <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
-                <View style = {styles.container}>
+        <View style = {styles.container}>
+                    
                     <Text style = {styles.headerText}>לוח אירועים</Text>
 
                 <FlatList data = {eventInfo}
                     keyExtractor = {item => item.id}
                     renderItem={({item}) => {
-                    return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}></EventTemplate>}}
-                    >
-                </FlatList>
-        
-                </View>
+                    return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
+                    />
          
-            </TouchableOpacity>
-
-        </ScrollView>
             <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
                 <Icon name ="plus"  color="white"  size={70}/>   
             </TouchableOpacity>

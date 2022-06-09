@@ -1,33 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import {  Modal, Alert, Image, Pressable,  TextInput, View, link, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
-import Profile from '../../assets/Images/profile.png';
-import {auth, db} from '../../firebase';
+import React from 'react';
+import { View,  Text, StyleSheet , ScrollView, TouchableOpacity, Alert} from 'react-native';
+import {db} from '../../firebase';
+import {deleteDoc, doc } from 'firebase/firestore';
 
 const EventTemplate = (props) => {
+    const del = async(id)=>{
+        Alert.alert(
+            "למחוק?",
+            "האם אתה בטוח שאתה רוצה למחוק את האירוע הזה?",
+            [
+              {
+                text: "בטל",
+                onPress: () => {return},
+              },
+              {
+                text: "מחק",
+                onPress: async () => {
+                    await deleteDoc(doc(db, "events", props.id));
+                },
+            },
+        ],
+        );
+      }
+
 
     return (
-        <ScrollView>
             <View>
-                
-                <View name='main' style = {styles.eventFrame} >
-                    <View name = 'date and time' style = {styles.dateTimeFrame}>
-                        <Text style = {styles.timeText}>{props.eventTime} </Text>
-                        <Text style = {styles.dateText}>{props.eventDate}</Text>
+                <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
+                    <ScrollView>
+                        <View name='main' style = {styles.eventFrame} >
+                            <View name = 'date and time' style = {styles.dateTimeFrame}>
+                                <Text style = {styles.timeText}>{props.eventTime} </Text>
+                                <Text style = {styles.dateText}>{props.eventDate}</Text>
 
-                    </View> 
-                    <View name= 'information' style = {styles.infoFrame}>
-                        <Text style = {styles.infoText}> שם האירוע: {props.eventName} </Text>
-                        <Text style = {styles.infoText}> מקום/כתובת: {props.eventLocation} </Text>
-                        <Text style = {styles.infoText}>פרטים נוספים: {props.eventInformation} </Text>
-                        <Text style = {styles.infoText}> איש קשר: {props.eventContact} </Text>
+                            </View> 
+                            <View name= 'information' style = {styles.infoFrame}>
+                                <Text style = {styles.infoText}> שם האירוע: {props.eventName} </Text>
+                                <Text style = {styles.infoText}> מקום/כתובת: {props.eventLocation} </Text>
+                                <Text style = {styles.infoText}>פרטים נוספים: {props.eventInformation} </Text>
+                                <Text style = {styles.infoText}> איש קשר: {props.eventContact} </Text>
 
-                    </View>
-                    
-                </View>
+                            </View>
+                            
+                        </View>
+                        </ScrollView>    
+                </TouchableOpacity>
             </View>
-        </ScrollView>
 
         );
 }
