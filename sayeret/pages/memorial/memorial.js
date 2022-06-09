@@ -56,8 +56,6 @@ const Memorial = () => {
   const styles = StyleSheet.create({
     container: {
         marginHorizontal: "auto",
-        // width: "100%",
-        // height: "100%",
         paddingTop: 20,
         paddingBottom: 100
       },

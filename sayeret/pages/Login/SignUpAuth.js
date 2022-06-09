@@ -88,7 +88,7 @@ const SignUpAuth = props => {
   );
 };
     
-  
+export default SignUpAuth
 
 const styles = StyleSheet.create({
   container:{
@@ -201,4 +201,3 @@ const styles = StyleSheet.create({
      
 });
 
-export default SignUpAuth

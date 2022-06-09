@@ -5,10 +5,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import SignUpAuth from './SignUpAuth';
-const{width,height:wHeight} = Dimensions.get("window");
 import { addDoc, collection } from 'firebase/firestore'; 
-import Logo from '../../assets/Images/signUpLogo.png';
+// import Logo from '../../assets/Images/signUpLogo.png';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import Logo from '../../assets/Images/login_logo.png';
+
+const{width,height:wHeight} = Dimensions.get("window");
 
 const data = [
     {
@@ -45,6 +47,14 @@ const SignUp = props => {
   const [LastName, setLastName] =useState("")
   const [address, setAddress] =useState("")
   const [city, setCity] =useState("") 
+  const [phone, setPhone] = useState ("")
+  const [show1,setShow1] = useState(false);
+  const [show2,setShow2] = useState(false);
+  const [year ,setYear] = useState("")
+  const [generation ,setGeneration] = useState("")
+  const [team ,setTeam] = useState("")
+  const [why ,setWhy] = useState("")
+
   
   const validate = () => {
       if(email=="" || password==""){
@@ -58,7 +68,24 @@ const SignUp = props => {
   }
   const renderItem = ({item}) => {
     const handleSignUp = () =>
-      {   
+      { 
+        if (show1) {
+            if(!year.length){
+              return Alert.alert("יש להזין את שם האירוע")
+            }
+            if(!generation.length){
+              return Alert.alert("יש להזין את מיקום המאירוע")
+            }
+            if(!team.length){
+              return Alert.alert("יש להזין את תיאור האירוע")
+            }           
+        }
+        else {
+          if(!why.length){
+            return Alert.alert("יש להזין את שם האירוע")
+          }
+        }
+      
         auth
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -78,6 +105,14 @@ const SignUp = props => {
               user_id:auth.currentUser.uid,
               pic:"",
               password:password,
+              phone: phone,
+              questionaire: {
+                generation: generation,
+                team: team,
+                year: year,
+                why: why,
+                inUnit: show1
+              }
             })
             
           })
@@ -87,6 +122,7 @@ const SignUp = props => {
             alert(errorMessage);
           });
         }
+        
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
     return (
@@ -94,10 +130,11 @@ const SignUp = props => {
       <KeyboardAvoidingView style={styles.container} behavior="padding"> 
         <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}> 
           <View style = {styles.top}>
-            <Image style = {styles.logo} source={Logo} 
-            styles={styles.logo}/>
+          <Image style = {styles.logo} source={Logo} />
+            
           </View>
           <View style = {styles.bottom}>
+          <Text style = {styles.heading}>מייל וסיסמא</Text>
             <View style = {styles.inputView}>
               <TextInput placeholder='אימייל:'
                 style={styles.input}
@@ -137,10 +174,12 @@ const SignUp = props => {
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
-                <Text style= {styles.heading}>פרטים אישיים</Text>
+                {/* <Text style= {styles.heading}>פרטים אישיים</Text> */}
               </View>
 
               <View style = {styles.bottom}>
+              <Text style= {styles.heading}>פרטים אישיים</Text>
+
                 <View style = {styles.inputView}>
                  <TextInput placeholder='שם פרטי:'
                   style={styles.input}
@@ -166,8 +205,14 @@ const SignUp = props => {
                   value={city}
                   onChangeText={text=>setCity(text)}
                 />
+                <TextInput placeholder='מספר טלפון:' 
+                  style={styles.input}
+                  placeholderTextColor={"#fff"}
+                  value={phone}
+                  onChangeText={text=>setPhone(text)}
+                />
                 
-                <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+                <TouchableOpacity style = {styles.buttons}>
                   <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
             </View>
@@ -179,27 +224,97 @@ const SignUp = props => {
         //----------------------------------------------third page ----------------------------------
       else
       return (
-        
-          <SignUpAuth></SignUpAuth>
-        );
-    };
-    
-   const keyExtractor = (item) => item.title;
+          
+          <KeyboardAvoidingView style={styles.container} behavior="padding"> 
+            <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
+              <View style = {styles.top}>
+                  <Text style= {styles.heading}> שאלון אימות</Text>
+                  <Text></Text>
+                  <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text>
+              </View>
 
-   return (
-    <View style={{flex: 1}}>
-      <StatusBar translucent backgroundColor="transparent" />
-      <AppIntroSlider
-        showNextButton={false}
-        showDoneButton={false}
-        showPrevButton={true}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        data={data}
-        onDone={validate}
-      />
-    </View>
-  );
+            <KeyboardAwareScrollView style = {styles.bottom}>
+              <View style = {styles.inputView}>
+                  <Text style={styles.text}>האם שירתת ביחידה?</Text>
+                  <View style ={styles.choiceView}>   
+                <TouchableOpacity 
+          onPress={()=>{setShow1(true);setShow2(false)}}
+          style={styles.choiceButton}
+          >
+            <Text style={styles.choiceText}>כן</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+          onPress={()=>{setShow2(true); setShow1(false)}}
+          style={styles.choiceButton}
+          >
+            <Text style={styles.choiceText}>לא</Text>
+          </TouchableOpacity>  
+        </View>  
+        {show1?
+        
+          <View styel= {styles.show}>
+            <Text style={styles.text}>באיזה שנה?</Text>
+            <TextInput  
+              style={styles.showInput}
+              placeholder='...'
+              placeholderTextColor={"#fff"}
+              value={year}
+              onChangeText={text=>setYear(text)}
+            />
+            <Text style={styles.text}>באיזה מחזור?</Text>
+            <TextInput  
+              style={styles.showInput}
+              placeholder='...'
+              placeholderTextColor={"#fff"}
+              value={generation}
+              onChangeText={text=>setGeneration(text)}
+            />
+            <Text style={styles.text}>באיזה צוות?</Text>
+            <TextInput  
+              style={styles.showInput}
+              placeholder='...'
+              placeholderTextColor={"#fff"}
+              value={team}
+              onChangeText={text=>setTeam(text)}
+            />  
+          </View>:null}
+          {show2?
+            <View>
+              <Text style={styles.text}>מדוע אתה מעוניין להצטרף?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholder='...'
+                placeholderTextColor={"#fff"}
+                value={why}
+              onChangeText={text=>setWhy(text)}
+              /> 
+          </View>:null}
+          <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+            <Text style = {styles.buttonText}>סיום</Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAwareScrollView>
+      </TouchableOpacity>
+    </KeyboardAvoidingView>
+          );
+      };
+      
+    const keyExtractor = (item) => item.title;
+
+    return (
+      <View style={{flex: 1}}>
+        <StatusBar translucent backgroundColor="transparent" />
+        <AppIntroSlider
+          showNextButton={false}
+          showDoneButton={false}
+          showPrevButton={true}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          data={data}
+          onDone={validate}
+        />
+      </View>
+    );
 };
 
 
@@ -232,12 +347,13 @@ const styles = StyleSheet.create({
          borderTopRightRadius:25,
      },
      heading:{
-         color:'black',
-         fontSize:40,
-         fontWeight:'bold',
-         marginLeft:20,
-         marginTop:20,
-     },
+      color:'#fff',
+      fontSize:32,
+      fontWeight:'bold',
+      marginLeft:40,
+      marginTop:30,
+      textAlign:'left',
+  },
      inputView:{
          width:'100%',
          display:'flex',
@@ -272,6 +388,117 @@ const styles = StyleSheet.create({
          fontWeight:'bold',
          fontSize:19,
      },
+
+     /////////////////////////////////////////////////////
+      container:{
+        width:'100%',
+        height:'100%',
+        flex:1,
+        flexDirection:'column',
+        backgroundColor:'#fff',
+     },
+     top:{
+        width:'100%',
+        height:'25%',
+        display:'flex',
+        alignItems:'flex-start',
+        justifyContent:'center',
+        paddingBottom:20,
+        alignItems:'center',
+        backgroundColor:'#fff'
+     },
+     heading:{
+      color:'black',
+      fontSize:40,
+      fontWeight:'bold',
+      paddingTop:15,
+    },
+     bottom:{
+         width:'100%',
+         height:'75%',
+         backgroundColor:'#373737fe',   
+         borderTopLeftRadius:25,
+         borderTopRightRadius:25,
+     },
+     choiceView:{
+        flexDirection:'row',
+        
+     },
+     choiceButton:{
+        margin:30,
+        borderWidth:1.5,
+        borderRadius:6,
+        width:50,
+        height:25,
+        borderColor:'#fff',
+        borderTopWidth:3,
+        borderLeftWidth:3,
+     },
+     choiceText:{
+        color:'#fff',
+        fontSize:20,
+        fontWeight:'800',
+        textAlign:'center',
+     },
+     inputView:{
+         width:'100%',
+         display:'flex',
+         flexDirection:'column',
+         alignItems:'center',
+         marginTop:35,
+     },
+     text:{
+        textAlign:'left', 
+        color:'#fff',
+        fontWeight:'bold',
+        fontSize:16,
+        
+     },
+     show:{
+        width:700,
+        justifyContent:'center',
+        alignItems:'center',
+     },
+     showInput:{
+        display:'flex',
+        borderWidth:1,
+        borderColor:'#fff',
+        height:48,
+        borderRadius:8,
+        width:350,
+        padding:10,
+        margin:10,
+        textAlign:'right',
+     },
+     input: {
+        width:'90%',
+        borderWidth:1,
+        borderColor:'#fff',
+        height:52,
+        borderRadius:8,
+        paddingRight:15,
+        margin:10,
+        padding:10,
+        color:"white",
+     },
+     buttons:{  
+        alignItems:'center',
+        width:'90%',
+        color:'blue',
+        height:55,
+        backgroundColor:'#fff',
+        marginTop:10,
+        borderRadius:20,
+        display:'flex',
+        justifyContent:'center',
+     },
+     buttonText:{
+         fontWeight:'bold',
+         fontSize:19,
+         
+     },
+         
+    
      
   });
 
