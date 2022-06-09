@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Image,View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image,View,SafeAreaView, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
@@ -49,7 +49,7 @@ const AddBenefits= props=>{
 
   
     return(
-        <View >
+        <SafeAreaView >
             <View style={{height: '35%'}}>
                 <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
                 <Icon name ="plus"  color="white"  size={70}/>   
@@ -57,6 +57,10 @@ const AddBenefits= props=>{
             </View>
             <Modal visible={vision}>
                 <View style= {{...styles.container, }}>
+                <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
+                    setInfo("");}}>
+                        <Icon name="arrow-right-thick" size={35}/>
+                    </TouchableOpacity>
                 <Text style = {styles.title}>הוספת הטבה חדשה</Text>
                 <Text style = {styles.textStyle}> שם ההטבה:</Text>
                     <TextInput    
@@ -85,15 +89,12 @@ const AddBenefits= props=>{
                     <TouchableOpacity style = {styles.buttensStyle} onPress={()=>{Submit() }}>
                         <Text style= {styles.buttonText} >הוסף הטבה</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
-                    setInfo("");}}>
-                        <Icon name="arrow-right-thick" size={55}/>
-                    </TouchableOpacity>
+                   
 
                 </View>
             </Modal>
           
-         </View>
+         </SafeAreaView>
     )
     
 }
@@ -122,7 +123,7 @@ const styles = StyleSheet.create ({
         fontSize: 35,
         color: 'black',
         fontWeight: 'bold',
-        paddingTop: '8%',
+        // paddingTop: '8%',
     },
     input: {
         borderRadius: 12,
@@ -130,9 +131,10 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
+        backgroundColor: 'lightgrey'
      },
     returnButten: {
-        alignItems: 'center',
+        alignItems: 'flex-start',
       },
     buttensStyle: {
         alignSelf:'center',

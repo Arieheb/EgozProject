@@ -85,7 +85,7 @@ const OpenForum = props=>{
                     <TouchableRipple onPress={()=>{setVision(false)}}>
                         <Icon
                             name='arrow-right-thick'
-                            size={30} 
+                            size={35} 
                         />
                     </TouchableRipple>
                 </SafeAreaView>

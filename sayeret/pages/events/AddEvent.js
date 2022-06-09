@@ -148,6 +148,7 @@ const styles = StyleSheet.create ({
         paddingBottom: 70, 
         width: '100%',
         display: 'flex',
+        backgroundColor: 'white',
     },
     title: {
         textAlign: 'center',
@@ -191,6 +192,7 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
+        backgroundColor: 'lightgrey'
      },
      buttons:{
         alignSelf:'center',
