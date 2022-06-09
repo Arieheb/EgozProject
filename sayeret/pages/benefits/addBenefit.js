@@ -52,15 +52,17 @@ const AddBenefits= props=>{
         <SafeAreaView >
             <View style={{height: '35%'}}>
                 <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
-                <Icon name ="plus"  color="white"  size={70}/>   
+                <Icon name ="plus"  color="white"  size={60}/>   
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
                 <View style= {{...styles.container, }}>
+                    <View style={{height: '10%', justifyContent: 'center'}}>
                 <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
                     setInfo("");}}>
                         <Icon name="arrow-right-thick" size={35}/>
                     </TouchableOpacity>
+                    </View>
                 <Text style = {styles.title}>הוספת הטבה חדשה</Text>
                 <Text style = {styles.textStyle}> שם ההטבה:</Text>
                     <TextInput    
@@ -184,8 +186,8 @@ const styles = StyleSheet.create ({
     },
     plusButton: {
         borderRadius: 100,
-        width: '100%',
-        height: '55%',
+        width: 60,
+        height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
         marginTop: '10%',
         borderColor: "white",

@@ -192,7 +192,7 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'lightgrey',      
      },
      buttons:{
         alignSelf:'center',
