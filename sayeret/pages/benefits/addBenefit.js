@@ -50,9 +50,9 @@ const AddBenefits= props=>{
   
     return(
         <SafeAreaView >
-            <View style={{height: '35%'}}>
+            <View style={{height: '30%', justifyContent:'center'}}>
                 <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
-                <Icon name ="plus"  color="white"  size={60}/>   
+                <Icon name ="plus"  color="white"  size={45}/>   
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
@@ -190,8 +190,11 @@ const styles = StyleSheet.create ({
         height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
         marginTop: '10%',
+        marginBottom: '40%',
         borderColor: "white",
         borderWidth: 0.5,
+        alignItems:'center',
+        justifyContent:'center',
     },
     picButton: {
         alignSelf:'center',

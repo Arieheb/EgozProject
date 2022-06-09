@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {FlatList, View,TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {FlatList, View,SafeAreaView,TouchableOpacity, Text, StyleSheet} from 'react-native';
 import { collection, onSnapshot, query,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
 import EventTemplate from './eventTemp';
@@ -33,21 +33,21 @@ const EventCal = (props) => {
     },[]);
 
     return (
-        <View style = {styles.container}>
+        <SafeAreaView style = {styles.container}>
                     
-                    <Text style = {styles.headerText}>לוח אירועים</Text>
+                    {/* <Text style = {styles.headerText}>לוח אירועים</Text> */}
 
                 <FlatList data = {eventInfo}
                     keyExtractor = {item => item.id}
                     renderItem={({item}) => {
                     return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
                     />
-            <View style={{height: '35%', justifyContent:'center', alignItems:'center'}}>
-            <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
-                <Icon name ="plus"  color="white"  size={60}/>   
-            </TouchableOpacity>
-           </View>
-    </View>
+                <View style={{height: '30%', alignItems:'center',justifyContent:'center',alignContent:'center'}}>
+                    <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
+                        <Icon name ="plus"  color="white"  size={45}/>   
+                    </TouchableOpacity>
+            </View>
+           </SafeAreaView>
     );
         }
 
@@ -76,43 +76,27 @@ const styles = StyleSheet.create ({
         borderWidth: 1,
         borderColor: "black"       
     }, 
-    
-
     dateTimeFrame: {
         flexDirection: 'column' ,
         width: '28%',
         height:'100%',
-        
-     
     },
     dateTimeText: {
         textAlign: 'center',
         margin: '13%',
         justifyContent: "center",
         alignItems: "center",
-    //   marginTop: 5,
-    //   padding: 5,
-        
-
     },
-    
     infoFrame: {
         flex: 1,
         flexDirection: 'column',
-
         width: '72%'
-
-
-        
     },
      infoText: {
         textAlign: 'left',
         fontSize: 15,
         margin: 2
-
      },
-
-   
      buttons: {
         borderRadius: 100,
         margin:30,
@@ -120,21 +104,22 @@ const styles = StyleSheet.create ({
         height: 100,
         width: 100,
     },
-
     buttonText: {
         textAlign: 'center',
         paddingTop: '40%',
         fontSize: 15
-        
     },
     plusButton: {
         borderRadius: 100,
         width: 60,
         height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        marginTop: '10%',
+        // marginTop: '-10%',
+        marginBottom: '55%',
         borderColor: "white",
         borderWidth: 0.5,
+        alignItems:'center',
+        justifyContent:'center',
     },
 
 
