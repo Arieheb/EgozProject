@@ -59,11 +59,10 @@ const JobsMain = props=>{
                         return <JobCard id={item.id} title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description}/>
                     }}
                 />  
-        
-                <View  style = {styles.plusButton}>
-                    <TouchableOpacity onPress={()=>goToAddJob()}>
-                        <Icon name ="plus"  color="white"  size={45}/>   
-                    </TouchableOpacity> 
+                <View style={{height: '10%', justifyContent:'center'}}>
+                        <TouchableOpacity style = {styles.plusButton} onPress={()=>goToAddJob()}>
+                            <Icon name ="plus"  color="white"  size={45}/>   
+                        </TouchableOpacity> 
                 </View>
         </View> 
     );
@@ -126,21 +125,15 @@ titleText:{
 },
 plusButton: {
     borderRadius: 100,
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     backgroundColor: "rgba(0, 0, 0, 0.75)",
-    flexDirection: "row",
-    textAlign: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    marginHorizontal: 20,
-    marginTop: 8,
+    marginTop: '10%',
+    marginBottom: '10%',
     borderColor: "white",
     borderWidth: 0.5,
-    position:'absolute',
-    top:530,
-    right:7,
-    zIndex:1
+    alignItems:'center',
+    justifyContent:'center',
 },
 })
 
