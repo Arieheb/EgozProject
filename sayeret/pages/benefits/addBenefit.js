@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Image,View, Modal, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
@@ -8,6 +8,8 @@ import Icons from "react-native-vector-icons/FontAwesome";
 import * as ImagePicker from 'expo-image-picker'
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../firebase';
+import Picture from '../../assets/Images/picture.png';
+
 
 
 const AddBenefits= props=>{
@@ -20,7 +22,7 @@ const AddBenefits= props=>{
         let result = await ImagePicker.launchImageLibraryAsync({
              mediaTypes: ImagePicker.MediaTypeOptions.Images, 
              allowsEditing: true,
-             aspect: [4,4],
+             aspect: [4,3],
              quality: 1,
          });
          if(!result.cancelled){
@@ -75,10 +77,12 @@ const AddBenefits= props=>{
                                  placeholderTextColor={"grey"}
                                 />
          
+                    <View >
                     <TouchableOpacity style={styles.picButton}onPress={()=>uploadPic()}>
                         <Text style= {styles.buttonText}>העלה תמונה</Text>
-                        <Icons name="picture-o" size={55}/>
+                        {<Image source={photo?{uri: photo}:Picture} style={{ width: 150, height: 150 }}/>}
                     </TouchableOpacity>
+                    </View>
                     <TouchableOpacity style = {styles.buttensStyle} onPress={()=>{Submit() }}>
                         <Text style= {styles.buttonText} >הוסף הטבה</Text>
                     </TouchableOpacity>
@@ -97,6 +101,7 @@ const AddBenefits= props=>{
 
 export default AddBenefits
 const styles = StyleSheet.create ({ 
+
     textStyle: {
         fontSize: 17,
         paddingTop: 3,
@@ -238,8 +243,8 @@ const styles = StyleSheet.create ({
         borderWidth: 1,
         marginTop: 50,
         borderRadius: 10,
-        width: 160,
-        height: 160,
+        width: 180,
+        height: 180,
     }
     
 });
