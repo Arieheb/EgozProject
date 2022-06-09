@@ -3,6 +3,7 @@ import { View,  Text, StyleSheet , ScrollView, TouchableOpacity, Alert} from 're
 import {db} from '../../firebase';
 import {deleteDoc, doc } from 'firebase/firestore';
 
+
 const EventTemplate = (props) => {
     const del = async(id)=>{
         Alert.alert(

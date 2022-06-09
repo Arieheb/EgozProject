@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {FlatList, View,TouchableOpacity,Alert, Text, StyleSheet, setVision } from 'react-native';
-import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
+import {FlatList, View,TouchableOpacity, Text, StyleSheet} from 'react-native';
+import { collection, onSnapshot, query,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
-
 import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-import { ScrollView } from 'react-native-gesture-handler';
+
 
 
 const EventCal = (props) => {

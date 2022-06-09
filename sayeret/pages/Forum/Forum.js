@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         paddingTop: Platform.OS === 'ios'? 30:15,
         paddingLeft:5,
-        height: Platform.OS === 'ios'? "13%":"0"
+        paddingBottom: Platform.OS === 'ios'? "13%":10
     },
     textInput:{
         marginVertical:8,
