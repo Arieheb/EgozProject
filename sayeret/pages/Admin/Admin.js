@@ -68,8 +68,60 @@ GuestItem = props=>{
 }
 
 
+// const Search = (props) => {
+  // const list = props.list;
+
+  // const [searchList, setSearchList] = useState([]);
+  // const [input, setInput] = useState("");
+  // const [visible, setVisible] = useState(false);
+
+  //getting the list according to the input
+  // const searcher = (name)=>{
+      // setSearchList(list.filter(item=>(String(item.name).includes(name))));
+  // }
+
+  // useEffect(()=>{setSearchList(list)},[])
+
+
+// return (
+  // <View>
+    // <TouchableOpacity onPress={()=>setVisible(true)}>
+          // <Icons name='search' size={45}/>
+    // </TouchableOpacity>
+      // <Modal visible={visible}>
+          // <SafeAreaView>
+              // <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
+                  // <Icons name='arrow-back' size={45}/>
+              // </TouchableOpacity>
+          // </SafeAreaView>
+          // {/*search bar*/}
+          // <View>    
+              // <TextInput 
+                  // style={styles.textInput}
+                  // placeholder='חפש'     
+                  // value={input}
+                  // onChangeText={text=>{setInput(text);searcher(text)}}
+                  // placeholderTextColor="#7f8c8d"
+              // />
+              // <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
+                  // <Text>X</Text>
+              // </TouchableOpacity>
+          // </View>
+          // {/**the found list*/}
+          // <FlatList
+          //  data={searchList}
+          //  keyExtractor = {item=>item.id}
+          //  renderItem={(data)=><memberItem  user={data.item} params={props.params}/>}
+          // />
+      // </Modal>
+  // </View>
+// )
+// }
+
+
 const Admin = () => {
   const [newUsers, setWaiter] = useState([]);
+  const [allUsers, setUser] = useState([]);
   //getting the new users
   useEffect (async()=>{
     const ref = collection(db, 'users');
@@ -91,17 +143,17 @@ const Admin = () => {
   return (
     <View>
         <View>
-        <Text>ניהול משתמשים</Text>
-        <FlatList data={newUsers}
-        keyExtractor = {item=> item.id}
-        renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
-        />
+          <Text>משתמשים חדשים</Text>
+          <FlatList data={newUsers}
+          keyExtractor = {item=> item.id}
+          renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
+          />
         </View>
 
         <View>
-            <TouchableOpacity>
-                
-            </TouchableOpacity>
+            <Text>ניהול משתמשים</Text>
+            <FlatList
+            />
         </View>
      
 
