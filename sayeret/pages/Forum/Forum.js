@@ -10,14 +10,6 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from 'react-native-vector-icons/Ionicons'
 import OpenForum from './OpenForum';
 
-{/**
-    add another useState to hold search list 
-    add useState to see if in search mode
-    if on search mode use serach list in flat list
-    else use normal list
-
-*/}
-
 
 //formatting the date to the currect format
 function dateFormat(timeStamp){
@@ -122,7 +114,6 @@ const ForumItem = props=>{
     );
 }
 
-
 const Search = (props) => {
     const list = props.list;
 
@@ -131,8 +122,8 @@ const Search = (props) => {
     const [visible, setVisible] = useState(false);
 
     //getting the list according to the input
-    const searcher = ()=>{
-        setSearchList(list.filter(item=>(String(item.name).includes(input))));
+    const searcher = (name)=>{
+        setSearchList(list.filter(item=>(String(item.name).includes(name))));
     }
 
     useEffect(()=>{setSearchList(list)},[])
@@ -144,19 +135,21 @@ const Search = (props) => {
             <Icons name='search' size={45}/>
       </TouchableOpacity>
         <Modal visible={visible}>
-            <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher()}}>
-                <Icons name='arrow-back' size={45}/>
-            </TouchableOpacity>
+            <SafeAreaView>
+                <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
+                    <Icons name='arrow-back' size={45}/>
+                </TouchableOpacity>
+            </SafeAreaView>
             {/*search bar*/}
             <View>    
                 <TextInput 
                     style={styles.textInput}
                     placeholder='חפש'     
                     value={input}
-                    onChangeText={text=>{setInput(text);searcher()}}
+                    onChangeText={text=>{setInput(text);searcher(text)}}
                     placeholderTextColor="#7f8c8d"
                 />
-                <TouchableOpacity onPress={()=>{setInput("");searcher}}>
+                <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
                     <Text>X</Text>
                 </TouchableOpacity>
             </View>

@@ -36,7 +36,7 @@ GuestItem = props=>{
   return(
     <View>
       <View style = {styles.newUsers}>
-      <Text>{props.name}</Text>
+      <Text>{props.name} רוצה להצטרף</Text>
       <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(true)}>
         <Text style = {styles.buttensText}>אפשרויות</Text>
       </TouchableOpacity>

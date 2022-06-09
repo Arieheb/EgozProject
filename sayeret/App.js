@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { LogBox } from 'react-native';
+import { LogBox, Platform } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {I18nManager, StyleSheet, Text, View } from 'react-native';
 import CodePush from 'react-native-code-push';
@@ -37,6 +37,7 @@ const Stack = createStackNavigator();
 export default function App() {
 
   //forcing the app to be right to left
+  if(Platform.OS!='ios')
   if(!I18nManager.isRTL){
       I18nManager.forceRTL(true);
       CodePush.restartApp();
@@ -69,17 +70,17 @@ export default function App() {
   
   return (
     <NavigationContainer>
-        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right', headerRight: () => <PayMember/>}}>
-          <Drawer.Screen name='home' component={Home}/>
-          <Drawer.Screen name='jobs' component={Jobs}/>
-          <Drawer.Screen name='about' component={About}/>
-          <Drawer.Screen name='forums' component={Forum}/>
-          <Drawer.Screen name='profile' component={Profile}/>
-          <Drawer.Screen name='calendar' component={EventsNavigator}/>
-          <Drawer.Screen name='Benefits' component={Benefits}/>
-          <Drawer.Screen name='Contact' component={Contact}/>
-          <Drawer.Screen name='Memorial' component={Memorial}/>
-          <Drawer.Screen name='store' component={Store} />
+        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right',/*title: null,*/ headerRight: () => <PayMember/>}}>
+          <Drawer.Screen name='home' component={Home}options = {{title: null}}/>
+          <Drawer.Screen name='jobs' component={Jobs}options = {{title: null}}/>
+          <Drawer.Screen name='about' component={About}options = {{title: null}}/>
+          <Drawer.Screen name='forums' component={Forum}options = {{title: null}}/>
+          <Drawer.Screen name='profile' component={Profile}options = {{title: null}}/>
+          <Drawer.Screen name='calendar' component={EventsNavigator}options = {{title: null}}/>
+          <Drawer.Screen name='Benefits' component={Benefits} options = {{title: null}}/>
+          <Drawer.Screen name='Contact' component={Contact} options = {{title: null}}/>
+          <Drawer.Screen name='Memorial' component={Memorial} options = {{title: null}}/>
+          <Drawer.Screen name='store' component={Store} options = {{title: null}} />
           
 
           <Drawer.Screen name='admin' component={Admin} />
