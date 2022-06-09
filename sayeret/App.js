@@ -26,8 +26,8 @@ import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
 import ForgotPage from './pages/Login/ForgotPage';
 import Admin from './pages/Admin/Admin';
-// import membership from './pages/memberPay/Membership'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+// import membership from './pages/memberPay/Membership'
 
 
 

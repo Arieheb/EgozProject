@@ -1,13 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import {Platform,Text, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert} from 'react-native';
+import {Platform,Text, View, StyleSheet, FlatList,Modal,SafeAreaView, Alert, TextInput, TouchableOpacity} from 'react-native';
 import { TouchableRipple,Avatar} from 'react-native-paper';
-import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, deleteDoc, doc} from 'firebase/firestore';
 import { db,storage } from '../../firebase';
 import { ref,getDownloadURL, deleteObject  } from 'firebase/storage';
 import Profile from "../../assets/Images/profile.png"
 import WriteToForum from './forumWrite';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Icons from 'react-native-vector-icons/Ionicons'
 import OpenForum from './OpenForum';
+
+{/**
+    add another useState to hold search list 
+    add useState to see if in search mode
+    if on search mode use serach list in flat list
+    else use normal list
+
+*/}
 
 
 //formatting the date to the currect format
@@ -113,8 +122,58 @@ const ForumItem = props=>{
     );
 }
 
+
+const Search = (props) => {
+    const list = props.list;
+
+    const [searchList, setSearchList] = useState([]);
+    const [input, setInput] = useState("");
+    const [visible, setVisible] = useState(false);
+
+    //getting the list according to the input
+    const searcher = ()=>{
+        setSearchList(list.filter(item=>(String(item.name).includes(input))));
+    }
+
+    useEffect(()=>{setSearchList(list)},[])
+
+
+  return (
+    <View>
+      <TouchableOpacity onPress={()=>setVisible(true)}>
+            <Icons name='search' size={45}/>
+      </TouchableOpacity>
+        <Modal visible={visible}>
+            <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher()}}>
+                <Icons name='arrow-back' size={45}/>
+            </TouchableOpacity>
+            {/*search bar*/}
+            <View>    
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder='חפש'     
+                    value={input}
+                    onChangeText={text=>{setInput(text);searcher()}}
+                    placeholderTextColor="#7f8c8d"
+                />
+                <TouchableOpacity onPress={()=>{setInput("");searcher}}>
+                    <Text>X</Text>
+                </TouchableOpacity>
+            </View>
+            {/**the found list*/}
+            <FlatList
+             data={searchList}
+             keyExtractor = {item=>item.id}
+             renderItem={(data)=><ForumItem  user={data.item} params={props.params}/>}
+            />
+        </Modal>
+    </View>
+  )
+}
+
 const Forum = props=>{
     const [forumList, updateForumList] = useState([]);
+    const [loaded, setLoad] = useState(false);
 
     useEffect(() => {
         const collectionRef = collection(db, 'chats');
@@ -130,6 +189,7 @@ const Forum = props=>{
               pic:doc.data().pic,
             }))
           );
+          setLoad(true);
         });
         return () => unsubscribe();
       }, []);
@@ -137,6 +197,7 @@ const Forum = props=>{
     return(
         
         <View>
+            {loaded?<Search list={forumList} params={props.route.params}/>:null}
             <OpenForum/>
             <FlatList data={forumList}
                 style={{height:"95%"}}
@@ -184,7 +245,20 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'ios'? 30:15,
         paddingLeft:5,
         height: Platform.OS === 'ios'? "13%":"0"
-    }
+    },
+    textInput:{
+        marginVertical:8,
+        width:"100%",
+        textAlign:"right",
+        height:40,
+        borderColor:"gray",
+        borderWidth:1,
+        borderRadius:5,
+        alignSelf:"flex-end",
+        padding:5,
+        fontSize:18,
+        backgroundColor:"white"
+      },
 
 })
 
