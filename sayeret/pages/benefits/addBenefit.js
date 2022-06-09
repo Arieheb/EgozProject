@@ -47,31 +47,34 @@ const AddBenefits= props=>{
 
   
     return(
-        <View>
+        <View >
             <View style={{height: '35%'}}>
                 <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
                 <Icon name ="plus"  color="white"  size={70}/>   
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
-                <View style= {styles.container}>
+                <View style= {{...styles.container, }}>
                 <Text style = {styles.title}>הוספת הטבה חדשה</Text>
                 <Text style = {styles.textStyle}> שם ההטבה:</Text>
                     <TextInput    
-                                style={styles.input} 
-                                placeholder="שם ההטבה"
+                                style={{...styles.input, height: 40,}} 
+                                placeholder="שם ההטבה..."
                                 value={name}
                                 onChangeText={(text)=>{setName(text)}}
                                 placeholderTextColor={"grey"}
                                 />
                     <Text style = {styles.textStyle}> תיאור ההטבה:</Text>
                     <TextInput     
-                                style={{...styles.input, height: 100}} 
-                                placeholder="פרטי הטבה..."
-                                value={info}
-                                onChangeText={(text)=>{setInfo(text)}}
-                                placeholderTextColor={"grey"}
+                                 style={{...styles.input, }} 
+                                 multiline
+                                 numberOfLines={6}
+                                 placeholder="פרטי הטבה..."
+                                 value={info}
+                                 onChangeText={(text)=>{setInfo(text)}}
+                                 placeholderTextColor={"grey"}
                                 />
+         
                     <TouchableOpacity style={styles.picButton}onPress={()=>uploadPic()}>
                         <Text style= {styles.buttonText}>העלה תמונה</Text>
                         <Icons name="picture-o" size={55}/>
@@ -106,20 +109,19 @@ const styles = StyleSheet.create ({
     container: {
         height: '100%',
         paddingBottom: 70, 
-        width: '100%',
+        width: '95%',
         display: 'flex', 
+        alignSelf:'center'
     },
     title: {
         textAlign: 'center',
         fontSize: 35,
         color: 'black',
         fontWeight: 'bold',
-        paddingTop: 10,
+        paddingTop: 20,
     },
     input: {
-        height:40,
         borderRadius: 12,
-        // paddingRight:10,
         margin:5,
         paddingLeft: 7,
         borderWidth: 1,
