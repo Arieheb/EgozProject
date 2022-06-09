@@ -121,6 +121,7 @@ GuestItem = props=>{
 
 const Admin = () => {
   const [newUsers, setWaiter] = useState([]);
+  const [allUsers, setUser] = useState([]);
   //getting the new users
   useEffect (async()=>{
     const ref = collection(db, 'users');
@@ -142,17 +143,17 @@ const Admin = () => {
   return (
     <View>
         <View>
-        <Text>ניהול משתמשים</Text>
-        <FlatList data={newUsers}
-        keyExtractor = {item=> item.id}
-        renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
-        />
+          <Text>משתמשים חדשים</Text>
+          <FlatList data={newUsers}
+          keyExtractor = {item=> item.id}
+          renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
+          />
         </View>
 
         <View>
-            <TouchableOpacity>
-                
-            </TouchableOpacity>
+            <Text>ניהול משתמשים</Text>
+            <FlatList
+            />
         </View>
      
 

@@ -8,7 +8,7 @@ import {collection,query,addDoc,getDocs, where, orderBy} from 'firebase/firestor
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import profile from '../../assets/Images/profile.png'
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+
 
 const OpenForum = props=>{
     const [name, setName] = useState("");
