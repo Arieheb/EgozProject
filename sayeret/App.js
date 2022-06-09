@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { LogBox } from 'react-native';
+import { LogBox, Platform } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {I18nManager, StyleSheet, Text, View } from 'react-native';
 import CodePush from 'react-native-code-push';
@@ -37,6 +37,7 @@ const Stack = createStackNavigator();
 export default function App() {
 
   //forcing the app to be right to left
+  if(Platform.OS!='ios')
   if(!I18nManager.isRTL){
       I18nManager.forceRTL(true);
       CodePush.restartApp();
