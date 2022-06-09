@@ -8,6 +8,7 @@ import {collection,query,addDoc,getDocs, where, orderBy} from 'firebase/firestor
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import profile from '../../assets/Images/profile.png'
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 const OpenForum = props=>{
     const [name, setName] = useState("");
@@ -94,28 +95,34 @@ const OpenForum = props=>{
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
                 />
-                <TouchableRipple onPress={()=>uploadPic()}>
+                <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
                 <View style={{...styles.button,width:200}}>
-                        <Text style={styles.up}>העלה תמונה</Text>
+                        <Text style={styles.buttonText}>העלה תמונה</Text>
+                        <Icons name="picture-o" size={55}/>
                     </View>
                 </TouchableRipple>
-                <TouchableRipple onPress={()=>takePic()}>
+                <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
                 <View style={{...styles.button,width:200}}>
-                        <Text style={styles.up}>צלם תמונה</Text>
+                        <Text style={styles.buttonText}>צלם תמונה</Text>
                     </View>
                 </TouchableRipple>
 
                 <Avatar.Image source={image?{uri:image}:profile}/>
 
-                <TouchableRipple onPress={()=>submit()}>
+                <TouchableRipple style = {styles.buttensStyle} onPress={()=>submit()}>
                     <View style={styles.button}>
-                        <Text style={styles.up}>הוסף</Text>
+                        <Text style={styles.buttonText}>הוסף</Text>
                     </View>
                 </TouchableRipple>
             </Modal>
         <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
             <Icon name ="plus"  color="white"  size={45}/>   
         </TouchableOpacity> 
+
+        <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
+                    setInfo("");}}>
+                        <Icon name="arrow-right-thick" size={55}/>
+                    </TouchableOpacity>
 
         </View>
     );
@@ -125,7 +132,6 @@ const styles = StyleSheet.create({
     button:{
       width:100,
       height:50,
-      backgroundColor:"blue",
       borderRadius:20,
       alignItems:'center',
       justifyContent:'center',
@@ -142,15 +148,17 @@ const styles = StyleSheet.create({
         left:2,
         zIndex:1
     },
-    up:{
-        color:"white",
-        fontSize:24
+    buttonText:{
+        color: "black",
+        textAlign: 'center',
+        fontWeight:"bold",
+        fontSize:16,
     },
     header:{
         flexDirection:"row",
         alignItems:"center",
         paddingVertical:15,
-        backgroundColor:"#00aadd",
+        backgroundColor:"#616161",
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 5 },
         shadowOpacity: 0.5,
@@ -160,6 +168,8 @@ const styles = StyleSheet.create({
         paddingLeft:5,
         
     },
+
+    
     plusButton: {
         borderRadius: 100,
         width: 50,
@@ -178,6 +188,58 @@ const styles = StyleSheet.create({
         right:7,
         zIndex:1
     },
+
+    picButton: {
+        alignSelf:'center',
+        alignItems:'center',
+        marginTop:30,
+        display:'flex',
+        justifyContent:'center',
+        backgroundColor:"white",
+        fontSize:16,
+        borderWidth: 1,
+        marginTop: 50,
+        borderRadius: 10,
+        width: 160,
+        height: 160,
+    }
+    ,
+    buttensStyle: {
+        // backgroundColor:"white",
+        // fontSize:14,
+        // borderWidth: 1,
+        // padding: 5,
+        // marginTop: 10,
+        // borderRadius: 10,
+        // width: 300,
+        // height: 40,
+        alignSelf:'center',
+        alignItems:'center',
+        // width:'85%',
+        // color:'blue',
+        // height:40,
+        // backgroundColor:'#fff',
+        marginTop:30,
+        // borderRadius:8,
+        display:'flex',
+        justifyContent:'center',
+        backgroundColor:"white",
+        fontSize:16,
+        borderWidth: 1,
+        // padding: 5,
+        // position: 'absolute',
+        marginTop: 50,
+        borderRadius: 10,
+        width: 120,
+        height: 60,
+        // alignContent:'flex-end'
+    },
+
+    returnButten: {
+        alignItems: 'center',
+      },
+
+    
 })
 
 export default OpenForum;
