@@ -5,13 +5,15 @@ import { auth } from '../../firebase';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-const SignUpAuth = props => {
-  const [show1,setShow1] = useState(false);
-  const [show2,setShow2] = useState(false);
-  const [year ,setYear] = useState("")
-  const [generation ,setGeneration] = useState("")
-  const [team ,setTeam] = useState("")
-  const [why ,setWhy] = useState("")
+const SignUpAuth = (props) => {
+  // const [show1,setShow1] = useState(false);
+  // const [show2,setShow2] = useState(false);
+  // const [year ,setYear] = useState("")
+  // const [generation ,setGeneration] = useState("")
+  // const [team ,setTeam] = useState("")
+  // const [why ,setWhy] = useState("")
+
+  
 
   return (
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 

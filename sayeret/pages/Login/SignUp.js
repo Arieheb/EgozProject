@@ -126,15 +126,14 @@ const SignUp = props => {
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
     return (
-    <ScrollView>
+    // <ScrollView>
       <KeyboardAvoidingView style={styles.container} behavior="padding"> 
         <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}> 
           <View style = {styles.top}>
-          <Image style = {styles.logo} source={Logo} />
-            
+            <Text style = {styles.heading}>מייל וסיסמא</Text> 
           </View>
           <View style = {styles.bottom}>
-          <Text style = {styles.heading}>מייל וסיסמא</Text>
+          
             <View style = {styles.inputView}>
               <TextInput placeholder='אימייל:'
                 style={styles.input}
@@ -165,7 +164,7 @@ const SignUp = props => {
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>  
-    </ScrollView>
+    // </ScrollView>
     );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)
@@ -174,13 +173,11 @@ const SignUp = props => {
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
-                {/* <Text style= {styles.heading}>פרטים אישיים</Text> */}
+                <Text style= {styles.heading}>פרטים אישיים</Text>
               </View>
 
               <View style = {styles.bottom}>
-              <Text style= {styles.heading}>פרטים אישיים</Text>
-
-                <View style = {styles.inputView}>
+                 <View style = {styles.inputView}>
                  <TextInput placeholder='שם פרטי:'
                   style={styles.input}
                   placeholderTextColor={"#fff"}
@@ -323,79 +320,11 @@ const styles = StyleSheet.create({
     container:{
         height:wHeight,
         paddingTop:40,
-        flexDirection:'column',
-        backgroundColor:'white',
-     },
-     top:{
-        width:'100%',
-        height:'25%',
-        display:'flex',
-        alignItems:'center',
-        backgroundColor:'#fff',
-     },
-     logo:{
-         flex:1,
-         resizeMode:'contain',
-         width:'70%',
-     },
-   
-     bottom:{
-         width:'100%',
-         height:'75%',
-         backgroundColor:'#373737fe',  
-         borderTopLeftRadius:25,
-         borderTopRightRadius:25,
-     },
-     heading:{
-      color:'#fff',
-      fontSize:32,
-      fontWeight:'bold',
-      marginLeft:40,
-      marginTop:30,
-      textAlign:'left',
-  },
-     inputView:{
-         width:'100%',
-         display:'flex',
-         flexDirection:'column',
-         alignItems:'center',
-         marginTop:35,
-     },
-     input: {
-        width:'90%',
-        borderWidth:1,
-        borderColor:'#fff',
-        height:52,
-        borderRadius:8,
-        paddingRight:15,
-        margin:10,
-        padding:10,
-        color:"white",
-        textAlign: 'right',
-     },
-     buttons:{  
-        alignItems:'center',
-        width:'90%',
-        color:'blue',
-        height:55,
-        backgroundColor:'#fff',
-        marginTop:10,
-        borderRadius:20,
-        display:'flex',
-        justifyContent:'center',
-     },
-     buttonText:{
-         fontWeight:'bold',
-         fontSize:19,
-     },
-
-     /////////////////////////////////////////////////////
-      container:{
         width:'100%',
         height:'100%',
         flex:1,
         flexDirection:'column',
-        backgroundColor:'#fff',
+        backgroundColor:'white',
      },
      top:{
         width:'100%',
@@ -407,68 +336,37 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor:'#fff'
      },
-     heading:{
+    //  logo:{
+    //      flex:1,
+    //      resizeMode:'contain',
+    //      width:'70%',
+    //      height: "100%"
+    //  },
+    
+    heading:{
       color:'black',
       fontSize:40,
       fontWeight:'bold',
       paddingTop:15,
     },
+   
      bottom:{
          width:'100%',
-         height:'75%',
-         backgroundColor:'#373737fe',   
+         height:'100%',
+         backgroundColor:'#373737fe',  
          borderTopLeftRadius:25,
          borderTopRightRadius:25,
-     },
-     choiceView:{
-        flexDirection:'row',
         
      },
-     choiceButton:{
-        margin:30,
-        borderWidth:1.5,
-        borderRadius:6,
-        width:50,
-        height:25,
-        borderColor:'#fff',
-        borderTopWidth:3,
-        borderLeftWidth:3,
-     },
-     choiceText:{
-        color:'#fff',
-        fontSize:20,
-        fontWeight:'800',
-        textAlign:'center',
-     },
+    
+
      inputView:{
          width:'100%',
-         display:'flex',
+         
+        //  display:'flex',
          flexDirection:'column',
          alignItems:'center',
          marginTop:35,
-     },
-     text:{
-        textAlign:'left', 
-        color:'#fff',
-        fontWeight:'bold',
-        fontSize:16,
-        
-     },
-     show:{
-        width:700,
-        justifyContent:'center',
-        alignItems:'center',
-     },
-     showInput:{
-        display:'flex',
-        borderWidth:1,
-        borderColor:'#fff',
-        height:48,
-        borderRadius:8,
-        width:350,
-        padding:10,
-        margin:10,
-        textAlign:'right',
      },
      input: {
         width:'90%',
@@ -480,7 +378,9 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10,
         color:"white",
+        // textAlign:'a' ,
      },
+
      buttons:{  
         alignItems:'center',
         width:'90%',
@@ -495,11 +395,45 @@ const styles = StyleSheet.create({
      buttonText:{
          fontWeight:'bold',
          fontSize:19,
-         
      },
-         
-    
      
+     choiceView:{
+      flexDirection:'row',
+   },
+
+   
+   choiceButton:{
+    margin:30,
+    borderWidth:1.5,
+    borderRadius:6,
+    width:50,
+    height:25,
+    borderColor:'#fff',
+    borderTopWidth:3,
+    borderLeftWidth:3,
+ },
+ choiceText:{
+  color:'#fff',
+  fontSize:20,
+  fontWeight:'800',
+  textAlign:'center',
+},
+ 
+    
+text:{
+  textAlign:'left', 
+  color:'#fff',
+  fontWeight:'bold',
+  fontSize:16,
+  
+},
+show:{
+  width:700,
+  justifyContent:'center',
+  alignItems:'center',
+},
+      
+   
   });
 
 export default SignUp
