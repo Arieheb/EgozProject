@@ -182,7 +182,6 @@ const styles = StyleSheet.create ({
     title: {
         fontWeight: "bold",
         color: "black",
-        
     },
     benefit: {
         backgroundColor: "white",
@@ -201,7 +200,6 @@ const styles = StyleSheet.create ({
         borderColor: "black",
         borderWidth: 0,
         borderRadius: 25,
-
     },
     infoFrame: {
         width: '50%',
@@ -212,17 +210,12 @@ const styles = StyleSheet.create ({
         height: '50%',
         backgroundColor: "yellow",
         width: '50%'
-
-        
     },
     infoText: {
         fontWeight: "bold",
         fontSize: 25,
-
     },
     benefitsPic: {
-        // width: 180,
-        // height: 180,
         borderRadius: 20,
         width: '100%',
         height: '100%',
@@ -258,19 +251,6 @@ const styles = StyleSheet.create ({
         shadowRadius: 4,
         elevation: 5,
       },
-    // button: {
-    //     borderRadius: 7,
-    //     backgroundColor: "rgba(0, 0, 0, 0)",
-    //     width: 75,
-    //     height: 25,
-    //     borderColor: "white",
-    //     borderWidth: 2, 
-    //     marginHorizontal: 150,
-    //     textAlign: "center",
-    //     justifyContent: "center",
-    //     color:"white",
-    //     margin: 10,
-    // },
     topButton: {
         borderRadius: 100,
         width: 80,

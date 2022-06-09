@@ -122,9 +122,11 @@ const OpenForum = props=>{
                 </TouchableOpacity>
 
             </Modal>
+            <View  >
         <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
             <Icon name ="plus"  color="white"  size={45}/>   
         </TouchableOpacity> 
+        </View>                             
         </View>
     );
 };

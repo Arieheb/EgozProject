@@ -166,7 +166,7 @@ const styles = StyleSheet.create ({
     imageStyle: {
         height:120, 
         width:120, 
-        backgroundColor:'white', 
+        backgroundColor:'white',  
         borderRadius:100,
     },
 

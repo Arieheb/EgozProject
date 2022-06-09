@@ -42,10 +42,11 @@ const EventCal = (props) => {
                     renderItem={({item}) => {
                     return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
                     />
-         
+            <View style={{height: '35%', justifyContent:'center', alignItems:'center'}}>
             <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
-                <Icon name ="plus"  color="white"  size={70}/>   
+                <Icon name ="plus"  color="white"  size={60}/>   
             </TouchableOpacity>
+           </View>
     </View>
     );
         }
@@ -128,15 +129,10 @@ const styles = StyleSheet.create ({
     },
     plusButton: {
         borderRadius: 100,
-        width: 80,
-        height: 80,
+        width: 60,
+        height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        flexDirection: "row",
-        textAlign: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        marginHorizontal: 20,
-        marginTop: 8,
+        marginTop: '10%',
         borderColor: "white",
         borderWidth: 0.5,
     },
