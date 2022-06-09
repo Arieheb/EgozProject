@@ -4,7 +4,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-import Icons from "react-native-vector-icons/FontAwesome5";
+import Icons from "react-native-vector-icons/FontAwesome";
 import * as ImagePicker from 'expo-image-picker'
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../firebase';
@@ -42,30 +42,42 @@ const AddBenefits= props=>{
         uploadImage(photo,pic)
         setName("");
         setInfo("");
-        setVision(false);
+        setVision(false);                 
     }
 
   
     return(
         <View>
             <View style={{height: '35%'}}>
-                <TouchableOpacity style = {styles.topButton} onPress={()=>setVision(true)}>
+                <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
                 <Icon name ="plus"  color="white"  size={70}/>   
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
-                <View>
-                    <TextInput     value={name}
+                <View style= {styles.container}>
+                <Text style = {styles.title}>הוספת הטבה חדשה</Text>
+                <Text style = {styles.textStyle}> שם ההטבה:</Text>
+                    <TextInput    
+                                style={styles.input} 
                                 placeholder="שם ההטבה"
-                                onChangeText={(text)=>{setName(text)}}/>
-                    <TextInput     value={info}
-                                placeholder="פרטי הטבה"
-                                onChangeText={(text)=>{setInfo(text)}}/>
-                    <TouchableOpacity onPress={()=>uploadPic()}>
-                        <Text>העלה תמונה</Text>
+                                value={name}
+                                onChangeText={(text)=>{setName(text)}}
+                                placeholderTextColor={"grey"}
+                                />
+                    <Text style = {styles.textStyle}> תיאור ההטבה:</Text>
+                    <TextInput     
+                                style={{...styles.input, height: 100}} 
+                                placeholder="פרטי הטבה..."
+                                value={info}
+                                onChangeText={(text)=>{setInfo(text)}}
+                                placeholderTextColor={"grey"}
+                                />
+                    <TouchableOpacity style={styles.picButton}onPress={()=>uploadPic()}>
+                        <Text style= {styles.buttonText}>העלה תמונה</Text>
+                        <Icons name="picture-o" size={55}/>
                     </TouchableOpacity>
                     <TouchableOpacity style = {styles.buttensStyle} onPress={()=>{Submit() }}>
-                        <Text style= {styles.buttonText} >הוסף</Text>
+                        <Text style= {styles.buttonText} >הוסף הטבה</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
                     setInfo("");}}>
@@ -82,21 +94,69 @@ const AddBenefits= props=>{
 
 export default AddBenefits
 const styles = StyleSheet.create ({ 
+    textStyle: {
+        fontSize: 17,
+        paddingTop: 3,
+        margin: 5,
+        textAlign: 'left',
+    },
     page: {
         alignItems: "center",
     },
+    container: {
+        height: '100%',
+        paddingBottom: 70, 
+        width: '100%',
+        display: 'flex', 
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: 35,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 10,
+    },
+    input: {
+        height:40,
+        borderRadius: 12,
+        // paddingRight:10,
+        margin:5,
+        paddingLeft: 7,
+        borderWidth: 1,
+        textAlign: 'right',
+     },
     returnButten: {
         alignItems: 'center',
       },
     buttensStyle: {
+        // backgroundColor:"white",
+        // fontSize:14,
+        // borderWidth: 1,
+        // padding: 5,
+        // marginTop: 10,
+        // borderRadius: 10,
+        // width: 300,
+        // height: 40,
+        alignSelf:'center',
+        alignItems:'center',
+        // width:'85%',
+        // color:'blue',
+        // height:40,
+        // backgroundColor:'#fff',
+        marginTop:30,
+        // borderRadius:8,
+        display:'flex',
+        justifyContent:'center',
         backgroundColor:"white",
-        fontSize:14,
+        fontSize:16,
         borderWidth: 1,
-        padding: 5,
-        marginTop: 10,
+        // padding: 5,
+        // position: 'absolute',
+        marginTop: 50,
         borderRadius: 10,
-        width: 300,
-        height: 40,
+        width: 120,
+        height: 60,
+        // alignContent:'flex-end'
     },
     buttensText: {
       textAlign: 'center',
@@ -108,15 +168,14 @@ const styles = StyleSheet.create ({
         textAlign: "center",
     },
     buttonText: {
-        textAlign: "center",
-        fontSize: 25,
-        fontWeight: "bold",
-        margin: 2
-    },
-    title: {
-        fontWeight: "bold",
+        // textAlign: "center",
+        // fontSize: 25,
+        // fontWeight: "bold",
+        // margin: 2
         color: "black",
-        
+        textAlign: 'center',
+        fontWeight:"bold",
+        fontSize:16,
     },
     benefit: {
         backgroundColor: "white",
@@ -140,11 +199,6 @@ const styles = StyleSheet.create ({
         fontSize: 25,
 
     },
-    benefitsPic: {
-        width: 180,
-        height: 180,
-        borderRadius: 20
-    },
     buttons: {
         borderRadius: 100,
         width:170,
@@ -157,7 +211,7 @@ const styles = StyleSheet.create ({
         marginTop: 8,
         color:"white",
     },
-    topButton: {
+    plusButton: {
         borderRadius: 100,
         width: 80,
         height: 80,
@@ -171,6 +225,20 @@ const styles = StyleSheet.create ({
         borderColor: "white",
         borderWidth: 0.5,
     },
+    picButton: {
+        alignSelf:'center',
+        alignItems:'center',
+        marginTop:30,
+        display:'flex',
+        justifyContent:'center',
+        backgroundColor:"white",
+        fontSize:16,
+        borderWidth: 1,
+        marginTop: 50,
+        borderRadius: 10,
+        width: 160,
+        height: 160,
+    }
     
 });
 

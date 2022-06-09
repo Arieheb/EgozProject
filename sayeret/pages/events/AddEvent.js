@@ -44,15 +44,15 @@ const AddEvent = (props) => {
     return (
         <KeyboardAwareScrollView>
             <View style= {styles.container}>
-                <Text style = {{textAlign: 'center', fontSize: 35, color: 'white'}}>הוספת אירוע חדש</Text>
-                    <View style = {{}}>
+                <Text style = {styles.title}>הוספת אירוע חדש</Text>
+                    <View>
                         <Text style = {styles.textStyle}>שם האירוע:</Text>
                         <TextInput 
                             style={styles.input}
                             placeholder='שם האירוע'
                             value = {titleInput}
                             onChangeText = {text => setTitleInput(text)}
-                            placeholderTextColor={"#fff"}
+                            placeholderTextColor={"grey"}
                         />
                     </View>
 
@@ -63,7 +63,7 @@ const AddEvent = (props) => {
                             placeholder='מיקום' 
                             value = {locationInput}
                             onChangeText = {text => setLocationInput(text)}
-                            placeholderTextColor={"#fff"}
+                            placeholderTextColor={"grey"}
                         
                         />
                     </View>
@@ -76,7 +76,7 @@ const AddEvent = (props) => {
                             style={styles.infoText}
                             value = {infomationInput}
                             onChangeText = {text => setInformationInput(text)}
-                            placeholderTextColor={"#fff"}
+                            placeholderTextColor={"grey"}
                         />
                         </ScrollView>
                     </View>
@@ -87,7 +87,7 @@ const AddEvent = (props) => {
                             style={styles.input}
                             value = {contactInput}
                             onChangeText = {text => setContactInput(text)}
-                            placeholderTextColor={"#fff"}
+                            placeholderTextColor={"grey"}
                         />
                     </View>
 
@@ -98,7 +98,7 @@ const AddEvent = (props) => {
                             placeholder='00:00'
                             value = {timeInput}
                             onChangeText = {text => setTimeInput(text)}
-                            placeholderTextColor={"#fff"}
+                            placeholderTextColor={"grey"}
                         />
                     </View>
 
@@ -109,7 +109,7 @@ const AddEvent = (props) => {
                             placeholder='dd/mm/yyyy'
                             value = {dateInput}
                             onChangeText = {text => setDateInput(text)}
-                            placeholderTextColor={"#fff"}
+                            placeholderTextColor={"grey"}
                         />
                     </View>
                     <Pressable 
@@ -143,14 +143,19 @@ export default AddEvent
 
 const styles = StyleSheet.create ({ 
     container: {
-        backgroundColor: 'grey',  
+        //backgroundColor: 'grey',  
         height: '100%',
         paddingBottom: 70, 
         width: '100%',
         display: 'flex',
-        
     },
-
+    title: {
+        textAlign: 'center',
+        fontSize: 35,
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 10,
+    },
     headName: { 
         alignItems: 'center', 
         marginTop: 25,
@@ -176,9 +181,7 @@ const styles = StyleSheet.create ({
         fontSize: 17,
         paddingTop: 3,
         margin: 5,
-        textAlign: 'left',
-        
-        
+        textAlign: 'left', 
     },
     input: {
         height:40,
@@ -188,23 +191,34 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
-        
-
      },
      buttons:{
         alignSelf:'center',
         alignItems:'center',
-        width:'85%',
-        color:'blue',
-        height:40,
-        backgroundColor:'#fff',
+        // width:'85%',
+        // color:'blue',
+        // height:40,
+        // backgroundColor:'#fff',
         marginTop:30,
-        borderRadius:8,
+        // borderRadius:8,
         display:'flex',
         justifyContent:'center',
+        backgroundColor:"white",
+        fontSize:16,
+        borderWidth: 1,
+        // padding: 5,
+        // position: 'absolute',
+        marginTop: 50,
+        borderRadius: 10,
+        width: 120,
+        height: 60,
+        // alignContent:'flex-end'
      },
      buttonText:{
-        
+        color: "black",
+        textAlign: 'center',
+        fontWeight:"bold",
+        fontSize:16,
      },
 
      infoText: {
