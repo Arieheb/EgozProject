@@ -72,9 +72,8 @@ const Home = props=>{
                     <NumberCard num = "9,342" title = "בוגרי יחידה"/>
               </View>
             </View>
-            <ImageBackground source={masa} style = {styles.view}>
+            <ImageBackground source={masa} style = {{...styles.view}}>
                 <View style={{...styles.tint,width:'100%'}}>
-<View style={{marginBottom:'10%'}}>
 
                 <Text style = {styles.title}>יחידת אגוז</Text>
                 <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
@@ -82,8 +81,6 @@ const Home = props=>{
                 <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
                     <Text style = {styles.button}>קרא עוד</Text>
                 </TouchableOpacity>
-</View>
-
                 <View style = {{backgroundColor:"rgba(0,0,0,0.2)",  width:'100%'}}>
                     <View style = {{...styles.bottamBar, width: '100%'}}>
                         <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
@@ -99,9 +96,7 @@ const Home = props=>{
                     </View>
                 </View>
                 </View>
-            </ImageBackground>
-        
-          
+            </ImageBackground>     
         </View>
         </ScrollView>
     );
@@ -173,11 +168,11 @@ const styles = StyleSheet.create({
         height: 25,
         borderColor: "white",
         borderWidth: 2, 
-        marginHorizontal: 150,
+        // marginHorizontal: 150,
         textAlign: "center",
-        justifyContent: "center",
+        alignSelf:'center',
         color:"white",
-        marginBottom: 3,
+        marginBottom: '5%',
     },
     topButton: {
         borderRadius: 100,
@@ -222,7 +217,7 @@ const styles = StyleSheet.create({
     },
     tint:{
         backgroundColor:"rgba(0,0,0,0.4)",
-        paddingBottom:50,
+        // paddingBottom:50,
     }
 });
 
