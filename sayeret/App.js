@@ -8,6 +8,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth } from './firebase';
 import {WebView} from 'react-native-webview';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 import DrawerContent from './DrawerContent';
@@ -26,8 +27,7 @@ import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
 import ForgotPage from './pages/Login/ForgotPage';
 import Admin from './pages/Admin/Admin';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-// import membership from './pages/memberPay/Membership'
+import PayMember from './pages/memberPay/Membership';
 
 
 
@@ -66,16 +66,10 @@ export default function App() {
     );
   };
 
+  
   return (
     <NavigationContainer>
-        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right', headerRight: () => (
-                  <TouchableOpacity style={styles.memberBtn} onPress = {()=> props.navigation.navigate("PayMember")}
-                     //need to input link to membership 
-                     //https://shop117095.istores.co.il/%D7%97%D7%91%D7%A8-%D7%A2%D7%9E%D7%95%D7%AA%D7%94-%D7%97%D7%91%D7%A8%D7%95%D7%AA-%D7%A9%D7%A0%D7%AA%D7%99%D7%AA/                   
-                  >
-                      <Text style={styles.text}>תשלום חברות</Text>
-                  </TouchableOpacity>
-                ),}}>
+        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right', headerRight: () => <PayMember/>}}>
           <Drawer.Screen name='home' component={Home}/>
           <Drawer.Screen name='jobs' component={Jobs}/>
           <Drawer.Screen name='about' component={About}/>
@@ -86,7 +80,7 @@ export default function App() {
           <Drawer.Screen name='Contact' component={Contact}/>
           <Drawer.Screen name='Memorial' component={Memorial}/>
           <Drawer.Screen name='store' component={Store} />
-          {/* <Drawer.Screen name='membership' component={membership} /> */}
+          
 
           <Drawer.Screen name='admin' component={Admin} />
           <Drawer.Screen options={{headerMode:'none'}} name='login' component={LoginScreen} />
@@ -103,22 +97,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  memberBtn:{
-    borderWidth:2,
-    borderRadius:20,
-    backgroundColor:"white",
-    borderColor:"gray",
-    shadowOffset: {
-      width: 2,
-      height: 2
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-  },
-  text:{
-    justifyContent: "center",
-      alignItems: "center",
-      paddingHorizontal: 10,
-      fontSize: 18,
-  },
+  
 })
