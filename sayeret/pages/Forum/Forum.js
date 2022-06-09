@@ -146,10 +146,10 @@ const Search = (props) => {
                     style={styles.textInput}
                     placeholder='חפש'     
                     value={input}
-                    onChangeText={text=>{console.log(text);setInput(text);searcher()}}
+                    onChangeText={text=>{setInput(text);searcher(text)}}
                     placeholderTextColor="#7f8c8d"
                 />
-                <TouchableOpacity onPress={()=>{setInput("");searcher()}}>
+                <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
                     <Text>X</Text>
                 </TouchableOpacity>
             </View>
