@@ -23,8 +23,6 @@ const EventTemplate = (props) => {
         ],
         );
       }
-
-
     return (
             <View>
                 <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>

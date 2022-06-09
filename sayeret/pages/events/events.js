@@ -123,6 +123,4 @@ const styles = StyleSheet.create ({
     },
 
 
-
-
 });
