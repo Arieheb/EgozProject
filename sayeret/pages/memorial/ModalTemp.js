@@ -144,7 +144,10 @@ const Blurp = (props) => {
     button: {
       borderRadius: 20,
       padding: 10,
-      elevation: 2
+      elevation: 2,
+      maxWidth:110,
+      height:205,
+      alignItems:'center',
     },
     buttonOpen: {
       backgroundColor: 'black',
