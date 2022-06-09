@@ -76,7 +76,6 @@ const AddBenefits= props=>{
                                  onChangeText={(text)=>{setInfo(text)}}
                                  placeholderTextColor={"grey"}
                                 />
-         
                     <View >
                     <TouchableOpacity style={styles.picButton}onPress={()=>uploadPic()}>
                         <Text style= {styles.buttonText}>העלה תמונה</Text>
@@ -123,7 +122,7 @@ const styles = StyleSheet.create ({
         fontSize: 35,
         color: 'black',
         fontWeight: 'bold',
-        paddingTop: 20,
+        paddingTop: '8%',
     },
     input: {
         borderRadius: 12,
@@ -136,34 +135,17 @@ const styles = StyleSheet.create ({
         alignItems: 'center',
       },
     buttensStyle: {
-        // backgroundColor:"white",
-        // fontSize:14,
-        // borderWidth: 1,
-        // padding: 5,
-        // marginTop: 10,
-        // borderRadius: 10,
-        // width: 300,
-        // height: 40,
         alignSelf:'center',
         alignItems:'center',
-        // width:'85%',
-        // color:'blue',
-        // height:40,
-        // backgroundColor:'#fff',
         marginTop:30,
-        // borderRadius:8,
         display:'flex',
         justifyContent:'center',
         backgroundColor:"white",
         fontSize:16,
         borderWidth: 1,
-        // padding: 5,
-        // position: 'absolute',
-        marginTop: 50,
         borderRadius: 10,
         width: 120,
         height: 60,
-        // alignContent:'flex-end'
     },
     buttensText: {
       textAlign: 'center',
@@ -175,10 +157,6 @@ const styles = StyleSheet.create ({
         textAlign: "center",
     },
     buttonText: {
-        // textAlign: "center",
-        // fontSize: 25,
-        // fontWeight: "bold",
-        // margin: 2
         color: "black",
         textAlign: 'center',
         fontWeight:"bold",
@@ -192,11 +170,7 @@ const styles = StyleSheet.create ({
         height: 200,
         flexDirection: "row",
     },
-    picFrame: {
-        width: '50%',
-        alignItems: "center",
-        padding: 5,
-    },
+   
     infoFrame: {
         width: '50%',
         fontSize: 35,
@@ -206,45 +180,26 @@ const styles = StyleSheet.create ({
         fontSize: 25,
 
     },
-    buttons: {
-        borderRadius: 100,
-        width:170,
-        height: 75,
-        backgroundColor: "rgba(0, 0, 0, 0.75)",
-        flexDirection: "row",
-        justifyContent: "center",
-        textAlign: "center",
-        margin: 20,
-        marginTop: 8,
-        color:"white",
-    },
     plusButton: {
         borderRadius: 100,
-        width: 80,
-        height: 80,
+        width: '100%',
+        height: '55%',
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        flexDirection: "row",
-        textAlign: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        marginHorizontal: 20,
-        marginTop: 8,
+        marginTop: '10%',
         borderColor: "white",
         borderWidth: 0.5,
     },
     picButton: {
         alignSelf:'center',
         alignItems:'center',
-        marginTop:30,
-        display:'flex',
+        marginTop:'5%',
         justifyContent:'center',
         backgroundColor:"white",
         fontSize:16,
         borderWidth: 1,
-        marginTop: 50,
         borderRadius: 10,
-        width: 180,
-        height: 180,
+        width: '50%',
+     
     }
     
 });
