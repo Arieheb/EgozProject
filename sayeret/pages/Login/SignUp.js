@@ -326,8 +326,6 @@ const SignUp = props => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           data={data}
-          onDone={validate}
-          
           
         />
       </View>
