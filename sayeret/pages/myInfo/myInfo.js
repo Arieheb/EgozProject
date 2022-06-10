@@ -9,10 +9,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { block } from "react-native-reanimated";
 import { waitForPendingWrites } from "firebase/firestore";
 import UploadImage from "./uploadPhoto";
-import { signOut } from 'firebase/auth';
-import { addDoc,updateDoc, collection } from 'firebase/firestore';
+import { signOut, updatePassword } from 'firebase/auth';
+import { addDoc,updateDoc, doc } from 'firebase/firestore';
+import ForgotPage from "../Login/ForgotPage";
 
-
+const user = auth.currentUser;
 
 
 const wWidth = Dimensions.get('window').width;
@@ -31,6 +32,7 @@ const Profile = (props) => {
     const [addInput, setAddInput] = useState("");
     const [phoneInput, setPhoneInput] = useState("");
     const [cityInput, setCityInput] = useState("");
+    const [passInput, setPassInput] = useState("")
     // const [lastNameInput, setLastNameInput] = useState("");
     // const [lastNameInput, setLastNameInput] = useState("");
 
@@ -38,40 +40,43 @@ const Profile = (props) => {
     
     const handleSubmit = () => {
         //TODO - fix JSON output
-        console.log(user)
+        // console.log(user)
+
+        let flag = false;
+
         if (fnInput!="") {
-            updateDoc(collection(db,'users', user.id),{ FirstName:fnInput});
-            Alert.alert("השינויים נשמרו בהצלחה")
+            updateDoc(doc(db,'users', user.id),{ FirstName:fnInput});
+            flag = true
+        }
+        if (lnInput!="") {
+            updateDoc(doc(db,'users', user.id),{ LastName:lnInput});
+            flag = true
+        }
+        if (addInput!="") {
+            updateDoc(doc(db,'users', user.id),{ Address:addInput});
+            flag = true
 
         }
-        else if (lnInput!="") {
-            updateDoc(collection(db,'users', user.id),{ LastName:lnInput});
-            Alert.alert("השינויים נשמרו בהצלחה")
+        if (cityInput!="") {
+            updateDoc(doc(db,'users', user.id),{ city:cityInput});
+            flag = true
 
         }
-        else if (addInput!="") {
-            updateDoc(collection(db,'users', user.id),{ Address:addInput});
-            Alert.alert("השינויים נשמרו בהצלחה")
+        if (phoneInput!="") {
+            updateDoc(doc(db,'users', user.id),{ phone:phoneInput});
+            flag = true
 
         }
-        else if (cityInput!="") {
-            updateDoc(collection(db,'users', user.id),{ city:cityInput});
-            Alert.alert("השינויים נשמרו בהצלחה")
-
-        }
-        else if (phoneInput!="") {
-            updateDoc(collection(db,'users', user.id),{ phone:phoneInput});
-            Alert.alert("השינויים נשמרו בהצלחה")
-
+        
+        
+        if (flag == true) {
+            Alert.alert ("השינויים נשמרו בהצלחה")
         }
         else {
-            Alert.alert ("לא בוצעו שום שינויים")
+            Alert.alert ("לא נעשו שינויים")
         }
-        
-        
-        // updateDoc(collection(db,'users', user.id),{ FirstName:fnInput, LastName:lnInput, Address:addInput, City: cityInput, phone: phoneInput});
-        
-        // props.navigation.navigate('home');
+                
+        props.navigation.navigate('home');
     }
     return ( 
         <KeyboardAwareScrollView>
@@ -149,16 +154,6 @@ const Profile = (props) => {
                     // value={email}
                     // onChangeText={text=>setEmail(text)}
                     />
-
-            </View> */}
-
-            {/* Password info view */}
-            {/* <View style= {styles.itemLayout}>
-            <Text style = {styles.textStyle}>סיסמא:  </Text>
-                <TouchableOpacity>
-
-                </TouchableOpacity>
-
 
             </View> */}
             
@@ -241,6 +236,7 @@ const styles = StyleSheet.create ({
         borderRadius:8,
         display:'flex',
         justifyContent:'center',
+        paddingTop: 20
      },
      buttonText:{
         
