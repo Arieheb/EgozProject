@@ -13,18 +13,18 @@ const LoginScreen = props => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const handleSignIn = () =>
-    {   
+    const handleSignIn = () => {   
         auth
         signInWithEmailAndPassword(auth, email, password)
+        
         .then((userCredential) => {
             const user = userCredential.user;
+            console.log("ברוך הבא", user.email)
           })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-          });
-        }
+          .catch(error => alert('אחד מהנתונים אינם נכונים'))
+        
+    }
+
     return (
     <ScrollView>
         <KeyboardAvoidingView style={styles.container} behavior="padding">
