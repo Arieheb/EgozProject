@@ -179,7 +179,7 @@ const SignUp = props => {
               />
               <TouchableOpacity 
               style = {styles.buttons} 
-              onPress={() => {goToSlide(2,true)}}
+              // onPress={() => {goToSlide(2,true)}}
                   
               >
                 <Text style = {styles.buttonText} >המשך</Text>
@@ -233,8 +233,8 @@ const SignUp = props => {
                   onChangeText={text=>setPhone(text)}
                 />
                 
-                <TouchableOpacity style = {styles.buttons} onPress={() => 
-                  {goToSlide(2,true)}} >
+                <TouchableOpacity style = {styles.buttons} 
+                 >
                   <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
             </View>
