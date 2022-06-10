@@ -139,6 +139,7 @@ const Profile = (props) => {
             <Text style = {styles.textStyle}>מספר פלאפון: </Text>
                 <TextInput placeholder={user.phone}
                     style={styles.input}
+                    keyboardType='phone-pad'
                     placeholderTextColor={"#fff"}
                     value = {phoneInput}
                     onChangeText={text=>setPhoneInput(text)}

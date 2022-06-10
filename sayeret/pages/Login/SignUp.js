@@ -228,6 +228,7 @@ const SignUp = props => {
                 />
                 <TextInput placeholder='מספר טלפון:' 
                   style={styles.input}
+                  keyboardType='phone-pad'
                   placeholderTextColor={"#fff"}
                   value={phone}
                   onChangeText={text=>setPhone(text)}
