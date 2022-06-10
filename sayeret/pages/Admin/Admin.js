@@ -192,9 +192,9 @@ const Admin = () => {
   //getting the new users
   useEffect (()=>{
     const ref = collection(db, 'users');
-    const que = query (ref,orderBy('guest','asc'));
+    const que = query (ref, where('guest','==', true));
     const unsubscribe = onSnapshot(que, querySnapshot => {
-      setEveryBody(
+      setWaiter(
         querySnapshot.docs.map(doc => ({
           id: doc.id,
           fname: doc.data().FirstName,
@@ -208,18 +208,51 @@ const Admin = () => {
           city: doc.data().city,
           phone: doc.data().phone,
           pic: doc.data().pic,
-          
-        }))
-      )
-        setWaiter(everyBody.filter(item=>item.guest))
-        setUser(everyBody.filter(item=>!item.guest&&!item.admin))
-        setAdmins(everyBody.filter(item=>item.admin))
-        setLoad(true);
+        })))  
     });
-    return () => unsubscribe();
+
+    const q = query (ref, where('guest','==', false),where('isAdmin','==',false));
+    const unsubscribe2 = onSnapshot(q, querySnapshot => {
+      setUser(
+        querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          fname: doc.data().FirstName,
+          lname: doc.data().LastName,
+          questionaire: doc.data().questionaire,
+          userId: doc.data().user_id,
+          guest: doc.data().guest,
+          admin: doc.data().isAdmin,
+          email: doc.data().email,
+          address: doc.data().Address,
+          city: doc.data().city,
+          phone: doc.data().phone,
+          pic: doc.data().pic,
+        })))  
+    });
+
+    const qe = query (ref,where('isAdmin','==',true));
+    const unsubscribe3 = onSnapshot(qe, querySnapshot => {
+      setAdmins(
+        querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          fname: doc.data().FirstName,
+          lname: doc.data().LastName,
+          questionaire: doc.data().questionaire,
+          userId: doc.data().user_id,
+          guest: doc.data().guest,
+          admin: doc.data().isAdmin,
+          email: doc.data().email,
+          address: doc.data().Address,
+          city: doc.data().city,
+          phone: doc.data().phone,
+          pic: doc.data().pic,
+        })))  
+    });
+
+    return () => {unsubscribe();unsubscribe2();unsubscribe3()};
  },[]);
 
-  return !load?null:(
+  return (
     <View>
         <View>
           <Text>משתמשים חדשים</Text>

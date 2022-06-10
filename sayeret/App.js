@@ -1,15 +1,13 @@
 import 'react-native-gesture-handler';
-import { LogBox, Platform } from 'react-native';
+import {LogBox, Platform } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {I18nManager, StyleSheet, Text, View } from 'react-native';
 import CodePush from 'react-native-code-push';
 import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { auth } from './firebase';
-import {WebView} from 'react-native-webview';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { auth, db } from './firebase';
+import { collection,query,getDocs, where, deleteDoc, doc} from 'firebase/firestore';
 
 import DrawerContent from './DrawerContent';
 
@@ -30,14 +28,11 @@ import Admin from './pages/Admin/Admin';
 import PayMember from './pages/memberPay/Membership';
 
 
-
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
-
   //forcing the app to be right to left
-  if(Platform.OS!='ios')
   if(!I18nManager.isRTL){
       I18nManager.forceRTL(true);
       CodePush.restartApp();
@@ -55,6 +50,7 @@ export default function App() {
     return subscriber; // unsubscribe on unmount
   }, []);
 
+
   if(!user){
     return(
       <NavigationContainer>
@@ -67,7 +63,16 @@ export default function App() {
     );
   };
 
-  
+  const du = async()=>{
+  const docSnap =await getDocs(query(collection(db, "denied"), where("userId","==", auth.currentUser.uid)))
+  docSnap.forEach(docs=>{
+    if (docs.data().userId == auth.currentUser.uid ) {
+      auth.currentUser.delete().then(()=>{
+      deleteDoc(doc(db,'denied', docs.id))
+      alert("המנהל החליט למחוק אותך")}).catch(()=>auth.signOut());
+      }})}
+
+  du()
   return (
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right',/*title: null,*/ headerRight: () => <PayMember/>}}>
