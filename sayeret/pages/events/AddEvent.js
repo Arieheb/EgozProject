@@ -21,7 +21,7 @@ const AddEvent = (props) => {
             return Alert.alert("יש להזין את שם האירוע")
         }
         if(!locationInput.length){
-            return Alert.alert("יש להזין את מיקום המאירוע")
+            return Alert.alert("יש להזין את מיקום האירוע")
         }
         if(!infomationInput.length){
             return Alert.alert("יש להזין את תיאור האירוע")
@@ -30,10 +30,10 @@ const AddEvent = (props) => {
             return Alert.alert("יש להזין את שם איש הקשר")
         }
         if(!timeInput.length){
-            return Alert.alert("יש להזין מספר טלפון")
+            return Alert.alert("יש להזין את זמן האירוע")
         }
         if(!dateInput.length){
-            return Alert.alert("יש להזין כתובת אימייל")
+            return Alert.alert("יש להזין את תאריך האירוע")
         }
         //TODO - fix JSON output
         addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: dateInput});
