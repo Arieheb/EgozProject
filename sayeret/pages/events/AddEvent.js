@@ -127,21 +127,6 @@ const AddEvent = (props) => {
     );
 
 }
-{/* <Picker
-        selectedValue={selectedValue}
-        style={{ height: 50, width: 150}}
-        onValueChange={(itemValue, ) => setSelectedValue(itemValue)}
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker> */}
-
           
 export default AddEvent
 

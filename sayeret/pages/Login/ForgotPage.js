@@ -6,13 +6,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const{height:wHeight} = Dimensions.get("window");
 
 const auth = getAuth();
-const emailMessege=()=>{
-    if(email==""){
-        alert("אחד מהנתונים חסרים")
-        return
-      }
-    alert("קישור לאיפוס סיסמא נשלח לחשבון המייל שלך")
-}
   const ForgotPage = props => {
     const [email,setEmail] = useState("");
     sendPasswordResetEmail(auth, email)
@@ -24,6 +17,13 @@ const emailMessege=()=>{
     const errorMessage = error.message;
     
     });
+    const emailMessege=()=>{
+        if(email==""){
+            alert("אחד מהנתונים חסרים")
+            return
+          }
+        alert("קישור לאיפוס סיסמא נשלח לחשבון המייל שלך")
+    }
     return (
        <KeyboardAwareScrollView> 
         <View style={styles.container} >

@@ -1,4 +1,4 @@
-import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions,Keyboard, KeyboardAvoidingView,animated} from 'react-native'
+import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions,Keyboard, KeyboardAvoidingView,Alert, Platform} from 'react-native'
 import {React,useState,useRef,useEffect} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
@@ -55,40 +55,58 @@ const SignUp = props => {
   const [team ,setTeam] = useState("")
   const [why ,setWhy] = useState("")
 
-  const ref = useRef<FlatList>(null);
-  const [index,setIndex] = useState(0);
 
   
-  const validate = () => {
-      if(email=="" || password==""){
-        alert("אחד מהנתונים חסרים")
-        return
-      }
-      if(password!=confirmPassword){
-        alert("הסיסמאות אינן זהות")
-        return
-      }
-  }
+  // const validate = () => {
+  //     if(email=="" || password=="" ||confirmPassword == ""){
+  //       alert("אחד מהנתונים חסרים")
+  //       return
+  //     }
+  //     if(password!=confirmPassword){
+  //       alert("הסיסמאות אינן זהות")
+  //       return
+  //     }
+  // }
   const renderItem = ({item}) => {
     const handleSignUp = () =>
       { 
-        if (show1) {
-            if(!year.length){
-              return Alert.alert("יש להזין את שם האירוע")
-            }
-            if(!generation.length){
-              return Alert.alert("יש להזין את מיקום המאירוע")
-            }
-            if(!team.length){
-              return Alert.alert("יש להזין את תיאור האירוע")
-            }           
-        }
-        else {
-          if(!why.length){
-            return Alert.alert("יש להזין את שם האירוע")
+        if(item.key==1){
+          if(!email.length|| !password.length || !confirmPassword.length){
+            return Alert.alert("אחד מהנתונים חסרים")
+          }
+          if(password!=confirmPassword){
+            return Alert.alert("הסיסמאות אינן זהות")
           }
         }
-      
+        if(item.key==2){
+          if(!firstName.length||!LastName.length||!address.length ||!city.length ||!phone.length){
+            return Alert.alert("אחד מהנתונים חסרים")
+          }
+          if(password!=confirmPassword){
+            return Alert.alert("הסיסמאות אינן זהות")
+          }
+        }
+        if(item.key==3){
+          if (show1) {
+              if(!year.length){
+                return Alert.alert("יש להזין את שם האירוע")
+              }
+              if(!generation.length){
+                return Alert.alert("יש להזין את מיקום המאירוע")
+              }
+              if(!team.length){
+                return Alert.alert("יש להזין את תיאור האירוע")
+              }           
+          }
+          else if(show2) {
+            if(!why.length){
+              return Alert.alert("יש להזין את שם האירוע")
+            }
+          }
+          else{
+            return Alert.alert("הרשמתך עברה בהצלחה.")
+          }
+        }
         auth
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -129,13 +147,14 @@ const SignUp = props => {
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
     return (
-    // <ScrollView>
+    
       <KeyboardAvoidingView style={styles.container} behavior="padding"> 
         <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}> 
           <View style = {styles.top}>
+            <Image style = {styles.logo} source={Logo} />
             <Text style = {styles.heading}>מייל וסיסמא</Text> 
           </View>
-          <View style = {styles.bottom}>
+          <KeyboardAwareScrollView style = {styles.bottom}>
           
             <View style = {styles.inputView}>
               <TextInput placeholder='אימייל:'
@@ -160,28 +179,28 @@ const SignUp = props => {
               />
               <TouchableOpacity 
               style = {styles.buttons} 
-              onPress={() => {goToSlide(2,true)}}
+              // onPress={() => {goToSlide(2,true)}}
                   
               >
                 <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </KeyboardAwareScrollView>
         </TouchableOpacity>
       </KeyboardAvoidingView>  
-    // </ScrollView>
+    
     );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)
       return ( 
-        <ScrollView>
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
+              <Image style = {styles.logo} source={Logo} />
                 <Text style= {styles.heading}>פרטים אישיים</Text>
               </View>
 
-              <View style = {styles.bottom}>
+              <KeyboardAwareScrollView style = {styles.bottom}>
                  <View style = {styles.inputView}>
                  <TextInput placeholder='שם פרטי:'
                   style={styles.input}
@@ -214,79 +233,72 @@ const SignUp = props => {
                   onChangeText={text=>setPhone(text)}
                 />
                 
-                <TouchableOpacity style = {styles.buttons} onPress={() => 
-                  {goToSlide(2,true)}} >
+                <TouchableOpacity style = {styles.buttons} 
+                 >
                   <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
             </View>
-            </View>
+            </KeyboardAwareScrollView>
             </TouchableOpacity>
           </KeyboardAvoidingView>
-        </ScrollView>
+        
         );
         //----------------------------------------------third page ----------------------------------
       else
       return (
-          
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
-                  <Text style= {styles.heading}> שאלון אימות</Text>
-                  <Text></Text>
-                  <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text>
+                <Text style= {styles.heading}> שאלון אימות</Text>
+                <Text></Text>
+                <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text>
               </View>
 
             <KeyboardAwareScrollView style = {styles.bottom}>
               <View style = {styles.inputView}>
-                  <Text style={styles.text}>האם שירתת ביחידה?</Text>
-                  <View style ={styles.choiceView}>   
+                <Text style={styles.text}>האם שירתת ביחידה?</Text>
+                <View style ={styles.choiceView}>   
                 <TouchableOpacity 
-          onPress={()=>{setShow1(true);setShow2(false)}}
-          style={styles.choiceButton}
-          >
-            <Text style={styles.choiceText}>כן</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-          onPress={()=>{setShow2(true); setShow1(false)}}
-          style={styles.choiceButton}
-          >
-            <Text style={styles.choiceText}>לא</Text>
-          </TouchableOpacity>  
-        </View>  
-        {show1?
+                onPress={()=>{setShow1(true);setShow2(false)}}
+                style={styles.choiceButton}>
+                  <Text style={styles.choiceText}>כן</Text>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                onPress={()=>{setShow2(true); setShow1(false)}}
+                style={styles.choiceButton}>
+                  <Text style={styles.choiceText}>לא</Text>
+                </TouchableOpacity>  
+              </View>  
+            {show1?
         
-          <View styel= {styles.show}>
-            <Text style={styles.text}>באיזה שנה?</Text>
-            <TextInput  
-              style={styles.showInput}
-              placeholder='...'
-              placeholderTextColor={"#fff"}
-              value={year}
-              onChangeText={text=>setYear(text)}
-            />
-            <Text style={styles.text}>באיזה מחזור?</Text>
-            <TextInput  
-              style={styles.showInput}
-              placeholder='...'
-              placeholderTextColor={"#fff"}
-              value={generation}
-              onChangeText={text=>setGeneration(text)}
-            />
-            <Text style={styles.text}>באיזה צוות?</Text>
-            <TextInput  
-              style={styles.showInput}
-              placeholder='...'
-              placeholderTextColor={"#fff"}
-              value={team}
-              onChangeText={text=>setTeam(text)}
-            />  
-          </View>:null}
+            <View styel= {styles.show}>
+              <Text style={styles.text}>באיזה שנה?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholderTextColor={"#fff"}
+                value={year}
+                onChangeText={text=>setYear(text)}
+              />
+              <Text style={styles.text}>באיזה מחזור?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholderTextColor={"#fff"}
+                value={generation}
+                onChangeText={text=>setGeneration(text)}
+              />
+              <Text style={styles.text}>באיזה צוות?</Text>
+              <TextInput  
+                style={styles.showInput}
+                placeholderTextColor={"#fff"}
+                value={team}
+                onChangeText={text=>setTeam(text)}
+              />  
+            </View>:null}
           {show2?
             <View>
               <Text style={styles.text}>מדוע אתה מעוניין להצטרף?</Text>
               <TextInput  
                 style={styles.showInput}
-                placeholder='...'
                 placeholderTextColor={"#fff"}
                 value={why}
               onChangeText={text=>setWhy(text)}
@@ -314,8 +326,6 @@ const SignUp = props => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           data={data}
-          onDone={validate}
-          
           
         />
       </View>
@@ -336,7 +346,7 @@ const styles = StyleSheet.create({
      },
      top:{
         width:'100%',
-        height:'25%',
+        height:'20%',
         display:'flex',
         alignItems:'flex-start',
         justifyContent:'center',
@@ -344,17 +354,17 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor:'#fff'
      },
-    //  logo:{
-    //      flex:1,
-    //      resizeMode:'contain',
-    //      width:'70%',
-    //      height: "100%"
-    //  },
+     logo:{
+         flex:1,
+         resizeMode:'contain',
+         width:'70%',
+         height: "100%"
+     },
     
     heading:{
       color:'black',
-      fontSize:40,
-      fontWeight:'bold',
+      fontSize:30,
+      fontWeight:'400',
       paddingTop:15,
     },
    
@@ -386,6 +396,7 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10,
         color:"white",
+        textAlign:Platform.OS==='ios'?'right':'left',
      },
 
      buttons:{  
@@ -408,9 +419,8 @@ const styles = StyleSheet.create({
       flexDirection:'row',
    },
 
-   
    choiceButton:{
-    margin:30,
+    margin:20,
     borderWidth:1.5,
     borderRadius:6,
     width:50,
@@ -428,7 +438,7 @@ const styles = StyleSheet.create({
  
     
 text:{
-  textAlign:'left', 
+  textAlign:'center', 
   color:'#fff',
   fontWeight:'bold',
   fontSize:16,

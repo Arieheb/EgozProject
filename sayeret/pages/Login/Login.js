@@ -1,5 +1,5 @@
 import {React,useState,} from 'react';
-import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground, Keyboard} from 'react-native';
+import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,Alert, Keyboard} from 'react-native';
 import Logo from '../../assets/Images/login_logo.png';
 import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
@@ -19,10 +19,20 @@ const LoginScreen = props => {
         
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log("ברוך הבא", user.email)
           })
-          .catch(error => alert('אחד מהנתונים אינם נכונים'))
-        
+          
+          .catch(error => {
+            if (!email.length || !password.length) {
+                Alert.alert('אחד מהנתונים חסרים');
+                return
+            }
+            if (error.code === 'auth/invalid-email') {
+               Alert.alert('אחד מהנתונים אינם נכונים');
+               return
+            }
+            alert(error);
+          });
+          
     }
 
     return (
