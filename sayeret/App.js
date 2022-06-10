@@ -90,6 +90,7 @@ export default function App() {
 
           <Drawer.Screen name='admin' component={Admin} />
           <Drawer.Screen options={{headerMode:'none'}} name='login' component={LoginScreen} />
+
         </Drawer.Navigator>
 
       </NavigationContainer>

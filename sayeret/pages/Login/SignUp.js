@@ -57,20 +57,20 @@ const SignUp = props => {
 
 
   
-  const validate = () => {
-      if(email=="" || password=="" ||confirmPassword == ""){
-        alert("אחד מהנתונים חסרים")
-        return
-      }
-      if(password!=confirmPassword){
-        alert("הסיסמאות אינן זהות")
-        return
-      }
-  }
+  // const validate = () => {
+  //     if(email=="" || password=="" ||confirmPassword == ""){
+  //       alert("אחד מהנתונים חסרים")
+  //       return
+  //     }
+  //     if(password!=confirmPassword){
+  //       alert("הסיסמאות אינן זהות")
+  //       return
+  //     }
+  // }
   const renderItem = ({item}) => {
     const handleSignUp = () =>
       { 
-        if(key==1){
+        if(item.key==1){
           if(!email.length|| !password.length || !confirmPassword.length){
             return Alert.alert("אחד מהנתונים חסרים")
           }
@@ -78,7 +78,7 @@ const SignUp = props => {
             return Alert.alert("הסיסמאות אינן זהות")
           }
         }
-        if(key==2){
+        if(item.key==2){
           if(!firstName.length||!LastName.length||!address.length ||!city.length ||!phone.length){
             return Alert.alert("אחד מהנתונים חסרים")
           }
@@ -86,23 +86,27 @@ const SignUp = props => {
             return Alert.alert("הסיסמאות אינן זהות")
           }
         }
-        if (show1) {
-            if(!year.length){
+        if(item.key==3){
+          if (show1) {
+              if(!year.length){
+                return Alert.alert("יש להזין את שם האירוע")
+              }
+              if(!generation.length){
+                return Alert.alert("יש להזין את מיקום המאירוע")
+              }
+              if(!team.length){
+                return Alert.alert("יש להזין את תיאור האירוע")
+              }           
+          }
+          else if(show2) {
+            if(!why.length){
               return Alert.alert("יש להזין את שם האירוע")
             }
-            if(!generation.length){
-              return Alert.alert("יש להזין את מיקום המאירוע")
-            }
-            if(!team.length){
-              return Alert.alert("יש להזין את תיאור האירוע")
-            }           
-        }
-        else {
-          if(!why.length){
-            return Alert.alert("יש להזין את שם האירוע")
+          }
+          else{
+            return Alert.alert("הרשמתך עברה בהצלחה.")
           }
         }
-      
         auth
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -175,7 +179,7 @@ const SignUp = props => {
               />
               <TouchableOpacity 
               style = {styles.buttons} 
-              onPress={() => {goToSlide(2,true)}}
+              // onPress={() => {goToSlide(2,true)}}
                   
               >
                 <Text style = {styles.buttonText} >המשך</Text>
@@ -229,8 +233,8 @@ const SignUp = props => {
                   onChangeText={text=>setPhone(text)}
                 />
                 
-                <TouchableOpacity style = {styles.buttons} onPress={() => 
-                  {goToSlide(2,true)}} >
+                <TouchableOpacity style = {styles.buttons} 
+                 >
                   <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
             </View>
@@ -242,7 +246,6 @@ const SignUp = props => {
         //----------------------------------------------third page ----------------------------------
       else
       return (
-          
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
@@ -323,8 +326,6 @@ const SignUp = props => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           data={data}
-          onDone={validate}
-          
           
         />
       </View>
