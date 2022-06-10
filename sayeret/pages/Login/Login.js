@@ -1,5 +1,5 @@
 import {React,useState,} from 'react';
-import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,ImageBackground, Keyboard} from 'react-native';
+import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,Alert, Keyboard} from 'react-native';
 import Logo from '../../assets/Images/login_logo.png';
 import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
@@ -23,14 +23,13 @@ const LoginScreen = props => {
           
           .catch(error => {
             if (!email.length || !password.length) {
-                alert('אחד מהנתונים חסרים');
+                Alert.alert('אחד מהנתונים חסרים');
                 return
             }
             if (error.code === 'auth/invalid-email') {
-               alert('אחד מהנתונים אינם נכונים');
+               Alert.alert('אחד מהנתונים אינם נכונים');
                return
             }
-            
             alert(error);
           });
           

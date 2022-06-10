@@ -38,6 +38,14 @@ const AddBenefits= props=>{
     }
 
     const Submit =async function(){
+        if(name === ""){
+            alert("חייב לשים שם להטבה")
+            return
+        }
+        if(info === ""){
+            alert("חייב לשים תוכן להטבה")
+            return
+        }
         const dat = new Date().getTime();
         let pic = dat+name
         addDoc(collection(db, 'Benefits'), { 'name':name, 'info':info, 'pic':pic});
@@ -56,7 +64,7 @@ const AddBenefits= props=>{
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
-                <View style= {{...styles.container, }}>
+                <View style= {{...styles.container}}>
                     <View style={{height: '10%', justifyContent: 'center'}}>
                 <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
                     setInfo("");}}>
@@ -76,7 +84,7 @@ const AddBenefits= props=>{
                     <TextInput     
                                  style={{...styles.input, }} 
                                  multiline
-                                 numberOfLines={6}
+                                 numberOfLines={5}
                                  placeholder="פרטי הטבה..."
                                  value={info}
                                  onChangeText={(text)=>{setInfo(text)}}
@@ -91,11 +99,8 @@ const AddBenefits= props=>{
                     <TouchableOpacity style = {styles.buttensStyle} onPress={()=>{Submit() }}>
                         <Text style= {styles.buttonText} >הוסף הטבה</Text>
                     </TouchableOpacity>
-                   
-
                 </View>
             </Modal>
-          
          </SafeAreaView>
     )
     

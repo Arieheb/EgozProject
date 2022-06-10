@@ -82,7 +82,8 @@ const OpenForum = props=>{
     
     return(
         <View>
-            <Modal visible={vision}>
+            <View> 
+                <Modal visible={vision}>
                 <SafeAreaView style={styles.header}>   
                     <TouchableRipple onPress={()=>{setVision(false)}}>
                         <Icon
@@ -122,11 +123,12 @@ const OpenForum = props=>{
                 </TouchableOpacity>
 
             </Modal>
-            <View  >
-        <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
-            <Icon name ="plus"  color="white"  size={45}/>   
-        </TouchableOpacity> 
-        </View>                             
+            </View>  
+            <View style = {{position:'absolute', right:'2%',bottom:-5}}>
+            <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+                 <Icon name ="plus"  color="white"  size={45}/>   
+             </TouchableOpacity>
+        </View>                       
         </View>
     );
 };
@@ -175,21 +177,13 @@ const styles = StyleSheet.create({
     
     plusButton: {
         borderRadius: 100,
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        flexDirection: "row",
-        textAlign: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        marginHorizontal: 20,
-        marginTop: 8,
         borderColor: "white",
         borderWidth: 0.5,
-        position:'absolute',
-        top:530,
-        right:7,
-        zIndex:1
+        alignItems:'center',
+        justifyContent:'center',
     },
 
     picButton: {

@@ -13,6 +13,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { storage } from '../../firebase';
 import {ref, getDownloadURL, deleteObject} from 'firebase/storage';
+import gift from "../../assets/Images/gift.png";
 
 
 const App = () => {
