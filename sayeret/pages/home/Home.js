@@ -91,7 +91,7 @@ const Home = props=>{
                             <Icons name ="facebook"  color="white"  size={70}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
-                            <Icons name ="instagram"  color="white" size={65} paddingBottom = '20'/>
+                            <Icons name ="instagram"  color="white" size={78}/>
                         </TouchableOpacity>
                     </View>
                 </View>

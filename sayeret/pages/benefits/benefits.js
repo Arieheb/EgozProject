@@ -192,7 +192,7 @@ const styles = StyleSheet.create ({
         height: 200,
         flexDirection: "row",
         borderColor: "black",
-        borderWidth: 1
+        borderWidth: 1,
     },
     picFrame: {
         width: '50%',

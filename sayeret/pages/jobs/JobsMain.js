@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 jobGroups:{
     width:"98%",
     minWidth:"98%",
-    height:100,
+    height:50,
     padding:5,
     marginVertical:10,
     borderWidth:1,
@@ -103,9 +103,6 @@ jobGroupsLinks:{
     flexDirection:'row',
     justifyContent: 'space-evenly',
     flex:1,
-
-
-    
 },
 jobGroupsLink:{
     color:"#35DB4E",
@@ -114,7 +111,8 @@ jobGroupsLink:{
     fontSize:14,
     borderWidth: 1,
     padding: 5,
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent:"center",
 },
     container:{
     flex:1,
