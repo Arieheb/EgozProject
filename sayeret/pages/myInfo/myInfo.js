@@ -14,6 +14,7 @@ import { addDoc,updateDoc, collection } from 'firebase/firestore';
 
 
 
+
 const wWidth = Dimensions.get('window').width;
 const wHeight = Dimensions.get('window').height;
 
@@ -34,14 +35,46 @@ const Profile = (props) => {
     // const [lastNameInput, setLastNameInput] = useState("");
 
     const user = props.route.params.user
+    
     const handleSubmit = () => {
         //TODO - fix JSON output
-        updateDoc(collection(db,'users'),{ FirstName:fnInput, LastName:lnInput, Address:addInput, City: cityInput, phone: phoneInput});
-        Alert.alert("השינויים נשמרו בהצלחה")
-        props.navigation.navigate('home');
+        console.log(user)
+        if (fnInput!="") {
+            updateDoc(collection(db,'users', user.id),{ FirstName:fnInput});
+            Alert.alert("השינויים נשמרו בהצלחה")
+
+        }
+        else if (lnInput!="") {
+            updateDoc(collection(db,'users', user.id),{ LastName:lnInput});
+            Alert.alert("השינויים נשמרו בהצלחה")
+
+        }
+        else if (addInput!="") {
+            updateDoc(collection(db,'users', user.id),{ Address:addInput});
+            Alert.alert("השינויים נשמרו בהצלחה")
+
+        }
+        else if (cityInput!="") {
+            updateDoc(collection(db,'users', user.id),{ city:cityInput});
+            Alert.alert("השינויים נשמרו בהצלחה")
+
+        }
+        else if (phoneInput!="") {
+            updateDoc(collection(db,'users', user.id),{ phone:phoneInput});
+            Alert.alert("השינויים נשמרו בהצלחה")
+
+        }
+        else {
+            Alert.alert ("לא בוצעו שום שינויים")
+        }
+        
+        
+        // updateDoc(collection(db,'users', user.id),{ FirstName:fnInput, LastName:lnInput, Address:addInput, City: cityInput, phone: phoneInput});
+        
+        // props.navigation.navigate('home');
     }
     return ( 
-        <ScrollView>
+        <KeyboardAwareScrollView>
 
         <View style = {styles.container}>   
             {/* profile picture view */}
@@ -107,7 +140,7 @@ const Profile = (props) => {
                     />                                    
             </View>
 
-            {/* membership expiration date view */}
+            {/* membership expiration date view
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>תוקף חברות: </Text>
                 <TextInput placeholder='dd/mm/yyyy'
@@ -117,7 +150,7 @@ const Profile = (props) => {
                     // onChangeText={text=>setEmail(text)}
                     />
 
-            </View>
+            </View> */}
 
             {/* Password info view */}
             {/* <View style= {styles.itemLayout}>
@@ -130,8 +163,8 @@ const Profile = (props) => {
             </View> */}
             
             {/* save changes button */}
-            <TouchableOpacity style = {styles.buttons}>
-                <Text style= {styles.buttonText} onPress = {handleSubmit }>שמירת שינויים</Text>
+            <TouchableOpacity style = {styles.buttons} onPress = {handleSubmit}>
+                <Text style= {styles.buttonText} >שמירת שינויים</Text>
             </TouchableOpacity>
 
             {/* log out button */}
@@ -142,7 +175,7 @@ const Profile = (props) => {
             </TouchableOpacity>
 
         </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
     );
 };
 
