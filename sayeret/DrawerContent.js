@@ -37,10 +37,11 @@ const DrawerContent = props => {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach(doc=>{
             const userFields = doc._document.data.value.mapValue.fields 
-             getDownloadURL( ref(storage, "profile/"+userFields.pic.stringValue)).then((url)=> {
-                setImage(url);
-              })
-              .catch ((e)=> console.log ('ERROR=>', e));
+            if(userFields.pic.stringValue != "")
+                getDownloadURL( ref(storage, "profile/"+userFields.pic.stringValue)).then((url)=> {
+                    setImage(url);
+                })
+                .catch ((e)=> console.log ('ERROR=>', e));
             setUser({
                 id: doc.id,
                 Address: userFields.Address.stringValue,

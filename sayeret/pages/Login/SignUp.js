@@ -112,7 +112,7 @@ const SignUp = props => {
         .then((userCredential) => {
          updateProfile(userCredential.user,{
             displayName: firstName+' '+LastName,
-            photoURL: firstName+email+LastName,
+            photoURL: email,
           })
             addDoc(collection(db,"users"),{
               Address:address,
@@ -124,7 +124,7 @@ const SignUp = props => {
               isMember:false,
               guest:true,
               user_id:auth.currentUser.uid,
-              pic:"",
+              pic:email,
               password:password,
               phone: phone,
               questionaire: {

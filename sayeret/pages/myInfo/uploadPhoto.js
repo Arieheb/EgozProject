@@ -6,61 +6,62 @@ import Profile from '../../assets/Images/profile.png';
 import {storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
 
- const UploadImage = (props) => {  
+const UploadImage = (props) => {  
     const user = props.user; 
 
-const download = ()=>{
-    getDownloadURL( ref(storage, "profile/"+user.pic)).then((url)=> {
-        setImage(url);
-      })
-      .catch ((e)=> console.log ('ERROR=>', e));
-}
- const [image, setImage] = useState(null);
- //showing profile image on page load
- useEffect (()=> {
-    download();
- },[]);
-
-const uploadPic = async()=>{
-    let result = await ImagePicker.launchImageLibraryAsync({
-         mediaTypes: ImagePicker.MediaTypeOptions.Images, 
-         allowsEditing: true,
-         aspect: [4,3],
-         quality: 1,
-     });
-     if(!result.cancelled){
-        uploadImage(result.uri,user.pic).then(()=>{
-            download();
-        }).catch((error)=>{
-            alert("failure")
+    const download = ()=>{
+        getDownloadURL( ref(storage, "profile/"+user.pic)).then((url)=> {
+            setImage(url);
         })
+        .catch ((e)=> console.log ('ERROR=>', e));
     }
-}
- 
-const takePic = async()=>{
-    let result = await ImagePicker.launchCameraAsync(
-        {
+    const [image, setImage] = useState(null);
+    //showing profile image on page load
+    useEffect (()=> {
+        if(user.pic!="")
+            download();
+    },[]);
+
+    const uploadPic = async()=>{
+        let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images, 
             allowsEditing: true,
             aspect: [4,3],
             quality: 1,
+        });
+        if(!result.cancelled){
+            uploadImage(result.uri,user.pic).then(()=>{
+                download();
+            }).catch((error)=>{
+                alert("failure")
+            })
         }
-    );
-    if(!result.cancelled){
-        uploadImage(result.uri,user.pic).then(()=>{
-            download();
-        }).catch((error)=>{
-            alert("failed to upload picture")
-        })
     }
-}
+    
+    const takePic = async()=>{
+        let result = await ImagePicker.launchCameraAsync(
+            {
+                mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+                allowsEditing: true,
+                aspect: [4,3],
+                quality: 1,
+            }
+        );
+        if(!result.cancelled){
+            uploadImage(result.uri,user.pic).then(()=>{
+                download();
+            }).catch((error)=>{
+                alert("failed to upload picture")
+            })
+        }
+    }
 
-const uploadImage = async(uri, imageName)=>{
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    let storageRef = ref(storage,"profile/"+imageName);
-    return uploadBytesResumable(storageRef,blob);
-}
+    const uploadImage = async(uri, imageName)=>{
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        let storageRef = ref(storage,"profile/"+imageName);
+        return uploadBytesResumable(storageRef,blob);
+    }
 
 return (
     <View style={imageUploaderStyles.container}>
