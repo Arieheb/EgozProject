@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
+import {Image, View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 // import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
@@ -7,8 +7,10 @@ import map from "../../assets/Images/dark-topography.jpg";
 import masa from "../../assets/Images/unit-hero.jpg";
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-
+import inst from "../../assets/Images/Instagram_logo.png";
+import contact from "../../assets/Images/contact-us.png";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { SocialIcon } from 'react-native-elements';
 
 
 const NumberCard = props=>{
@@ -83,15 +85,14 @@ const Home = props=>{
                 </TouchableOpacity>
                 <View style = {{backgroundColor:"rgba(0,0,0,0.2)",  width:'100%'}}>
                     <View style = {{...styles.bottamBar, width: '100%'}}>
-                        <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
-                                {/* <UpCard icon="email-outline" size={45} style={{}} /> */}
-                                <Icon name ="email-outline"  color="white"  size={65} style={{...styles.topButton, paddingTop: '1%'}}/>
+                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}}  onPress={()=>props.navigation.navigate("Contact")}>
+                                <Image source={contact} style={{width:70, height:70,}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
-                            <Icons name ="facebook"  color="white"  size={70}/>
+                            <SocialIcon type='facebook' style = {{width: 60, height:60}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
-                            <Icons name ="instagram"  color="white" size={65} paddingBottom = '20'/>
+                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
+                            <Image source = {inst}  style={{ width: 50, height: 50, marginTop:'15%'}}/>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -218,7 +219,8 @@ const styles = StyleSheet.create({
     tint:{
         backgroundColor:"rgba(0,0,0,0.4)",
         // paddingBottom:50,
-    }
+    },
+
 });
 
 export default Home;
