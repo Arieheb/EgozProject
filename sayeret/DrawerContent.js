@@ -42,6 +42,7 @@ const DrawerContent = props => {
               })
               .catch ((e)=> console.log ('ERROR=>', e));
             setUser({
+                id: doc.id,
                 Address: userFields.Address.stringValue,
                 FirstName: userFields.FirstName.stringValue,
                 LastName: userFields.LastName.stringValue,
