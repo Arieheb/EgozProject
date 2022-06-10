@@ -38,6 +38,14 @@ const AddBenefits= props=>{
     }
 
     const Submit =async function(){
+        if(name === ""){
+            alert("חייב לשים שם להטבה")
+            return
+        }
+        if(info === ""){
+            alert("חייב לשים תוכן להטבה")
+            return
+        }
         const dat = new Date().getTime();
         let pic = dat+name
         addDoc(collection(db, 'Benefits'), { 'name':name, 'info':info, 'pic':pic});
