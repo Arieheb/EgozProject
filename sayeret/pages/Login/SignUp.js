@@ -249,9 +249,10 @@ const SignUp = props => {
           <KeyboardAvoidingView style={styles.container} behavior="padding"> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
+              <Image style = {styles.logo} source={Logo} />
                 <Text style= {styles.heading}> שאלון אימות</Text>
-                <Text></Text>
-                <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text>
+                
+                {/* <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text> */}
               </View>
 
             <KeyboardAwareScrollView style = {styles.bottom}>
@@ -380,7 +381,6 @@ const styles = StyleSheet.create({
 
      inputView:{
          width:'100%',
-         
         //  display:'flex',
          flexDirection:'column',
          alignItems:'center',
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10,
         color:"white",
-        textAlign:Platform.OS==='ios'?'right':'left',
+        textAlign:Platform.OS==='ios'?'right':'right',
      },
 
      buttons:{  
