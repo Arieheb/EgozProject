@@ -55,7 +55,8 @@ const DrawerContent = props => {
                 isAdmin: userFields.isAdmin.booleanValue,
                 isMember: userFields.isMember.booleanValue,
                 imageurl:uri,
-                phone: userFields.phone.stringValue
+                phone: userFields.phone.stringValue,
+                                
                 
             })
 

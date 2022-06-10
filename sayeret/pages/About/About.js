@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,ScrollView, Image,ImageBackground,TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View,ScrollView, Image,ImageBackground,TouchableOpacity, SafeAreaView} from 'react-native'
 import React,{useState} from 'react'
 import Unit from '../../assets/Images/egoz_pic.png';
 
@@ -94,15 +94,15 @@ const About = () => {
         </View>:null}
 
 
-        <View>
+        <SafeAreaView>
           <TouchableOpacity activeOpacity={0.95} onPress={()=>{if(show5)setShow5(false);else setShow5(true)}}>
           <ImageBackground style={styles.image} source={require('../../assets/Images/commando_egoz.png')} resizeMode='cover' >
-            <Text style = {styles.title}>2015 - הצטרפות לחטיבת הקומנדו</Text>
+            <Text style = {styles.longTitle}>2015 - הצטרפות לחטיבת הקומנדו</Text>
           </ImageBackground>
 
           </TouchableOpacity>
        
-        </View>
+        </SafeAreaView>
 
         {show5?
 
@@ -123,12 +123,12 @@ const styles = StyleSheet.create({
   },
   title:{
     width:'100%',
-    textAlign:'left',
+    textAlign:'left' ,
     justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
     paddingVertical:60,
-    marginHorizontal:50,
+    marginHorizontal:35,
     textShadowRadius:10,
     textShadowOffset: {width:0, height:0},
     textShadowColor:"black",
@@ -138,6 +138,20 @@ const styles = StyleSheet.create({
 
     
 
+  },
+  longTitle: {
+    width:'100%',
+    textAlign:'left' ,
+    justifyContent:'center',
+    fontSize:26,
+    fontWeight:'bold',
+    paddingVertical:60,
+    marginHorizontal:10,
+    textShadowRadius:10,
+    textShadowOffset: {width:0, height:0},
+    textShadowColor:"black",
+    textDecorationColor:"white",
+    color:"white",
   },
   content:{
     margin:10,
