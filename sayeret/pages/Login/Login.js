@@ -19,10 +19,21 @@ const LoginScreen = props => {
         
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log("ברוך הבא", user.email)
           })
-          .catch(error => alert('אחד מהנתונים אינם נכונים'))
-        
+          
+          .catch(error => {
+            if (!email.length || !password.length) {
+                alert('אחד מהנתונים חסרים');
+                return
+            }
+            if (error.code === 'auth/invalid-email') {
+               alert('אחד מהנתונים אינם נכונים');
+               return
+            }
+            
+            alert(error);
+          });
+          
     }
 
     return (
