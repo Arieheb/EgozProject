@@ -1,7 +1,7 @@
-import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions,Keyboard, KeyboardAvoidingView} from 'react-native'
-import {React,useState} from 'react'
+import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions,Keyboard, KeyboardAvoidingView,animated} from 'react-native'
+import {React,useState,useRef,useEffect} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { ScrollView } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import SignUpAuth from './SignUpAuth';
@@ -54,6 +54,9 @@ const SignUp = props => {
   const [generation ,setGeneration] = useState("")
   const [team ,setTeam] = useState("")
   const [why ,setWhy] = useState("")
+
+  const ref = useRef<FlatList>(null);
+  const [index,setIndex] = useState(0);
 
   
   const validate = () => {
@@ -157,7 +160,9 @@ const SignUp = props => {
               />
               <TouchableOpacity 
               style = {styles.buttons} 
-              onPress = {validate}>
+              onPress={() => {goToSlide(2,true)}}
+                  
+              >
                 <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
             </View>
@@ -209,7 +214,8 @@ const SignUp = props => {
                   onChangeText={text=>setPhone(text)}
                 />
                 
-                <TouchableOpacity style = {styles.buttons}>
+                <TouchableOpacity style = {styles.buttons} onPress={() => 
+                  {goToSlide(2,true)}} >
                   <Text style = {styles.buttonText} >המשך</Text>
                 </TouchableOpacity>
             </View>
@@ -309,6 +315,8 @@ const SignUp = props => {
           renderItem={renderItem}
           data={data}
           onDone={validate}
+          
+          
         />
       </View>
     );
