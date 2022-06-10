@@ -184,8 +184,6 @@ return (
 
 
 const Admin = () => {
-  const [load, setLoad] = useState(false);
-  const [everyBody, setEveryBody] = useState([]);
   const [newUsers, setWaiter] = useState([]);
   const [allUsers, setUser] = useState([]);
   const [admins, setAdmins] = useState([]);
@@ -249,7 +247,7 @@ const Admin = () => {
         })))  
     });
 
-    return () => {unsubscribe();unsubscribe2();unsubscribe3()};
+    return () => {unsubscribe2();unsubscribe();unsubscribe3()};
  },[]);
 
   return (
