@@ -1,15 +1,18 @@
 import {React, useState,Component} from "react";
-import {AppRegistry, Image, TextInput, Button, Dimensions, StyleSheet, Platform, Text, View, TouchableOpacity, ScrollView, TouchableHighlight, KeyboardAvoidingView } from 'react-native';
+import {AppRegistry, Image, TextInput, Button, Dimensions, StyleSheet, Platform, Text, View, TouchableOpacity, ScrollView, TouchableHighlight, KeyboardAvoidingView, Alert } from 'react-native';
 //import Logo from '../../assets/Images/logo.png';
 // import {validate} from 'react-email-validator';
 import { Header } from "react-native-elements";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth,db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { block } from "react-native-reanimated";
 import { waitForPendingWrites } from "firebase/firestore";
 import UploadImage from "./uploadPhoto";
-import { signOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth';
+import { addDoc,updateDoc, collection } from 'firebase/firestore';
+
+
 
 const wWidth = Dimensions.get('window').width;
 const wHeight = Dimensions.get('window').height;
@@ -22,9 +25,21 @@ const signOutNow = () => {
 }
 
 const Profile = (props) => {
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
+    const [fnInput, setFnInput] = useState("");
+    const [lnInput, setLnInput] = useState("");
+    const [addInput, setAddInput] = useState("");
+    const [phoneInput, setPhoneInput] = useState("");
+    const [cityInput, setCityInput] = useState("");
+    // const [lastNameInput, setLastNameInput] = useState("");
+    // const [lastNameInput, setLastNameInput] = useState("");
+
     const user = props.route.params.user
+    const handleSubmit = () => {
+        //TODO - fix JSON output
+        updateDoc(collection(db,'users'),{ FirstName:fnInput, LastName:lnInput, Address:addInput, City: cityInput, phone: phoneInput});
+        Alert.alert("השינויים נשמרו בהצלחה")
+        props.navigation.navigate('home');
+    }
     return ( 
         <ScrollView>
 
@@ -38,13 +53,13 @@ const Profile = (props) => {
             {/* first name view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>שם פרטי: </Text>
-                <TextInput placeholder={user.FirstName}
+                <TextInput 
                     style={styles.input}
+                    placeholder={user.FirstName}
+                    value = {fnInput}                    
                     placeholderTextColor={"#fff"}
-                    // value={email}
-                    // onChangeText={text=>setEmail(text)}
-                    />
-                
+                    onChangeText={text=>setFnInput(text)}
+                    />                
             </View>
             
             {/* last name view */}            
@@ -53,21 +68,10 @@ const Profile = (props) => {
                 <TextInput placeholder={user.LastName} 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={password}
-                    // onChangeText={text=>setPassword(text)}
+                    value={lnInput}
+                    onChangeText={text=>setLnInput(text)}
                 />
                 
-            </View>
-
-            {/* user name view */}
-            <View style = {styles.itemLayout}>
-            <Text style = {styles.textStyle}>שם משתמש: </Text>
-                <TextInput placeholder={user.userName}
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    // value={email}
-                    // onChangeText={text=>setEmail(text)}
-                    />
             </View>
 
             {/* Address view */}
@@ -76,18 +80,30 @@ const Profile = (props) => {
                 <TextInput placeholder={user.Address}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    // value={email}
-                    // onChangeText={text=>setEmail(text)}
+                    value={addInput}
+                    onChangeText={text=>setAddInput(text)}
+                    />
+            </View>
+
+            {/* City view */}
+            <View style = {styles.itemLayout}>
+            <Text style = {styles.textStyle}>עיר: </Text>
+                <TextInput placeholder={user.city}
+                    style={styles.input}
+                    placeholderTextColor={"#fff"}
+                    value={cityInput}
+                    onChangeText={text=>setCityInput(text)}
                     />
             </View>
 
             {/* phone number view */}
             <View style = {styles.itemLayout}>
             <Text style = {styles.textStyle}>מספר פלאפון: </Text>
-                <TextInput placeholder={user.phoneNumber}
+                <TextInput placeholder={user.phone}
                     style={styles.input}
                     placeholderTextColor={"#fff"}
-                    onChangeText={text=>setEmail(text)}
+                    value = {phoneInput}
+                    onChangeText={text=>setPhoneInput(text)}
                     />                                    
             </View>
 
@@ -104,22 +120,18 @@ const Profile = (props) => {
             </View>
 
             {/* Password info view */}
-            <View style= {styles.itemLayout}>
+            {/* <View style= {styles.itemLayout}>
             <Text style = {styles.textStyle}>סיסמא:  </Text>
-                <TextInput placeholder={user.password} 
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    // value={password}
-                    onChangeText={text=>setPassword(text)}
-                    secureTextEntry
-                    />
+                <TouchableOpacity>
+
+                </TouchableOpacity>
 
 
-            </View>
+            </View> */}
             
             {/* save changes button */}
             <TouchableOpacity style = {styles.buttons}>
-                <Text style= {styles.buttonText}>שמירת שינויים</Text>
+                <Text style= {styles.buttonText} onPress = {handleSubmit }>שמירת שינויים</Text>
             </TouchableOpacity>
 
             {/* log out button */}

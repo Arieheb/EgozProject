@@ -73,7 +73,8 @@ const OpenForum = props=>{
                 once++;
             }
         });
-        uploadImage(image,pic);
+        if(image)
+            uploadImage(image,pic);
         setName("");
         setImage("")
         setVision(false)
@@ -98,7 +99,6 @@ const OpenForum = props=>{
                 <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
                 <View style={{...styles.button,width:200}}>
                         <Text style={styles.buttonText}>העלה תמונה</Text>
-                        <Icon name="picture-o" size={55}/>
                     </View>
                 </TouchableRipple>
                 <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>

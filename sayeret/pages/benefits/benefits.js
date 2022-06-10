@@ -214,6 +214,7 @@ const styles = StyleSheet.create ({
     infoText: {
         fontWeight: "bold",
         fontSize: 25,
+        textAlign: 'left'
     },
     benefitsPic: {
         borderRadius: 20,

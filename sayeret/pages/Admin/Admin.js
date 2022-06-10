@@ -1,15 +1,17 @@
-import { StyleSheet, Text, View, TouchableOpacity, FlatList, Modal, Alert } from 'react-native'
+import {SafeAreaView, StyleSheet,TextInput, Text, View, TouchableOpacity, FlatList, Modal, Alert } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import {doc,collection, query, where, onSnapshot, updateDoc, deleteDoc} from 'firebase/firestore'
-import {db} from '../../firebase'
+import {doc,collection, query, where, onSnapshot, updateDoc, deleteDoc, orderBy, addDoc} from 'firebase/firestore'
+import {db, storage} from '../../firebase'
+import { ref, deleteObject } from 'firebase/storage'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icons from 'react-native-vector-icons/Ionicons'
 
 const accept = (id)=>{
   updateDoc(doc(db,'users',id),{'guest':false});
   return false;
 } 
 
-const decline = (id, userId)=>{
+const decline = (id, userId,pic)=>{
   Alert.alert(
     "למחוק?",
     "האם אתה בטוח שאתה רוצה למחוק את המשתמש הזה",
@@ -21,6 +23,10 @@ const decline = (id, userId)=>{
       {
         text: "מחק",
         onPress: async () => {
+            addDoc(collection(db,'denied'),{userId:userId});
+            if(pic!=""){
+              deleteObject(ref(storage,"profile/"+pic))
+            }
             await deleteDoc(doc(db, "users", id));
         },
     },
@@ -30,8 +36,12 @@ const decline = (id, userId)=>{
   return false;
 }
 
+const makeAdmin = (id)=>{
+  updateDoc(doc(db,'users',id),{'isaAdmin':true});
+  return false;
+}
 
-GuestItem = props=>{
+const GuestItem = props=>{
   const [visible, setVisiblity] = useState(false);
   return(
     <View>
@@ -45,14 +55,21 @@ GuestItem = props=>{
        <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
         <View style={styles.modal}>
         <Text style = {styles.textStyle} >{props.name}</Text>
-        {/* {props.questionaire.map((item, index) => (
-         <Text key={index}>{item.productTitle}</Text>
-        ))} */}
+        <Text>שאלון אימות:</Text>
+        <Text>שירת ביחידה: {props.questionaire.inUnit?"כן":"לא"}</Text>
+        {props.questionaire.inUnit?
+        <View>
+        <Text>שנתון: {props.questionaire.year}</Text>
+        <Text>מחזור: {props.questionaire.generation}</Text>
+        <Text>צוות: {props.questionaire.team}</Text>
+        </View>:
+        <Text>סיבת הצטרפות: {props.questionaire.why}</Text>
+        }
 
         <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(accept(props.id))}>
           <Text style = {styles.buttensText}>אשר</Text>
         </TouchableOpacity>        
-        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, props.userId))}>
+        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, props.userId, props.pic))}>
           <Text style = {styles.buttensText}>סרב</Text>
         </TouchableOpacity> 
         <View >
@@ -67,92 +84,167 @@ GuestItem = props=>{
   );
 }
 
+const removeAdmin = id=>{
+  updateDoc(doc(db,'users',id),{'isAdmin':false});
+  return false;
+}
 
-// const Search = (props) => {
-  // const list = props.list;
+const UserItem = props=>{
+  const user = props.user
+  const [visible,setVisiblity] = useState(false);
+  return(
+    <View>
+      <Text>{user.fname} {user.lname}</Text>
+      <TouchableOpacity onPress={()=>setVisiblity(true)}>
+        <Text>פרטים נוספים</Text>
+      </TouchableOpacity>
 
-  // const [searchList, setSearchList] = useState([]);
-  // const [input, setInput] = useState("");
-  // const [visible, setVisible] = useState(false);
+      <Modal visible={visible}>
+        <TouchableOpacity onPress={()=>setVisiblity(false)}>
+          <Icon name="arrow-right-thick" size={55}/>
+        </TouchableOpacity>
+          <Text>{user.fname} {user.lname}</Text>
+          <Text>פרטים</Text>
+          <Text>כתובת: {user.address}</Text>
+          <Text>עיר: {user.city}</Text>
+          <Text>אימייל: {user.email}</Text>
+          <Text>טלפון: {user.phone}</Text>
+          <Text>היה ביחידה: {user.questionaire.inUnit?"כן" : "לא"}</Text>
+          {props.admin?
+          <View>
+            <TouchableOpacity onPress={()=>setVisiblity(removeAdmin(user.id))}>
+              <Text>הסר כמנהל</Text>
+            </TouchableOpacity>
+          </View>
+          :
+          <View>
+          <TouchableOpacity onPress={()=>setVisiblity(makeAdmin(user.id))}>
+            <Text>הפוך למנהל</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>setVisiblity(decline(user.id, user.userId, user.pic))}>
+            <Text>הסר משתמש</Text>
+          </TouchableOpacity>
+          </View>
+          }
+      </Modal>
+    </View>
+  );
+}
+ 
+const Search = (props) => {
+  const list = props.list;
+
+  const [searchList, setSearchList] = useState([]);
+  const [input, setInput] = useState("");
+  const [visible, setVisible] = useState(false);
 
   //getting the list according to the input
-  // const searcher = (name)=>{
-      // setSearchList(list.filter(item=>(String(item.name).includes(name))));
-  // }
+  const searcher = (name)=>{
+      setSearchList(list.filter(item=>(String(item.fname+item.lname).includes(name))));
+  }
 
-  // useEffect(()=>{setSearchList(list)},[])
+  useEffect(()=>{setSearchList(list)},[])
 
 
-// return (
-  // <View>
-    // <TouchableOpacity onPress={()=>setVisible(true)}>
-          // <Icons name='search' size={45}/>
-    // </TouchableOpacity>
-      // <Modal visible={visible}>
-          // <SafeAreaView>
-              // <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
-                  // <Icons name='arrow-back' size={45}/>
-              // </TouchableOpacity>
-          // </SafeAreaView>
-          // {/*search bar*/}
-          // <View>    
-              // <TextInput 
-                  // style={styles.textInput}
-                  // placeholder='חפש'     
-                  // value={input}
-                  // onChangeText={text=>{setInput(text);searcher(text)}}
-                  // placeholderTextColor="#7f8c8d"
-              // />
-              // <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
-                  // <Text>X</Text>
-              // </TouchableOpacity>
-          // </View>
-          // {/**the found list*/}
-          // <FlatList
-          //  data={searchList}
-          //  keyExtractor = {item=>item.id}
-          //  renderItem={(data)=><memberItem  user={data.item} params={props.params}/>}
-          // />
-      // </Modal>
-  // </View>
-// )
-// }
+return (
+  <View>
+    <TouchableOpacity onPress={()=>setVisible(true)}>
+          <Icons name='search' size={45}/>
+    </TouchableOpacity>
+      <Modal visible={visible}>
+          <SafeAreaView>
+              <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
+                  <Icons name='arrow-back' size={45}/>
+              </TouchableOpacity>
+          </SafeAreaView>
+          {/*search bar*/}
+          <View>    
+              <TextInput 
+                  style={styles.textInput}
+                  placeholder='חפש'     
+                  value={input}
+                  onChangeText={text=>{setInput(text);searcher(text)}}
+                  placeholderTextColor="#7f8c8d"
+              />
+              <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
+                  <Text>X</Text>
+              </TouchableOpacity>
+          </View>
+          {/**the found list*/}
+          <FlatList
+           data={searchList}
+           keyExtractor = {item=>item.id}
+           renderItem={(data)=><UserItem  user={data.item} admin={false}/>}
+          />
+      </Modal>
+  </View>
+)
+}
+
 
 
 const Admin = () => {
+  const [load, setLoad] = useState(false);
+  const [everyBody, setEveryBody] = useState([]);
   const [newUsers, setWaiter] = useState([]);
   const [allUsers, setUser] = useState([]);
+  const [admins, setAdmins] = useState([]);
   //getting the new users
-  useEffect (async()=>{
+  useEffect (()=>{
     const ref = collection(db, 'users');
-    const que = query (ref,where("guest","==",true));
+    const que = query (ref,orderBy('guest','asc'));
     const unsubscribe = onSnapshot(que, querySnapshot => {
-      setWaiter(
+      setEveryBody(
         querySnapshot.docs.map(doc => ({
           id: doc.id,
           fname: doc.data().FirstName,
           lname: doc.data().LastName,
           questionaire: doc.data().questionaire,
           userId: doc.data().user_id,
+          guest: doc.data().guest,
+          admin: doc.data().isAdmin,
+          email: doc.data().email,
+          address: doc.data().Address,
+          city: doc.data().city,
+          phone: doc.data().phone,
+          pic: doc.data().pic,
+          
         }))
-      );
+      )
+        setWaiter(everyBody.filter(item=>item.guest))
+        setUser(everyBody.filter(item=>!item.guest&&!item.admin))
+        setAdmins(everyBody.filter(item=>item.admin))
+        setLoad(true);
     });
     return () => unsubscribe();
  },[]);
 
-  return (
+  return !load?null:(
     <View>
         <View>
           <Text>משתמשים חדשים</Text>
           <FlatList data={newUsers}
           keyExtractor = {item=> item.id}
-          renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire}/>}
+          renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire} pic={data.item.pic}/>}
           />
         </View>
-
+        <View style={{width:'100%', borderWidth:1}}/>
         <View>
+            <Search list={allUsers}/>
             <Text>ניהול משתמשים</Text>
             <FlatList
+              data = {allUsers}
+              keyExtractor = {item=> item.id}
+              renderItem ={(data)=><UserItem user={data.item} admin={false}/>}
+            />
+        </View>
+        <View style={{width:'100%', borderWidth:1}}/>
+        <View>
+          <Text>ניהול מנהלים</Text>
+          <FlatList
+              data = {admins}
+              keyExtractor = {item=> item.id}
+              renderItem ={(data)=><UserItem user={data.item} admin={true}/>}
             />
         </View>
      
@@ -200,7 +292,7 @@ modal: {
   marginTop: '50%',
   marginHorizontal: '2.5%',
   padding: 40,
-  height: 250,
+  height: 310,
   width: '95%',
   flexDirection: "column",
   alignItems: "center",
@@ -216,5 +308,18 @@ modal: {
 },
 returnButten: {
   justifyContent: 'flex-start', 
+},
+textInput:{
+  marginVertical:8,
+  width:"100%",
+  textAlign:"right",
+  height:40,
+  borderColor:"gray",
+  borderWidth:1,
+  borderRadius:5,
+  alignSelf:"flex-end",
+  padding:5,
+  fontSize:18,
+  backgroundColor:"white"
 },
 })
