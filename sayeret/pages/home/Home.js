@@ -86,13 +86,13 @@ const Home = props=>{
                 <View style = {{backgroundColor:"rgba(0,0,0,0.2)",  width:'100%'}}>
                     <View style = {{...styles.bottamBar, width: '100%'}}>
                         <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}}  onPress={()=>props.navigation.navigate("Contact")}>
-                                <Image source={contact} style={{width:70, height:70,}}/>
+                                <Image source={contact} style={{ width: '90%', height: '90%',borderRadius:100, marginTop:'5%'}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
-                            <SocialIcon type='facebook' style = {{width: 60, height:60}}/>
+                            <SocialIcon type='facebook' style = {{ width: '90%', height: '90%',borderRadius:100,marginTop:'11%'}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
-                            <Image source = {inst}  style={{ width: 50, height: 50, marginTop:'15%'}}/>
+                            <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>
                         </TouchableOpacity>
                     </View>
                 </View>
