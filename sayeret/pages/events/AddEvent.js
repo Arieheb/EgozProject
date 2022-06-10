@@ -5,7 +5,7 @@ import *as ImagePicker from 'expo-image-picker';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
 const AddEvent = (props) => {
@@ -43,7 +43,11 @@ const AddEvent = (props) => {
 
     return (
         <KeyboardAwareScrollView>
+            
             <View style= {styles.container}>
+            <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>props.navigation.navigate("events")}>
+             <Icon name="arrow-right-thick" size={35}/>
+            </TouchableOpacity>
                 <Text style = {styles.title}>הוספת אירוע חדש</Text>
                     <View>
                         <Text style = {styles.textStyle}>שם האירוע:</Text>

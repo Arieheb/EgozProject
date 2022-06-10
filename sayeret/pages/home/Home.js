@@ -39,8 +39,7 @@ const UpCard = props=>{
 const Home = props=>{
     return(
         <ScrollView>
-        
-            <View style = {styles.container}>
+        <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
                 <View style = {styles.tint}>
                             <View style = {styles.topButtonView}>
@@ -53,20 +52,15 @@ const Home = props=>{
                             <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
                                     <UpCard icon="calendar-month" Text = "אירועים" />
                                 </TouchableOpacity>
-                            </View>
-                        <Text style={styles.title}>הסיירת הצפונית</Text>
-                        <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
                 </View>
-            </ImageBackground>
-            <ImageBackground source={masa} style = {styles.view}>
-                <View style={styles.tint}>
-                <Text style = {styles.title}>יחידת אגוז</Text>
-                <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
-                <Text style={styles.content}>כבר מעל 60 שנה להקמת הסיירת הצפונית- סיירת אגוז. הסיירת עברה גלגולים רבים במהלך השנים, פורקה והוקמה… ושוב פורקה. בשנת 1995 הוקמה יחידת אגוז פעם נוספת… היחידה מתפקדת כחוד החנית של צה”ל עד היום. עברו הרבה שנים,הרבה היתקלויות, והרבה אנשים – אך הרוח נשארה אותה רוח</Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
-                    <Text style = {styles.button}>קרא עוד</Text>
-                </TouchableOpacity>
+                <Text style={styles.title}>הסיירת הצפונית</Text>
+                <Text style={styles.content}>עמותת הסיירת הצפונית הוקמה לאחר מלחמת יום הכיפור, מורכבת מבוגרי היחידה והמשפחות השכולות. מטרות העמותה הן טיפוח היחידה, לוחמיה ובוגריה, והנצחת חללי היחידה. חברי העמותה פועלים בהתנדבות על פי כישוריהם ובזמנם הפרטי. </Text>
                 </View>
+                <YoutubePlayer 
+                    height={230}
+                    videoId ={  "MMTuF941VzA" }
+                    style = {styles.video}
+                /> 
             </ImageBackground>
             <View style={styles.stat}>
                 <View>
@@ -77,41 +71,23 @@ const Home = props=>{
                     <NumberCard num = "16" title = "פרויקטים פעילים"/>
                     <NumberCard num = "9,342" title = "בוגרי יחידה"/>
               </View>
-              
-
             </View>
-            {/* <View style = {styles.view}>
-                <Text style = {{...styles.title,color:"black"}}>המטרות שלנו</Text>
-                <GoalCard icon="id-card" title = "הנצחת חיילי היחידה" description = "תחזוק אתר ההנצחה בקלעת נמרוד, קיום יום משפחות שנתי עם היחידה, ספר מורשת ותמיכת המשפחות השכולות."/>
-                <GoalCard icon="comments" title = "שימור הקשר בין בוגרי היחידה" description = "בעזרת מפגשי הבוגרים ורשת הנטוורקינג של בוגרי היחידה תסייע לך במציאת עבודה, שותפויות עסקיות ויזמות חברתית."/>
-                <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
-                <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
-            </View> */}
-            
-            {/* <ImageBackground source={event} style = {styles.view}>
-                <View style={styles.tint}>
-                <Text style = {styles.title} >אירועים</Text>
-                <Text style={styles.content}>ליחידת אגוז מורשת מפוארת וחלק חשוב בהובלת הלחימה של צה”ל מאז הוקמה. כל השנים היינו עסוקים בלהילחם ולנצח- היום אנו עוסקים גם בתיעוד המורשת שלנו. במסגרת זה אנו מקימים את האתר אינטרנט, כותבים ספר מורשת, מחדשים את אתר ההנצחה בקלעת נמרוד וחדר ההנצחה בנווה אטי”ב ומחדשים את ארכיון היחידה.  </Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+            <ImageBackground source={masa} style = {{...styles.view}}>
+                <View style={{...styles.tint,width:'100%'}}>
+
+                <Text style = {styles.title}>יחידת אגוז</Text>
+                <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
+                <Text style={styles.content}>כבר מעל 60 שנה להקמת הסיירת הצפונית- סיירת אגוז. הסיירת עברה גלגולים רבים במהלך השנים, פורקה והוקמה… ושוב פורקה. בשנת 1995 הוקמה יחידת אגוז פעם נוספת… היחידה מתפקדת כחוד החנית של צה”ל עד היום. עברו הרבה שנים,הרבה היתקלויות, והרבה אנשים – אך הרוח נשארה אותה רוח</Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
                     <Text style = {styles.button}>קרא עוד</Text>
                 </TouchableOpacity>
-                </View>
-            </ImageBackground> */}
-
-            <YoutubePlayer 
-                    height={230}
-                    videoId ={  "MMTuF941VzA" }
-                    style = {styles.video}
-                /> 
-
-
-            <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-             <View style = {{...styles.tint, paddingBottom:0}}>
-                    <View style = {styles.bottamBar}>
+                <View style = {{backgroundColor:"rgba(0,0,0,0.2)",  width:'100%'}}>
+                    <View style = {{...styles.bottamBar, width: '100%'}}>
                         <TouchableOpacity  onPress={()=>props.navigation.navigate("Contact")}>
-                                <UpCard icon="email-outline" Text = "צור קשר" />
+                                {/* <UpCard icon="email-outline" size={45} style={{}} /> */}
+                                <Icon name ="email-outline"  color="white"  size={65} style={{...styles.topButton, paddingTop: '1%'}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center"}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
+                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
                             <Icons name ="facebook"  color="white"  size={70}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,backgroundColor: "white" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
@@ -119,18 +95,9 @@ const Home = props=>{
                         </TouchableOpacity>
                     </View>
                 </View>
-            </ImageBackground>
-            {/* <ImageBackground source={memorial} style = {styles.view}>
-                <View style={styles.tint}>
-                <Text style = {styles.title}>יזכור</Text>
-                <Text style = {styles.miniTitle}>הנצחת נופלי היחידה</Text>
-                <Text style={styles.content}>עמותת הסיירת הצפונית פועלת ותמשיך לפעול למען הנצחת נופלי היחידה. זוהי אחת ממטרות הדגל של העמותה. העמותה תפעל לחיזוק הקשר בין המשפחות השכולות, הבוגרים והיחידה הסדירה.</Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("Memorial")}>
-                    <Text style = {styles.button}>נופלים</Text>
-                </TouchableOpacity>
                 </View>
-            </ImageBackground> */}
-            </View>
+            </ImageBackground>     
+        </View>
         </ScrollView>
     );
 }
@@ -139,7 +106,6 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: '98%',
-
     },
     video: {
         paddingBottom: 0,
@@ -148,13 +114,13 @@ const styles = StyleSheet.create({
     },
     bottamBar: {
         flexDirection: "row",
-        // height: 60,
+        height: 60,
         margin: 0,
         padding: 0,
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.50)",
         height: 100,
-
+        width:'100%',
     },
     map: {
         width: '100%',
@@ -165,7 +131,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 10,
         color:"white",
-
     },
     miniTitle: {
         fontWeight: "bold",
@@ -176,7 +141,7 @@ const styles = StyleSheet.create({
     content: {
         fontSize: 20,
         textAlign: 'center',
-        marginBottom: 35,
+        marginBottom: '3%',
         color:'white',
         marginRight: 10,
         marginLeft: 10,
@@ -203,11 +168,11 @@ const styles = StyleSheet.create({
         height: 25,
         borderColor: "white",
         borderWidth: 2, 
-        marginHorizontal: 150,
+        // marginHorizontal: 150,
         textAlign: "center",
-        justifyContent: "center",
+        alignSelf:'center',
         color:"white",
-        margin: 10,
+        marginBottom: '5%',
     },
     topButton: {
         borderRadius: 100,
@@ -237,9 +202,6 @@ const styles = StyleSheet.create({
         color:"white",
         borderWidth: 0.5,
         borderColor: "white",
-
-
-
     },
     topButtonView: {
         flexDirection: "row",
@@ -247,20 +209,50 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0, 0, 0, 0.50)",
         height: 100,
    
-
-
     },
     view: {
         alignItems: "center",
         justifyContent: "center",
         margin: 0,
-       
-        
     },
     tint:{
         backgroundColor:"rgba(0,0,0,0.4)",
-        paddingBottom:50,
+        // paddingBottom:50,
     }
 });
 
 export default Home;
+  {/* <View style = {styles.view}>
+                <Text style = {{...styles.title,color:"black"}}>המטרות שלנו</Text>
+                <GoalCard icon="id-card" title = "הנצחת חיילי היחידה" description = "תחזוק אתר ההנצחה בקלעת נמרוד, קיום יום משפחות שנתי עם היחידה, ספר מורשת ותמיכת המשפחות השכולות."/>
+                <GoalCard icon="comments" title = "שימור הקשר בין בוגרי היחידה" description = "בעזרת מפגשי הבוגרים ורשת הנטוורקינג של בוגרי היחידה תסייע לך במציאת עבודה, שותפויות עסקיות ויזמות חברתית."/>
+                <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
+                <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
+            </View> */}
+            
+            {/* <ImageBackground source={event} style = {styles.view}>
+                <View style={styles.tint}>
+                <Text style = {styles.title} >אירועים</Text>
+                <Text style={styles.content}>ליחידת אגוז מורשת מפוארת וחלק חשוב בהובלת הלחימה של צה”ל מאז הוקמה. כל השנים היינו עסוקים בלהילחם ולנצח- היום אנו עוסקים גם בתיעוד המורשת שלנו. במסגרת זה אנו מקימים את האתר אינטרנט, כותבים ספר מורשת, מחדשים את אתר ההנצחה בקלעת נמרוד וחדר ההנצחה בנווה אטי”ב ומחדשים את ארכיון היחידה.  </Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
+                    <Text style = {styles.button}>קרא עוד</Text>
+                </TouchableOpacity>
+                </View>
+            </ImageBackground> */}
+
+            
+
+
+            {/* <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
+           
+            </ImageBackground> */}
+            {/* <ImageBackground source={memorial} style = {styles.view}>
+                <View style={styles.tint}>
+                <Text style = {styles.title}>יזכור</Text>
+                <Text style = {styles.miniTitle}>הנצחת נופלי היחידה</Text>
+                <Text style={styles.content}>עמותת הסיירת הצפונית פועלת ותמשיך לפעול למען הנצחת נופלי היחידה. זוהי אחת ממטרות הדגל של העמותה. העמותה תפעל לחיזוק הקשר בין המשפחות השכולות, הבוגרים והיחידה הסדירה.</Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate("Memorial")}>
+                    <Text style = {styles.button}>נופלים</Text>
+                </TouchableOpacity>
+                </View>
+            </ImageBackground> */}
