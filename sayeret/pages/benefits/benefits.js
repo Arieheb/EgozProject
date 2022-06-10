@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollView, Alert } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
-import { Navigation } from 'react-calendar';
-import event from "../../assets/Images/eventsImage.jpeg";
-import memorial from "../../assets/Images/izkor.jpg";
 import pizza from "../../assets/Images/gift.png";
 import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
