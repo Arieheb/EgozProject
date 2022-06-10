@@ -71,11 +71,11 @@ export default function App() {
   return (
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right',/*title: null,*/ headerRight: () => <PayMember/>}}>
-          <Drawer.Screen name='home' component={Home}options = {{title: null}}/>
-          <Drawer.Screen name='jobs' component={Jobs}options = {{title: null}}/>
-          <Drawer.Screen name='about' component={About}options = {{title: null}}/>
-          <Drawer.Screen name='forums' component={Forum}options = {{title: null}}/>
-          <Drawer.Screen name='profile' component={Profile}options = {{title: null}}/>
+          <Drawer.Screen name='home' component={Home} options = {{title: null}}/>
+          <Drawer.Screen name='jobs' component={Jobs} options = {{title: null}}/>
+          <Drawer.Screen name='about' component={About} options = {{title: null}}/>
+          <Drawer.Screen name='forums' component={Forum} options = {{title: null}}/>
+          <Drawer.Screen name='profile' component={Profile} options = {{title: null}}/>
           <Drawer.Screen name='calendar' component={EventsNavigator}options = {{title: null}}/>
           <Drawer.Screen name='Benefits' component={Benefits} options = {{title: null}}/>
           <Drawer.Screen name='Contact' component={Contact} options = {{title: null}}/>

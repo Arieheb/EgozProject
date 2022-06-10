@@ -53,7 +53,8 @@ const DrawerContent = props => {
                 guest: userFields.guest.booleanValue,
                 isAdmin: userFields.isAdmin.booleanValue,
                 isMember: userFields.isMember.booleanValue,
-                imageurl:uri
+                imageurl:uri,
+                phone: userFields.phone.stringValue
                 
             })
 

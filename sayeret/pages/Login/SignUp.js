@@ -156,8 +156,8 @@ const SignUp = props => {
                 secureTextEntry
               />
               <TouchableOpacity 
-              style = {styles.buttons} 
-              onPress = {validate}>
+                style = {styles.buttons} 
+                onPress = {validate}>
                 <Text style = {styles.buttonText} >המשך</Text>
               </TouchableOpacity>
             </View>
@@ -296,7 +296,7 @@ const SignUp = props => {
           );
       };
       
-    const keyExtractor = (item) => item.title;
+  const keyExtractor = (item) => item.title;
 
     return (
       <View style={{flex: 1}}>
@@ -378,7 +378,6 @@ const styles = StyleSheet.create({
         margin:10,
         padding:10,
         color:"white",
-        // textAlign:'a' ,
      },
 
      buttons:{  
@@ -432,6 +431,17 @@ show:{
   justifyContent:'center',
   alignItems:'center',
 },
+showInput:{
+    display:'flex',
+    borderWidth:1,
+    borderColor:'#fff',
+    height:48,
+    borderRadius:8,
+    width:350,
+    padding:10,
+    margin:10,
+    textAlign:'right',
+ },
       
    
   });
