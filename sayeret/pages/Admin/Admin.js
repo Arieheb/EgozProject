@@ -37,7 +37,7 @@ const decline = (id, userId,pic)=>{
 }
 
 const makeAdmin = (id)=>{
-  updateDoc(doc(db,'users',id),{'isaAdmin':true});
+  updateDoc(doc(db,'users',id),{'isAdmin':true});
   return false;
 }
 
@@ -85,7 +85,7 @@ const GuestItem = props=>{
 }
 
 const removeAdmin = id=>{
-  updateDoc(doc(db,'users',id),{'isAdmin':false});
+  updateDoc(doc(db,'users',id),{'iAdmin':false});
   return false;
 }
 
