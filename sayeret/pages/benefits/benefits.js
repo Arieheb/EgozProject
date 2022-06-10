@@ -61,10 +61,11 @@ const Benefit = props => {
 }  
    
     useEffect(()=> {
-        getDownloadURL( ref(storage,"Benefits/"+props.image)).then ((url)=> {
-        setImageUrl (url);
-      })
-      .catch ((e)=> console.log ('ERROR=>', e));},[])
+        if(props.image)
+            getDownloadURL( ref(storage,"Benefits/"+props.image)).then ((url)=> {
+            setImageUrl (url);
+        })
+        .catch ((e)=> console.log ('ERROR=>', e));},[])
     return(
 
        <View>
