@@ -131,9 +131,12 @@ const Search = (props) => {
 
   return (
     <View>
+        <View style = {{maxWidth:'13%'}}>
       <TouchableOpacity onPress={()=>setVisible(true)}>
-            <Icons name='search' size={45}/>
+            <Icons name='search' size={55}/>
       </TouchableOpacity>
+
+        </View>
         <Modal visible={visible}>
             <SafeAreaView>
                 <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
