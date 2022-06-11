@@ -6,6 +6,7 @@ const Store = () => {
   return (
     <WebView 
         source={{uri:"https://shop117095.istores.co.il/#"}}
+        injectedJavaScript='document.getElementsByTagName("footer")[0].setAttribute("hidden", true);'
     />
   )
 }

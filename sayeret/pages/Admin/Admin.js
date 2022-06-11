@@ -152,11 +152,10 @@ return (
           <Icons name='search' size={45}/>
     </TouchableOpacity>
       <Modal visible={visible}>
-          <SafeAreaView>
+          <SafeAreaView style={styles.top}>
               <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
-                  <Icons name='arrow-back' size={45}/>
+                  <Icons name='arrow-back' style={{transform:[{rotateY: '180deg'}]}} size={45}/>
               </TouchableOpacity>
-          </SafeAreaView>
           {/*search bar*/}
           <View style={styles.searchBar}>    
               <TextInput 
@@ -170,6 +169,7 @@ return (
                   <Text>X</Text>
               </TouchableOpacity>
           </View>
+          </SafeAreaView>
           {/**the found list*/}
           <FlatList
            data={searchList}
@@ -354,7 +354,7 @@ textInput:{
 
 searchBar:{
   flexDirection:'row',
-  width:'95%',
+  width:'85%',
   height: 40,
   borderColor:"gray",
   borderWidth:1,
@@ -363,6 +363,10 @@ searchBar:{
   alignItems:'center',
   alignSelf:'center',
   backgroundColor:"white"
+},
+top:{
+    flexDirection:'row',
+    width:'100%'
 }
 
 })
