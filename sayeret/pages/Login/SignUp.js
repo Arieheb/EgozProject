@@ -85,39 +85,22 @@ const SignUp = props => {
       return true;
   }
   const renderItem = ({item}) => {
-    const handleSignUp = () =>
-      { 
-        if(item.key==1){
-          if(!email.length|| !password.length || !confirmPassword.length){
-            return Alert.alert("אחד מהנתונים חסרים")
-          }
-          if(password!=confirmPassword){
-            return Alert.alert("הסיסמאות אינן זהות")
-          }
-        }
-        if(item.key==2){
-          if(!firstName.length||!LastName.length||!address.length ||!city.length ||!phone.length){
-            return Alert.alert("אחד מהנתונים חסרים")
-          }
-          if(password!=confirmPassword){
-            return Alert.alert("הסיסמאות אינן זהות")
-          }
-        }
+    const handleSignUp = () =>{
         if(item.key==3){
           if (show1) {
               if(!year.length){
-                return Alert.alert("יש להזין את שם האירוע")
+                return Alert.alert("יש להזין את שדה השנה")
               }
               if(!generation.length){
-                return Alert.alert("יש להזין את מיקום המאירוע")
+                return Alert.alert("יש להזין את שדה המחזור")
               }
               if(!team.length){
-                return Alert.alert("יש להזין את תיאור האירוע")
+                return Alert.alert("יש להזין את שדה הצוות")
               }           
           }
           else if(show2) {
             if(!why.length){
-              return Alert.alert("יש להזין את שם האירוע")
+              return Alert.alert("יש להזין את סיבת הרישום ")
             }
           }
           else{
