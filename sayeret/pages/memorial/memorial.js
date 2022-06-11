@@ -1,14 +1,10 @@
-import {Modal, FlatList, Dimensions, Alert, Image, Pressable, TextInput, View, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollViewComponent } from 'react-native';
+import {FlatList, View, StyleSheet, ImageBackground} from 'react-native';
 import Blurp from './ModalTemp';
 import {auth, db} from '../../firebase';
-import { collection, onSnapshot, query, QuerySnapshot,orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, query ,orderBy } from 'firebase/firestore';
 import { useEffect,useState } from 'react';
 import memorial from "../../assets/Images/izkor.jpg";
 
-
-
-const scrWidth = Dimensions.get('screen').width;
-const scrHeight = Dimensions.get('screen').height;
 
 const Memorial = () => { 
     const [memoryInfo, setMemoryInfo] = useState([]);
@@ -35,7 +31,7 @@ const Memorial = () => {
 
     
      return (
-       <View style = {{width: scrWidth, height: scrHeight}}>
+       <View style = {{width: '100%', height: "100%"}}>
       <ImageBackground source={memorial} style = {styles.view}>
        <View style = {styles.container}>
         <FlatList data = {memoryInfo}
@@ -53,13 +49,7 @@ const Memorial = () => {
   
   export default Memorial 
 
-  const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: "auto",
-        paddingTop: 20,
-        paddingBottom: 100
-      },
-      
+  const styles = StyleSheet.create({    
     item: {
         flex: 1,
         maxWidth: "30%", // 100% devided by the number of rows you want

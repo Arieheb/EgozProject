@@ -1,4 +1,4 @@
-import {React,useState,} from 'react';
+import {React,useRef,useState,} from 'react';
 import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,Alert, Keyboard} from 'react-native';
 import Logo from '../../assets/Images/login_logo.png';
 import {validate} from 'react-email-validator';
@@ -12,6 +12,7 @@ const{width,height:wHeight} = Dimensions.get("window");
 const LoginScreen = props => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const passwordRef = useRef()
 
     const handleSignIn = () => {   
         auth
@@ -50,13 +51,18 @@ const LoginScreen = props => {
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     value={email}
+                    returnKeyType ='next'
                     onChangeText={text=>setEmail(text)}
+                    ref = {input=>passwordRef.current = input}
+                    onSubmitEditing={() => {passwordRef.current.focus(); }}
+                    blurOnSubmit={false}
                     />
                     <TextInput placeholder='סיסמא:' 
                     style={styles.input}
                     placeholderTextColor={"#fff"}
                     value={password}
                     onChangeText={text=>setPassword(text)}
+                    ref = {input=>passwordRef.current = input}
                     secureTextEntry
                     />
                     <TouchableOpacity 

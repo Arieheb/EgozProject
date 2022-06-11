@@ -9,11 +9,9 @@ import { storage } from '../../firebase';
 import {ref, getDownloadURL, deleteObject} from 'firebase/storage';
 import gift from "../../assets/Images/gift.png";
 
-
 const Benefit = props => {
     const [visible, setVisible] = useState(false);
     const [imageUrl, setImageUrl] = useState(); 
-
     const Delete =(id, pic)=>{
     Alert.alert(
         "למחוק?",
@@ -89,7 +87,6 @@ const Benefit = props => {
     );
 }
 const Benefits = props => {
-         const [value, onChange] = useState(new Date());
          const[benefitInfo, setBenefitInfo] =useState([]);
          const[isAdmin, setAdmin] = useState();
          const [guest, setGuest] = useState();
@@ -97,16 +94,18 @@ const Benefits = props => {
             const collectionBenefits = collection(db, 'Benefits');
             const que = query (collectionBenefits);
             
-            props.route.params?()=>{
+            if(props.route.params != undefined){
                 setAdmin(props.route.params.user.isAdmin)
                 setGuest(props.route.params.user.guest)
-            }:async ()=>{
-                const q =query(collection(db,'users'),where('userId','==', auth.currentUser.uid));
-                const reslut = await getDocs(q);
-                reslut.forEach(doc=>{
-                    setAdmin(doc.data().isAdmin);
-                    setGuest(doc.data().guest);
-                })
+            }
+            else{
+                const q =query(collection(db,'users'),where('user_id','==', auth.currentUser.uid));
+                getDocs(q).then(result=>{
+                    result.forEach(doc=>{
+                        setAdmin(doc.data().isAdmin);
+                        setGuest(doc.data().guest);
+                })}
+                )
             }
 
             const unsubscribe = onSnapshot (que, QuerySnapshot => {
@@ -119,7 +118,7 @@ const Benefits = props => {
                     }))
                 );
             });
-            return () => unsubscribe();
+            return () =>{unsubscribe();};
          },[]);
          return (
          
