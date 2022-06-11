@@ -83,7 +83,10 @@ else{
   du()
   return (
     <NavigationContainer>
-        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} screenOptions={{drawerPosition:'right',/*title: null,*/ headerRight: () => <PayMember/>}}>
+        <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} 
+        screenOptions={{drawerPosition:'right',/*title: null,*/headerStyle: {
+            backgroundColor: '#616161',
+          }, headerRight: () => <PayMember/>}}>
           <Drawer.Screen name='home' component={Home} options = {{title: null}}/>
           <Drawer.Screen name='jobs' component={Jobs} options = {{title: null}}/>
           <Drawer.Screen name='about' component={About} options = {{title: null}}/>
