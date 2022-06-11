@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import {LogBox, Platform } from 'react-native';
+import {Image, ImageBackground, LogBox, Platform } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {I18nManager, StyleSheet, Text, View } from 'react-native';
 import CodePush from 'react-native-code-push';
@@ -7,6 +7,7 @@ import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { auth, db } from './firebase';
+import Logo from './assets/Images/login_logo.png';
 import { collection,query,getDocs, where, deleteDoc, doc} from 'firebase/firestore';
 
 import DrawerContent from './DrawerContent';
@@ -40,17 +41,24 @@ export default function App() {
   LogBox.ignoreLogs(['Setting a timer']);
 
   const [user, setUser] = useState();
-
+  const [loading, setLoad] = useState(true);
   // Handle user state changes
   function onAuthStateChanged(user) {
     setUser(user);
   }
   useEffect(() => {
     const subscriber = auth.onAuthStateChanged(onAuthStateChanged);
+    setTimeout(()=>setLoad(false),1000)
     return subscriber; // unsubscribe on unmount
   }, []);
 
-
+  if(loading){
+    return(
+      <ImageBackground source={Logo} style={{width:'100%', height:'100%'}} resizeMode='contain'>
+      </ImageBackground>
+    )
+  }
+else{
   if(!user){
     return(
       <NavigationContainer>
@@ -91,6 +99,7 @@ export default function App() {
 
       </NavigationContainer>
   );
+}
 };
 
 const styles = StyleSheet.create({
