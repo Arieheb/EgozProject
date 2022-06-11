@@ -94,7 +94,6 @@ const DrawerContent = props => {
                     <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
                    {user.isAdmin?
                     <Card title="דף מנהל" iconName="cog" nav="admin" navigation={props.navigation} user={user}/>:null}
-                    {/* <Card title="תשלום חברות" iconName="email-outline" nav="membership" navigation={props.navigation} user={user} /> */}
                 </Drawer.Section>
             </View>
         </DrawerContentScrollView>

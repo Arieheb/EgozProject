@@ -25,7 +25,7 @@ const decline = (id, userId,pic)=>{
         onPress: async () => {
             addDoc(collection(db,'denied'),{userId:userId});
             if(pic!=""){
-              deleteObject(ref(storage,"profile/"+pic))
+              deleteObject(ref(storage,"profile/"+pic)).catch(()=>{})
             }
             await deleteDoc(doc(db, "users", id));
         },
@@ -54,6 +54,12 @@ const GuestItem = props=>{
       <Modal visible={visible} transparent={true}>
        <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
         <View style={styles.modal}>
+        <View style={{alignSelf:'flex-start'}}>
+        <TouchableOpacity style={styles.returnButten} onPress={()=>setVisiblity(false)}>
+          <Icon name="arrow-right-thick" size={55}/>
+        </TouchableOpacity>
+      </View>
+      
         <Text style = {styles.textStyle} >{props.name}</Text>
         <Text>שאלון אימות:</Text>
         <Text>שירת ביחידה: {props.questionaire.inUnit?"כן":"לא"}</Text>
@@ -73,11 +79,6 @@ const GuestItem = props=>{
           <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, props.userId, props.pic))}>
             <Text style = {styles.buttensText}>סרב</Text>
           </TouchableOpacity> 
-        </View>
-        <View >
-        <TouchableOpacity style={styles.returnButten} onPress={()=>setVisiblity(false)}>
-          <Icon name="arrow-right-thick" size={55}/>
-        </TouchableOpacity>
         </View>
         </View>  
         </View>     
@@ -103,7 +104,7 @@ const UserItem = props=>{
 
       <Modal visible={visible} transparent={true}>
         <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
-          <View style={styles.modal}>
+          <View style={{...styles.modal,justifyContent:'flex-end'}}>
             <View style={{alignSelf:'flex-start'}}>
             <TouchableOpacity onPress={()=>setVisiblity(false)}>
               <Icon name="arrow-right-thick" size={55}/>
@@ -260,19 +261,21 @@ const Admin = () => {
  },[]);
 
   return (
-    <View>
-      {newUsers!=[]?
-        <View>
-          <Text>משתמשים חדשים</Text>
+    <View style={{flex:1}}>
+      {newUsers.length!=0?
+        <View style={styles.newTop}>
+          <Text style={{fontWeight:'bold', fontSize:23}}>משתמשים חדשים</Text>
           <FlatList data={newUsers}
           keyExtractor = {item=> item.id}
           renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire} pic={data.item.pic}/>}
           />
         </View>:null}
         <View style={{width:'100%', borderWidth:1}}/>
-        <View>
-            <Search list={allUsers}/>
-            <Text>ניהול משתמשים</Text>
+        <View style={styles.newMid}>
+            <View style={{flexDirection:'row', alignItems:'center'}}>
+              <Search list={allUsers}/>
+              <Text  style={{fontWeight:'bold', fontSize:23}}>ניהול משתמשים</Text>
+            </View>
             <FlatList
               data = {allUsers}
               keyExtractor = {item=> item.id}
@@ -280,8 +283,8 @@ const Admin = () => {
             />
         </View>
         <View style={{width:'100%', borderWidth:1}}/>
-        <View>
-          <Text>ניהול מנהלים</Text>
+        <View style={styles.newBottom}>
+          <Text style={{fontWeight:'bold', fontSize:23}}>ניהול מנהלים</Text>
           <FlatList
               data = {admins}
               keyExtractor = {item=> item.id}
@@ -341,7 +344,7 @@ modal: {
   width: '95%',
   flexDirection: "column",
   alignItems: "center",
-  justifyContent:'flex-end',
+  justifyContent:'flex-start',
   borderColor: "black",
   borderWidth: 1,
   shadowOffset: {
@@ -381,6 +384,16 @@ searchBar:{
 top:{
     flexDirection:'row',
     width:'100%'
+},
+newTop:{
+  flex:1
+},
+newMid:{
+  flex:2,
+},
+newBottom:{
+  flex:1
 }
+
 
 })

@@ -194,6 +194,7 @@ const Forum = props=>{
     return(
         
         <View>
+            
             {loaded?<Search list={forumList} params={props.route.params}/>:null}
             {!props.route.params.user.guest?<OpenForum/>:null}
             <FlatList data={forumList}
@@ -201,9 +202,14 @@ const Forum = props=>{
                 keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  user={data.item} params={props.route.params}/>}
                 />   
-             
+            
         </View> 
+        
+
+
+        
     );
+    
 };
 
 const styles = StyleSheet.create({
@@ -269,7 +275,11 @@ const styles = StyleSheet.create({
     top:{
         flexDirection:'row',
         width:'100%'
-    }
+    },
+
+
+
+    
 
 })
 
