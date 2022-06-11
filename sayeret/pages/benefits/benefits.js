@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Image, View, Platform, TouchableOpacity, Text, StyleSheet, ImageBackground, ScrollView, Alert } from 'react-native';
-import pizza from "../../assets/Images/gift.png";
-import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
+import { Modal, Image, View, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import { collection, query, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import AddBenefits from './addBenefit';
 import { FlatList } from 'react-native-gesture-handler';
@@ -11,29 +10,6 @@ import {ref, getDownloadURL, deleteObject} from 'firebase/storage';
 import gift from "../../assets/Images/gift.png";
 
 
-const App = () => {
-    const [alert, setAlert] = React.useState({
-      type: 'error',
-      text: 'This is a alert message',
-      show: false
-    })
-  
-    function onCloseAlert() {
-      setAlert({
-        type: '',
-        text: '',
-        show: false
-      })
-    }
-  
-    function onShowAlert(type) {
-      setAlert({
-        type: type,
-        text: 'Demo alert',
-        show: true
-      })
-    }
-}
 const Benefit = props => {
     const bene = props.user
     const [visible, setVisible] = useState(false);
@@ -73,7 +49,7 @@ const Benefit = props => {
            {bene.isAdmin?<TouchableOpacity onLongPress={()=>Delete(props.id,props.image)}>
            <View name='benefit' style = {styles.benefit} >
                 <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={imageUrl?{uri:imageUrl}:pizza} style = {styles.benefitsPic}></Image>
+                    <Image source={imageUrl?{uri:imageUrl}:gift} style = {styles.benefitsPic}></Image>
                 </View> 
                 <View name= 'information' style = {styles.infoFrame}>
                     <Text style = {styles.infoText}> {props.name}</Text>
@@ -86,7 +62,7 @@ const Benefit = props => {
             //not admin view
             <View name='benefit' style = {styles.benefit} >
                 <View name = 'picPlace' style = {styles.picFrame}>
-                    <Image source={imageUrl?{uri:imageUrl}:pizza} style = {styles.benefitsPic}></Image>
+                    <Image source={imageUrl?{uri:imageUrl}:gift} style = {styles.benefitsPic}></Image>
                 </View> 
                 <View name= 'information' style = {styles.infoFrame}>
                     <Text style = {styles.infoText}> {props.name}</Text>
