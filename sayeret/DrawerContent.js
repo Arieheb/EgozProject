@@ -69,7 +69,7 @@ const DrawerContent = props => {
         <DrawerContentScrollView {...props}>
             <View style={styles.drawerContent}>
                 <TouchableRipple style={styles.userInoSection}  onPress={()=>{props.navigation.navigate("profile",{user:user})}}>
-                    <View style={{flexDirection:'row',marginTop:15 }}>
+                    <View style={{flexDirection:'row',marginTop:15}}>
                         <Avatar.Image
                         source={uri?{uri:uri}:Profile}
                         size={50}/>
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     },
     userInoSection:{
         paddingLeft:20,
+        backgroundColor:'#616161' 
     },
     title: {
         fontSize: 16,
