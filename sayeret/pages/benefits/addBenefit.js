@@ -137,7 +137,7 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
-        backgroundColor: 'lightgrey'
+        backgroundColor: 'lightgrey',
      },
     returnButten: {
         alignItems: 'flex-start',
@@ -160,7 +160,6 @@ const styles = StyleSheet.create ({
       fontWeight:"bold",
     },
     buttonsBenefit: {
-        backgroundColor: "red",
         borderRadius: 20,
         textAlign: "center",
     },
@@ -210,7 +209,6 @@ const styles = StyleSheet.create ({
         borderWidth: 1,
         borderRadius: 10,
         width: '50%',
-     
     }
     
 });
