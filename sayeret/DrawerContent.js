@@ -65,11 +65,11 @@ const DrawerContent = props => {
     
   return (
     
-    <View style={{flex:1}}>
+    <View style={{flex:1 }}>
         <DrawerContentScrollView {...props}>
             <View style={styles.drawerContent}>
                 <TouchableRipple style={styles.userInoSection}  onPress={()=>{props.navigation.navigate("profile",{user:user})}}>
-                    <View style={{flexDirection:'row',marginTop:15}}>
+                    <View style={{flexDirection:'row',marginTop:15,  }}>
                         <Avatar.Image
                         source={uri?{uri:uri}:Profile}
                         size={50}/>
@@ -98,7 +98,7 @@ const DrawerContent = props => {
             </View>
         </DrawerContentScrollView>
 
-        <Drawer.Section style={styles.bottomDrawerSection}>
+        <Drawer.Section style={styles.signOutSection}>
             <DrawerItem
                 icon={(color,size)=>
                         <Icon 
@@ -119,9 +119,12 @@ export default DrawerContent
 const styles = StyleSheet.create({
     drawerContent:{
         flex:1,
+        
+        
     },
     userInoSection:{
         paddingLeft:20, 
+        marginBottom: 10,
     },
     title: {
         fontSize: 16,
@@ -155,11 +158,20 @@ const styles = StyleSheet.create({
         borderTopColor:"#f4f4f4",
         borderTopWidth:1,
         // direction:Platform.OS=='ios'?'rtl':'ltr',
+        backgroundColor: 'white',
+        height: '110%'
+        
+        
     },
     preference:{
         flexDirection:'row',
         justifyContent: "space-between",
         paddingVertical:12,
         paddingHorizontal:16
+    },
+    signOutSection: {
+        marginBottom:15,
+        borderTopColor:"#f4f4f4",
+        borderTopWidth:1,
     }
 })
