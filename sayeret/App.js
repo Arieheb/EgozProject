@@ -36,6 +36,7 @@ export default function App() {
   //forcing the app to be right to left
   if(!I18nManager.isRTL){
       I18nManager.forceRTL(true);
+      if(Platform.OS != 'ios')
       CodePush.restartApp();
   }
   LogBox.ignoreLogs(['Setting a timer']);
@@ -99,7 +100,6 @@ else{
           <Drawer.Screen name='store' component={Store} options = {{title: null}} />
           <Drawer.Screen name='admin' component={Admin} />
         </Drawer.Navigator>
-
       </NavigationContainer>
   );
 }
