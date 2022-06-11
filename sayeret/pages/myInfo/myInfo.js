@@ -1,17 +1,11 @@
 import {React, useState,Component} from "react";
-import {AppRegistry, Image, TextInput, Button, Dimensions, StyleSheet, Platform, Text, View, TouchableOpacity, ScrollView, TouchableHighlight, KeyboardAvoidingView, Alert } from 'react-native';
-//import Logo from '../../assets/Images/logo.png';
-// import {validate} from 'react-email-validator';
-import { Header } from "react-native-elements";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {TextInput, Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+
 import { auth,db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { block } from "react-native-reanimated";
-import { waitForPendingWrites } from "firebase/firestore";
 import UploadImage from "./uploadPhoto";
-import { signOut, updatePassword } from 'firebase/auth';
-import { addDoc,updateDoc, doc } from 'firebase/firestore';
-import ForgotPage from "../Login/ForgotPage";
+import { signOut} from 'firebase/auth';
+import { updateDoc, doc } from 'firebase/firestore';
 
 const user = auth.currentUser;
 
@@ -165,8 +159,6 @@ const Profile = (props) => {
 
             {/* log out button */}
             <TouchableOpacity style = {styles.buttons} onPress={signOutNow}>
-
-
                 <Text style= {styles.buttonText}>התנתק</Text>
             </TouchableOpacity>
 
@@ -240,7 +232,10 @@ const styles = StyleSheet.create ({
         paddingTop: 20
      },
      buttonText:{
-        
-     },
+        color: "black",
+        textAlign: 'center',
+        fontWeight:"bold",
+        paddingBottom: 35        
+    },
      
 });
