@@ -100,12 +100,12 @@ const SignUp = props => {
           }
           else if(show2) {
             if(!why.length){
-              return Alert.alert("יש להזין את סיבת הרישום ")
+              return Alert.alert("יש להזין את סיבת הרישום")
             }
           }
-          else{
-            return Alert.alert("הרשמתך עברה בהצלחה.")
-          }
+          // else{
+          //   return Alert.alert("נרשמת בהצלחה")
+          // }
         }
         auth
         createUserWithEmailAndPassword(auth, email, password)
@@ -473,6 +473,7 @@ const styles = StyleSheet.create({
     borderColor:'#fff',
     borderTopWidth:3,
     borderLeftWidth:3,
+    paddingTop:3
  },
  choiceText:{
   color:'#fff',
