@@ -3,7 +3,7 @@ import { Modal, Image, View, TouchableOpacity, Text, StyleSheet, Alert } from 'r
 import { collection, query, onSnapshot, deleteDoc, doc, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import AddBenefits from './addBenefit';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { storage } from '../../firebase';
 import {ref, getDownloadURL, deleteObject} from 'firebase/storage';
@@ -71,12 +71,16 @@ const Benefit = props => {
                 </View>
             </View>}
             <Modal visible={visible} transparent={true} >
+
                 <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
                     <View style={styles.modal} >
+                        <ScrollView>
+
                         <Text style = {styles.infoText}>{props.info}</Text>
                         {/* <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
                             <Text style= {styles.buttonText} >חזור</Text>
-                            </TouchableOpacity> */}
+                        </TouchableOpacity> */}
+                        </ScrollView>
                             <TouchableOpacity style={styles.returnButten} onPress={()=>setVisible(false)}>
                         <Icon name="arrow-right-thick" size={55}/>
                     </TouchableOpacity>
@@ -217,7 +221,7 @@ const styles = StyleSheet.create ({
         marginTop: '35%',
         marginHorizontal: '2.5%',
         padding: 40,
-        height: '70%',
+        height: '60%',
         width: '95%',
         flexDirection: "column",
         alignItems: "center",
