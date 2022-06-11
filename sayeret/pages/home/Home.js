@@ -90,7 +90,7 @@ const Home = props=>{
                                 <Image source={contact} style={{ width: '90%', height: '90%',borderRadius:100, marginTop:'5%'}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
-                            <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'3%'}}/>
+                            <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'2%'}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
                             <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>

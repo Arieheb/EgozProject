@@ -83,15 +83,15 @@ const DrawerContent = props => {
                 
                 </TouchableRipple>
                 <Drawer.Section style={styles.bottomDrawerSection}>
-                    <Card title="בית" iconName="home-outline" nav="home" navigation={props.navigation} user={user}/>
-                    <Card title="אודות" iconName="book-open-page-variant" nav="about" navigation={props.navigation} user={user}/>
-                    <Card title="פורומים" iconName="android-messages" nav="forums" navigation={props.navigation} user={user}/>
-                    <Card title="פורטל משרות" iconName="briefcase" nav="jobs" navigation={props.navigation} user={user}/>
-                    <Card title="לוח אירועים" iconName="calendar-month" nav="calendar" navigation={props.navigation} user={user}/>
-                    <Card title="זיכרון והנצחה" iconName="candle" nav="Memorial" navigation={props.navigation} user={user}/>
-                    <Card title="הטבות" iconName="gift" nav="Benefits" navigation={props.navigation} user={user}/>
-                    <Card title="חנות" iconName="shopping" nav="store" navigation={props.navigation} user={user}/>
-                    <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
+                    <Card title="בית**********************" iconName="home-outline" nav="home" navigation={props.navigation} user={user}/>
+                    <Card title="אודות********************" iconName="book-open-page-variant" nav="about" navigation={props.navigation} user={user}/>
+                    <Card title="פורומים******************" iconName="android-messages" nav="forums" navigation={props.navigation} user={user}/>
+                    <Card title="פורטל משרות*************" iconName="briefcase" nav="jobs" navigation={props.navigation} user={user}/>
+                    <Card title="לוח אירועים***************" iconName="calendar-month" nav="calendar" navigation={props.navigation} user={user}/>
+                    <Card title="זיכרון והנצחה*************" iconName="candle" nav="Memorial" navigation={props.navigation} user={user}/>
+                    <Card title="הטבות*******************" iconName="gift" nav="Benefits" navigation={props.navigation} user={user}/>
+                    <Card title="חנות*********************" iconName="shopping" nav="store" navigation={props.navigation} user={user}/>
+                    <Card title="צור קשר******************" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
                    {user.isAdmin?
                     <Card title="דף מנהל" iconName="cog" nav="admin" navigation={props.navigation} user={user}/>:null}
                     {/* <Card title="תשלום חברות" iconName="email-outline" nav="membership" navigation={props.navigation} user={user} /> */}
