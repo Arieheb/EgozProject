@@ -28,11 +28,15 @@ const LoginScreen = props => {
                 return
             }
             if (error.code === 'auth/invalid-email') {
-               Alert.alert('אחד מהנתונים אינם נכונים');
+               Alert.alert('אימייל לא תקין');
                return
             }
             if(error.code === 'auth/user-not-found'){
                 Alert.alert('אימייל לא נמצא');
+                return 
+            }
+            if(error.code === 'auth/wrong-password'){
+                Alert.alert('סיסמא לא נכונה');
                 return 
             }
             alert(error);
@@ -57,7 +61,6 @@ const LoginScreen = props => {
                     value={email}
                     returnKeyType ='next'
                     onChangeText={text=>setEmail(text)}
-                    ref = {input=>passwordRef.current = input}
                     onSubmitEditing={() => {passwordRef.current.focus(); }}
                     blurOnSubmit={false}
                     />
