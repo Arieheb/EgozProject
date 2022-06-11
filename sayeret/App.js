@@ -85,7 +85,7 @@ else{
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} 
         screenOptions={{drawerPosition:'right',/*title: null,*/headerStyle: {
-            backgroundColor: '#535F6D',
+            backgroundColor: '#485260',
           }, headerRight: () => <PayMember/>}}>
           <Drawer.Screen name='home' component={Home} options = {{title: null}}/>
           <Drawer.Screen name='jobs' component={Jobs} options = {{title: null}}/>
