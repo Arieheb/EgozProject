@@ -117,10 +117,10 @@ const OpenForum = props=>{
                 </TouchableRipple>
 
                 
-                <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
-                    setInfo("");}}>
-                        <Icon name="arrow-right-thick" size={55}/>
-                </TouchableOpacity>
+                {/* <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName(""); */}
+                    {/* setInfo("");}}> */}
+                        {/* <Icon name="arrow-right-thick" size={55}/> */}
+                {/* </TouchableOpacity> */}
 
             </Modal>
             </View>  
@@ -232,9 +232,9 @@ const styles = StyleSheet.create({
         // alignContent:'flex-end'
     },
 
-    returnButten: {
-        alignItems: 'center',
-      },
+   // returnButten: {
+        // alignItems: 'center',
+    //   },
 
     
 })
