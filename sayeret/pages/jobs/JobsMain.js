@@ -26,6 +26,7 @@ const JobsMain = props=>{
                     contactEmail: doc.data().email,
                     title: doc.data().title,
                     location: doc.data().location,
+                    contactPhone: doc.data().phone,
 
                 }))
             );

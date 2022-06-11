@@ -252,13 +252,14 @@ const Admin = () => {
 
   return (
     <View>
+      {newUsers!=[]?
         <View>
           <Text>משתמשים חדשים</Text>
           <FlatList data={newUsers}
           keyExtractor = {item=> item.id}
           renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire} pic={data.item.pic}/>}
           />
-        </View>
+        </View>:null}
         <View style={{width:'100%', borderWidth:1}}/>
         <View>
             <Search list={allUsers}/>
