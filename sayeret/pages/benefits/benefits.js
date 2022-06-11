@@ -74,16 +74,17 @@ const Benefit = props => {
 
                 <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
                     <View style={styles.modal} >
-                        <ScrollView>
-
+                        <ScrollView style = {{height: '80%'}}>
                         <Text style = {styles.infoText}>{props.info}</Text>
                         {/* <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
                             <Text style= {styles.buttonText} >חזור</Text>
                         </TouchableOpacity> */}
                         </ScrollView>
+                        <View style={{height: '10%'}}>
                             <TouchableOpacity style={styles.returnButten} onPress={()=>setVisible(false)}>
                         <Icon name="arrow-right-thick" size={55}/>
                     </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -220,7 +221,7 @@ const styles = StyleSheet.create ({
         borderRadius: 25,
         marginTop: '35%',
         marginHorizontal: '2.5%',
-        padding: 40,
+        padding: '5%',
         height: '60%',
         width: '95%',
         flexDirection: "column",
