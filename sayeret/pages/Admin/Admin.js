@@ -99,33 +99,36 @@ const UserItem = props=>{
         <Text>פרטים נוספים</Text>
       </TouchableOpacity>
 
-      <Modal visible={visible}>
-        <TouchableOpacity onPress={()=>setVisiblity(false)}>
-          <Icon name="arrow-right-thick" size={55}/>
-        </TouchableOpacity>
-          <Text>{user.fname} {user.lname}</Text>
-          <Text>פרטים</Text>
-          <Text>כתובת: {user.address}</Text>
-          <Text>עיר: {user.city}</Text>
-          <Text>אימייל: {user.email}</Text>
-          <Text>טלפון: {user.phone}</Text>
-          <Text>היה ביחידה: {user.questionaire.inUnit?"כן" : "לא"}</Text>
-          {props.admin?
-          <View>
-            <TouchableOpacity onPress={()=>setVisiblity(removeAdmin(user.id))}>
-              <Text>הסר כמנהל</Text>
+      <Modal visible={visible} transparent={true}>
+        <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
+          <View style={styles.modal}>
+            <TouchableOpacity onPress={()=>setVisiblity(false)}>
+              <Icon name="arrow-right-thick" size={55}/>
             </TouchableOpacity>
-          </View>
-          :
-          <View>
-          <TouchableOpacity onPress={()=>setVisiblity(makeAdmin(user.id))}>
-            <Text>הפוך למנהל</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={()=>setVisiblity(decline(user.id, user.userId, user.pic))}>
-            <Text>הסר משתמש</Text>
-          </TouchableOpacity>
-          </View>
-          }
+              <Text>{user.fname} {user.lname}</Text>
+              <Text>פרטים</Text>
+              <Text>כתובת: {user.address}</Text>
+              <Text>עיר: {user.city}</Text>
+              <Text>אימייל: {user.email}</Text>
+              <Text>טלפון: {user.phone}</Text>
+              <Text>היה ביחידה: {user.questionaire.inUnit?"כן" : "לא"}</Text>
+              {props.admin?
+              <View>
+                <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(removeAdmin(user.id))}>
+                  <Text>הסר כמנהל</Text>
+                </TouchableOpacity>
+              </View>
+              :
+              <View>
+              <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(makeAdmin(user.id))}>
+                <Text>הפוך למנהל</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(user.id, user.userId, user.pic))}>
+                <Text>הסר משתמש</Text>
+              </TouchableOpacity>
+              </View>}
+            </View>
+        </View>
       </Modal>
     </View>
   );

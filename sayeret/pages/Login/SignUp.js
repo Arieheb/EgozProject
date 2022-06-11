@@ -100,12 +100,12 @@ const SignUp = props => {
           }
           else if(show2) {
             if(!why.length){
-              return Alert.alert("יש להזין את סיבת הרישום ")
+              return Alert.alert("יש להזין את סיבת הרישום")
             }
           }
-          else{
-            return Alert.alert("הרשמתך עברה בהצלחה.")
-          }
+          // else{
+          //   return Alert.alert("נרשמת בהצלחה")
+          // }
         }
         auth
         createUserWithEmailAndPassword(auth, email, password)
@@ -147,7 +147,7 @@ const SignUp = props => {
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
     return (
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.container}> 
         <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}> 
           <View style = {styles.top}>
@@ -198,13 +198,13 @@ const SignUp = props => {
           </KeyboardAwareScrollView>
         </TouchableOpacity>
       </View>  
-      </ScrollView>
+      </KeyboardAwareScrollView>
     
     );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)
       return ( 
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
           <View style={styles.container}> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
@@ -273,13 +273,13 @@ const SignUp = props => {
             </KeyboardAwareScrollView>
             </TouchableOpacity>
           </View>
-          </ScrollView>
+          </KeyboardAwareScrollView>
         
         );
         //----------------------------------------------third page ----------------------------------
       else
       return (
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
             <View style={styles.container}> 
               <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
                 <View style = {styles.top}>
@@ -353,7 +353,7 @@ const SignUp = props => {
         </KeyboardAwareScrollView>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
     );
       };
       
@@ -473,6 +473,7 @@ const styles = StyleSheet.create({
     borderColor:'#fff',
     borderTopWidth:3,
     borderLeftWidth:3,
+    paddingTop:3
  },
  choiceText:{
   color:'#fff',
