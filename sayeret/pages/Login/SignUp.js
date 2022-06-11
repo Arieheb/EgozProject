@@ -147,7 +147,7 @@ const SignUp = props => {
     //----------------------------------------first page ----------------------------
     if(item.key == 1)
     return (
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.container}> 
         <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}> 
           <View style = {styles.top}>
@@ -198,13 +198,13 @@ const SignUp = props => {
           </KeyboardAwareScrollView>
         </TouchableOpacity>
       </View>  
-      </ScrollView>
+      </KeyboardAwareScrollView>
     
     );
       //-------------------------------- second page ----------------------------------------------------------------
       else if(item.key == 2)
       return ( 
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
           <View style={styles.container}> 
             <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
               <View style = {styles.top}>
@@ -273,13 +273,13 @@ const SignUp = props => {
             </KeyboardAwareScrollView>
             </TouchableOpacity>
           </View>
-          </ScrollView>
+          </KeyboardAwareScrollView>
         
         );
         //----------------------------------------------third page ----------------------------------
       else
       return (
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 1}}>
             <View style={styles.container}> 
               <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
                 <View style = {styles.top}>
@@ -353,7 +353,7 @@ const SignUp = props => {
         </KeyboardAwareScrollView>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
     );
       };
       
