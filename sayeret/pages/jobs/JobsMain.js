@@ -1,11 +1,65 @@
 import React, {useState , useEffect} from 'react';
-import {Text,Button, View, StyleSheet,FlatList, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Modal, Text,TextInput, View, StyleSheet,FlatList, TouchableOpacity} from 'react-native';
 import { Linking } from 'react-native';
 import JobCard from './JobCard';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { collection, query, onSnapshot, getDocs, where } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
+import Icons from 'react-native-vector-icons/Ionicons'
 
+
+const Search = (props) => {
+    const list = props.list;
+  
+    const [searchList, setSearchList] = useState([]);
+    const [input, setInput] = useState("");
+    const [visible, setVisible] = useState(false);
+  
+    //getting the list according to the input
+    const searcher = (name)=>{
+        setSearchList(list.filter(item=>(String(item.title).includes(name))||(String(item.location).includes(name))));
+    }
+  
+    useEffect(()=>{setSearchList(list)},[])
+  
+  
+  return (
+    <View>
+      <TouchableOpacity onPress={()=>setVisible(true)}>
+            <Icons name='search' size={45}/>
+      </TouchableOpacity>
+        <Modal visible={visible}>
+            <SafeAreaView>
+                <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
+                    <Icons name='arrow-back' size={45}/>
+                </TouchableOpacity>
+            </SafeAreaView>
+            {/*search bar*/}
+            <View>    
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder='חפש'     
+                    value={input}
+                    onChangeText={text=>{setInput(text);searcher(text)}}
+                    placeholderTextColor="#7f8c8d"
+                />
+                <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
+                    <Text>X</Text>
+                </TouchableOpacity>
+            </View>
+            {/**the found list*/}
+            <FlatList
+             data={searchList}
+             keyExtractor = {item=>item.id}
+             renderItem={({item}) => {
+                return <JobCard id={item.id} title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description} user={item.user} admin={props.admin}/>
+            }}
+            />
+        </Modal>
+    </View>
+  )
+  }
+  
 
 const JobsMain = props=>{
     const [jobsList, updateJobsList] = useState([]);
@@ -13,7 +67,7 @@ const JobsMain = props=>{
     useEffect (()=>{
         const q =query(collection(db,'users'),where('user_id','==', auth.currentUser.uid));
         getDocs(q).then(result=>{result.forEach(doc=>{setAdmin(doc.data().isAdmin);})})
-        
+
         const collectionJobs = collection(db, 'jobs');
         const que = query (collectionJobs);
         const unsubscribe = onSnapshot (que, QuerySnapshot => {
@@ -40,6 +94,7 @@ const JobsMain = props=>{
 
     return(
         <View style={styles.container}>
+            <Search list={jobsList} admin={admin}/>
             <View style={styles.jobGroups}>
                 <Text style={styles.jobGroupsTitle}>קבוצות ה-WhatsApp שלנו:</Text>
                 <View style={styles.jobGroupsLinks}>
