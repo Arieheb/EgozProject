@@ -94,11 +94,17 @@ const OpenForum = props=>{
                         />
                     </TouchableRipple>
                 </SafeAreaView>
+
+                <View style ={{flexDirection:"row"}}>
+                <Avatar.Image source={image?{uri:image}:profile}/>
                 <TextInput
                     value={name}
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
+                    style = {{width:"85%"}}
                 />
+                </View>
+              
                 <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
                 <View style={{...styles.button,width:200}}>
                         <Text style={styles.buttonText}>העלה תמונה</Text>
@@ -112,7 +118,7 @@ const OpenForum = props=>{
                     </View>
                 </TouchableRipple>
 
-                <Avatar.Image source={image?{uri:image}:profile}/>
+              
 
                 <TouchableRipple style = {styles.buttensStyle} onPress={()=>submit()}>
                     <View style={styles.button}>
