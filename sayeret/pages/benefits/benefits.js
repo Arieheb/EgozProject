@@ -90,12 +90,12 @@ const Benefit = props => {
                 </View> 
                 <View name= 'information' style = {styles.infoFrame}>
                     <Text style = {styles.infoText}> {props.name}</Text>
+                    {!bene.guest?
+                    <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
+                    <Text style= {styles.buttonText} >קרא עוד</Text>
+                    </TouchableOpacity>
+                    :null}
                 </View>
-                    <View style = {{...styles.buttonView, backgroundColor: "yellow"}}>
-                        <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
-                        <Text style= {styles.buttonText} >קרא עוד</Text>
-                        </TouchableOpacity>
-                   </View>
             </View>}
             <Modal visible={visible} transparent={true} >
                 <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
@@ -202,11 +202,6 @@ const styles = StyleSheet.create ({
         width: '50%',
         fontSize: 35,
         height: '100%',
-    },
-    buttonView: {
-        height: '50%',
-        backgroundColor: "yellow",
-        width: '50%'
     },
     infoText: {
         fontWeight: "bold",
