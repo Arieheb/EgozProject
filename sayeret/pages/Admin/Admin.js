@@ -46,7 +46,7 @@ const GuestItem = props=>{
   return(
     <View>
       <View style = {styles.newUsers}>
-      <Text>{props.name} רוצה להצטרף</Text>
+      <Text> {props.name} </Text><Text> רוצה להצטרף </Text>
       <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(true)}>
         <Text style = {styles.buttensText}>אפשרויות</Text>
       </TouchableOpacity>
@@ -66,12 +66,14 @@ const GuestItem = props=>{
         <Text>סיבת הצטרפות: {props.questionaire.why}</Text>
         }
 
-        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(accept(props.id))}>
-          <Text style = {styles.buttensText}>אשר</Text>
-        </TouchableOpacity>        
-        <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, props.userId, props.pic))}>
-          <Text style = {styles.buttensText}>סרב</Text>
-        </TouchableOpacity> 
+        <View style={{flexDirection:'row'}}>
+          <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(accept(props.id))}>
+            <Text style = {styles.buttensText}>אשר</Text>
+          </TouchableOpacity>        
+          <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(props.id, props.userId, props.pic))}>
+            <Text style = {styles.buttensText}>סרב</Text>
+          </TouchableOpacity> 
+        </View>
         <View >
         <TouchableOpacity style={styles.returnButten} onPress={()=>setVisiblity(false)}>
           <Icon name="arrow-right-thick" size={55}/>
@@ -93,39 +95,43 @@ const UserItem = props=>{
   const user = props.user
   const [visible,setVisiblity] = useState(false);
   return(
-    <View>
+    <View style = {styles.newUsers}>
       <Text>{user.fname} {user.lname}</Text>
-      <TouchableOpacity onPress={()=>setVisiblity(true)}>
-        <Text>פרטים נוספים</Text>
+      <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(true)}>
+        <Text style = {styles.buttensText}>פרטים נוספים</Text>
       </TouchableOpacity>
 
       <Modal visible={visible} transparent={true}>
         <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
           <View style={styles.modal}>
+            <View style={{alignSelf:'flex-start'}}>
             <TouchableOpacity onPress={()=>setVisiblity(false)}>
               <Icon name="arrow-right-thick" size={55}/>
             </TouchableOpacity>
-              <Text>{user.fname} {user.lname}</Text>
-              <Text>פרטים</Text>
-              <Text>כתובת: {user.address}</Text>
-              <Text>עיר: {user.city}</Text>
-              <Text>אימייל: {user.email}</Text>
-              <Text>טלפון: {user.phone}</Text>
-              <Text>היה ביחידה: {user.questionaire.inUnit?"כן" : "לא"}</Text>
+            </View>
+              <Text style={{...styles.infoText, fontWeight:'bold', fontSize:30}}>{user.fname} {user.lname}</Text>
+            <View>
+              <Text style={styles.infoText}>פרטים</Text>
+              <Text style={styles.infoText}>כתובת: {user.address}</Text>
+              <Text style={styles.infoText}>עיר: {user.city}</Text>
+              <Text style={styles.infoText}>אימייל: {user.email}</Text>
+              <Text style={styles.infoText}>טלפון: {user.phone}</Text>
+              <Text style={styles.infoText}>היה ביחידה: {user.questionaire.inUnit?"כן" : "לא"}</Text>
+              </View>
               {props.admin?
               <View>
                 <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(removeAdmin(user.id))}>
-                  <Text>הסר כמנהל</Text>
+                  <Text style = {styles.buttensText}>הסר כמנהל</Text>
                 </TouchableOpacity>
               </View>
               :
-              <View>
-              <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(makeAdmin(user.id))}>
-                <Text>הפוך למנהל</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(user.id, user.userId, user.pic))}>
-                <Text>הסר משתמש</Text>
-              </TouchableOpacity>
+              <View style={{flexDirection:'row'}}>
+                <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(makeAdmin(user.id))}>
+                  <Text style = {styles.buttensText}>הפוך למנהל</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(decline(user.id, user.userId, user.pic))}>
+                  <Text style = {styles.buttensText}>הסר משתמש</Text>
+                </TouchableOpacity>
               </View>}
             </View>
         </View>
@@ -294,12 +300,13 @@ export default Admin
 const styles = StyleSheet.create({
   newUsers: {
     backgroundColor: "white",
-    borderRadius: 25,
+    borderRadius: 5,
     margin: 5,
     padding: 5,
-    height: 100,
-    flexDirection: "column",
+    height: 50,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent:'space-between',
     borderColor: "black",
     borderWidth: 1
   },
@@ -308,9 +315,9 @@ const styles = StyleSheet.create({
     fontSize:14,
     borderWidth: 1,
     padding: 5,
-    marginTop: 10,
+    margin: 10,
     borderRadius: 10,
-    width: 300,
+    width: 100,
     height: 40,
 },
 buttensText: {
@@ -320,6 +327,9 @@ buttensText: {
 textStyle: {
   fontSize:20,
   fontWeight:"bold",
+},
+infoText:{
+  textAlign:'left'
 },
 modal: {
   backgroundColor: "white",
