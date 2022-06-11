@@ -85,7 +85,7 @@ const GuestItem = props=>{
 }
 
 const removeAdmin = id=>{
-  updateDoc(doc(db,'users',id),{'iAdmin':false});
+  updateDoc(doc(db,'users',id),{'isAdmin':false});
   return false;
 }
 
