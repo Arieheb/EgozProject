@@ -264,7 +264,7 @@ const Admin = () => {
     <View style={{flex:1}}>
       {newUsers.length!=0?
         <View style={styles.newTop}>
-          <Text style={{fontWeight:'bold', fontSize:23}}>משתמשים חדשים</Text>
+          <Text style={{fontWeight:'bold', fontSize:23, textAlign:'center'}}>משתמשים חדשים</Text>
           <FlatList data={newUsers}
           keyExtractor = {item=> item.id}
           renderItem = {(data)=><GuestItem userId={data.item.userId} id={data.item.id} name={data.item.fname+" "+data.item.lname} questionaire={data.item.questionaire} pic={data.item.pic}/>}
@@ -274,7 +274,7 @@ const Admin = () => {
         <View style={styles.newMid}>
             <View style={{flexDirection:'row', alignItems:'center'}}>
               <Search list={allUsers}/>
-              <Text  style={{fontWeight:'bold', fontSize:23}}>ניהול משתמשים</Text>
+              <Text  style={{fontWeight:'bold', fontSize:23, marginStart:50}}>ניהול משתמשים</Text>
             </View>
             <FlatList
               data = {allUsers}
@@ -284,7 +284,7 @@ const Admin = () => {
         </View>
         <View style={{width:'100%', borderWidth:1}}/>
         <View style={styles.newBottom}>
-          <Text style={{fontWeight:'bold', fontSize:23}}>ניהול מנהלים</Text>
+          <Text style={{fontWeight:'bold', fontSize:23, textAlign:'center'}}>ניהול מנהלים</Text>
           <FlatList
               data = {admins}
               keyExtractor = {item=> item.id}
