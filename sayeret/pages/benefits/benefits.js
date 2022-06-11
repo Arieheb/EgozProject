@@ -214,10 +214,10 @@ const styles = StyleSheet.create ({
     modal: {
         backgroundColor: "white",
         borderRadius: 25,
-        marginTop: '50%',
+        marginTop: '35%',
         marginHorizontal: '2.5%',
         padding: 40,
-        height: 250,
+        height: '70%',
         width: '95%',
         flexDirection: "column",
         alignItems: "center",
