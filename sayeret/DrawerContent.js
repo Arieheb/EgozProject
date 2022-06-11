@@ -122,8 +122,7 @@ const styles = StyleSheet.create({
         flex:1,
     },
     userInoSection:{
-        paddingLeft:20,
-        backgroundColor:'#616161' 
+        paddingLeft:20, 
     },
     title: {
         fontSize: 16,
