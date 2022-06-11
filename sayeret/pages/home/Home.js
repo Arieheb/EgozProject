@@ -8,6 +8,7 @@ import masa from "../../assets/Images/unit-hero.jpg";
 import event from "../../assets/Images/eventsImage.jpeg";
 import memorial from "../../assets/Images/izkor.jpg";
 import inst from "../../assets/Images/Instagram_logo.png";
+import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { SocialIcon } from 'react-native-elements';
@@ -89,7 +90,7 @@ const Home = props=>{
                                 <Image source={contact} style={{ width: '90%', height: '90%',borderRadius:100, marginTop:'5%'}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
-                            <SocialIcon type='facebook' style = {{ width: '90%', height: '90%',borderRadius:100,marginTop:'11%'}}/>
+                            <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'3%'}}/>
                         </TouchableOpacity>
                         <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
                             <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>
