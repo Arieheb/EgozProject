@@ -59,7 +59,7 @@ const AddBenefits= props=>{
     return(
         <SafeAreaView >
             <View style={{height: '30%', justifyContent:'center'}}>
-                <TouchableOpacity style = {styles.plusButton} onPress={()=>setVision(true)}>
+                <TouchableOpacity style = {styles.plusButton} onPress={()=>{setVision(true);setPhoto();setName("")}}>
                 <Icon name ="plus"  color="white"  size={45}/>   
                 </TouchableOpacity> 
             </View>
