@@ -35,7 +35,7 @@ const Search = (props) => {
                 </TouchableOpacity>
             </SafeAreaView>
             {/*search bar*/}
-            <View>    
+            <View style={styles.searchBar}>    
                 <TextInput 
                     style={styles.textInput}
                     placeholder='חפש'     
@@ -189,6 +189,30 @@ plusButton: {
     alignItems:'center',
     justifyContent:'center',
 },
+textInput:{
+    width:"95%",
+    textAlign:"right",
+    height:'100%',
+    alignSelf:"flex-end",
+    borderRadius:5,
+    padding:5,
+    fontSize:18,
+    backgroundColor:"white"
+  },
+
+searchBar:{
+    flexDirection:'row',
+    width:'95%',
+    height: 40,
+    borderColor:"gray",
+    borderWidth:1,
+    borderRadius:5,
+    justifyContent: 'flex-start',
+    alignItems:'center',
+    alignSelf:'center',
+    backgroundColor:"white"
+}
+
 })
 
 export default JobsMain
