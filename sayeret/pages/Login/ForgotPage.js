@@ -18,8 +18,8 @@ const auth = getAuth();
     
     });
     const emailMessege=()=>{
-        if(email==""){
-            alert("אחד מהנתונים חסרים")
+        if(email.replace(' ','')==""){
+            alert("מלא את שדה האימייל")
             return
           }
         alert("קישור לאיפוס סיסמא נשלח לחשבון המייל שלך")
@@ -102,9 +102,9 @@ const auth = getAuth();
         height:60,
         borderRadius:8,
         paddingRight:15,
+        paddingLeft: 13,
         margin:5,
         color: "white",
-        padding:30,
         textAlign: 'right',
         fontSize:17,
      },
