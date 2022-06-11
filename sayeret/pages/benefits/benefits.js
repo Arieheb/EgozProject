@@ -80,7 +80,7 @@ const Benefit = props => {
                             <Text style= {styles.buttonText} >חזור</Text>
                         </TouchableOpacity> */}
                         </ScrollView>
-                        <View style={{height: '10%'}}>
+                        <View style={{height: '10%', marginBottom: '1%'}}>
                             <TouchableOpacity style={styles.returnButten} onPress={()=>setVisible(false)}>
                         <Icon name="arrow-right-thick" size={55}/>
                     </TouchableOpacity>
@@ -221,7 +221,7 @@ const styles = StyleSheet.create ({
         borderRadius: 25,
         marginTop: '35%',
         marginHorizontal: '2.5%',
-        padding: '6%',
+        padding: '5%',
         height: '60%',
         width: '95%',
         flexDirection: "column",
