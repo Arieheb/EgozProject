@@ -9,6 +9,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import profile from '../../assets/Images/profile.png'
 import Picture from '../../assets/Images/picture.png';
+import camera from '../../assets/Images/pic_camera.png';
 
 
 const OpenForum = props=>{
@@ -107,6 +108,7 @@ const OpenForum = props=>{
                 <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
                 <View style={{...styles.button,width:200}}>
                         <Text style={styles.buttonText}>צלם תמונה</Text>
+                        {<Image source={image?{uri: image}:camera} style={{ width: 150, height: 150 }}/>}
                     </View>
                 </TouchableRipple>
 
@@ -199,8 +201,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginTop: 50,
         borderRadius: 10,
-        width: 160,
-        height: 160,
+        width: 170,
+        height: 170,
     }
     ,
     buttensStyle: {
