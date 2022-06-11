@@ -9,6 +9,7 @@ import * as ImagePicker from 'expo-image-picker'
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../firebase';
 import Picture from '../../assets/Images/picture.png';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -64,6 +65,7 @@ const AddBenefits= props=>{
                 </TouchableOpacity> 
             </View>
             <Modal visible={vision}>
+                <ScrollView>
                 <SafeAreaView style= {{...styles.container}}>
                     <View style={{height: '10%', justifyContent: 'center'}}>
                 <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName("");
@@ -100,6 +102,7 @@ const AddBenefits= props=>{
                         <Text style= {styles.buttonText} >הוסף הטבה</Text>
                     </TouchableOpacity>
                 </SafeAreaView>
+                </ScrollView>
             </Modal>
          </SafeAreaView>
     )
