@@ -195,7 +195,7 @@ const Forum = props=>{
         
         <View>
             {loaded?<Search list={forumList} params={props.route.params}/>:null}
-            {props.route.params.user.isAdmin?<OpenForum/>:null}
+            {!props.route.params.user.guest?<OpenForum/>:null}
             <FlatList data={forumList}
                 style={{height:"95%"}}
                 keyExtractor = {item=>item.id}
