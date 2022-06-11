@@ -1,11 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import {FlatList, View,SafeAreaView,TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {Modal, TextInput, FlatList, View,SafeAreaView,TouchableOpacity, Text, StyleSheet} from 'react-native';
 import { collection, onSnapshot, query,orderBy } from 'firebase/firestore';
 import {db} from '../../firebase';
 import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Icons from 'react-native-vector-icons/Ionicons'
 
 
+
+const Search = (props) => {
+    const list = props.list;
+  
+    const [searchList, setSearchList] = useState([]);
+    const [input, setInput] = useState("");
+    const [visible, setVisible] = useState(false);
+  
+    //getting the list according to the input
+    const searcher = (name)=>{
+        setSearchList(list.filter(item=>(String(item.eventName).includes(name))||(String(item.eventDate).includes(name))));
+    }
+  
+    useEffect(()=>{setSearchList(list)},[])
+  
+  
+  return (
+    <View>
+      <TouchableOpacity onPress={()=>setVisible(true)}>
+            <Icons name='search' size={45}/>
+      </TouchableOpacity>
+        <Modal visible={visible}>
+            <SafeAreaView style={styles.top}>
+                <TouchableOpacity onPress={()=>{setVisible(false);setInput("");searcher("")}}>
+                    <Icons name='arrow-back' style={{transform:[{rotateY: '180deg'}]}} size={45}/>
+                </TouchableOpacity>
+            
+            {/*search bar*/}
+            <View style={styles.searchBar}>    
+                <TextInput 
+                    style={styles.textInput}
+                    placeholder='חפש'     
+                    value={input}
+                    onChangeText={text=>{setInput(text);searcher(text)}}
+                    placeholderTextColor="#7f8c8d"
+                />
+                <TouchableOpacity onPress={()=>{setInput("");searcher("")}}>
+                    <Text>X</Text>
+                </TouchableOpacity>
+            </View>
+            </SafeAreaView>
+            {/**the found list*/}
+            <FlatList
+             data={searchList}
+             keyExtractor = {item=>item.id}
+             renderItem={({item}) => {
+                return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>
+            }}
+            />
+        </Modal>
+    </View>
+  )
+  }
 
 const EventCal = (props) => {
 
@@ -34,9 +88,7 @@ const EventCal = (props) => {
 
     return (
         <SafeAreaView style = {styles.container}>
-                    
-                    {/* <Text style = {styles.headerText}>לוח אירועים</Text> */}
-
+                <Search list={eventInfo}/>
                 <FlatList data = {eventInfo}
                     keyExtractor = {item => item.id}
                     renderItem={({item}) => {
@@ -120,7 +172,34 @@ const styles = StyleSheet.create ({
         borderWidth: 0.5,
         alignItems:'center',
         justifyContent:'center',
+    },textInput:{
+        width:"95%",
+        textAlign:"right",
+        height:'100%',
+        alignSelf:"flex-end",
+        borderRadius:5,
+        padding:5,
+        fontSize:18,
+        backgroundColor:"white"
+      },
+    
+    searchBar:{
+        flexDirection:'row',
+        width:'85%',
+        height: 40,
+        borderColor:"gray",
+        borderWidth:1,
+        borderRadius:5,
+        justifyContent: 'flex-start',
+        alignItems:'center',
+        alignSelf:'center',
+        backgroundColor:"white"
     },
+    top:{
+        flexDirection:'row',
+        width:'100%'
+    }
+    
 
 
 });
