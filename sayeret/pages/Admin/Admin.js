@@ -341,6 +341,7 @@ modal: {
   width: '95%',
   flexDirection: "column",
   alignItems: "center",
+  justifyContent:'flex-end',
   borderColor: "black",
   borderWidth: 1,
   shadowOffset: {
