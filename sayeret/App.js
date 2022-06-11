@@ -82,6 +82,7 @@ else{
 
   du()
   return (
+    <View style={{direction:'rtl', flex:1}}>
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} 
         screenOptions={{drawerPosition:'right',/*title: null,*/headerStyle: {
@@ -101,6 +102,7 @@ else{
         </Drawer.Navigator>
 
       </NavigationContainer>
+      </View>
   );
 }
 };
