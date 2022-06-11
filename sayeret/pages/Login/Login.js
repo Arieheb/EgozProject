@@ -31,6 +31,10 @@ const LoginScreen = props => {
                Alert.alert('אחד מהנתונים אינם נכונים');
                return
             }
+            if(error.code === 'auth/user-not-found'){
+                Alert.alert('אימייל לא נמצא');
+                return 
+            }
             alert(error);
           });
           
