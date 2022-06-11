@@ -27,15 +27,12 @@ const Profile = (props) => {
     const [phoneInput, setPhoneInput] = useState("");
     const [cityInput, setCityInput] = useState("");
     const [passInput, setPassInput] = useState("")
-    // const [lastNameInput, setLastNameInput] = useState("");
-    // const [lastNameInput, setLastNameInput] = useState("");
+    
 
     const user = props.route.params.user
     
     const handleSubmit = () => {
-        //TODO - fix JSON output
-        // console.log(user)
-
+        
         let flag = false;
 
         if (fnInput!="") {
