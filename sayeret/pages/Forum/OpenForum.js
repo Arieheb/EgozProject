@@ -8,6 +8,7 @@ import {collection,query,addDoc,getDocs, where, orderBy} from 'firebase/firestor
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import profile from '../../assets/Images/profile.png'
+import Picture from '../../assets/Images/picture.png';
 
 
 const OpenForum = props=>{
@@ -100,6 +101,7 @@ const OpenForum = props=>{
                 <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
                 <View style={{...styles.button,width:200}}>
                         <Text style={styles.buttonText}>העלה תמונה</Text>
+                        {<Image source={image?{uri: image}:Picture} style={{ width: 150, height: 150 }}/>}
                     </View>
                 </TouchableRipple>
                 <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
