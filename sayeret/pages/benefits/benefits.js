@@ -221,7 +221,7 @@ const styles = StyleSheet.create ({
         borderRadius: 25,
         marginTop: '35%',
         marginHorizontal: '2.5%',
-        padding: '5%',
+        padding: '6%',
         height: '60%',
         width: '95%',
         flexDirection: "column",
