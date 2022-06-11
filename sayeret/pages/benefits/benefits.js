@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Image, View, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
-import { collection, query, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { collection, query, onSnapshot, deleteDoc, doc, where, getDocs } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
 import AddBenefits from './addBenefit';
 import { FlatList } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,7 +11,6 @@ import gift from "../../assets/Images/gift.png";
 
 
 const Benefit = props => {
-    const bene = props.user
     const [visible, setVisible] = useState(false);
     const [imageUrl, setImageUrl] = useState(); 
 
@@ -46,7 +45,7 @@ const Benefit = props => {
 
        <View>
            {/* admin could delete */}
-           {bene.isAdmin?<TouchableOpacity onLongPress={()=>Delete(props.id,props.image)}>
+           {props.admin?<TouchableOpacity onLongPress={()=>Delete(props.id,props.image)}>
            <View name='benefit' style = {styles.benefit} >
                 <View name = 'picPlace' style = {styles.picFrame}>
                     <Image source={imageUrl?{uri:imageUrl}:gift} style = {styles.benefitsPic}></Image>
@@ -66,7 +65,7 @@ const Benefit = props => {
                 </View> 
                 <View name= 'information' style = {styles.infoFrame}>
                     <Text style = {styles.infoText}> {props.name}</Text>
-                    {!bene.guest?
+                    {!props.guest?
                     <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(true)}}>
                     <Text style= {styles.buttonText} >קרא עוד</Text>
                     </TouchableOpacity>
@@ -92,11 +91,24 @@ const Benefit = props => {
 const Benefits = props => {
          const [value, onChange] = useState(new Date());
          const[benefitInfo, setBenefitInfo] =useState([]);
-         const[addBenefit, setAddBenefit] = useState([]);
+         const[isAdmin, setAdmin] = useState();
+         const [guest, setGuest] = useState();
          useEffect (()=>{
             const collectionBenefits = collection(db, 'Benefits');
             const que = query (collectionBenefits);
             
+            props.route.params?()=>{
+                setAdmin(props.route.params.user.isAdmin)
+                setGuest(props.route.params.user.guest)
+            }:async ()=>{
+                const q =query(collection(db,'users'),where('userId','==', auth.currentUser.uid));
+                const reslut = await getDocs(q);
+                reslut.forEach(doc=>{
+                    setAdmin(doc.data().isAdmin);
+                    setGuest(doc.data().guest);
+                })
+            }
+
             const unsubscribe = onSnapshot (que, QuerySnapshot => {
                 setBenefitInfo(
                     QuerySnapshot.docs.map (doc => ({
@@ -116,10 +128,10 @@ const Benefits = props => {
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=>
                 <Benefit name={data.item.Name} id={data.item.id}
-                image = {data.item.photo} info ={data.item.info} user={props.route.params.user}> </Benefit>}>
+                image = {data.item.photo} info ={data.item.info} admin={isAdmin} guest={guest}> </Benefit>}>
                     
                 </FlatList>
-                {props.route.params.user.isAdmin?<AddBenefits/>:null}
+                {isAdmin?<AddBenefits/>:null}
 
             </View>
 

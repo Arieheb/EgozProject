@@ -45,7 +45,7 @@ const Home = props=>{
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
                 <View style = {styles.tint}>
                             <View style = {styles.topButtonView}>
-                            <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits",{user:props.route.params.user})}>
+                            <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
                                     <UpCard icon="gift" Text = "הטבות" />
                                 </TouchableOpacity>
                             <TouchableOpacity onPress={()=>props.navigation.navigate("jobs")}>
