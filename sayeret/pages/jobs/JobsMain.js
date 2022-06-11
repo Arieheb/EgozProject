@@ -2,21 +2,20 @@ import React, {useState , useEffect} from 'react';
 import {Text,Button, View, StyleSheet,FlatList, TouchableOpacity} from 'react-native';
 import { Linking } from 'react-native';
 import JobCard from './JobCard';
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-import Icons from "react-native-vector-icons/FontAwesome5";
-import { collection, query, orderBy, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase';
-
-
-
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { collection, query, onSnapshot, getDocs, where } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
 
 
 const JobsMain = props=>{
     const [jobsList, updateJobsList] = useState([]);
+    const [admin, setAdmin] = useState(false);
     useEffect (()=>{
+        const q =query(collection(db,'users'),where('user_id','==', auth.currentUser.uid));
+        getDocs(q).then(result=>{result.forEach(doc=>{setAdmin(doc.data().isAdmin);})})
+        
         const collectionJobs = collection(db, 'jobs');
         const que = query (collectionJobs);
-        
         const unsubscribe = onSnapshot (que, QuerySnapshot => {
             updateJobsList(
                 QuerySnapshot.docs.map (doc => ({
@@ -27,6 +26,7 @@ const JobsMain = props=>{
                     title: doc.data().title,
                     location: doc.data().location,
                     contactPhone: doc.data().phone,
+                    user: doc.data().user,
 
                 }))
             );
@@ -57,7 +57,7 @@ const JobsMain = props=>{
                     contentContainerStyle={{alignItems:"center"}}
                     data={jobsList}
                     renderItem={({item}) => {
-                        return <JobCard id={item.id} title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description}/>
+                        return <JobCard id={item.id} title={item.title} location={item.location} contactName={item.contactName} contactPhone={item.contactPhone} contactEmail={item.contactEmail} description={item.description} user={item.user} admin={admin}/>
                     }}
                 />  
                 <View style={{height: '10%', justifyContent:'center'}}>

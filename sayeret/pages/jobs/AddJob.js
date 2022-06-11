@@ -1,7 +1,7 @@
 import { addDoc, collection } from 'firebase/firestore';
 import React,{useState} from 'react';
 import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
-import { db } from '../../firebase';
+import { auth, db } from '../../firebase';
 
 const AddJob = (props) => {
 const [titleInput, setTitleInput] = useState("")
@@ -31,7 +31,7 @@ const handleSubmit = ()=>{
     return Alert.alert("יש להזין כתובת אימייל")
   }
     // TODO - fix JSON output
-    addDoc(collection(db,'jobs'),{title:titleInput, location:locationInput, description:descriptionInput, name:nameInput, phone:phoneInput, email:emailInput});
+    addDoc(collection(db,'jobs'),{title:titleInput, location:locationInput, description:descriptionInput, name:nameInput, phone:phoneInput, email:emailInput, user:auth.currentUser.uid});
     props.navigation.navigate('A');
 }
 

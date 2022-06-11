@@ -2,10 +2,9 @@ import {StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Icon from "react-native-vector-icons/Ionicons"
 import {deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { auth, db } from '../../firebase';
 
-const JobCard = ({id,title, location, contactName, contactPhone, contactEmail, description}) => {
- 
+const JobCard = ({id,title, location, contactName, contactPhone, contactEmail, description, user, admin}) => {
  
   const del = async(id)=>{
     Alert.alert(
@@ -29,7 +28,7 @@ const JobCard = ({id,title, location, contactName, contactPhone, contactEmail, d
  
  
   return (
-    <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
+    <TouchableOpacity activeOpacity={0.9} onLongPress={(user == auth.currentUser.uid || admin)?()=>del(id):null}>
       <View style={styles.cardContainer}>
         <View>
           <Text style={styles.title}>{title}</Text>
