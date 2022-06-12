@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
-    paddingVertical:60,
+    paddingVertical:75,
     marginHorizontal:35,
     textShadowRadius:10,
     textShadowOffset: {width:0, height:0},
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
-    paddingVertical:60,
+    paddingVertical:75,
     marginHorizontal:10,
     textShadowRadius:10,
     textShadowOffset: {width:0, height:0},
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
   image:{
-    
+    height:200
   },
 
 })

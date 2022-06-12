@@ -45,7 +45,7 @@ const Home = props=>{
         <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
                 <View style = {styles.tint}>
-                            <View style = {styles.topButtonView}>
+                        <View style = {styles.topButtonView}>
                             <TouchableOpacity  onPress={()=>props.navigation.navigate("Benefits")}>
                                     <UpCard icon="gift" Text = "הטבות" />
                                 </TouchableOpacity>
@@ -147,11 +147,15 @@ const styles = StyleSheet.create({
         color:'white',
         marginRight: 10,
         marginLeft: 10,
+        paddingBottom: 10
     },
     stat: {
         flexDirection: "row",
-        backgroundColor: "black",
-        justifyContent: "space-around"
+        backgroundColor: "#525252",
+        justifyContent: "space-around",
+        marginTop:-10,
+        paddingTop: 10,
+        padding: 15
     },
     icon: {
         borderRadius: 50,
@@ -210,6 +214,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.50)",
         height: 100,
+        paddingTop: 10,
+        paddingBottom: 110
    
     },
     view: {

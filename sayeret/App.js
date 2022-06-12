@@ -84,7 +84,7 @@ else{
   return (
     <NavigationContainer>
         <Drawer.Navigator drawerContent={props=><DrawerContent {...props}/>} 
-        screenOptions={{drawerPosition:'right',/*title: null,*/headerStyle: {
+        screenOptions={{drawerPosition:'right', drawerIcon: ({transform: [{ rotate: '180deg'}]}), headerStyle: {
             backgroundColor: '#485260',
           }, headerRight: () => <PayMember/>}}>
           <Drawer.Screen name='home' component={Home} options = {{title: null}}/>
