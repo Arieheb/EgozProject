@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0, 0, 0, 0.50)",
         height: 100,
         paddingTop: 10,
-        paddingBottom: 110
+        paddingBottom: 12
    
     },
     view: {
