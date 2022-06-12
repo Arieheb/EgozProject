@@ -48,7 +48,7 @@ const GuestItem = props=>{
       <View style = {styles.newUsers}>
       <Text> {props.name} </Text><Text> רוצה להצטרף </Text>
       <TouchableOpacity style = {styles.buttensStyle} onPress={()=>setVisiblity(true)}>
-        <Text style = {styles.buttensText}>אפשרויות</Text>
+        <Text style = {styles.buttensText}>פרטים נוספים</Text>
       </TouchableOpacity>
       </View>
       <Modal visible={visible} transparent={true}>
@@ -310,8 +310,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent:'space-between',
-    borderColor: "black",
-    borderWidth: 1
   },
   buttensStyle: {
     backgroundColor:"white",
@@ -326,6 +324,7 @@ const styles = StyleSheet.create({
 buttensText: {
   textAlign: 'center',
   fontWeight:"bold",
+  paddingTop: 5
 },
 textStyle: {
   fontSize:20,
