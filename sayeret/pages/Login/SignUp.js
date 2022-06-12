@@ -103,9 +103,6 @@ const SignUp = props => {
               return Alert.alert("יש להזין את סיבת הרישום")
             }
           }
-          // else{
-          //   return Alert.alert("נרשמת בהצלחה")
-          // }
         }
         auth
         createUserWithEmailAndPassword(auth, email, password)
@@ -135,7 +132,7 @@ const SignUp = props => {
                 inUnit: show1
               }
             })
-            
+            Alert.alert("הנך רשום כאורח עד לאישור מנהל")
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -284,9 +281,7 @@ const SignUp = props => {
               <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1}>
                 <View style = {styles.top}>
                 <Image style = {styles.logo} source={Logo} />
-                  <Text style= {styles.heading}> שאלון אימות</Text>
-                  
-                  {/* <Text>נתונים אלו יישלחו למנהל המערכת לצורך אימות נתוניך</Text> */}
+                  <Text style= {styles.heading}> שאלון אימות</Text>                  
                 </View>
 
               <KeyboardAwareScrollView style = {styles.bottom}>
@@ -346,7 +341,7 @@ const SignUp = props => {
                   onChangeText={text=>setWhy(text)}
                 /> 
             </View>:null}
-            <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
+            <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp} >
               <Text style = {styles.buttonText}>סיום</Text>
             </TouchableOpacity>
           </View>
