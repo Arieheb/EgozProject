@@ -79,27 +79,20 @@ const styles = StyleSheet.create ({
     dateTimeFrame: {
         flexDirection: 'column' ,
         width: '28%',
-        height:'100%',
-        // borderWidth: 1.5,
-        // borderRadius: 40
-
-        // borderwidth: '2'
-        
-     
+        height:'100%',    
     },
+    
     timeText: {
         textAlign: 'center',
         paddingTop: '18%',
         margin: '13%',
         justifyContent: "center",
         alignItems: "center",
-        // fontWeight: 'bold',
         fontSize: 18,
     },
 
     dateText: {
         textAlign: 'center',
-        // margin: '13%',
         justifyContent: "center",
         alignItems: "center",
         fontSize: 18,

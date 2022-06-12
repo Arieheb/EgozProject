@@ -97,7 +97,7 @@ else{
           <Drawer.Screen name='Contact' component={Contact} options = {{title: null}}/>
           <Drawer.Screen name='Memorial' component={Memorial} options = {{title: null}}/>
           <Drawer.Screen name='store' component={Store} options = {{title: null}} />
-          <Drawer.Screen name='admin' component={Admin} />
+          <Drawer.Screen name='admin' component={Admin} options = {{title: null}}/>
         </Drawer.Navigator>
       </NavigationContainer>
   );

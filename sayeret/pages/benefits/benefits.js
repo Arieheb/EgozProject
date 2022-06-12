@@ -167,6 +167,7 @@ const styles = StyleSheet.create ({
         color: "black",
         textAlign: 'center',
         fontWeight:"bold",
+        paddingTop: 5
     },
     title: {
         fontWeight: "bold",
