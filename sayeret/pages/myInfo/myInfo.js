@@ -226,13 +226,12 @@ const styles = StyleSheet.create ({
         borderRadius:8,
         display:'flex',
         justifyContent:'center',
-        paddingTop: 20
      },
      buttonText:{
         color: "black",
         textAlign: 'center',
         fontWeight:"bold",
-        paddingBottom: 35        
+     
     },
      
 });
