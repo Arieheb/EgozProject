@@ -343,7 +343,7 @@ const SignUp = props => {
                   style={styles.showInput}
                   placeholderTextColor={"#fff"}
                   value={why}
-                onChangeText={text=>setWhy(text)}
+                  onChangeText={text=>setWhy(text)}
                 /> 
             </View>:null}
             <TouchableOpacity style = {styles.buttons} onPress = {handleSignUp}>
