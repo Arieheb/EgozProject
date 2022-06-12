@@ -87,19 +87,24 @@ const EventCal = (props) => {
     },[]);
 
     return (
-        <SafeAreaView style = {styles.container}>
-                <Search list={eventInfo}/>
-                <FlatList data = {eventInfo}
-                    keyExtractor = {item => item.id}
-                    renderItem={({item}) => {
-                    return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
-                    />
-                <View style={{height: '30%', alignItems:'center',justifyContent:'center',alignContent:'center'}}>
-                    <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
-                        <Icon name ="plus"  color="white"  size={45}/>   
-                    </TouchableOpacity>
-            </View>
-           </SafeAreaView>
+        <View>
+            <SafeAreaView style = {styles.container}>
+                    <Search list={eventInfo}/>
+                    <View style={{height:'83%'}}>
+                    <FlatList data = {eventInfo}
+                        keyExtractor = {item => item.id}
+                        renderItem={({item}) => {
+                        return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
+                        />
+                    </View>
+                    <View style={{height:60, alignItems:'center',justifyContent:'center'}}>
+                        <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
+                            <Icon name ="plus"  color="white"  size={45}/>   
+                        </TouchableOpacity>
+                    </View>
+            </SafeAreaView>
+           
+           </View>
     );
         }
 
@@ -166,8 +171,6 @@ const styles = StyleSheet.create ({
         width: 60,
         height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        // marginTop: '-10%',
-        marginBottom: '55%',
         borderColor: "white",
         borderWidth: 0.5,
         alignItems:'center',
