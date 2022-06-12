@@ -17,7 +17,7 @@ const EventTemplate = (props) => {
               {
                 text: "מחק",
                 onPress: async () => {
-                    await deleteDoc(doc(db, "events", props.id));
+                    await deleteDoc(doc(db, "events",id));
                 },
             },
         ],
@@ -25,7 +25,7 @@ const EventTemplate = (props) => {
       }
     return (
             <View>
-                <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(id)}>
+                <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(props.id)}>
                     <ScrollView>
                         <View name='main' style = {styles.eventFrame} >
                             <View name = 'date and time' style = {styles.dateTimeFrame}>
