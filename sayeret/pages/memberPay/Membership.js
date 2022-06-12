@@ -25,7 +25,7 @@ const PayMember = () => {
         </TouchableOpacity>
     <Modal visible = {isVisible}>
     <SafeAreaView style={styles.header}>   
-                    <TouchableRipple style = {{alignItems: 'flex-start',backgroundColor:"#616161", 
+                    <TouchableRipple style = {{alignItems: 'flex-start',backgroundColor:"#485260", 
 }}
                     onPress={()=>{setIsVisible(false)}}>
                         <Icon
