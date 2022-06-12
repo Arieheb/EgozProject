@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     fontSize:26,
     fontWeight:'bold',
-    paddingVertical:75,
+    paddingVertical:65,
     marginHorizontal:10,
     textShadowRadius:10,
     textShadowOffset: {width:0, height:0},
