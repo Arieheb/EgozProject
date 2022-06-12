@@ -38,6 +38,7 @@ export default function App() {
       I18nManager.forceRTL(true);
       CodePush.restartApp();
   }
+  
   LogBox.ignoreLogs(['Setting a timer']);
 
   const [user, setUser] = useState();
