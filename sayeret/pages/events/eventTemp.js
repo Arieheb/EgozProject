@@ -79,13 +79,13 @@ const styles = StyleSheet.create ({
     dateTimeFrame: {
         flexDirection: 'column' ,
         width: '28%',
-        height:'100%',    
+        height:'100%',
+        
     },
-    
     timeText: {
         textAlign: 'center',
         paddingTop: '18%',
-        margin: '13%',
+        // margin: '13%',
         justifyContent: "center",
         alignItems: "center",
         fontSize: 18,
@@ -96,6 +96,7 @@ const styles = StyleSheet.create ({
         justifyContent: "center",
         alignItems: "center",
         fontSize: 18,
+        paddingTop: 10
 
     },
     
