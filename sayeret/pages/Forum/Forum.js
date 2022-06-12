@@ -196,13 +196,14 @@ const Forum = props=>{
         <View>
             
             {loaded?<Search list={forumList} params={props.route.params}/>:null}
-            {!props.route.params.user.guest?<OpenForum/>:null}
             <FlatList data={forumList}
-                style={{height:"95%"}}
+                style={{height:"81%"}}
                 keyExtractor = {item=>item.id}
                 renderItem={(data)=><ForumItem  user={data.item} params={props.route.params}/>}
-                />   
-            
+                />
+            <View style={{height:60, alignItems:'center',justifyContent:'center'}}>   
+            {!props.route.params.user.guest?<OpenForum/>:null}
+            </View>
         </View> 
         
 
