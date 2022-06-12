@@ -24,8 +24,8 @@ const Search = (props) => {
   
   
   return (
-    <View>
-      <TouchableOpacity onPress={()=>setVisible(true)}>
+    <View style={{width:'95%'}}>
+      <TouchableOpacity style={{alignSelf:'flex-start'}} onPress={()=>setVisible(true)}>
             <Icons name='search' size={45}/>
       </TouchableOpacity>
         <Modal visible={visible}>
