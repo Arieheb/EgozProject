@@ -64,9 +64,9 @@ else{
     return(
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen options={{headerMode:'none'}} name='login' component={LoginScreen}/>
-          <Stack.Screen name='SignUp' component={SignUp}/>
-          <Stack.Screen name='ForgotPage' component={ForgotPage}/>
+          <Stack.Screen name='login' component={LoginScreen} options = {{title: null}}/>
+          <Stack.Screen name='SignUp' component={SignUp} options = {{title: null}}/>
+          <Stack.Screen name='ForgotPage' component={ForgotPage} options = {{title: null}}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
