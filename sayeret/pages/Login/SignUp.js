@@ -132,7 +132,14 @@ const SignUp = props => {
                 inUnit: show1
               }
             })
-            Alert.alert("הנך רשום כאורח עד לאישור מנהל")
+            Alert.alert(
+            <View>
+            <Text>הנך רשום כאורח עד לאישור מנהל</Text>
+            <Text>האם תרצה לבצע תשלום חברות ולהירשם כחבר?</Text>
+              
+            </View>
+            
+            )
           })
           .catch((error) => {
             const errorCode = error.code;
