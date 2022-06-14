@@ -12,6 +12,9 @@ import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { SocialIcon } from 'react-native-elements';
+import { auth,db } from '../../firebase';
+import { collection,updateDoc, doc, onSnapshot, query ,orderBy } from 'firebase/firestore';
+
 
 
 const NumberCard = props=>{
@@ -40,6 +43,7 @@ const UpCard = props=>{
 
 
 const Home = props=>{
+    
     return(
         <ScrollView>
         <View style = {styles.container}>
