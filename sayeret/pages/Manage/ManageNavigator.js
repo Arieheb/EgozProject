@@ -5,17 +5,17 @@ import { createStackNavigator } from '@react-navigation/stack'
 import ManageInfo from './manage'
 import EditAbout from '../About/EditAbout'
 import EditHome from '../home/EditHome'
-import EditMemorial from '../memorial/'
+import EditMemorial from '../memorial/EdtiMemorial'
 
 const Stack = createStackNavigator();
 
-const EventsNavigator = () => {
+const EventsNavigator = () => { 
   return (
     <Stack.Navigator>
-        <Stack.Screen options={{headerShown: false}} name='editMemorial' component={EditMemorial}/>
-        <Stack.Screen options={{headerShown: false}} name='editAbout' component={EditAbout}/>
-        <Stack.Screen options={{headerShown: false}} name='editHome' component={EditHome}/>
-        <Stack.Screen options={{headerShown: false}} name='manageInfo' component={ManageInfo}/>
+        <Stack.Screen name="infoManage" component={ManageInfo} options={{headerShown: false}}  />
+        <Stack.Screen name="HomeEdit" component={EditHome} options={{headerShown: false}}  />
+        <Stack.Screen name="AboutEdit" component={EditAbout} options={{headerShown: false}} />
+        <Stack.Screen name="MemorialEdit" component={EditMemorial} options={{headerShown: false}} />
 
     </Stack.Navigator>
   )

@@ -7,6 +7,7 @@ import { updateDoc, doc } from 'firebase/firestore';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
+
 const ManageInfo = (props) => {
 
     const [storeInput, setStoreInput] = useState("");
@@ -66,17 +67,17 @@ const ManageInfo = (props) => {
             </View>
             
             {/* button to edit home page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('editHome')}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("HomeEdit")}>
                 <Text style = {styles.buttonText}>לעריכת עמוד הבית</Text>
             </TouchableOpacity>
 
             {/* button to edit about page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('editAbout')}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("AboutEdit")}>
                 <Text style = {styles.buttonText}>לעריכת עמוד האודות</Text>
             </TouchableOpacity>
 
             {/* button to edit memorial page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('editMemorial')}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("MemorialEdit")}>
                 <Text style = {styles.buttonText}>לעריכת עמוד הנופלים</Text>
             </TouchableOpacity>
 
