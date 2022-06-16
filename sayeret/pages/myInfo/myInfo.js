@@ -8,10 +8,6 @@ import { signOut} from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
 
 
-
-const wWidth = Dimensions.get('window').width;
-const wHeight = Dimensions.get('window').height;
-
 const signOutNow = () => {
     signOut(auth).then(() => {
         navigation.replace('login');
@@ -25,7 +21,6 @@ const Profile = (props) => {
     const [addInput, setAddInput] = useState("");
     const [phoneInput, setPhoneInput] = useState("");
     const [cityInput, setCityInput] = useState("");
-    const [passInput, setPassInput] = useState("");
     
 
     const user = props.route.params.user
@@ -169,7 +164,7 @@ const styles = StyleSheet.create ({
     container: {
         height: '200%',
         paddingBottom: 70, 
-        width: wWidth,
+        width: "100%",
         display: 'flex',
         
     },

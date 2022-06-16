@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {  Modal, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet} from 'react-native';
+import {  Modal, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet, Linking} from 'react-native';
 import {auth, db, storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
+import { Link } from '@react-navigation/native';
 
 const scrWidth = Dimensions.get('screen').width;
 const scrHeight = Dimensions.get('screen').height;
@@ -59,7 +60,12 @@ const Blurp = (props) => {
               <Text style={styles.textDesign}>{props.info}</Text>             
               </ScrollView>
             </View>
-          
+
+            <View>
+              <Text style={{color: "black",textAlign: 'center',fontWeight:"bold",paddingBottom: 10}}>למעבר לעמוד הנופל המלא
+              <Text> לחץ כאן </Text>
+              </Text>
+            </View>
           
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -88,7 +94,6 @@ const Blurp = (props) => {
 
     textDesign: {
       textAlign: 'left',
-
     },
 
     topArea: {
