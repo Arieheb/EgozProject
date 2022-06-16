@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  Modal, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet, Linking} from 'react-native';
+import {Modal,Button, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet, Linking} from 'react-native';
 import {auth, db, storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
 import { Link } from '@react-navigation/native';
@@ -62,9 +62,7 @@ const Blurp = (props) => {
             </View>
 
             <View>
-              <Text style={{color: "black",textAlign: 'center',fontWeight:"bold",paddingBottom: 10}}>למעבר לעמוד הנופל המלא
-              <Text> לחץ כאן </Text>
-              </Text>
+              <Button title= "למעבר לעמוד הנופל המלא לחץ כאן" onPress ={()=>Linking.openURL(props.link)} color="black"/>
             </View>
           
             <Pressable

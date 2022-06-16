@@ -22,7 +22,8 @@ const Memorial = () => {
               profilePic: doc.data().profilePic,
               row: doc.data().row,
               section: doc.data().section,
-              semitary: doc.data().semitary
+              semitary: doc.data().semitary,
+              link: doc.data().link
             }))
           );
     });
@@ -36,7 +37,7 @@ const Memorial = () => {
        <View style = {styles.container}>
         <FlatList data = {memoryInfo}
             keyExtractor = {item => item.Name}
-            renderItem = {(data) => <Blurp name = {data.item.Name} image={data.item.profilePic} info = {data.item.information} semitary = {data.item.semitary} part = {data.item.section} row = {data.item.row} graveNumber = {data.item.graveNumber}  ></Blurp>}
+            renderItem = {(data) => <Blurp name = {data.item.Name} image={data.item.profilePic} info = {data.item.information} semitary = {data.item.semitary} part = {data.item.section} row = {data.item.row} graveNumber = {data.item.graveNumber} link = {data.item.link}  ></Blurp>}
             numColumns = {3}
 >
          </FlatList>
