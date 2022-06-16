@@ -7,7 +7,6 @@ import UploadImage from "./uploadPhoto";
 import { signOut} from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
 
-const user = auth.currentUser;
 
 
 const wWidth = Dimensions.get('window').width;
@@ -26,7 +25,7 @@ const Profile = (props) => {
     const [addInput, setAddInput] = useState("");
     const [phoneInput, setPhoneInput] = useState("");
     const [cityInput, setCityInput] = useState("");
-    const [passInput, setPassInput] = useState("")
+    const [passInput, setPassInput] = useState("");
     
 
     const user = props.route.params.user
@@ -86,7 +85,7 @@ const Profile = (props) => {
                     style={styles.input}
                     placeholder={user.FirstName}
                     value = {fnInput}                    
-                    placeholderTextColor={"#fff"}
+                    placeholderTextColor={"grey"}
                     onChangeText={text=>setFnInput(text)}
                     />                
             </View>
@@ -96,7 +95,7 @@ const Profile = (props) => {
            <Text style = {styles.textStyle}>שם משפחה: </Text>
                 <TextInput placeholder={user.LastName} 
                     style={styles.input}
-                    placeholderTextColor={"#fff"}
+                    placeholderTextColor={"grey"}
                     value={lnInput}
                     onChangeText={text=>setLnInput(text)}
                 />
@@ -108,7 +107,7 @@ const Profile = (props) => {
             <Text style = {styles.textStyle}>כתובת: </Text>
                 <TextInput placeholder={user.Address}
                     style={styles.input}
-                    placeholderTextColor={"#fff"}
+                    placeholderTextColor={"grey"}
                     value={addInput}
                     onChangeText={text=>setAddInput(text)}
                     />
@@ -119,7 +118,7 @@ const Profile = (props) => {
             <Text style = {styles.textStyle}>עיר: </Text>
                 <TextInput placeholder={user.city}
                     style={styles.input}
-                    placeholderTextColor={"#fff"}
+                    placeholderTextColor={"grey"}
                     value={cityInput}
                     onChangeText={text=>setCityInput(text)}
                     />
@@ -131,7 +130,7 @@ const Profile = (props) => {
                 <TextInput placeholder={user.phone}
                     style={styles.input}
                     keyboardType='phone-pad'
-                    placeholderTextColor={"#fff"}
+                    placeholderTextColor={"grey"}
                     value = {phoneInput}
                     onChangeText={text=>setPhoneInput(text)}
                     />                                    
@@ -168,7 +167,6 @@ export default Profile
 
 const styles = StyleSheet.create ({
     container: {
-        backgroundColor: 'grey', 
         height: '200%',
         paddingBottom: 70, 
         width: wWidth,
@@ -226,6 +224,9 @@ const styles = StyleSheet.create ({
         borderRadius:8,
         display:'flex',
         justifyContent:'center',
+        // borderWidth: 1
+        
+        
      },
      buttonText:{
         color: "black",

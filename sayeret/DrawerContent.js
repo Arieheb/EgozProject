@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Platform, StyleSheet, View} from 'react-native'
+import { Platform,I18nManager, StyleSheet, View} from 'react-native'
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import {Avatar,Title,Caption, Drawer, TouchableRipple} from 'react-native-paper'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -29,6 +29,7 @@ const Card = props=>{
 }
 
 const DrawerContent = props => {
+
     const [user,setUser] = useState({});
     const [uri, setImage] = useState();
     useEffect(async ()=>{
@@ -94,6 +95,8 @@ const DrawerContent = props => {
                     <Card title="צור קשר" iconName="email-outline" nav="Contact" navigation={props.navigation} user={user}/>
                    {user.isAdmin?
                     <Card title="דף מנהל" iconName="cog" nav="admin" navigation={props.navigation} user={user}/>:null}
+                    {user.isAdmin?
+                    <Card title="ניהול מידע" iconName="brush" nav="infoManage" navigation={props.navigation} user={user}/>:null}
                 </Drawer.Section>
             </View>
         </DrawerContentScrollView>

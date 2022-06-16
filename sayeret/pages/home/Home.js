@@ -65,7 +65,7 @@ const Home = props=>{
                 </View>
                 <YoutubePlayer 
                     height={230}
-                    videoId ={  "MMTuF941VzA" }
+                    videoId ={"MMTuF941VzA"}
                     style = {styles.video}
                 /> 
             </ImageBackground>

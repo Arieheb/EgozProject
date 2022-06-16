@@ -27,6 +27,8 @@ import Store from './pages/store/Store';
 import ForgotPage from './pages/Login/ForgotPage';
 import Admin from './pages/Admin/Admin';
 import PayMember from './pages/memberPay/Membership';
+import ManageInfo from './pages/Manage/Manage';
+
 
 
 const Drawer = createDrawerNavigator();
@@ -99,6 +101,8 @@ else{
           <Drawer.Screen name='Memorial' component={Memorial} options = {{title: null}}/>
           <Drawer.Screen name='store' component={Store} options = {{title: null}} />
           <Drawer.Screen name='admin' component={Admin} options = {{title: null}}/>
+          <Drawer.Screen name='infoManage' component={ManageInfo} options = {{title: null}}/>
+
         </Drawer.Navigator>
       </NavigationContainer>
   );
