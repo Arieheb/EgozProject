@@ -66,17 +66,17 @@ const ManageInfo = (props) => {
             </View>
             
             {/* button to edit home page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("EditHome")}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('editHome')}>
                 <Text style = {styles.buttonText}>לעריכת עמוד הבית</Text>
             </TouchableOpacity>
 
             {/* button to edit about page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("EditAbout")}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('editAbout')}>
                 <Text style = {styles.buttonText}>לעריכת עמוד האודות</Text>
             </TouchableOpacity>
 
             {/* button to edit memorial page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("EditMemorial")}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('editMemorial')}>
                 <Text style = {styles.buttonText}>לעריכת עמוד הנופלים</Text>
             </TouchableOpacity>
 

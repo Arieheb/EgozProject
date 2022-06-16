@@ -1,7 +1,9 @@
 import { addDoc, collection } from 'firebase/firestore';
 import React,{useState} from 'react';
-import {StyleSheet, Text, View, Pressable, TextInput ,Alert} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View, Pressable, TextInput ,Alert} from 'react-native';
 import { auth, db } from '../../firebase';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+
 
 const AddJob = (props) => {
 const [titleInput, setTitleInput] = useState("")
@@ -37,7 +39,13 @@ const handleSubmit = ()=>{
 
   return (
     <View style={styles.container}> 
-      <View style={{width:"100%", alignItems:"center"}}>
+    <TouchableOpacity style={{flexDirection:'row', alignSelf: 'baseline' }} onPress={()=>props.navigation.navigate("A")}>
+             <Icon name="arrow-right-thick" size={35}/>
+    </TouchableOpacity>
+    <Text style = {styles.title}>הוספת משרה חדשה</Text>
+
+      <View style={{width:"100%"}}>
+        <Text style = {styles.textStyle}>הזן שם משרה: </Text>
         <TextInput
           style={styles.textInput}
           placeholder='שם המשרה'        
@@ -45,6 +53,7 @@ const handleSubmit = ()=>{
           onChangeText={text=>setTitleInput(text)}
           placeholderTextColor="#7f8c8d"
         />
+        <Text style = {styles.textStyle}>הזן מיקום:  </Text>
         <TextInput
           style={styles.textInput}
           placeholder='מיקום'     
@@ -52,6 +61,7 @@ const handleSubmit = ()=>{
           onChangeText={text=>setLocationInput(text)}
           placeholderTextColor="#7f8c8d"
         />
+        <Text style = {styles.textStyle}>הזן את תיאור המשרה:  </Text>
         <TextInput
         style={{...styles.textInput,height:120}}
         placeholder='תיאור המשרה'
@@ -60,6 +70,7 @@ const handleSubmit = ()=>{
         multiline     
         onChangeText={text=>setDescriptionInput(text)}
         />
+        <Text style = {styles.textStyle}>הזן איש קשר:  </Text>
         <TextInput
           style={styles.textInput}
           placeholder='שם איש הקשר'     
@@ -67,6 +78,7 @@ const handleSubmit = ()=>{
           onChangeText={text=>setNameInput(text)}
           placeholderTextColor="#7f8c8d"
         />
+        <Text style = {styles.textStyle}>הזן טלפון:  </Text>
         <TextInput
           style={styles.textInput}
           placeholder='טלפון'     
@@ -74,6 +86,7 @@ const handleSubmit = ()=>{
           onChangeText={text=>setPhoneInput(text)}
           placeholderTextColor="#7f8c8d"
         />
+        <Text style = {styles.textStyle}>הזן מייל:  </Text>
         <TextInput
           style={styles.textInput}
           placeholder='אימייל'     
@@ -86,7 +99,7 @@ const handleSubmit = ()=>{
 style={({pressed})=>[styles.button,pressed && {backgroundColor:"#00cec9"}]}
 onPress={handleSubmit}
 >
-  <Text>הוסף משרה</Text>
+  <Text style = {styles.buttonText}>הוסף משרה</Text>
 </Pressable>
       </View>
     </View>
@@ -104,15 +117,31 @@ const styles = StyleSheet.create({
   titleText:{
       fontSize:22,
   },
+  title: {
+    textAlign: 'center',
+    fontSize: 35,
+    color: 'black',
+    fontWeight: 'bold',
+},
   button:{
-    height:40,
-    width:100,
-    backgroundColor:"#616161",
-    borderRadius:4,
-    marginTop:20,
-    alignItems:"center",
-    justifyContent:"center"
+    alignSelf:'center',
+        alignItems:'center',
+        marginTop:30,        
+        display:'flex',
+        justifyContent:'center',
+        backgroundColor:"white",
+        fontSize:16,
+        borderWidth: 1,        
+        borderRadius: 10,
+        width: 120,
+        height: 60,
+        
   },
+  textStyle: {
+        fontSize: 17,
+        margin: 5,
+        textAlign: 'left', 
+    },
   textInput:{
     marginVertical:8,
     width:"100%",
@@ -120,11 +149,12 @@ const styles = StyleSheet.create({
     height:40,
     borderColor:"gray",
     borderWidth:1,
-    borderRadius:5,
+    borderRadius:12,
     alignSelf:"flex-end",
     padding:5,
     fontSize:18,
-    backgroundColor:"white"
+    backgroundColor:"white",
+    backgroundColor: 'lightgrey',      
   },
   selectInput:{
     flexDirection:"row-reverse",
@@ -132,5 +162,11 @@ const styles = StyleSheet.create({
     justifyContent:"flex-start",
     justifyContent: 'center',
     borderRadius:5,
-  }
+  },
+  buttonText:{
+    color: "black",
+    textAlign: 'center',
+    fontWeight:"bold",
+    fontSize:16,
+ },
 })
