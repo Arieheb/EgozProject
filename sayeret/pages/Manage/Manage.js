@@ -17,7 +17,6 @@ const ManageInfo = (props) => {
         const q = query(collection(db,'links'));
         const docs = await getDocs(q);
         docs.forEach(doc=>{
-            console.log(doc.id)
             const links = doc._document.data.value.mapValue.fields
             if(doc.id=='memberLink'){
                 setMemberLink(links.memberLink.stringValue)

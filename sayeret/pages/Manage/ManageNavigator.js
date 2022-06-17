@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 const EventsNavigator = () => { 
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="infoManage" component={ManageInfo} />
+        <Stack.Screen name="Manageinfo" component={ManageInfo} />
         <Stack.Screen name="HomeEdit" component={EditHome}/>
         <Stack.Screen name="AboutEdit" component={EditAbout} />
         <Stack.Screen name="MemorialEdit" component={EditMemorial} />

@@ -12,7 +12,7 @@ import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import {db} from '../../firebase';
-import { collection, query , getDocs } from 'firebase/firestore';
+import { collection, query, onSnapshot} from 'firebase/firestore';
 
 
 const NumberCard = props=>{
@@ -47,24 +47,23 @@ const Home = props=>{
 
     useEffect(async ()=>{
         const q = query(collection(db, 'edits'));
-        const docs = await getDocs(q);
-        docs.forEach(doc=>{
-            const data = doc._document.data.value.mapValue.fields
+        const docs =onSnapshot(q, result=>
+        result.docs.forEach(doc=>{
             if(doc.id=="numbers"){
-                let member = data.members.stringValue;
-                let projects = data.projects.stringValue;
-                let seniors = data.seniors.stringValue;
-                let years = data.years.stringValue;
+                let member = doc.data().members;
+                let projects = doc.data().projects;
+                let seniors = doc.data().seniors;
+                let years = doc.data().years;
                 setNumbers([years,member,projects,seniors]);
             }
             if(doc.id == "facebook"){
-                setFacebook(data.link.stringValue)
+                setFacebook(doc.data().link)
             }
             if(doc.id == "instagram"){
-                setInstagram(data.link.stringValue)
+                setInstagram(doc.data().link)
             }
             
-        })
+        }))
     },[])
 
     return(
