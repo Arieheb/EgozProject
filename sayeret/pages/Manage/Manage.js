@@ -14,40 +14,39 @@ const ManageInfo = (props) => {
     const [memberLink, setMemberLink] = useState("");
 
     useEffect(async()=>{
-        const q = query(collection(db,'links'));
+        const q = query(collection(db,'edits'));
         const docs = await getDocs(q);
         docs.forEach(doc=>{
             const links = doc._document.data.value.mapValue.fields
-            if(doc.id=='memberLink'){
-                setMemberLink(links.memberLink.stringValue)
+            if(doc.id=='memberPayment'){
+                setMemberLink(links.link.stringValue)
             }
-            if(doc.id=='storeLink'){
-                setStoreLink(links.storeLink.stringValue)
+            if(doc.id=='store'){
+                setStoreLink(links.link.stringValue)
             }
         })
     },[])
     
     const handleSubmit = () => {
-        
         let flag = false;
 
         if (storeInput!="") {
-            updateDoc(doc(db,'links') , {storeLink:storeInput});
+            updateDoc(doc(db,'edits','store') , {link:storeInput});
             flag = true
         }
-        if (storeInput!="") {
-            updateDoc(doc(db,'links') , {memberLink:memberInput});
+        if (memberInput!="") {
+            updateDoc(doc(db,'edits','memberPayment') , {link:memberInput});
             flag = true
         }
                 
-        
         if (flag == true) {
             Alert.alert ("השינויים נשמרו בהצלחה")
         }
         else {
             Alert.alert ("לא נעשו שינויים")
         }
-                
+        setStoreInput("")
+        setMemberInput("")
         props.navigation.navigate('home');
     }
 

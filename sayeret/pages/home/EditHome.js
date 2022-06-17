@@ -122,7 +122,7 @@ const EditHome = props => {
                         />
                 </View>
 
-                <Text style = {styles.textStyle}>קישורים חדשים: </Text>
+                <Text style = {styles.textStyle}>קישורים : </Text>
                 <View style = {{paddingBottom: 20}}>
                     <Text style = {styles.textStyle}> קישור לדף הפייסבוק: </Text>
                     <TextInput 
