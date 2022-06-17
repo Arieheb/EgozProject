@@ -49,6 +49,24 @@ const EditHome = props => {
             updateDoc(doc(db,'edits','numbers') , {years:years});
             flag = true
         }
+        if (projects!="") {
+            updateDoc(doc(db,'edits','numbers') , {projects:projects});
+            flag = true
+        }
+        if (seniors!="") {
+            updateDoc(doc(db,'edits','numbers') , {seniors:seniors});
+            flag = true
+        }
+
+        if (faceInpute!="") {
+            updateDoc(doc(db,'edits','facebook') , {link:faceInpute});
+            flag = true
+        }
+        if (instaInput!="") {
+            updateDoc(doc(db,'edits','instagram') , {link:instaInput});
+            flag = true
+        }
+
                 
         
         if (flag == true) {
