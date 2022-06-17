@@ -4,7 +4,6 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { TextInput } from 'react-native-paper';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-import Icons from "react-native-vector-icons/FontAwesome";
 import * as ImagePicker from 'expo-image-picker'
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../firebase';
@@ -19,6 +18,7 @@ const AddBenefits= props=>{
     const [info, setInfo] = useState("");
     const [vision, setVision] = useState(false);
 
+    //getting an image from the phone
     const uploadPic = async()=>{
         let result = await ImagePicker.launchImageLibraryAsync({
              mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -31,6 +31,7 @@ const AddBenefits= props=>{
         }
     }
 
+    //uploading the image to the database
     const uploadImage = async(uri, photoName)=>{
         const response = await fetch(uri);
         const blob = await response.blob();

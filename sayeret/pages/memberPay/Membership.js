@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { TouchableRipple,Avatar} from 'react-native-paper';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Icons from 'react-native-vector-icons/Ionicons';
 
 import {WebView} from 'react-native-webview';
 

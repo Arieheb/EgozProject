@@ -1,16 +1,18 @@
 import {SafeAreaView, StyleSheet,TextInput, Text, View, TouchableOpacity, FlatList, Modal, Alert } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import {doc,collection, query, where, onSnapshot, updateDoc, deleteDoc, orderBy, addDoc} from 'firebase/firestore'
+import {doc,collection, query, where, onSnapshot, updateDoc, deleteDoc, addDoc} from 'firebase/firestore'
 import {db, storage} from '../../firebase'
 import { ref, deleteObject } from 'firebase/storage'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Icons from 'react-native-vector-icons/Ionicons'
 
+//accepts a new user
 const accept = (id)=>{
   updateDoc(doc(db,'users',id),{'guest':false});
   return false;
 } 
 
+//removes a user from the app
 const decline = (id, userId,pic)=>{
   Alert.alert(
     "למחוק?",
@@ -36,11 +38,13 @@ const decline = (id, userId,pic)=>{
   return false;
 }
 
+//turns a user into an admin
 const makeAdmin = (id)=>{
   updateDoc(doc(db,'users',id),{'isAdmin':true});
   return false;
 }
 
+//displays a guest
 const GuestItem = props=>{
   const [visible, setVisiblity] = useState(false);
   return(
@@ -87,11 +91,13 @@ const GuestItem = props=>{
   );
 }
 
+//turns an admin into a normal user
 const removeAdmin = id=>{
   updateDoc(doc(db,'users',id),{'isAdmin':false});
   return false;
 }
 
+//displays a user
 const UserItem = props=>{
   const user = props.user
   const [visible,setVisiblity] = useState(false);
@@ -140,7 +146,8 @@ const UserItem = props=>{
     </View>
   );
 }
- 
+
+//the search bar to search for users
 const Search = (props) => {
   const list = props.list;
 

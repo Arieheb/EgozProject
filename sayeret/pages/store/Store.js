@@ -1,8 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet} from 'react-native'
 import {WebView} from 'react-native-webview';
-import { updateDoc, doc } from 'firebase/firestore';
-import { auth,db } from '../../firebase';
 
 const Store = () => {
   return (

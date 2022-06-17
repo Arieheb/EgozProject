@@ -1,11 +1,10 @@
 import {React,useRef,useState,} from 'react';
 import {View,StyleSheet,Image,TextInput,Text,TouchableOpacity,Dimensions,KeyboardAvoidingView,Alert, Keyboard} from 'react-native';
 import Logo from '../../assets/Images/login_logo.png';
-import {validate} from 'react-email-validator';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { ScrollView } from 'react-native-gesture-handler';
-import ForgotPage from './ForgotPage'
+
 
 const{width,height:wHeight} = Dimensions.get("window");
 

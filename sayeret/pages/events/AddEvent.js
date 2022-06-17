@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {TextInput, View,Alert, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
-import {AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
+import React, { useState} from 'react';
+import {TextInput, View,Alert,ScrollView, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -131,8 +129,7 @@ const AddEvent = (props) => {
 export default AddEvent
 
 const styles = StyleSheet.create ({ 
-    container: {
-        //backgroundColor: 'grey',  
+    container: { 
         height: '100%',
         paddingBottom: 70, 
         width: '100%',
@@ -186,24 +183,16 @@ const styles = StyleSheet.create ({
      buttons:{
         alignSelf:'center',
         alignItems:'center',
-        // width:'85%',
-        // color:'blue',
-        // height:40,
-        // backgroundColor:'#fff',
         marginTop:30,
-        // borderRadius:8,
         display:'flex',
         justifyContent:'center',
         backgroundColor:"white",
         fontSize:16,
         borderWidth: 1,
-        // padding: 5,
-        // position: 'absolute',
         marginTop: 50,
         borderRadius: 10,
         width: 120,
         height: 60,
-        // alignContent:'flex-end'
      },
      buttonText:{
         color: "black",

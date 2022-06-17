@@ -1,5 +1,5 @@
-import {React, useState,Component} from "react";
-import {TextInput, Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import {React, useState} from "react";
+import {TextInput, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 
 import { auth,db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
