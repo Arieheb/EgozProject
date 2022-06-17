@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Profile from "./assets/Images/profile.png"
 import { signOut } from 'firebase/auth'
 import { auth, db, storage } from './firebase'
-import { query, collection, where, getDocs } from 'firebase/firestore'
+import { query, collection, where, getDocs, onSnapshot } from 'firebase/firestore'
 import { getDownloadURL, ref } from 'firebase/storage'
 
 const signOutNow = () => {
@@ -35,33 +35,32 @@ const DrawerContent = props => {
     useEffect(async ()=>{
         const id = auth.currentUser.uid;
         const q = query(collection(db,"users"),where("user_id","==",id));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(doc=>{
-            const userFields = doc._document.data.value.mapValue.fields 
-                getDownloadURL( ref(storage, "profile/"+userFields.pic.stringValue)).then((url)=> {
+        onSnapshot(q, querySnapshot=>{
+        querySnapshot.docs.forEach(doc=>{ 
+                getDownloadURL( ref(storage, "profile/"+doc.data().pic)).then((url)=> {
                     setImage(url);
                 })
                 .catch ((e)=>{});
             setUser({
                 id: doc.id,
-                Address: userFields.Address.stringValue,
-                FirstName: userFields.FirstName.stringValue,
-                LastName: userFields.LastName.stringValue,
-                city: userFields.city.stringValue,
-                email: userFields.email.stringValue,
-                user_id: userFields.user_id.stringValue,
-                pic: userFields.pic.stringValue,
-                password: userFields.password.stringValue,
-                guest: userFields.guest.booleanValue,
-                isAdmin: userFields.isAdmin.booleanValue,
-                isMember: userFields.isMember.booleanValue,
+                Address: doc.data().Address,
+                FirstName: doc.data().FirstName,
+                LastName: doc.data().LastName,
+                city: doc.data().city,
+                email: doc.data().email,
+                user_id: doc.data().user_id,
+                pic: doc.data().pic,
+                password: doc.data().password,
+                guest: doc.data().guest,
+                isAdmin: doc.data().isAdmin,
+                isMember: doc.data().isMember,
                 imageurl:uri,
-                phone: userFields.phone.stringValue,
+                phone: doc.data().phone,
                                 
                 
             })
 
-        })
+        })})
     },[])
     
   return (

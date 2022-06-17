@@ -3,8 +3,9 @@ import { Image, View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import Profile from '../../assets/Images/profile.png';
-import {storage } from '../../firebase';
+import {db, storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL} from 'firebase/storage';
+import { updateDoc, doc } from 'firebase/firestore';
 
 const UploadImage = (props) => {  
     const user = props.user; 
@@ -32,8 +33,11 @@ const UploadImage = (props) => {
         if(!result.cancelled){
             uploadImage(result.uri,user.pic).then(()=>{
                 download();
+                let temp = user.pic;
+                updateDoc(doc(db,'users',user.id),{pic:"user.pic"});
+                updateDoc(doc(db,'users',user.id),{pic:temp});
             }).catch((error)=>{
-                alert("failure")
+                alert("העלת התמונה נכשלה")
             })
         }
     }
