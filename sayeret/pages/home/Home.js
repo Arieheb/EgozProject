@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Image, View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 // import Icon from "react-native-vector-icons/FontAwesome";
@@ -11,10 +11,8 @@ import inst from "../../assets/Images/Instagram_logo.png";
 import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { SocialIcon } from 'react-native-elements';
-import { auth,db } from '../../firebase';
-import { collection,updateDoc, doc, onSnapshot, query ,orderBy } from 'firebase/firestore';
-
+import {db} from '../../firebase';
+import { collection, query , getDocs } from 'firebase/firestore';
 
 
 const NumberCard = props=>{
@@ -43,7 +41,32 @@ const UpCard = props=>{
 
 
 const Home = props=>{
-    
+    const [numbers, setNumbers] = useState([]);
+    const [facebook, setFacebook] = useState("");
+    const [instagram, setInstagram] = useState("");
+
+    useEffect(async ()=>{
+        const q = query(collection(db, 'edits'));
+        const docs = await getDocs(q);
+        docs.forEach(doc=>{
+            const data = doc._document.data.value.mapValue.fields
+            if(doc.id=="numbers"){
+                let member = data.members.stringValue;
+                let projects = data.projects.stringValue;
+                let seniors = data.seniors.stringValue;
+                let years = data.years.stringValue;
+                setNumbers([years,member,projects,seniors]);
+            }
+            if(doc.id == "facebook"){
+                setFacebook(data.link.stringValue)
+            }
+            if(doc.id == "instagram"){
+                setInstagram(data.link.stringValue)
+            }
+            
+        })
+    },[])
+
     return(
         <ScrollView>
         <View style = {styles.container}>
@@ -71,12 +94,12 @@ const Home = props=>{
             </ImageBackground>
             <View style={styles.stat}>
                 <View>
-              <NumberCard num = "45" title = "שנות פעילות"/>
-              <NumberCard num = "2,172" title = "חברים בעמותה"/>
+              <NumberCard num = {numbers[0]} title = "שנות פעילות"/>
+              <NumberCard num = {numbers[1]} title = "חברים בעמותה"/>
                 </View>
                 <View>
-                    <NumberCard num = "16" title = "פרויקטים פעילים"/>
-                    <NumberCard num = "9,342" title = "בוגרי יחידה"/>
+                    <NumberCard num ={numbers[2]} title = "פרויקטים פעילים"/>
+                    <NumberCard num = {numbers[3]} title = "בוגרי יחידה"/>
               </View>
             </View>
             <ImageBackground source={masa} style = {{...styles.view}}>
@@ -93,10 +116,10 @@ const Home = props=>{
                         <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}}  onPress={()=>props.navigation.navigate("Contact")}>
                                 <Image source={contact} style={{ width: '90%', height: '90%',borderRadius:100, marginTop:'5%'}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
+                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL(facebook)}>
                             <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'2%'}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
+                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL(instagram)}>
                             <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>
                         </TouchableOpacity>
                     </View>
