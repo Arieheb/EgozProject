@@ -1,9 +1,7 @@
-import {React, useState,Component} from "react";
-import {TextInput, Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
-
-import { auth,db } from '../../firebase';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { updateDoc, doc } from 'firebase/firestore';
+import {React, useEffect, useState} from "react";
+import {TextInput, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import {db} from '../../firebase';
+import { updateDoc, doc , query, collection, getDocs} from 'firebase/firestore';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 
@@ -12,9 +10,23 @@ const ManageInfo = (props) => {
 
     const [storeInput, setStoreInput] = useState("");
     const [memberInput, setMemberInput] = useState("");
+    const [storeLink, setStoreLink] = useState("");
+    const [memberLink, setMemberLink] = useState("");
 
-    const user = props.route.params.user
-    console.log (user)
+    useEffect(async()=>{
+        const q = query(collection(db,'links'));
+        const docs = await getDocs(q);
+        docs.forEach(doc=>{
+            console.log(doc.id)
+            const links = doc._document.data.value.mapValue.fields
+            if(doc.id=='memberLink'){
+                setMemberLink(links.memberLink.stringValue)
+            }
+            if(doc.id=='storeLink'){
+                setStoreLink(links.storeLink.stringValue)
+            }
+        })
+    },[])
     
     const handleSubmit = () => {
         
@@ -22,7 +34,6 @@ const ManageInfo = (props) => {
 
         if (storeInput!="") {
             updateDoc(doc(db,'links') , {storeLink:storeInput});
-            console.log(user.storeLink)
             flag = true
         }
         if (storeInput!="") {
@@ -48,7 +59,7 @@ const ManageInfo = (props) => {
                 <Text style = {styles.textStyle}> קישור חדש לאתר החנות: </Text>
                 <TextInput 
                     style = {styles.input}
-                    placeholder={user.storeLink}
+                    placeholder={storeLink}
                     value = {storeInput}                    
                     placeholderTextColor={"grey"}
                     onChangeText={text=>setStoreInput(text)}
@@ -59,15 +70,16 @@ const ManageInfo = (props) => {
                 <Text style = {styles.textStyle}>קישור חדש לאתר תשלום החברות: </Text>
                 <TextInput 
                     style = {styles.input}
-                    placeholder={user.memberLink}
+                    placeholder={memberLink}
                     value = {memberInput}                    
                     placeholderTextColor={"grey"}
                     onChangeText={text=>setMemberInput(text)}
                     />                    
             </View>
             
+
             {/* button to edit home page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("HomeEdit")}>
+            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate('HomeEdit')}>
                 <Text style = {styles.buttonText}>לעריכת עמוד הבית</Text>
             </TouchableOpacity>
 

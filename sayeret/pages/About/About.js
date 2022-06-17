@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,ScrollView, Image,ImageBackground,TouchableOpacity, SafeAreaView} from 'react-native'
+import { StyleSheet, Text, View,ScrollView,ImageBackground,TouchableOpacity, SafeAreaView} from 'react-native'
 import React,{useState} from 'react'
 import Unit from '../../assets/Images/egoz_pic.png';
 

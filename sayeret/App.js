@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
-import {Image, ImageBackground, LogBox, Platform } from 'react-native';
+import {ImageBackground, LogBox} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {I18nManager, StyleSheet, Text, View } from 'react-native';
+import {I18nManager, StyleSheet} from 'react-native';
 import CodePush from 'react-native-code-push';
 import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -27,7 +27,7 @@ import Store from './pages/store/Store';
 import ForgotPage from './pages/Login/ForgotPage';
 import Admin from './pages/Admin/Admin';
 import PayMember from './pages/memberPay/Membership';
-import ManageInfo from './pages/Manage/Manage';
+import ManageNavigator from './pages/Manage/ManageNavigator'
 
 
 
@@ -101,7 +101,7 @@ else{
           <Drawer.Screen name='Memorial' component={Memorial} options = {{title: null}}/>
           <Drawer.Screen name='store' component={Store} options = {{title: null}} />
           <Drawer.Screen name='admin' component={Admin} options = {{title: null}}/>
-          <Drawer.Screen name='infoManage' component={ManageInfo} options = {{title: null}}/>
+          <Drawer.Screen name='infoManage' component={ManageNavigator} options = {{title: null}}/>
 
         </Drawer.Navigator>
       </NavigationContainer>
