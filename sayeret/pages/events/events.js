@@ -17,7 +17,10 @@ const Search = (props) => {
   
     //getting the list according to the input
     const searcher = (name)=>{
-        setSearchList(list.filter(item=>(String(item.eventName).includes(name))||(String(item.eventDate).includes(name))));
+        setSearchList(list.filter(item=>{
+            let a = new Date(item.eventDate.toDate());
+            return (String(item.eventName).includes(name))||(String(a.getDate()+'/'+(a.getMonth()+1)+'/'+a.getFullYear()).includes(name))
+        }));
     }
   
     useEffect(()=>{setSearchList(list)},[])
@@ -67,7 +70,7 @@ const EventCal = (props) => {
     useEffect (()=> {
 
         const eventCollection = collection (db, 'events')
-        const que = query(eventCollection, orderBy ('eventDate', 'asc'));
+        const que = query(eventCollection, orderBy ('eventDate', 'desc'));
   
         const unsubscribe = onSnapshot (que, QuerySnapshot => {
             setEventInfo (

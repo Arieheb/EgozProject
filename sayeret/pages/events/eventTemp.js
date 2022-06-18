@@ -23,6 +23,8 @@ const EventTemplate = (props) => {
         ],
         );
       }
+    //   console.log(props.eventDate.seconds)
+      const date = new Date(props.eventDate.toDate())
     return (
             <View>
                 <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(props.id)}>
@@ -30,7 +32,7 @@ const EventTemplate = (props) => {
                         <View name='main' style = {styles.eventFrame} >
                             <View name = 'date and time' style = {styles.dateTimeFrame}>
                                 <Text style = {styles.timeText}>{props.eventTime} </Text>
-                                <Text style = {styles.dateText}>{props.eventDate}</Text>
+                                <Text style = {styles.dateText}>{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</Text>
 
                             </View> 
                             <View name= 'information' style = {styles.infoFrame}>

@@ -4,6 +4,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 
 const AddEvent = (props) => {
@@ -12,7 +13,9 @@ const AddEvent = (props) => {
     const [infomationInput, setInformationInput] = useState("");
     const [contactInput, setContactInput] = useState("");
     const [timeInput, setTimeInput] = useState("");
-    const [dateInput, setDateInput] = useState("");
+    const [date, setDate] = useState(new Date())
+    const [show, setShow] = useState(false)
+
 
     const handleSubmit = () => {
         if(!titleInput.length){
@@ -30,11 +33,11 @@ const AddEvent = (props) => {
         if(!timeInput.length){
             return Alert.alert("יש להזין את זמן האירוע")
         }
-        if(!dateInput.length){
+        if(!date){
             return Alert.alert("יש להזין את תאריך האירוע")
         }
         //TODO - fix JSON output
-        addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: dateInput});
+        addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: date});
         props.navigation.navigate('events');
     }
 
@@ -104,16 +107,17 @@ const AddEvent = (props) => {
                         />
                     </View>
 
-                    <View style = {{}}>
+                    <Pressable onPress={()=>setShow(true)}>
                         <Text style = {styles.textStyle}>תאריך:</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder='dd/mm/yyyy'
-                            value = {dateInput}
-                            onChangeText = {text => setDateInput(text)}
-                            placeholderTextColor={"grey"}
-                        />
-                    </View>
+                        <Text style={{...styles.input, textAlign:'left'}}>{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</Text>
+                    </Pressable>
+                    {show?
+                    <DateTimePicker
+                        value={date}
+                        mode={'date'}
+                        display='default'
+                        onChange = {(a, chosenDate)=>{setDate(chosenDate);setShow(false)}}
+                    />:null}
                     <Pressable 
                     style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
                     onPress={handleSubmit}
