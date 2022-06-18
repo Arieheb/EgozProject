@@ -38,7 +38,7 @@ const Benefit = props => {
             getDownloadURL( ref(storage,"Benefits/"+props.image)).then ((url)=> {
             setImageUrl (url);
         })
-        .catch ((e)=> console.log ('ERROR=>', e));},[])
+        .catch ((e)=> {});},[])
     return(
 
        <View>
