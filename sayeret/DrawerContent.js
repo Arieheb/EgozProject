@@ -96,6 +96,7 @@ const DrawerContent = props => {
                     <Card title="דף מנהל" iconName="cog" nav="admin" navigation={props.navigation} user={user}/>:null}
                     {user.isAdmin?
                     <Card title="ניהול מידע" iconName="brush" nav="infoManage" navigation={props.navigation} user={user}/>:null}
+
                 </Drawer.Section>
             </View>
         </DrawerContentScrollView>

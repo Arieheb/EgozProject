@@ -128,7 +128,6 @@ const Benefits = props => {
          return (
          
             <View style = {styles.page}>
-                {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=>
                 <Benefit name={data.item.Name} id={data.item.id}

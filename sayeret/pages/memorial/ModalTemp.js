@@ -62,11 +62,11 @@ const Blurp = (props) => {
               </ScrollView>
             </View>
 
-            <Pressable style={{marginHorizontal:50,marginVertical:10, borderRadius:40, backgroundColor:'grey',justifyContent:'center',width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
+            <Pressable style={{ borderRadius:40, backgroundColor:'grey',justifyContent:'center',alignSelf: 'center', marginBottom: 15, width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
               <Text style={{color:'white', fontSize: 16}}>
                 <Icon name = "candle" size = "20"></Icon> למעבר לעמוד הנופל המלא לחץ כאן </Text>
             </Pressable>
-          
+            {/* marginHorizontal:50,marginVertical:15, */}
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}

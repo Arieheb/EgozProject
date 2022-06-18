@@ -114,7 +114,7 @@ const EventCal = (props) => {
                         />
                     </View>
                     {admin?
-                    <View style={{height:60, alignItems:'center',justifyContent:'center'}}>
+                    <View style={{ alignItems:'center',justifyContent:'center'}}>
                         <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
                             <Icon name ="plus"  color="white"  size={45}/>   
                         </TouchableOpacity>
@@ -188,8 +188,7 @@ const styles = StyleSheet.create ({
         width: 60,
         height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
-        marginTop: '10%',
-        marginBottom: '10%',
+        marginTop: '5%',
         borderColor: "white",
         borderWidth: 0.5,
         alignItems:'center',

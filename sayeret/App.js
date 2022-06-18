@@ -102,7 +102,6 @@ else{
           <Drawer.Screen name='store' component={Store} options = {{title: null}} />
           <Drawer.Screen name='admin' component={Admin} options = {{title: null}}/>
           <Drawer.Screen name='infoManage' component={ManageNavigator} options = {{title: null}}/>
-
         </Drawer.Navigator>
       </NavigationContainer>
   );

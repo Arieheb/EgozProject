@@ -98,7 +98,7 @@ const EditHome = props => {
     return (
         <ScrollView>
             <SafeAreaView style={styles.container}>
-            <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>props.navigation.navigate("Manageinfo")}>
+            <TouchableOpacity style={{flexDirection:'row', width: "100%"}} onPress={()=>props.navigation.navigate("Manageinfo")}>
              <Icon name="arrow-right-thick" size={35}/>
             </TouchableOpacity>
                 <Text style = {styles.titleStyle}> באנר המספרים: </Text>

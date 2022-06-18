@@ -28,11 +28,13 @@ const PayMember = () => {
         </TouchableOpacity>
       <Modal visible = {isVisible}>
         <SafeAreaView style={styles.header}>   
-            <TouchableRipple style = {{alignItems: 'flex-start',backgroundColor:"#485260"}}
+            <TouchableRipple style = {{alignItems: 'flex-start'}}
             onPress={()=>{setIsVisible(false)}}>
                 <Icon
                     name='arrow-right-thick'
-                    size={30} 
+                    size={35}
+                    
+                    
                 />
             </TouchableRipple>
             {/* <Text style={styles.name}>{user.name}</Text> */}
@@ -69,4 +71,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       fontSize: 18,
   },
+  header: {
+    backgroundColor:"#485260"
+  }
 })
