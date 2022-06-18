@@ -1,6 +1,7 @@
 import React from 'react';
 import { View,  Text, StyleSheet , ScrollView, TouchableOpacity, Alert} from 'react-native';
 import {db} from '../../firebase';
+import HyperLink from 'react-native-hyperlink';
 import {deleteDoc, doc } from 'firebase/firestore';
 
 
@@ -38,7 +39,9 @@ const EventTemplate = (props) => {
                             <View name= 'information' style = {styles.infoFrame}>
                                 <Text style = {styles.infoText}> שם האירוע: {props.eventName} </Text>
                                 <Text style = {styles.infoText}> מקום/כתובת: {props.eventLocation} </Text>
-                                <Text style = {styles.infoText}>פרטים נוספים: {props.eventInformation} </Text>
+                                <HyperLink linkDefault={true}>
+                                    <Text style = {styles.infoText}>פרטים נוספים: {props.eventInformation} </Text>
+                                </HyperLink>
                                 <Text style = {styles.infoText}> איש קשר: {props.eventContact} </Text>
 
                             </View>
