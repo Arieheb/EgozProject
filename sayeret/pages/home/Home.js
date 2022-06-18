@@ -70,7 +70,6 @@ const Home = props=>{
             }
             
         }))
-        console.log(vid)
     },[])
 
     return(

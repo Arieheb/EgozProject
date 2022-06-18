@@ -61,9 +61,9 @@ const Blurp = (props) => {
               </ScrollView>
             </View>
 
-            <View>
-              <Button title= "למעבר לעמוד הנופל המלא לחץ כאן" onPress ={()=>Linking.openURL(props.link)} color="black"/>
-            </View>
+            <Pressable style={{marginHorizontal:50,marginVertical:2, borderRadius:40, backgroundColor:'black',justifyContent:'center',width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
+              <Text style={{color:'white'}}>למעבר לעמוד הנופל המלא לחץ כאן</Text>
+            </Pressable>
           
             <Pressable
               style={[styles.button, styles.buttonClose]}
