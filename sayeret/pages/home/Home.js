@@ -9,7 +9,7 @@ import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import {db} from '../../firebase';
-import { collection, query, onSnapshot} from 'firebase/firestore';
+import { collection, query, onSnapshot, where} from 'firebase/firestore';
 
 
 const NumberCard = props=>{
