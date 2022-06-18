@@ -188,11 +188,14 @@ const styles = StyleSheet.create ({
         width: 60,
         height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
+        marginTop: '10%',
+        marginBottom: '10%',
         borderColor: "white",
         borderWidth: 0.5,
         alignItems:'center',
         justifyContent:'center',
-    },textInput:{
+    },
+    textInput:{
         width:"95%",
         textAlign:"right",
         height:'100%',
