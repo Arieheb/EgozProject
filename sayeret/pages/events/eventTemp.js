@@ -27,7 +27,7 @@ const EventTemplate = (props) => {
       const date = new Date(props.eventDate.toDate())
     return (
             <View>
-                <TouchableOpacity activeOpacity={0.9} onLongPress={()=>del(props.id)}>
+                <TouchableOpacity activeOpacity={0.9} onLongPress={()=>props.admin?del(props.id):null}>
                     <ScrollView>
                         <View name='main' style = {styles.eventFrame} >
                             <View name = 'date and time' style = {styles.dateTimeFrame}>

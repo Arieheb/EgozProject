@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Modal, TextInput, FlatList, View,SafeAreaView,TouchableOpacity, Text, StyleSheet} from 'react-native';
-import { collection, onSnapshot, query,orderBy } from 'firebase/firestore';
-import {db} from '../../firebase';
+import { collection, onSnapshot, query,orderBy, where, getDocs } from 'firebase/firestore';
+import {db, auth} from '../../firebase';
 import EventTemplate from './eventTemp';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Icons from 'react-native-vector-icons/Ionicons'
@@ -67,7 +67,19 @@ const Search = (props) => {
 const EventCal = (props) => {
 
     const [eventInfo , setEventInfo ] = useState([]);
+    const [admin, setAdmin] = useState(false);
     useEffect (()=> {
+        if(props.route.params != undefined){
+            setAdmin(props.route.params.user.isAdmin)
+        }
+        else{
+            const q =query(collection(db,'users'),where('user_id','==', auth.currentUser.uid));
+            getDocs(q).then(result=>{
+                result.forEach(doc=>{
+                    setAdmin(doc.data().isAdmin);
+            })}
+            )
+        }
 
         const eventCollection = collection (db, 'events')
         const que = query(eventCollection, orderBy ('eventDate', 'desc'));
@@ -86,6 +98,7 @@ const EventCal = (props) => {
               })})
             );
       });
+
       return () => unsubscribe();
     },[]);
 
@@ -93,18 +106,19 @@ const EventCal = (props) => {
         <View>
             <SafeAreaView style = {styles.container}>
                     <Search list={eventInfo}/>
-                    <View style={{height:'83%'}}>
+                    <View style={admin?{height:'83%'}:{height:'92%'}}>
                     <FlatList data = {eventInfo}
                         keyExtractor = {item => item.id}
                         renderItem={({item}) => {
-                        return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
+                        return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact} admin={admin}/>}}
                         />
                     </View>
+                    {admin?
                     <View style={{height:60, alignItems:'center',justifyContent:'center'}}>
                         <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
                             <Icon name ="plus"  color="white"  size={45}/>   
                         </TouchableOpacity>
-                    </View>
+                    </View>:null}
             </SafeAreaView>
            
            </View>
