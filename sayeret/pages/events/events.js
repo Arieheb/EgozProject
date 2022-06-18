@@ -93,14 +93,14 @@ const EventCal = (props) => {
         <View>
             <SafeAreaView style = {styles.container}>
                     <Search list={eventInfo}/>
-                    <View style={{height:'83%'}}>
+                    <View style={{height:'84%'}}>
                     <FlatList data = {eventInfo}
                         keyExtractor = {item => item.id}
                         renderItem={({item}) => {
                         return <EventTemplate id = {item.id} eventName = {item.eventName} eventTime = {item.eventTime} eventDate = {item.eventDate} eventLocation = {item.eventLocation} eventInformation = {item.eventInformation} eventContact = {item.eventContact}/>}}
                         />
                     </View>
-                    <View style={{height:60, alignItems:'center',justifyContent:'center'}}>
+                    <View style={{height: '10%', justifyContent:'center', alignItems: 'center'}}>
                         <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addEvent')}>
                             <Icon name ="plus"  color="white"  size={45}/>   
                         </TouchableOpacity>
@@ -174,11 +174,14 @@ const styles = StyleSheet.create ({
         width: 60,
         height: 60,
         backgroundColor: "rgba(0, 0, 0, 0.75)",
+        marginTop: '10%',
+        marginBottom: '10%',
         borderColor: "white",
         borderWidth: 0.5,
         alignItems:'center',
         justifyContent:'center',
-    },textInput:{
+    },
+    textInput:{
         width:"95%",
         textAlign:"right",
         height:'100%',
