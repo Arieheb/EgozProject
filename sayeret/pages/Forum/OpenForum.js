@@ -17,7 +17,7 @@ const OpenForum = props=>{
     const [vision, setVision] = useState(false);
     const [image, setImage] = useState();
     const [preview, setPrev] =useState(false);
-
+    const dat = new Date().getTime();
     const uploadPic = async()=>{
         let result = await ImagePicker.launchImageLibraryAsync({
              mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -57,29 +57,28 @@ const OpenForum = props=>{
             alert("חייב לשים שם לפורום")
             return
         }
-        const dat = new Date().getTime();
         let pic = dat+name
-
-        //adding a new document
-        const ref = collection(db,'chats');
-        addDoc(ref,{"name":name,"last_time":new Date(), "last_message":"", 'pic':pic})
-        //getting the document for the id
-        const q = query(ref, where("name", "==", name) ,orderBy("last_time", "desc"));
-        const querySnapshot = await getDocs(q);
-        let once = 0;
-        querySnapshot.forEach((doc) => {
-            //adding the chat function only to the new chat
-            if(once == 0){
-                const docRef = collection(db,'chats',doc.id,'chat')
-                addDoc(docRef,{})
-                once++;
-            }
-        });
         if(image)
-            uploadImage(image,pic);
-        setName("");
-        setImage("")
-        setVision(false)
+        uploadImage(image,pic);
+        setTimeout(async()=>{
+            //adding a new document
+            const ref = collection(db,'chats');
+            addDoc(ref,{"name":name,"last_time":new Date(), "last_message":"", 'pic':pic})
+            //getting the document for the id
+            const q = query(ref, where("name", "==", name) ,orderBy("last_time", "desc"));
+            const querySnapshot = await getDocs(q);
+            let once = 0;
+            querySnapshot.forEach((doc) => {
+                //adding the chat function only to the new chat
+                if(once == 0){
+                    const docRef = collection(db,'chats',doc.id,'chat')
+                    addDoc(docRef,{})
+                    once++;
+                }
+            });
+            setName("");
+            setImage("")
+            setVision(false)},1800)
     }
     
     return(
@@ -139,13 +138,6 @@ const OpenForum = props=>{
                         <Text style={styles.buttonText}>הוסף</Text>
                     </View>
                 </TouchableRipple>
-
-                
-                {/* <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName(""); */}
-                    {/* setInfo("");}}> */}
-                        {/* <Icon name="arrow-right-thick" size={55}/> */}
-                {/* </TouchableOpacity> */}
-
             </Modal>
             </View>  
             <View>

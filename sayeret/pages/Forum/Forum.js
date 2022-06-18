@@ -74,7 +74,7 @@ const ForumItem = props=>{
         getDownloadURL( ref(storage, "forum/"+user.pic)).then((url)=> {
             setImage(url);
           })
-          .catch ((e)=> console.log ('ERROR=>', e));
+          .catch ((e)=>{});
     }
 
     useEffect(()=>{download()},[])
@@ -83,7 +83,7 @@ const ForumItem = props=>{
             {/* the item */}
             <TouchableRipple onLongPress={props.params.user.isAdmin?()=>Delete(user.id, user.pic):null} onPress={()=>{setVisible(true)}}>
                 <View style={styles.container}>
-                    <Avatar.Image source={!image?Profile:{uri:image}}/>
+                    <Avatar.Image style={{backgroundColor:'white'}} source={!image?Profile:{uri:image}}/>
                     <View style={styles.mid}>
                         <Text style={styles.name}>{user.name}</Text>
                         <Text style={styles.message} numberOfLines={1}>{user.last_message}</Text>
