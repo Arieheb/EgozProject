@@ -116,7 +116,7 @@ const AddEvent = (props) => {
                         value={date}
                         mode={'date'}
                         display='default'
-                        onChange = {(a, chosenDate)=>{setDate(chosenDate);setShow(false)}}
+                        onChange = {(a, chosenDate)=>{setDate(chosenDate||date);setShow(false)}}
                     />:null}
                     <Pressable 
                     style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
