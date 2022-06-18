@@ -3,6 +3,7 @@ import {Modal,Button, Image, Dimensions, Pressable, View,ScrollView, Text, Style
 import {auth, db, storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
 import { Link } from '@react-navigation/native';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 const scrWidth = Dimensions.get('screen').width;
 const scrHeight = Dimensions.get('screen').height;
@@ -61,8 +62,9 @@ const Blurp = (props) => {
               </ScrollView>
             </View>
 
-            <Pressable style={{marginHorizontal:50,marginVertical:2, borderRadius:40, backgroundColor:'black',justifyContent:'center',width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
-              <Text style={{color:'white'}}>למעבר לעמוד הנופל המלא לחץ כאן</Text>
+            <Pressable style={{marginHorizontal:50,marginVertical:10, borderRadius:40, backgroundColor:'grey',justifyContent:'center',width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
+              <Text style={{color:'white', fontSize: 16}}>
+                <Icon name = "candle" size = "20"></Icon> למעבר לעמוד הנופל המלא לחץ כאן </Text>
             </Pressable>
           
             <Pressable

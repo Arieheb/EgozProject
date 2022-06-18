@@ -2,6 +2,7 @@ import React , {useEffect, useState} from "react";
 import {StyleSheet, Text, View, SafeAreaView , TextInput, TouchableOpacity, Alert, ScrollView} from 'react-native';
 import { db } from "../../firebase";
 import { collection, query, getDocs, updateDoc, doc } from "firebase/firestore";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 function youtube_parser(url){
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -97,7 +98,10 @@ const EditHome = props => {
     return (
         <ScrollView>
             <SafeAreaView style={styles.container}>
-                <Text style = {styles.textStyle}> באנר המספרים: </Text>
+            <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>props.navigation.navigate("Manageinfo")}>
+             <Icon name="arrow-right-thick" size={35}/>
+            </TouchableOpacity>
+                <Text style = {styles.titleStyle}> באנר המספרים: </Text>
                 <View>
                     <Text style = {styles.textStyle}> שנות העמותה: </Text>
                     <TextInput 
@@ -137,7 +141,7 @@ const EditHome = props => {
                         />
                 </View>
 
-                <Text style = {styles.textStyle}>קישורים : </Text>
+                <Text style = {styles.titleStyle}>קישורים : </Text>
                 <View style = {{paddingBottom: 20}}>
                     <Text style = {styles.textStyle}> קישור לדף הפייסבוק: </Text>
                     <TextInput 
@@ -160,7 +164,7 @@ const EditHome = props => {
                         />                    
                 </View>
                 <View style = {{paddingBottom: 20}}>
-                    <Text style = {styles.textStyle}> קישור לסרטון (חייב קישור ליוטוב): </Text>
+                    <Text style = {styles.textStyle}> קישור לסרטון (חייב קישור ליוטיוב): </Text>
 
                     <TextInput 
                         style = {styles.input}
@@ -221,8 +225,17 @@ const styles = StyleSheet.create({
         paddingTop: 3,
         margin: 5,
         textAlign: 'left',
-        
-        
+               
+    },
+    
+    titleStyle: {
+        fontSize: 20,
+        paddingTop: 3,
+        margin: 8,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        textDecorationLine: 'underline',
+
     },
     input: {
         height:40,
