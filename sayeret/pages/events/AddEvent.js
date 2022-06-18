@@ -107,17 +107,24 @@ const AddEvent = (props) => {
                         />
                     </View>
 
-                    <Pressable onPress={()=>setShow(true)}>
-                        <Text style = {styles.textStyle}>תאריך:</Text>
-                        <Text style={{...styles.input, textAlign:'left'}}>{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</Text>
-                    </Pressable>
-                    {show?
+                    <Pressable onPress={()=>setShow(true)} >
+                        <Text style = {styles.textStyle}>תאריך: </Text>
+                        {show?
                     <DateTimePicker
                         value={date}
                         mode={'date'}
                         display='default'
+                        style = {{borderRadius: 50}}
                         onChange = {(a, chosenDate)=>{setDate(chosenDate||date);setShow(false)}}
                     />:null}
+                        <Text style={{...styles.input,paddingTop:10, color:'grey', textAlign:'left'}}>{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</Text>
+                        
+                    </Pressable>
+                    
+
+
+
+                    
                     <Pressable 
                     style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
                     onPress={handleSubmit}
@@ -173,6 +180,7 @@ const styles = StyleSheet.create ({
         paddingTop: 3,
         margin: 5,
         textAlign: 'left', 
+        
     },
     input: {
         height:40,
@@ -213,6 +221,8 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
+        backgroundColor: 'lightgrey',      
+
         
      },
 });
