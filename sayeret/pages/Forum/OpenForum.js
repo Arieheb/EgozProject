@@ -16,7 +16,7 @@ const OpenForum = props=>{
     const [name, setName] = useState("");
     const [vision, setVision] = useState(false);
     const [image, setImage] = useState();
-    const [preview, setPrev] =useState();
+    const [preview, setPrev] =useState(false);
 
     const uploadPic = async()=>{
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -95,30 +95,44 @@ const OpenForum = props=>{
                     </TouchableRipple>
                 </SafeAreaView>
 
-                <View style ={{flexDirection:"row"}}>
-                <Avatar.Image source={image?{uri:image}:profile}/>
+                <View style ={{flexDirection:"row", backgroundColor:'lightgray'}}>
+                <TouchableOpacity onPress={()=>{setPrev(true)}}>
+                    <Avatar.Image style={styles.avatar} source={image?{uri:image}:camera}/>
+                </TouchableOpacity>
                 <TextInput
                     value={name}
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
-                    style = {{width:"85%"}}
+                    style = {{width:"85%", backgroundColor:'lightgray'}}
                 />
                 </View>
               
-                <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
-                <View style={{...styles.button,width:200}}>
-                        <Text style={styles.buttonText}>העלה תמונה</Text>
-                        {<Image source={image?{uri: image}:Picture} style={{ width: 150, height: 150 }}/>}
-                    </View>
-                </TouchableRipple>
-                <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
-                <View style={{...styles.button,width:200}}>
-                        <Text style={styles.buttonText}>צלם תמונה</Text>
-                        {<Image source={image?{uri: image}:camera} style={{ width: 150, height: 150 }}/>}
-                    </View>
-                </TouchableRipple>
+                <Modal visible={preview}>
+                    <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
+                    <View style={{...styles.button,width:200}}>
+                            <Text style={styles.buttonText}>העלה תמונה</Text>
+                            {<Image source={image?{uri: image}:Picture} style={{ width: 150, height: 150 }}/>}
+                        </View>
+                    </TouchableRipple>
+                    <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
+                    <View style={{...styles.button,width:200}}>
+                            <Text style={styles.buttonText}>צלם תמונה</Text>
+                            {<Image source={image?{uri: image}:camera} style={{ width: 150, height: 150 }}/>}
+                        </View>
+                    </TouchableRipple>
 
-              
+                    <TouchableRipple style = {styles.buttensStyle} onPress={()=>setPrev(false)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>אשר</Text>
+                    </View>
+                    </TouchableRipple>
+                    <TouchableRipple style = {styles.buttensStyle} onPress={()=>{!image?setPrev(false):null;setImage();}}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>{image?"נקה":"בטל"}</Text>
+                    </View>
+                    </TouchableRipple>
+
+                </Modal>
 
                 <TouchableRipple style = {styles.buttensStyle} onPress={()=>submit()}>
                     <View style={styles.button}>
@@ -242,9 +256,16 @@ const styles = StyleSheet.create({
         // alignContent:'flex-end'
     },
 
-   // returnButten: {
-        // alignItems: 'center',
-    //   },
+   avatar:{
+        backgroundColor:'lightgray',
+        borderWidth:1,
+        width:60,
+        height:60,
+        borderRadius:40,
+        alignItems:'center',
+        justifyContent:'center',
+        overflow:'hidden'
+   }
 
     
 })

@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import ManageInfo from './Manage'
 import EditAbout from '../About/EditAbout'
 import EditHome from '../home/EditHome'
-import EditMemorial from '../memorial/EdtiMemorial'
 
 const Stack = createStackNavigator();
 
@@ -14,7 +13,6 @@ const EventsNavigator = () => {
         <Stack.Screen name="Manageinfo" component={ManageInfo} />
         <Stack.Screen name="HomeEdit" component={EditHome}/>
         <Stack.Screen name="AboutEdit" component={EditAbout} />
-        <Stack.Screen name="MemorialEdit" component={EditMemorial} />
     </Stack.Navigator>
   )
 }
