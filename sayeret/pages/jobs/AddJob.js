@@ -1,6 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore';
 import React,{useState} from 'react';
-import {StyleSheet, TouchableOpacity, Text, View, Pressable, TextInput ,Alert} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text, View, Pressable, TextInput ,Alert, ScrollView} from 'react-native';
 import { auth, db } from '../../firebase';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
@@ -38,71 +38,73 @@ const handleSubmit = ()=>{
 }
 
   return (
-    <View style={styles.container}> 
-    <TouchableOpacity style={{flexDirection:'row', alignSelf: 'baseline' }} onPress={()=>props.navigation.navigate("A")}>
-             <Icon name="arrow-right-thick" size={35}/>
-    </TouchableOpacity>
-    <Text style = {styles.title}>הוספת משרה חדשה</Text>
+    <ScrollView>
+      <View style={styles.container}> 
+      <TouchableOpacity style={{flexDirection:'row', alignSelf: 'baseline' }} onPress={()=>props.navigation.navigate("A")}>
+              <Icon name="arrow-right-thick" size={35}/>
+      </TouchableOpacity>
+      <Text style = {styles.title}>הוספת משרה חדשה</Text>
 
-      <View style={{width:"100%"}}>
-        <Text style = {styles.textStyle}>הזן שם משרה: </Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder='שם המשרה'        
-          value={titleInput}
-          onChangeText={text=>setTitleInput(text)}
+        <View style={{width:"100%"}}>
+          <Text style = {styles.textStyle}>הזן שם משרה: </Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='שם המשרה'        
+            value={titleInput}
+            onChangeText={text=>setTitleInput(text)}
+            placeholderTextColor="#7f8c8d"
+          />
+          <Text style = {styles.textStyle}>הזן מיקום:  </Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='מיקום'     
+            value={locationInput}
+            onChangeText={text=>setLocationInput(text)}
+            placeholderTextColor="#7f8c8d"
+          />
+          <Text style = {styles.textStyle}>הזן את תיאור המשרה:  </Text>
+          <TextInput
+          style={{...styles.textInput,height:120}}
+          placeholder='תיאור המשרה'
+          value={descriptionInput}
           placeholderTextColor="#7f8c8d"
-        />
-        <Text style = {styles.textStyle}>הזן מיקום:  </Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder='מיקום'     
-          value={locationInput}
-          onChangeText={text=>setLocationInput(text)}
-          placeholderTextColor="#7f8c8d"
-        />
-        <Text style = {styles.textStyle}>הזן את תיאור המשרה:  </Text>
-        <TextInput
-        style={{...styles.textInput,height:120}}
-        placeholder='תיאור המשרה'
-        value={descriptionInput}
-        placeholderTextColor="#7f8c8d"
-        multiline     
-        onChangeText={text=>setDescriptionInput(text)}
-        />
-        <Text style = {styles.textStyle}>הזן איש קשר:  </Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder='שם איש הקשר'     
-          value={nameInput}
-          onChangeText={text=>setNameInput(text)}
-          placeholderTextColor="#7f8c8d"
-        />
-        <Text style = {styles.textStyle}>הזן טלפון:  </Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder='טלפון'     
-          value={phoneInput}
-          onChangeText={text=>setPhoneInput(text)}
-          placeholderTextColor="#7f8c8d"
-        />
-        <Text style = {styles.textStyle}>הזן מייל:  </Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder='אימייל'     
-          value={emailInput}
-          onChangeText={text=>setEmailInput(text)}
-          placeholderTextColor="#7f8c8d"
-        />
+          multiline     
+          onChangeText={text=>setDescriptionInput(text)}
+          />
+          <Text style = {styles.textStyle}>הזן איש קשר:  </Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='שם איש הקשר'     
+            value={nameInput}
+            onChangeText={text=>setNameInput(text)}
+            placeholderTextColor="#7f8c8d"
+          />
+          <Text style = {styles.textStyle}>הזן טלפון:  </Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='טלפון'     
+            value={phoneInput}
+            onChangeText={text=>setPhoneInput(text)}
+            placeholderTextColor="#7f8c8d"
+          />
+          <Text style = {styles.textStyle}>הזן מייל:  </Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder='אימייל'     
+            value={emailInput}
+            onChangeText={text=>setEmailInput(text)}
+            placeholderTextColor="#7f8c8d"
+          />
 
-<Pressable 
-style={({pressed})=>[styles.button,pressed && {backgroundColor:"#00cec9"}]}
-onPress={handleSubmit}
->
-  <Text style = {styles.buttonText}>הוסף משרה</Text>
-</Pressable>
+          <Pressable 
+          style={({pressed})=>[styles.button,pressed && {backgroundColor:"#00cec9"}]}
+          onPress={handleSubmit}
+          >
+            <Text style = {styles.buttonText}>הוסף משרה</Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
+      </ScrollView>
   )
 }
 
