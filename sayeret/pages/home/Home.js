@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {Image, View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
+import {Image, View,Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground, Linking} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
-// import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
 import map from "../../assets/Images/dark-topography.jpg";
 import masa from "../../assets/Images/unit-hero.jpg";
-import event from "../../assets/Images/eventsImage.jpeg";
-import memorial from "../../assets/Images/izkor.jpg";
 import inst from "../../assets/Images/Instagram_logo.png";
 import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
@@ -39,15 +36,21 @@ const UpCard = props=>{
     )
 }
 
+function youtube_parser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[7].length==11)? match[7] : false;
+}
 
 const Home = props=>{
     const [numbers, setNumbers] = useState([]);
     const [facebook, setFacebook] = useState("");
     const [instagram, setInstagram] = useState("");
+    const [vid, setVid] = useState("")
 
     useEffect(async ()=>{
         const q = query(collection(db, 'edits'));
-        const docs =onSnapshot(q, result=>
+        onSnapshot(q, result=>
         result.docs.forEach(doc=>{
             if(doc.id=="numbers"){
                 let member = doc.data().members;
@@ -62,8 +65,12 @@ const Home = props=>{
             if(doc.id == "instagram"){
                 setInstagram(doc.data().link)
             }
+            if(doc.id == "video"){
+                setVid(youtube_parser(doc.data().link))
+            }
             
         }))
+        console.log(vid)
     },[])
 
     return(
@@ -87,7 +94,7 @@ const Home = props=>{
                 </View>
                 <YoutubePlayer 
                     height={230}
-                    videoId ={"MMTuF941VzA"}
+                    videoId ={vid}
                     style = {styles.video}
                 /> 
             </ImageBackground>

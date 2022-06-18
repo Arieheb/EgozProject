@@ -3,6 +3,12 @@ import {StyleSheet, Text, View, SafeAreaView , TextInput, TouchableOpacity, Aler
 import { db } from "../../firebase";
 import { collection, query, getDocs, updateDoc, doc } from "firebase/firestore";
 
+function youtube_parser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[7].length==11)? match[7] : false;
+}
+
 const EditHome = props => {
 
     const [numbers, setNumbers] = useState([]);
@@ -14,6 +20,8 @@ const EditHome = props => {
     const [projects, setProjects] = useState("");
     const [faceInpute , setFaceInput] = useState("")
     const [instaInput , setInstaInput] = useState("")
+    const [vid, setVid] = useState("");
+    const [vidInput, setVidInput] = useState("");
 
     useEffect(async ()=>{
         
@@ -33,6 +41,9 @@ const EditHome = props => {
             }
             if(doc.id == "instagram"){
                 setInstagram(data.link.stringValue)
+            }
+            if(doc.id == "video"){
+                setVid(doc.data().link)
             }
             
         })
@@ -64,6 +75,10 @@ const EditHome = props => {
         }
         if (instaInput!="") {
             updateDoc(doc(db,'edits','instagram') , {link:instaInput});
+            flag = true
+        }
+        if (vidInput!="") {
+            updateDoc(doc(db,'edits','video') , {link:vidInput});
             flag = true
         }
 
@@ -142,6 +157,17 @@ const EditHome = props => {
                         value = {instaInput}                    
                         placeholderTextColor={"grey"}
                         onChangeText={text=>setInstaInput(text)}
+                        />                    
+                </View>
+                <View style = {{paddingBottom: 20}}>
+                    <Text style = {styles.textStyle}> קישור לסרטון (חייב קישור ליוטוב): </Text>
+
+                    <TextInput 
+                        style = {styles.input}
+                        placeholder={vid}
+                        value = {vidInput}                    
+                        placeholderTextColor={"grey"}
+                        onChangeText={text=>setVidInput(text)}
                         />                    
                 </View>
 
