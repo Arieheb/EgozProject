@@ -82,10 +82,10 @@ const ManageInfo = (props) => {
             </TouchableOpacity>
 
             {/* button to edit about page     */}
-            <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("AboutEdit")}>
+            {/* <TouchableOpacity style = {styles.buttons} onPress={()=>props.navigation.navigate("AboutEdit")}>
                 <Text style = {styles.buttonText}>לעריכת עמוד האודות</Text>
             </TouchableOpacity>
-        
+         */}
             {/* save changes button */}
             <TouchableOpacity style = {styles.buttons} onPress = {handleSubmit}>
             
