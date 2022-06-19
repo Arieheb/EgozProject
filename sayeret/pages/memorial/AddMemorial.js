@@ -1,12 +1,37 @@
 import React, { useState} from 'react';
-import {TextInput, View,Alert,ScrollView, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
+import {Image,TextInput, View,Alert,ScrollView, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Picture from '../../assets/Images/picture.png';
+import * as ImagePicker from 'expo-image-picker'
 
 
 const AddMemorial = (props) => {
+//getting an image from the phone
+const uploadPic = async()=>{
+    let result = await ImagePicker.launchImageLibraryAsync({
+         mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+         allowsEditing: true,
+         aspect: [4,3],
+         quality: 1,
+     });
+     if(!result.cancelled){
+        setPhoto(result.uri);
+    }
+}
+
+//uploading the image to the database
+const uploadImage = async(uri, photoName)=>{
+    const response = await fetch(uri);
+    const blob = await response.blob();
+    let storageRef = ref(storage,"Memorial/"+photoName);
+    return uploadBytesResumable(storageRef,blob);
+}
+
+
+    const [photo, setPhoto] = useState("");
     const [nameInput,setNameInput] = useState("")
     const [semitaryInput,setSemitaryInput] = useState("")
     const [graveNumberInput,setGraveNumberInput] = useState("")
@@ -28,14 +53,16 @@ const AddMemorial = (props) => {
         if(!linkInput.length){
             return Alert.alert("יש להזין קישור לעמוד הנופל המלא")
         }
-        addDoc(collection(db,'Memorial'),{ Name:nameInput, graveNumber:{graveNumberInput}, information:informationInput, link:linkInput, row: rowInput, section: sectionInput, semitary: semitaryInput});
-            props.navigation.navigate('Memorials');
+        
+        addDoc(collection(db,'Memorial'),{Name:nameInput, /*profilePic: photo,*/  graveNumber:graveNumberInput, information:informationInput ,link:linkInput, row: rowInput, section: sectionInput, semitary: semitaryInput});
+        // uploadImage(profilePic, photo)
+
+        props.navigation.navigate('Memorials');
     }
 
     return (
         <View>
             <KeyboardAwareScrollView>
-            
                 <View style= {styles.container}>
                     <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>props.navigation.navigate('Memorials')}>
                         <Icon name="arrow-right-thick" size={35}/>
@@ -119,6 +146,10 @@ const AddMemorial = (props) => {
                             placeholderTextColor={"grey"}
                         />
                     </View>
+                    <TouchableOpacity style={styles.picButton} onPress={()=>uploadPic()}>
+                        <Text style= {styles.buttonText}>העלה תמונת נופל</Text>
+                        {<Image source={photo?{uri: photo}:Picture} style={{ width: 150, height: 150 }}/>}
+                    </TouchableOpacity>
 
                     <Pressable 
                     style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
@@ -220,7 +251,16 @@ const styles = StyleSheet.create ({
         borderWidth: 1,
         textAlign: 'right',
         backgroundColor: 'lightgrey',      
-
-        
      },
+     picButton: {
+        alignSelf:'center',
+        alignItems:'center',
+        marginTop:'5%',
+        justifyContent:'center',
+        backgroundColor:"white",
+        fontSize:16,
+        borderWidth: 1,
+        borderRadius: 10,
+        width: '50%',
+    }
 })
