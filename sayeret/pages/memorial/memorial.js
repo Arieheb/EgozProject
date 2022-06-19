@@ -95,7 +95,7 @@ const Memorial = (props) => {
               row: doc.data().row,
               section: doc.data().section,
               semitary: doc.data().semitary,
-              link: doc.data().link
+              link: doc.data().link,
             }))
           );
     });

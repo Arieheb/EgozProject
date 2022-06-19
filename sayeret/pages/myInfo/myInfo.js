@@ -131,17 +131,6 @@ const Profile = (props) => {
                     />                                    
             </View>
 
-            {/* membership expiration date view
-            <View style = {styles.itemLayout}>
-            <Text style = {styles.textStyle}>תוקף חברות: </Text>
-                <TextInput placeholder='dd/mm/yyyy'
-                    style={styles.input}
-                    placeholderTextColor={"#fff"}
-                    // value={email}
-                    // onChangeText={text=>setEmail(text)}
-                    />
-
-            </View> */}
             
             {/* save changes button */}
             <TouchableOpacity style = {styles.buttons} onPress = {handleSubmit}>

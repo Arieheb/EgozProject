@@ -59,7 +59,6 @@ const AddMemorial = (props) => {
     return (
         <View>
             <KeyboardAwareScrollView>
-            
                 <View style= {styles.container}>
                     <TouchableOpacity style={{flexDirection:'row'}} onPress={()=>props.navigation.navigate('Memorials')}>
                         <Icon name="arrow-right-thick" size={35}/>
