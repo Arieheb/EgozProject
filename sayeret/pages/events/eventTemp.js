@@ -73,7 +73,7 @@ const EventTemplate = (props) => {
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyle}>הסתר</Text>
+              <Text style={styles.moreTextStyle}>הסתר</Text>
             </Pressable>
           </View>
         </Modal>
@@ -84,30 +84,6 @@ const EventTemplate = (props) => {
 );
 }
 
-
-
-                {/* <TouchableOpacity activeOpacity={0.9} onLongPress={()=>props.admin?del(props.id):null}>
-                    <ScrollView>
-                        <View name='main' style = {styles.eventFrame} >
-                            <View name = 'date and time' style = {styles.dateTimeFrame}>
-                                <Text style = {styles.timeText}>{props.eventTime} </Text>
-                                <Text style = {styles.dateText}>{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</Text>
-
-                            </View> 
-                            <View name= 'information' style = {styles.infoFrame}>
-                                <Text style = {styles.infoText}> שם האירוע: {props.eventName} </Text>
-                                <Text style = {styles.infoText}> מקום/כתובת: {props.eventLocation} </Text>
-                                <HyperLink linkDefault={true}>
-                                    <Text style = {styles.infoText}>פרטים נוספים: {props.eventInformation} </Text>
-                                </HyperLink>
-                                <Text style = {styles.infoText}> איש קשר: {props.eventContact} </Text>
-
-                            </View>
-                            
-                        </View>
-                        </ScrollView>    
-                </TouchableOpacity> */}
-            
 
 export default EventTemplate
 
@@ -161,7 +137,7 @@ const styles = StyleSheet.create ({
     },
     titleText: {
         fontWeight: "bold",
-        fontSize: 18,
+        fontSize: 19,
         textAlign: 'left'
     },
     infoText: {
@@ -291,12 +267,12 @@ const styles = StyleSheet.create ({
     //     color: 'white',
         
     //   },
-    //   moreTextStyle: {
-    //     textAlign: 'center',
-    //     textDecorationLine: 'underline',
-    //           color: 'white'
+      moreTextStyle: {
+        textAlign: 'center',
+        fontWeight: 'bold'
+        
   
-    //   },
+      },
     //   modalText: {
     //     marginBottom: 15,
         

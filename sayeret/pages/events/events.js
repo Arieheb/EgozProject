@@ -82,7 +82,7 @@ const EventCal = (props) => {
         }
 
         const eventCollection = collection (db, 'events')
-        const que = query(eventCollection, orderBy ('eventDate', 'desc'));
+        const que = query(eventCollection, orderBy ('eventDate', 'asc'));
   
         const unsubscribe = onSnapshot (que, QuerySnapshot => {
             setEventInfo (
