@@ -20,7 +20,7 @@ const AddMemorial = (props) => {
             return Alert.alert("יש להזין את שם הנופל")
         }
         if(!semitaryInput.length){
-            return Alert.alert("יש להזין את מיקום בית הקברות")
+            return Alert.alert("יש להזין את שם בית הקברות")
         }
         if(!informationInput.length){
             return Alert.alert("יש להזין את מידע אודות הנופל")
@@ -28,7 +28,7 @@ const AddMemorial = (props) => {
         if(!linkInput.length){
             return Alert.alert("יש להזין קישור לעמוד הנופל המלא")
         }
-        addDoc(collection(db,'Memorial'),{ Name:nameInput, graveNumber:graveNumberInput, information:informationInput, link:linkInput, row: rowInput, section: sectionInput, semitary: semitaryInput});
+        addDoc(collection(db,'Memorial'),{ Name:nameInput, graveNumber:{graveNumberInput}, information:informationInput, link:linkInput, row: rowInput, section: sectionInput, semitary: semitaryInput});
             props.navigation.navigate('Memorials');
     }
 
