@@ -121,10 +121,6 @@ const AddEvent = (props) => {
                         
                     </Pressable>
                     
-
-
-
-                    
                     <Pressable 
                     style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
                     onPress={handleSubmit}

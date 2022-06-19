@@ -1,10 +1,12 @@
+import { useEffect,useState } from 'react';
 import {FlatList, View, StyleSheet, ImageBackground,SafeAreaView,Text, TextInput, Modal, TouchableOpacity} from 'react-native';
-import Blurp from './ModalTemp';
 import {auth, db} from '../../firebase';
 import { collection, onSnapshot, query ,orderBy } from 'firebase/firestore';
-import { useEffect,useState } from 'react';
 import memorial from "../../assets/Images/izkor.jpg";
+import Blurp from './ModalTemp';
 import Icons from 'react-native-vector-icons/Ionicons'
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+
 
 
 const Search = (props) => {
@@ -66,7 +68,7 @@ return (
 
 
 
-const Memorial = () => { 
+const Memorial = (props) => { 
     const [memoryInfo, setMemoryInfo] = useState([]);
     useEffect (()=> {
 
@@ -100,8 +102,13 @@ const Memorial = () => {
             keyExtractor = {item => item.Name}
             renderItem = {(data) => <Blurp name = {data.item.Name} image={data.item.profilePic} info = {data.item.information} semitary = {data.item.semitary} part = {data.item.section} row = {data.item.row} graveNumber = {data.item.graveNumber} link = {data.item.link}  ></Blurp>}
             numColumns = {3}/>
+            
+            <View style={{ alignItems:'center',justifyContent:'center'}}>
+              <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('AddMemorial')}>
+                  <Icon name ="plus"  color="white"  size={45}/>   
+              </TouchableOpacity>
+            </View>
           </View>
-
         </ImageBackground>
       </View>
     );
@@ -150,6 +157,17 @@ const Memorial = () => {
       alignSelf:'center',
       backgroundColor:"white"
   },
+  plusButton: {
+    borderRadius: 100,
+    width: 60,
+    height: 60,
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+    marginTop: '5%',
+    borderColor: "white",
+    borderWidth: 0.5,
+    alignItems:'center',
+    justifyContent:'center',
+},
 
 
   });

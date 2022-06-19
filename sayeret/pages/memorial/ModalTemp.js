@@ -5,8 +5,6 @@ import {ref, getDownloadURL} from 'firebase/storage';
 import { Link } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
-const scrWidth = Dimensions.get('screen').width;
-const scrHeight = Dimensions.get('screen').height;
 
 const Blurp = (props) => {
   const [imageUrl, setImageUrl] = useState (undefined);
@@ -66,7 +64,6 @@ const Blurp = (props) => {
               <Text style={{color:'white', fontSize: 16}}>
                 <Icon name = "candle" size = "20"></Icon> למעבר לעמוד הנופל המלא לחץ כאן </Text>
             </Pressable>
-            {/* marginHorizontal:50,marginVertical:15, */}
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
@@ -87,7 +84,7 @@ const Blurp = (props) => {
     nameEdit: {
       paddingTop: 10,
       textAlign: 'center',
-      fontSize: 22,
+      fontSize: 22,     
       fontWeight: 'bold',
       
     },

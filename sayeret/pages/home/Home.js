@@ -99,7 +99,7 @@ const Home = props=>{
             </ImageBackground>
             <View style={styles.stat}>
                 <View>
-              <NumberCard num = {numbers[0]} title = "שנות פעילות"/>
+              <NumberCard num = {numbers[0]} title = "שנות פעילות" />
               <NumberCard num = {numbers[1]} title = "חברים בעמותה"/>
                 </View>
                 <View>

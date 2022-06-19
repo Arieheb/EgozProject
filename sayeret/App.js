@@ -28,6 +28,7 @@ import ForgotPage from './pages/Login/ForgotPage';
 import Admin from './pages/Admin/Admin';
 import PayMember from './pages/memberPay/Membership';
 import ManageNavigator from './pages/Manage/ManageNavigator'
+import AddMemorial from './pages/memorial/AddMemorial';
 
 
 
