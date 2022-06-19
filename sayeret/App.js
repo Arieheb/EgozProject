@@ -21,14 +21,13 @@ import SignUp from './pages/Login/SignUp';
 import Profile from './pages/myInfo/myInfo';
 import EventsNavigator from './pages/events/EventsNavigator';
 import Contact from './pages/contact/Contact';
-import Memorial from './pages/memorial/memorial';
+import MemorialNavigator from './pages/memorial/MemorialNavigator';
 import Benefits from './pages/benefits/benefits';
 import Store from './pages/store/Store';
 import ForgotPage from './pages/Login/ForgotPage';
 import Admin from './pages/Admin/Admin';
 import PayMember from './pages/memberPay/Membership';
 import ManageNavigator from './pages/Manage/ManageNavigator'
-import AddMemorial from './pages/memorial/AddMemorial';
 
 
 
@@ -99,7 +98,7 @@ else{
           <Drawer.Screen name='calendar' component={EventsNavigator}options = {{title: null}}/>
           <Drawer.Screen name='Benefits' component={Benefits} options = {{title: null}}/>
           <Drawer.Screen name='Contact' component={Contact} options = {{title: null}}/>
-          <Drawer.Screen name='Memorial' component={Memorial} options = {{title: null}}/>
+          <Drawer.Screen name='Memorial' component={MemorialNavigator} options = {{title: null}}/>
           <Drawer.Screen name='store' component={Store} options = {{title: null}} />
           <Drawer.Screen name='admin' component={Admin} options = {{title: null}}/>
           <Drawer.Screen name='infoManage' component={ManageNavigator} options = {{title: null}}/>

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import {Modal,Button, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet, Linking} from 'react-native';
-import {auth, db, storage} from '../../firebase';
+import {Modal, Image, Pressable, View,ScrollView, Text, StyleSheet, Linking} from 'react-native';
+import {storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
-import { Link } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 
 const Blurp = (props) => {
   const [imageUrl, setImageUrl] = useState (undefined);
   useEffect (() => {
-   getDownloadURL( ref(storage, props.image)).then ((url)=> {
-      setImageUrl (url);
-    })
-    .catch ((e)=> console.log ('ERROR=>', e));
+    if(props.image)
+    getDownloadURL( ref(storage, props.image)).then ((url)=> {
+        setImageUrl (url);
+      })
+      .catch ((e)=> console.log ('ERROR=>', e));
   }, []);
   
   
@@ -62,7 +62,7 @@ const Blurp = (props) => {
 
             <Pressable style={{ borderRadius:40, backgroundColor:'grey',justifyContent:'center',alignSelf: 'center', marginBottom: 15, width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
               <Text style={{color:'white', fontSize: 16}}>
-                <Icon name = "candle" size = "20"></Icon> למעבר לעמוד הנופל המלא לחץ כאן </Text>
+                <Icon name = "candle" size = {20}></Icon> למעבר לעמוד הנופל המלא לחץ כאן </Text>
             </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}

@@ -106,7 +106,7 @@ const EventCal = (props) => {
         <View>
             <SafeAreaView style = {styles.container}>
                     <Search list={eventInfo}/>
-                    <View style={admin?{height:'83%'}:{height:'92%'}}>
+                    <View style={admin?{height:'80%'}:{height:'92%'}}>
                     <FlatList data = {eventInfo}
                         keyExtractor = {item => item.id}
                         renderItem={({item}) => {

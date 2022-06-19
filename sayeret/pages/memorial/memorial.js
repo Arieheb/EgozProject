@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
 import {FlatList, View, StyleSheet, ImageBackground,SafeAreaView,Text, TextInput, Modal, TouchableOpacity} from 'react-native';
 import {auth, db} from '../../firebase';
-import { collection, onSnapshot, query ,orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, query ,orderBy, where, getDocs} from 'firebase/firestore';
 import memorial from "../../assets/Images/izkor.jpg";
 import Blurp from './ModalTemp';
 import Icons from 'react-native-vector-icons/Ionicons'
@@ -70,8 +70,18 @@ return (
 
 const Memorial = (props) => { 
     const [memoryInfo, setMemoryInfo] = useState([]);
+    const [admin, setAdmin] = useState(false);
     useEffect (()=> {
-
+      if(props.route.params != undefined){
+        setAdmin(props.route.params.user.isAdmin)
+      }
+      else{
+        const q =query(collection(db,'users'),where('user_id','==', auth.currentUser.uid));
+        getDocs(q).then(result=>{
+            result.forEach(doc=>{
+                setAdmin(doc.data().isAdmin);
+      })})}
+            
       const MemoryCollection = collection (db, 'Memorial')
       const que = query (MemoryCollection, orderBy ('Name', 'asc'));
 
@@ -103,11 +113,12 @@ const Memorial = (props) => {
             renderItem = {(data) => <Blurp name = {data.item.Name} image={data.item.profilePic} info = {data.item.information} semitary = {data.item.semitary} part = {data.item.section} row = {data.item.row} graveNumber = {data.item.graveNumber} link = {data.item.link}  ></Blurp>}
             numColumns = {3}/>
             
+            {admin?
             <View style={{ alignItems:'center',justifyContent:'center'}}>
-              <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('AddMemorial')}>
+              <TouchableOpacity style = {styles.plusButton} onPress={()=>props.navigation.navigate('addMemory')}>
                   <Icon name ="plus"  color="white"  size={45}/>   
               </TouchableOpacity>
-            </View>
+            </View>:null}
           </View>
         </ImageBackground>
       </View>
