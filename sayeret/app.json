@@ -24,6 +24,7 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "permissions": [],
       "package": "sayeret.com"
     },
     "web": {
