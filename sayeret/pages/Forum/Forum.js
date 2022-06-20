@@ -93,7 +93,7 @@ const ForumItem = props=>{
             </TouchableRipple>
             
             {/* the chat room */}
-            <Modal visible={visible}>
+            <Modal visible={visible} onRequestClose={()=>setVisible(false)}>
                 <SafeAreaView style={styles.header}>   
                     <TouchableRipple onPress={()=>{setVisible(false)}}>
                         <Icon
