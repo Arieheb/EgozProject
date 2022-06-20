@@ -56,7 +56,7 @@ const Blurp = (props) => {
           
             <View name= 'information' style = {styles.infoSection}>
             <ScrollView>
-              <Text style={styles.textDesign}>{props.info}</Text>             
+              <Text style={{textAlign: 'justify'}}>{props.info}</Text>             
               </ScrollView>
             </View>
 
@@ -83,14 +83,15 @@ const Blurp = (props) => {
   const styles = StyleSheet.create({
     nameEdit: {
       paddingTop: 10,
-      textAlign: 'center',
+      textAlign: 'justify',
       fontSize: 22,     
       fontWeight: 'bold',
       
     },
 
     textDesign: {
-      textAlign: 'left',
+      width:200,
+      textAlign: 'justify',
     },
 
     topArea: {
@@ -126,6 +127,7 @@ const Blurp = (props) => {
       backgroundColor: "white",
       borderRadius: 20,
       padding: 15,
+      maxWidth:"100%",
       shadowColor: "#000",
       shadowOffset: {
         width: 2,
