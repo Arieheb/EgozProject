@@ -16,8 +16,8 @@ const OpenForum = props=>{
     const [name, setName] = useState("");
     const [vision, setVision] = useState(false);
     const [image, setImage] = useState();
-    const [preview, setPrev] =useState();
-
+    const [preview, setPrev] =useState(false);
+    const dat = new Date().getTime();
     const uploadPic = async()=>{
         let result = await ImagePicker.launchImageLibraryAsync({
              mediaTypes: ImagePicker.MediaTypeOptions.Images, 
@@ -57,29 +57,28 @@ const OpenForum = props=>{
             alert("חייב לשים שם לפורום")
             return
         }
-        const dat = new Date().getTime();
         let pic = dat+name
-
-        //adding a new document
-        const ref = collection(db,'chats');
-        addDoc(ref,{"name":name,"last_time":new Date(), "last_message":"", 'pic':pic})
-        //getting the document for the id
-        const q = query(ref, where("name", "==", name) ,orderBy("last_time", "desc"));
-        const querySnapshot = await getDocs(q);
-        let once = 0;
-        querySnapshot.forEach((doc) => {
-            //adding the chat function only to the new chat
-            if(once == 0){
-                const docRef = collection(db,'chats',doc.id,'chat')
-                addDoc(docRef,{})
-                once++;
-            }
-        });
         if(image)
-            uploadImage(image,pic);
-        setName("");
-        setImage("")
-        setVision(false)
+        uploadImage(image,pic);
+        setTimeout(async()=>{
+            //adding a new document
+            const ref = collection(db,'chats');
+            addDoc(ref,{"name":name,"last_time":new Date(), "last_message":"", 'pic':pic})
+            //getting the document for the id
+            const q = query(ref, where("name", "==", name) ,orderBy("last_time", "desc"));
+            const querySnapshot = await getDocs(q);
+            let once = 0;
+            querySnapshot.forEach((doc) => {
+                //adding the chat function only to the new chat
+                if(once == 0){
+                    const docRef = collection(db,'chats',doc.id,'chat')
+                    addDoc(docRef,{})
+                    once++;
+                }
+            });
+            setName("");
+            setImage("")
+            setVision(false)},1800)
     }
     
     return(
@@ -95,43 +94,50 @@ const OpenForum = props=>{
                     </TouchableRipple>
                 </SafeAreaView>
 
-                <View style ={{flexDirection:"row"}}>
-                <Avatar.Image source={image?{uri:image}:profile}/>
+                <View style ={{flexDirection:"row", backgroundColor:'lightgray'}}>
+                <TouchableOpacity onPress={()=>{setPrev(true)}}>
+                    <Avatar.Image style={styles.avatar} source={image?{uri:image}:camera}/>
+                </TouchableOpacity>
                 <TextInput
                     value={name}
                     placeholder="שם הפורום"
                     onChangeText={(text)=>{setName(text)}}
-                    style = {{width:"85%"}}
+                    style = {{width:"85%", backgroundColor:'lightgray'}}
                 />
                 </View>
               
-                <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
-                <View style={{...styles.button,width:200}}>
-                        <Text style={styles.buttonText}>העלה תמונה</Text>
-                        {<Image source={image?{uri: image}:Picture} style={{ width: 150, height: 150 }}/>}
-                    </View>
-                </TouchableRipple>
-                <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
-                <View style={{...styles.button,width:200}}>
-                        <Text style={styles.buttonText}>צלם תמונה</Text>
-                        {<Image source={image?{uri: image}:camera} style={{ width: 150, height: 150 }}/>}
-                    </View>
-                </TouchableRipple>
+                <Modal visible={preview}>
+                    <TouchableRipple style={styles.picButton} onPress={()=>uploadPic()}>
+                    <View style={{...styles.button,width:200}}>
+                            <Text style={styles.buttonText}>העלה תמונה</Text>
+                            {<Image source={image?{uri: image}:Picture} style={{ width: 150, height: 150 }}/>}
+                        </View>
+                    </TouchableRipple>
+                    <TouchableRipple style={styles.picButton} onPress={()=>takePic()}>
+                    <View style={{...styles.button,width:200}}>
+                            <Text style={styles.buttonText}>צלם תמונה</Text>
+                            {<Image source={image?{uri: image}:camera} style={{ width: 150, height: 150 }}/>}
+                        </View>
+                    </TouchableRipple>
 
-              
+                    <TouchableRipple style = {styles.buttensStyle} onPress={()=>setPrev(false)}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>אשר</Text>
+                    </View>
+                    </TouchableRipple>
+                    <TouchableRipple style = {styles.buttensStyle} onPress={()=>{!image?setPrev(false):null;setImage();}}>
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>{image?"נקה":"בטל"}</Text>
+                    </View>
+                    </TouchableRipple>
+
+                </Modal>
 
                 <TouchableRipple style = {styles.buttensStyle} onPress={()=>submit()}>
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>הוסף</Text>
                     </View>
                 </TouchableRipple>
-
-                
-                {/* <TouchableOpacity style = {styles.returnButten} onPress={()=>{setVision(false);setName(""); */}
-                    {/* setInfo("");}}> */}
-                        {/* <Icon name="arrow-right-thick" size={55}/> */}
-                {/* </TouchableOpacity> */}
-
             </Modal>
             </View>  
             <View>
@@ -242,9 +248,16 @@ const styles = StyleSheet.create({
         // alignContent:'flex-end'
     },
 
-   // returnButten: {
-        // alignItems: 'center',
-    //   },
+   avatar:{
+        backgroundColor:'lightgray',
+        borderWidth:1,
+        width:60,
+        height:60,
+        borderRadius:40,
+        alignItems:'center',
+        justifyContent:'center',
+        overflow:'hidden'
+   }
 
     
 })

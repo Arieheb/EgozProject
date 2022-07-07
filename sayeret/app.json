@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "sayeret",
+    "name": "הסיירת הצפונית",
     "slug": "sayeret",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -17,11 +17,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "sayeret.com"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "sayeret.com"

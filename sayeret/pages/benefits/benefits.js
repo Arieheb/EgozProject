@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Image, View, TouchableOpacity, Text, StyleSheet, Alert } from 'react-native';
+import HyperLink from 'react-native-hyperlink';
+import { Modal, Image, View, TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
 import { collection, query, onSnapshot, deleteDoc, doc, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import AddBenefits from './addBenefit';
@@ -38,7 +39,7 @@ const Benefit = props => {
             getDownloadURL( ref(storage,"Benefits/"+props.image)).then ((url)=> {
             setImageUrl (url);
         })
-        .catch ((e)=> console.log ('ERROR=>', e));},[])
+        .catch ((e)=> {});},[])
     return(
 
        <View>
@@ -75,10 +76,9 @@ const Benefit = props => {
                 <View style = {{backgroundColor: "rgba(0,0,0,0.5)", height: '100%'}}>
                     <View style={styles.modal} >
                         <ScrollView style = {{maxHeight:400, minHeight:20}}>
-                        <Text style = {styles.infoText}>{props.info}</Text>
-                        {/* <TouchableOpacity style = {styles.buttonsBenefit} onPress={()=>{setVisible(false)}}>
-                            <Text style= {styles.buttonText} >חזור</Text>
-                        </TouchableOpacity> */}
+                            <HyperLink linkDefault={true}>
+                                <Text style = {styles.infoText}>{props.info}</Text>
+                            </HyperLink>
                         </ScrollView>
                         <View style={{height: 60, marginTop: '1%', }}>
                             <TouchableOpacity style={{margin: '1%'}} onPress={()=>setVisible(false)}>
@@ -128,7 +128,6 @@ const Benefits = props => {
          return (
          
             <View style = {styles.page}>
-                {/* <Text style = {styles.title}>הטבות</Text> */}
 
                 <FlatList data={benefitInfo} keyExtractor={item => item.id} renderItem={data=>
                 <Benefit name={data.item.Name} id={data.item.id}

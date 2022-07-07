@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,Dimensions,Image,Alert} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Dimensions} from 'react-native';
 import {React,useState,} from 'react';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import IconEvilIcons from 'react-native-vector-icons/EvilIcons';

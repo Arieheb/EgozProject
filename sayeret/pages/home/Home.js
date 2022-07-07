@@ -1,17 +1,15 @@
-import React from 'react';
-import {Image, View,Text, TouchableOpacity, StyleSheet, ScrollView, Button, ImageBackground, Linking} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {Image, View,Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground, Linking} from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
-// import Icon from "react-native-vector-icons/FontAwesome";
 import Icons from "react-native-vector-icons/FontAwesome5";
 import map from "../../assets/Images/dark-topography.jpg";
 import masa from "../../assets/Images/unit-hero.jpg";
-import event from "../../assets/Images/eventsImage.jpeg";
-import memorial from "../../assets/Images/izkor.jpg";
 import inst from "../../assets/Images/Instagram_logo.png";
 import fb from "../../assets/Images/Facebook_logo.png";
 import contact from "../../assets/Images/contact-us.png";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { SocialIcon } from 'react-native-elements';
+import {db} from '../../firebase';
+import { collection, query, onSnapshot, where} from 'firebase/firestore';
 
 
 const NumberCard = props=>{
@@ -38,8 +36,42 @@ const UpCard = props=>{
     )
 }
 
+function youtube_parser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return (match&&match[7].length==11)? match[7] : false;
+}
 
 const Home = props=>{
+    const [numbers, setNumbers] = useState([]);
+    const [facebook, setFacebook] = useState("");
+    const [instagram, setInstagram] = useState("");
+    const [vid, setVid] = useState("")
+
+    useEffect(async ()=>{
+        const q = query(collection(db, 'edits'));
+        onSnapshot(q, result=>
+        result.docs.forEach(doc=>{
+            if(doc.id=="numbers"){
+                let member = doc.data().members;
+                let projects = doc.data().projects;
+                let seniors = doc.data().seniors;
+                let years = doc.data().years;
+                setNumbers([years,member,projects,seniors]);
+            }
+            if(doc.id == "facebook"){
+                setFacebook(doc.data().link)
+            }
+            if(doc.id == "instagram"){
+                setInstagram(doc.data().link)
+            }
+            if(doc.id == "video"){
+                setVid(youtube_parser(doc.data().link))
+            }
+            
+        }))
+    },[])
+
     return(
         <ScrollView>
         <View style = {styles.container}>
@@ -61,18 +93,18 @@ const Home = props=>{
                 </View>
                 <YoutubePlayer 
                     height={230}
-                    videoId ={  "MMTuF941VzA" }
+                    videoId ={vid}
                     style = {styles.video}
                 /> 
             </ImageBackground>
             <View style={styles.stat}>
                 <View>
-              <NumberCard num = "45" title = "שנות פעילות"/>
-              <NumberCard num = "2,172" title = "חברים בעמותה"/>
+              <NumberCard num = {numbers[0]} title = "שנות פעילות" />
+              <NumberCard num = {numbers[1]} title = "חברים בעמותה"/>
                 </View>
                 <View>
-                    <NumberCard num = "16" title = "פרויקטים פעילים"/>
-                    <NumberCard num = "9,342" title = "בוגרי יחידה"/>
+                    <NumberCard num ={numbers[2]} title = "פרויקטים פעילים"/>
+                    <NumberCard num = {numbers[3]} title = "בוגרי יחידה"/>
               </View>
             </View>
             <ImageBackground source={masa} style = {{...styles.view}}>
@@ -89,10 +121,10 @@ const Home = props=>{
                         <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}}  onPress={()=>props.navigation.navigate("Contact")}>
                                 <Image source={contact} style={{ width: '90%', height: '90%',borderRadius:100, marginTop:'5%'}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL("https://www.facebook.com/groups/egoz.unit/")}>
+                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL(facebook)}>
                             <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'2%'}}/>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL("https://www.instagram.com/egoz_unit/?igshid=qa32q76zyck2")}>
+                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL(instagram)}>
                             <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>
                         </TouchableOpacity>
                     </View>

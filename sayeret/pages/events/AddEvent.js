@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import {TextInput, View,Alert, Platform,ScrollView,Picker, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
-import {AntDesign } from '@expo/vector-icons';
-import *as ImagePicker from 'expo-image-picker';
+import React, { useState} from 'react';
+import {TextInput, View,Alert,ScrollView, TouchableOpacity, Text, StyleSheet, Pressable} from 'react-native';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 
 const AddEvent = (props) => {
@@ -14,7 +13,9 @@ const AddEvent = (props) => {
     const [infomationInput, setInformationInput] = useState("");
     const [contactInput, setContactInput] = useState("");
     const [timeInput, setTimeInput] = useState("");
-    const [dateInput, setDateInput] = useState("");
+    const [date, setDate] = useState(new Date())
+    const [show, setShow] = useState(false)
+
 
     const handleSubmit = () => {
         if(!titleInput.length){
@@ -32,11 +33,11 @@ const AddEvent = (props) => {
         if(!timeInput.length){
             return Alert.alert("יש להזין את זמן האירוע")
         }
-        if(!dateInput.length){
+        if(!date){
             return Alert.alert("יש להזין את תאריך האירוע")
         }
         //TODO - fix JSON output
-        addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: dateInput});
+        addDoc(collection(db,'events'),{ eventName:titleInput, eventLocation:locationInput, eventInformation:infomationInput, eventContact:contactInput, eventTime: timeInput, eventDate: date});
         props.navigation.navigate('events');
     }
 
@@ -106,16 +107,20 @@ const AddEvent = (props) => {
                         />
                     </View>
 
-                    <View style = {{}}>
-                        <Text style = {styles.textStyle}>תאריך:</Text>
-                        <TextInput 
-                            style={styles.input}
-                            placeholder='dd/mm/yyyy'
-                            value = {dateInput}
-                            onChangeText = {text => setDateInput(text)}
-                            placeholderTextColor={"grey"}
-                        />
-                    </View>
+                    <Pressable onPress={()=>setShow(true)} >
+                        <Text style = {styles.textStyle}>תאריך: </Text>
+                        {show?
+                    <DateTimePicker
+                        value={date}
+                        mode={'date'}
+                        display='default'
+                        style = {{borderRadius: 50}}
+                        onChange = {(a, chosenDate)=>{setDate(chosenDate||date);setShow(false)}}
+                    />:null}
+                        <Text style={{...styles.input,paddingTop:10, color:'grey', textAlign:'left'}}>{date.getDate()}/{date.getMonth()+1}/{date.getFullYear()}</Text>
+                        
+                    </Pressable>
+                    
                     <Pressable 
                     style = {({pressed})=>[styles.buttons,pressed && {backgroundColor:"#00cec9"}] }
                     onPress={handleSubmit}
@@ -131,8 +136,7 @@ const AddEvent = (props) => {
 export default AddEvent
 
 const styles = StyleSheet.create ({ 
-    container: {
-        //backgroundColor: 'grey',  
+    container: { 
         height: '100%',
         paddingBottom: 70, 
         width: '100%',
@@ -172,6 +176,7 @@ const styles = StyleSheet.create ({
         paddingTop: 3,
         margin: 5,
         textAlign: 'left', 
+        
     },
     input: {
         height:40,
@@ -186,24 +191,16 @@ const styles = StyleSheet.create ({
      buttons:{
         alignSelf:'center',
         alignItems:'center',
-        // width:'85%',
-        // color:'blue',
-        // height:40,
-        // backgroundColor:'#fff',
         marginTop:30,
-        // borderRadius:8,
         display:'flex',
         justifyContent:'center',
         backgroundColor:"white",
         fontSize:16,
         borderWidth: 1,
-        // padding: 5,
-        // position: 'absolute',
         marginTop: 50,
         borderRadius: 10,
         width: 120,
         height: 60,
-        // alignContent:'flex-end'
      },
      buttonText:{
         color: "black",
@@ -220,6 +217,8 @@ const styles = StyleSheet.create ({
         paddingLeft: 7,
         borderWidth: 1,
         textAlign: 'right',
+        backgroundColor: 'lightgrey',      
+
         
      },
 });

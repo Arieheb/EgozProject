@@ -1,8 +1,5 @@
 import { View, Text ,TextInput,StyleSheet,TouchableOpacity,Alert,Keyboard, KeyboardAvoidingView} from 'react-native'
-import {React,useState} from 'react'
-import { ScrollView } from 'react-native-gesture-handler';
-import { auth } from '../../firebase';
-import DropDownPicker from 'react-native-dropdown-picker';
+import {React} from 'react'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const SignUpAuth = (props) => {

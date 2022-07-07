@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import {  Modal, Image, Dimensions, Pressable, View,ScrollView, Text, StyleSheet} from 'react-native';
-import {auth, db, storage} from '../../firebase';
+import {Modal, Image, Pressable, View,ScrollView, Text, StyleSheet, Linking} from 'react-native';
+import {storage} from '../../firebase';
 import {ref, getDownloadURL} from 'firebase/storage';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
-const scrWidth = Dimensions.get('screen').width;
-const scrHeight = Dimensions.get('screen').height;
 
 const Blurp = (props) => {
   const [imageUrl, setImageUrl] = useState (undefined);
   useEffect (() => {
-   getDownloadURL( ref(storage, props.image)).then ((url)=> {
-      setImageUrl (url);
-    })
-    .catch ((e)=> console.log ('ERROR=>', e));
+    if(props.image)
+    getDownloadURL( ref(storage, props.image)).then ((url)=> {
+        setImageUrl (url);
+      })
+      .catch ((e)=> console.log ('ERROR=>', e));
   }, []);
   
   
@@ -56,11 +56,14 @@ const Blurp = (props) => {
           
             <View name= 'information' style = {styles.infoSection}>
             <ScrollView>
-              <Text style={styles.textDesign}>{props.info}</Text>             
+              <Text style={{textAlign: 'justify'}}>{props.info}</Text>             
               </ScrollView>
             </View>
-          
-          
+
+            <Pressable style={{ borderRadius:40, backgroundColor:'grey',justifyContent:'center',alignSelf: 'center', marginBottom: 15, width:250, alignItems:'center', height:30}} onPress ={()=>Linking.openURL(props.link)}>
+              <Text style={{color:'white', fontSize: 16}}>
+                <Icon name = "candle" size = {20}></Icon> למעבר לעמוד הנופל המלא לחץ כאן </Text>
+            </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
@@ -80,15 +83,15 @@ const Blurp = (props) => {
   const styles = StyleSheet.create({
     nameEdit: {
       paddingTop: 10,
-      textAlign: 'center',
-      fontSize: 22,
+      textAlign: 'justify',
+      fontSize: 22,     
       fontWeight: 'bold',
       
     },
 
     textDesign: {
-      textAlign: 'left',
-
+      width:200,
+      textAlign: 'justify',
     },
 
     topArea: {
@@ -124,6 +127,7 @@ const Blurp = (props) => {
       backgroundColor: "white",
       borderRadius: 20,
       padding: 15,
+      maxWidth:"100%",
       shadowColor: "#000",
       shadowOffset: {
         width: 2,

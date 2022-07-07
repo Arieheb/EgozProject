@@ -1,7 +1,6 @@
 import { View, Text ,TextInput, StyleSheet,TouchableOpacity,StatusBar,Image,Dimensions,Keyboard, KeyboardAvoidingView,Alert, Platform} from 'react-native'
 import {React,useState,useRef} from 'react'
 import AppIntroSlider from 'react-native-app-intro-slider';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { addDoc, collection } from 'firebase/firestore'; 
@@ -132,14 +131,8 @@ const SignUp = props => {
                 inUnit: show1
               }
             })
-            Alert.alert(
-            <View>
-            <Text>הנך רשום כאורח עד לאישור מנהל</Text>
-            <Text>האם תרצה לבצע תשלום חברות ולהירשם כחבר?</Text>
-              
-            </View>
+            Alert.alert("הנך רשום כאורח עד לאישור מנהל")
             
-            )
           })
           .catch((error) => {
             const errorCode = error.code;
