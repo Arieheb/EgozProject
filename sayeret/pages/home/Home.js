@@ -73,7 +73,7 @@ const Home = props=>{
     },[])
 
     return(
-        <ScrollView>
+    <ScrollView overScrollMode='never'>
         <View style = {styles.container}>
             <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
                 <View style = {styles.tint}>
@@ -109,30 +109,29 @@ const Home = props=>{
             </View>
             <ImageBackground source={masa} style = {{...styles.view}}>
                 <View style={{...styles.tint,width:'100%'}}>
-
-                <Text style = {styles.title}>יחידת אגוז</Text>
-                <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
-                <Text style={styles.content}>כבר מעל 60 שנה להקמת הסיירת הצפונית- סיירת אגוז. הסיירת עברה גלגולים רבים במהלך השנים, פורקה והוקמה… ושוב פורקה. בשנת 1995 הוקמה יחידת אגוז פעם נוספת… היחידה מתפקדת כחוד החנית של צה”ל עד היום. עברו הרבה שנים,הרבה היתקלויות, והרבה אנשים – אך הרוח נשארה אותה רוח</Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
-                    <Text style = {styles.button}>קרא עוד</Text>
-                </TouchableOpacity>
-                <View style = {{backgroundColor:"rgba(0,0,0,0.2)",  width:'100%'}}>
-                    <View style = {{...styles.bottamBar, width: '100%'}}>
-                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}}  onPress={()=>props.navigation.navigate("Contact")}>
+                    <Text style = {styles.title}>יחידת אגוז</Text>
+                    <Text style={styles.miniTitle}>מסיירת אגוז הישנה ועד היום</Text>
+                    <Text style={styles.content}>כבר מעל 60 שנה להקמת הסיירת הצפונית- סיירת אגוז. הסיירת עברה גלגולים רבים במהלך השנים, פורקה והוקמה… ושוב פורקה. בשנת 1995 הוקמה יחידת אגוז פעם נוספת… היחידה מתפקדת כחוד החנית של צה”ל עד היום. עברו הרבה שנים,הרבה היתקלויות, והרבה אנשים – אך הרוח נשארה אותה רוח</Text>
+                    <TouchableOpacity onPress={()=>props.navigation.navigate("about")}>
+                        <Text style = {styles.button}>קרא עוד</Text>
+                    </TouchableOpacity>
+                      <View style = {{backgroundColor:"rgba(0,0,0,0.2)",  width:'100%'}}>
+                        <View style = {{...styles.bottamBar, width: '100%'}}>
+                            <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}}  onPress={()=>props.navigation.navigate("Contact")}>
                                 <Image source={contact} style={{ width: '90%', height: '90%',borderRadius:100, marginTop:'5%'}}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL(facebook)}>
-                            <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'2%'}}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL(instagram)}>
-                            <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>
-                        </TouchableOpacity>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{...styles.bottomButton ,borderRadius: 50, height: 78, justifyContent: "center", alignItems: "center",paddingBottom: '0.5%'}} onPress={()=>Linking.openURL(facebook)}>
+                                <Image source = {fb} style = {{ width: '90%', height: '96%',borderRadius:100,marginTop:'2%'}}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{...styles.bottomButton ,background: "#BD081C" ,borderRadius: 50, height: 78, backgroundColor: "black"}} onPress={()=>Linking.openURL(instagram)}>
+                                <Image source = {inst}  style={{ width: '90%', height: '90%',marginTop:'5%',borderRadius:100}}/>
+                            </TouchableOpacity>
+                        </View> 
                     </View>
                 </View>
-                </View>
-            </ImageBackground>     
+            </ImageBackground> 
         </View>
-        </ScrollView>
+    </ScrollView>
     );
 }
 
@@ -263,37 +262,3 @@ const styles = StyleSheet.create({
 });
 
 export default Home;
-  {/* <View style = {styles.view}>
-                <Text style = {{...styles.title,color:"black"}}>המטרות שלנו</Text>
-                <GoalCard icon="id-card" title = "הנצחת חיילי היחידה" description = "תחזוק אתר ההנצחה בקלעת נמרוד, קיום יום משפחות שנתי עם היחידה, ספר מורשת ותמיכת המשפחות השכולות."/>
-                <GoalCard icon="comments" title = "שימור הקשר בין בוגרי היחידה" description = "בעזרת מפגשי הבוגרים ורשת הנטוורקינג של בוגרי היחידה תסייע לך במציאת עבודה, שותפויות עסקיות ויזמות חברתית."/>
-                <GoalCard icon="hand-holding-heart" title = "דאגה למשתחררים ופצועים מהיחידה" description = "אנו מסייעים לפרויקטי המשתחררים ומקיימים סדנת “שחרור נעים” לשחרור חלק וסיוע בהשמה לעבודה."/>
-                <GoalCard icon = "handshake-o" title = "ליווי היחידה ולוחמיה הסדירים" description = "ליווי במהלך המסלול ומתן שי למסיימי מסלול. שימור המורשת – מור”קים ודאגה לחיילים עם בעיות כלכליות."/>
-            </View> */}
-            
-            {/* <ImageBackground source={event} style = {styles.view}>
-                <View style={styles.tint}>
-                <Text style = {styles.title} >אירועים</Text>
-                <Text style={styles.content}>ליחידת אגוז מורשת מפוארת וחלק חשוב בהובלת הלחימה של צה”ל מאז הוקמה. כל השנים היינו עסוקים בלהילחם ולנצח- היום אנו עוסקים גם בתיעוד המורשת שלנו. במסגרת זה אנו מקימים את האתר אינטרנט, כותבים ספר מורשת, מחדשים את אתר ההנצחה בקלעת נמרוד וחדר ההנצחה בנווה אטי”ב ומחדשים את ארכיון היחידה.  </Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("calendar")}>
-                    <Text style = {styles.button}>קרא עוד</Text>
-                </TouchableOpacity>
-                </View>
-            </ImageBackground> */}
-
-            
-
-
-            {/* <ImageBackground style = {styles.map} source={map} resizeMode = "cover">
-           
-            </ImageBackground> */}
-            {/* <ImageBackground source={memorial} style = {styles.view}>
-                <View style={styles.tint}>
-                <Text style = {styles.title}>יזכור</Text>
-                <Text style = {styles.miniTitle}>הנצחת נופלי היחידה</Text>
-                <Text style={styles.content}>עמותת הסיירת הצפונית פועלת ותמשיך לפעול למען הנצחת נופלי היחידה. זוהי אחת ממטרות הדגל של העמותה. העמותה תפעל לחיזוק הקשר בין המשפחות השכולות, הבוגרים והיחידה הסדירה.</Text>
-                <TouchableOpacity onPress={()=>props.navigation.navigate("Memorial")}>
-                    <Text style = {styles.button}>נופלים</Text>
-                </TouchableOpacity>
-                </View>
-            </ImageBackground> */}
