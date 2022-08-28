@@ -37,8 +37,12 @@ const Stack = createStackNavigator();
 export default function App() {
   //forcing the app to be right to left
   if(!I18nManager.isRTL){
+    I18nManager
+    .changeLanguage(I18n.language === 'he' ? 'en' : 'he')
+    .then(()=>{
       I18nManager.forceRTL(true);
-      CodePush.restartApp();
+    });
+    CodePush.restartApp();
   }
   
   LogBox.ignoreLogs(['Setting a timer']);
